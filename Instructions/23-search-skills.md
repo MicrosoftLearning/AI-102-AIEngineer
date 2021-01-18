@@ -32,7 +32,7 @@ If you have previously completed the **[Create an Azure Cognitive Search solutio
 2. View the **Resource groups** in your subscription.
 3. If you are using a restricted subscription in which a resource group has been provided for you, select the resource group to view its properties. Otherwise, create a new resource group with a name of your choice, and go to it when it has been created.
 4. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with the name of the resource group in subsequent steps.
-5. In Visual Studio Code, in the **AI-102** project, expand the **22-custom-search-skill** folder and select **setup.cmd**. You will use this batch script to run the Azure command line interface (CLI) commands required to create the Azure resources you need.
+5. In Visual Studio Code, expand the **23-custom-search-skill** folder and select **setup.cmd**. You will use this batch script to run the Azure command line interface (CLI) commands required to create the Azure resources you need.
 6. Right-click the the **23-custom-search-skill** folder and select **Open in Integrated Terminal**.
 7. In the terminal pane, enter the following command to establish an authenticated connection to your Azure subscription.
 
@@ -49,7 +49,7 @@ If you have previously completed the **[Create an Azure Cognitive Search solutio
 
 10. In the output, find the **Name** value that corresponds with the location of your resource group (for example, for *East US* the corresponding name is *eastus*).
 11. In the **setup.cmd** script, modify the **subscription_id**, **resource_group**, and **location** variable declarations with the appropriate values for your subscription ID, resource group name, and location name. Then save your changes.
-12. In the terminal for the **22-custom-search-skill** folder, enter the following command to run the script:
+12. In the terminal for the **23-custom-search-skill** folder, enter the following command to run the script:
 
     ```bash
     setup
@@ -527,7 +527,7 @@ Now that you've deployed the function to Azure, you can test it in the Azure por
 
 Now you need to include your function as a custom skill in the search solution skillset, and map the results it produces to a field in the index. 
 
-1. In Visual Studio Code, in the **22-custom-search-skill/update-search** folder, open the **update-skillset.json** file. This contains the JSON definition of a skillset.
+1. In Visual Studio Code, in the **23-custom-search-skill/update-search** folder, open the **update-skillset.json** file. This contains the JSON definition of a skillset.
 2. At the top of the skillset definition, in the **cognitiveServices** element, replace the **YOUR_COGNITIVE_SERVICES_KEY** placeholder with either of the keys for your cognitive services resources.
 
     *You can find the keys on the **Keys and Endpoint** page for your cognitive services resource in the Azure portal.*

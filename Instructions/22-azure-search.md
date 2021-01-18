@@ -76,9 +76,7 @@ If you don't already have on in your subscription, you'll need to provision a **
     - **Resource group**: *The same resource group as your storage account and cognitive services resource*
     - **URL**: *Enter a unique name*
     - **Location**: *The same location as your storage account*
-    - **Pricing tier**: Free\*
-
-    \* *You can only have one free-tier resource per subscription. If you already have a free-tier resource that you can't use for this exercise, create a **Basic** tier resource.*
+    - **Pricing tier**: Basic
 
 2. Wait for deployment to complete, and then go to the deployed resource.
 3. Review the **Overview** page on the blade for your Azure Cognitive Search resource in the Azure portal. Here, you can use a visual interface to create, test, manage, and monitor the various components of a search solution; including data sources, indexes, indexers, and skillsets.
