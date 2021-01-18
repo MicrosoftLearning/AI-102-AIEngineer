@@ -1,0 +1,350 @@
+{
+    "files": [
+        {
+            "filename": "image11.jpg",
+            "tags": [
+                {
+                    "tag": "orange",
+                    "left": 0.501782656,
+                    "top": 0.141307935,
+                    "width": 0.30014348,
+                    "height": 0.421263933
+                },
+                {
+                    "tag": "banana",
+                    "left": 0.117563143,
+                    "top": 0.269699484,
+                    "width": 0.4181828,
+                    "height": 0.629577756
+                }
+            ]
+        },
+        {
+            "filename": "image12.jpg",
+            "tags": [
+                {
+                    "tag": "banana",
+                    "left": 0.0266054422,
+                    "top": 0.429971635,
+                    "width": 0.9334502,
+                    "height": 0.5663317
+                },
+                {
+                    "tag": "apple",
+                    "left": 0.594586432,
+                    "top": 0.139771029,
+                    "width": 0.2337932,
+                    "height": 0.313067973
+                },
+                {
+                    "tag": "orange",
+                    "left": 0.24538058,
+                    "top": 0.06600542,
+                    "width": 0.230479121,
+                    "height": 0.3283311
+                }
+            ]
+        },
+        {
+            "filename": "image13.jpg",
+            "tags": [
+                {
+                    "tag": "orange",
+                    "left": 0.508894742,
+                    "top": 0.155026585,
+                    "width": 0.370887518,
+                    "height": 0.512516
+                },
+                {
+                    "tag": "banana",
+                    "left": 0.08663659,
+                    "top": 0.253976226,
+                    "width": 0.382285058,
+                    "height": 0.584964633
+                }
+            ]
+        },
+        {
+            "filename": "image14.jpg",
+            "tags": [
+                {
+                    "tag": "apple",
+                    "left": 0.6080398,
+                    "top": 0.222880378,
+                    "width": 0.3454436,
+                    "height": 0.498601437
+                },
+                {
+                    "tag": "banana",
+                    "left": 0.08858037,
+                    "top": 0.2583913,
+                    "width": 0.394662261,
+                    "height": 0.6532483
+                }
+            ]
+        },
+        {
+            "filename": "image15.jpg",
+            "tags": [
+                {
+                    "tag": "orange",
+                    "left": 0.124889567,
+                    "top": 0.160744965,
+                    "width": 0.365462124,
+                    "height": 0.503556669
+                },
+                {
+                    "tag": "banana",
+                    "left": 0.530725956,
+                    "top": 0.261967421,
+                    "width": 0.380674481,
+                    "height": 0.5697762
+                }
+            ]
+        },
+        {
+            "filename": "image16.jpg",
+            "tags": [
+                {
+                    "tag": "banana",
+                    "left": 0.24473004,
+                    "top": 0.316017568,
+                    "width": 0.621397436,
+                    "height": 0.62547636
+                },
+                {
+                    "tag": "apple",
+                    "left": 0.2669289,
+                    "top": 0.1570937,
+                    "width": 0.2849568,
+                    "height": 0.373458445
+                }
+            ]
+        },
+        {
+            "filename": "image17.jpg",
+            "tags": [
+                {
+                    "tag": "banana",
+                    "left": 0.137872428,
+                    "top": 0.3037218,
+                    "width": 0.6171047,
+                    "height": 0.6428385
+                },
+                {
+                    "tag": "apple",
+                    "left": 0.446089834,
+                    "top": 0.158026949,
+                    "width": 0.2905319,
+                    "height": 0.368484139
+                }
+            ]
+        },
+        {
+            "filename": "image18.jpg",
+            "tags": [
+                {
+                    "tag": "banana",
+                    "left": 0.345145166,
+                    "top": 0.315790027,
+                    "width": 0.389697134,
+                    "height": 0.5641991
+                },
+                {
+                    "tag": "orange",
+                    "left": 0.6284472,
+                    "top": 0.160571277,
+                    "width": 0.25890553,
+                    "height": 0.321568727
+                },
+                {
+                    "tag": "orange",
+                    "left": 0.0472412556,
+                    "top": 0.317386866,
+                    "width": 0.344220281,
+                    "height": 0.451182485
+                }
+            ]
+        },
+        {
+            "filename": "image19.jpg",
+            "tags": [
+                {
+                    "tag": "orange",
+                    "left": 0.190300852,
+                    "top": 0.04908291,
+                    "width": 0.6819816,
+                    "height": 0.89233005
+                }
+            ]
+        },
+        {
+            "filename": "image20.jpg",
+            "tags": [
+                {
+                    "tag": "orange",
+                    "left": 0.296974,
+                    "top": 0.11914885,
+                    "width": 0.467207551,
+                    "height": 0.6827575
+                }
+            ]
+        },
+        {
+            "filename": "image21.jpg",
+            "tags": [
+                {
+                    "tag": "orange",
+                    "left": 0.235896885,
+                    "top": 0.144391567,
+                    "width": 0.5458362,
+                    "height": 0.739897847
+                }
+            ]
+        },
+        {
+            "filename": "image22.jpg",
+            "tags": [
+                {
+                    "tag": "orange",
+                    "left": 0.242359161,
+                    "top": 0.039894,
+                    "width": 0.632171631,
+                    "height": 0.903954148
+                }
+            ]
+        },
+        {
+            "filename": "image23.jpg",
+            "tags": [
+                {
+                    "tag": "orange",
+                    "left": 0.242662221,
+                    "top": 0.06341483,
+                    "width": 0.670523345,
+                    "height": 0.7936373
+                }
+            ]
+        },
+        {
+            "filename": "image24.jpg",
+            "tags": [
+                {
+                    "tag": "banana",
+                    "left": 0.06202866,
+                    "top": 0.319153845,
+                    "width": 0.9132734,
+                    "height": 0.640570164
+                }
+            ]
+        },
+        {
+            "filename": "image25.jpg",
+            "tags": [
+                {
+                    "tag": "banana",
+                    "left": 0.234958112,
+                    "top": 0.165271968,
+                    "width": 0.51941216,
+                    "height": 0.77990067
+                }
+            ]
+        },
+        {
+            "filename": "image26.jpg",
+            "tags": [
+                {
+                    "tag": "banana",
+                    "left": 0.123737864,
+                    "top": 0.311502129,
+                    "width": 0.6994619,
+                    "height": 0.6375427
+                }
+            ]
+        },
+        {
+            "filename": "image27.jpg",
+            "tags": [
+                {
+                    "tag": "banana",
+                    "left": 0.147404462,
+                    "top": 0.332391232,
+                    "width": 0.708104849,
+                    "height": 0.41904977
+                }
+            ]
+        },
+        {
+            "filename": "image28.jpg",
+            "tags": [
+                {
+                    "tag": "banana",
+                    "left": 0.294261217,
+                    "top": 0.262935251,
+                    "width": 0.476716518,
+                    "height": 0.7041446
+                }
+            ]
+        },
+        {
+            "filename": "image29.jpg",
+            "tags": [
+                {
+                    "tag": "apple",
+                    "left": 0.152405351,
+                    "top": 0.105940014,
+                    "width": 0.598258257,
+                    "height": 0.8126528
+                }
+            ]
+        },
+        {
+            "filename": "image30.jpg",
+            "tags": [
+                {
+                    "tag": "apple",
+                    "left": 0.255153179,
+                    "top": 0.1485295,
+                    "width": 0.528649,
+                    "height": 0.7251674
+                }
+            ]
+        },
+        {
+            "filename": "image31.jpg",
+            "tags": [
+                {
+                    "tag": "apple",
+                    "left": 0.227940559,
+                    "top": 0.146328539,
+                    "width": 0.561518431,
+                    "height": 0.767682433
+                }
+            ]
+        },
+        {
+            "filename": "image32.jpg",
+            "tags": [
+                {
+                    "tag": "apple",
+                    "left": 0.18220368,
+                    "top": 0.0870502,
+                    "width": 0.602320552,
+                    "height": 0.7840438
+                }
+            ]
+        },
+        {
+            "filename": "image33.jpg",
+            "tags": [
+                {
+                    "tag": "apple",
+                    "left": 0.2639115,
+                    "top": 0.153765231,
+                    "width": 0.55621016,
+                    "height": 0.7570554
+                }
+            ]
+        }
+    ]
+}

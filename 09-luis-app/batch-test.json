@@ -1,0 +1,133 @@
+[
+    {
+        "text": "what time is it now?",
+        "intent": "GetTime",
+        "entities":[]
+    },
+    {
+        "text": "what's the current time?",
+        "intent": "GetTime",
+        "entities":[]
+    },
+    {
+        "text": "what is the time in Seattle?",
+        "intent": "GetTime",
+        "entities":
+        [
+            {
+                "entity": "Location",
+                "startPos": 20,
+                "endPos": 26
+            }
+        ]
+    },
+    {
+        "text": "what time is it in Seattle?",
+        "intent": "GetTime",
+        "entities":
+        [
+            {
+                "entity": "Location",
+                "startPos": 19,
+                "endPos": 25
+            }
+        ]
+    },
+    {
+        "text": "what time is it in Los Angeles?",
+        "intent": "GetTime",
+        "entities":
+        [
+            {
+                "entity": "Location",
+                "startPos": 19,
+                "endPos": 29
+            }
+        ]
+    },
+    {
+        "text": "what time is it in San Franscisco now?",
+        "intent": "GetTime",
+        "entities":
+        [
+            {
+                "entity": "Location",
+                "startPos": 19,
+                "endPos": 32
+            }
+        ]
+    },
+    {
+        "text": "what time is it in Paris?",
+        "intent": "GetTime",
+        "entities":
+        [
+            {
+                "entity": "Location",
+                "startPos": 19,
+                "endPos": 23
+            }
+        ]
+    },
+    {
+        "text": "what is the current time in Delhi?",
+        "intent": "GetTime",
+        "entities":
+        [
+            {
+                "entity": "Location",
+                "startPos": 28,
+                "endPos": 32
+            }
+        ]
+    },
+    {
+        "text": "what day is it today?",
+        "intent": "GetDay",
+        "entities":[]
+    },
+    {
+        "text": "what day is it?",
+        "intent": "GetDay",
+        "entities":[]
+    },
+    {
+        "text": "what's the day?",
+        "intent": "GetDay",
+        "entities":[]
+    },
+    {
+        "text": "what day is 12/12/2022?",
+        "intent": "GetDay",
+        "entities":
+        [
+            {
+                "entity": "Date",
+                "startPos": 12,
+                "endPos": 21
+            }
+        ]
+    },
+    {
+        "text": "what's the date?",
+        "intent": "GetDate",
+        "entities":[]
+    },
+    {
+        "text": "what was the date on Monday?",
+        "intent": "GetDate",
+        "entities":
+        [
+            {
+                "entity": "Weekday",
+                "startPos": 21,
+                "endPos": 26
+            }
+        ]
+    },
+    {
+        "text": "Hello!",
+        "intent": "None",
+        "entities":[]
+    }
+  ]

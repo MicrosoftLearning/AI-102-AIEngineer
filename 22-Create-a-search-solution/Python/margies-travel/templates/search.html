@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content %}<hr/>
+<div class="searchBoxForm">
+<form name="refine_form" action="/search" method="GET">
+    <p>Search:{{ search_terms }}</p>
+    <p>Results:{{ search_results.get_count() }}</p>
+    <p class="filterTitle">Filter by author:</p>
+    <input name="search" type="hidden" value="{{ search_terms }}"/>
+    {% for facet in search_results.get_facets()['metadata_author']: %}
+        <div><input name="facet" value="{{ facet['value'] }}" type="radio">{{ facet['value'] }}</input></div>
+    {% endfor %}
+    <p class="sortList">Sort by: <select id="sort" name="sort">
+        <option value="relevance">Relevance</option>
+        <option value="file_name" {% if sort_field == 'file_name' %}selected {% endif %}>Name</option>
+        <option value="size" {% if sort_field == 'size' %}selected {% endif %}>Largest file size</option>
+        <option value="date" {% if sort_field == 'date' %}selected {% endif %}>Most recently modified</option>
+        <option value="sentiment" {% if sort_field == 'sentiment' %}selected {% endif %}>Positive to negative</option>
+      </select>
+    </p>
+    <input name="refine" type="submit" value="Refine Results" class="refineButton"></input>
+</form>
+</div>
+{% for search_result in search_results: %}
+<div class="result">
+    <p class="resultLink"><a href="{{ search_result['url'] }}" target="_blank">{{ search_result['metadata_storage_name'] }}</a></p>
+    {% if search_result['@search.highlights'] is defined %}
+        {% if search_result['@search.highlights']['merged_content']|length > 0 %}
+            <div>{% for highlight in search_result['@search.highlights']['merged_content']: %} <p class='resultExtract'>{{ highlight|safe }}</p> {% endfor %}</div>
+        {% endif %}
+        {% if search_result['@search.highlights']['imageCaption']|length > 0 %}
+            <div>{% for highlight in search_result['@search.highlights']['imageCaption']: %} <p class='resultExtract'>Image caption: {{ highlight|safe }}</p> {% endfor %}</div>
+        {% endif %}
+    {% endif %}
+    <ul class="resultAttributes">
+        <li>Author: {{ search_result['metadata_author'] }}</li>
+        <li>Size: {{ search_result['metadata_storage_size'] }} bytes</li>
+        <li>Modified: {{ search_result['metadata_last_modified'] }}</li>
+        <li>Language: {{ search_result['language'] }}</li>
+        <li>Sentiment: {% if search_result['sentiment'] >= 0.5 %} &#128578; {% else %} &#128577; {% endif %} {{ search_result['sentiment'] }}</li>
+        <li>Key Phrases:</li>
+            <ul class="resultAttributes">
+                {% for key_phrase in search_result['keyphrases'][:5]: %}
+                <li>{{ key_phrase }}</li>
+                {% endfor %}
+            </ul>
+            {% if search_result['locations']|length > 0 %}
+            <li>Locations:</li>
+                <ul class="resultAttributes">
+                    {% for location in search_result['locations'][:5]: %}
+                    <li>{{ location }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% if search_result['imageTags']|length > 0 %}
+            <li>Image Tags:</li>
+                <ul class="resultAttributes">
+                    {% for tag in search_result['imageTags'][:5]: %}
+                    <li>{{ tag }}</li>
+                    {% endfor %}
+                </ul>
+        {% endif %}
+    </ul>
+
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,216 @@
+{
+    "name": "margies-custom-index",
+    "fields": [
+      {
+        "name": "content",
+        "type": "Edm.String",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": true,
+        "searchable": true,
+        "sortable": false
+      },
+      {
+        "name": "metadata_storage_content_type",
+        "type": "Edm.String",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": false,
+        "searchable": false,
+        "sortable": false
+      },
+      {
+        "name": "metadata_storage_size",
+        "type": "Edm.Int64",
+        "facetable": false,
+        "filterable": true,
+        "retrievable": true,
+        "sortable": true
+      },
+      {
+        "name": "metadata_storage_last_modified",
+        "type": "Edm.DateTimeOffset",
+        "facetable": false,
+        "filterable": true,
+        "retrievable": true,
+        "sortable": true
+      },
+      {
+        "name": "metadata_storage_content_md5",
+        "type": "Edm.String",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": false,
+        "searchable": false,
+        "sortable": false
+      },
+      {
+        "name": "metadata_storage_name",
+        "type": "Edm.String",
+        "facetable": false,
+        "filterable": true,
+        "retrievable": true,
+        "searchable": true,
+        "sortable": true
+      },
+      {
+        "name": "metadata_storage_path",
+        "type": "Edm.String",
+        "facetable": false,
+        "filterable": false,
+        "key": true,
+        "retrievable": true,
+        "searchable": false,
+        "sortable": false
+      },
+      {
+        "name": "metadata_storage_file_extension",
+        "type": "Edm.String",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": false,
+        "searchable": false,
+        "sortable": false
+      },
+      {
+        "name": "metadata_content_type",
+        "type": "Edm.String",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": false,
+        "searchable": false,
+        "sortable": false
+      },
+      {
+        "name": "metadata_language",
+        "type": "Edm.String",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": false,
+        "searchable": false,
+        "sortable": false
+      },
+      {
+        "name": "metadata_author",
+        "type": "Edm.String",
+        "facetable": true,
+        "filterable": true,
+        "retrievable": true,
+        "searchable": true,
+        "sortable": true
+      },
+      {
+        "name": "metadata_title",
+        "type": "Edm.String",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": false,
+        "searchable": false,
+        "sortable": false
+      },
+      {
+        "name": "metadata_creation_date",
+        "type": "Edm.DateTimeOffset",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": false,
+        "sortable": false
+      },
+      {
+        "name": "locations",
+        "type": "Collection(Edm.String)",
+        "facetable": false,
+        "filterable": true,
+        "retrievable": true,
+        "searchable": true
+      },
+      {
+        "name": "keyphrases",
+        "type": "Collection(Edm.String)",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": true,
+        "searchable": true
+      },
+      {
+        "name": "language",
+        "type": "Edm.String",
+        "facetable": false,
+        "filterable": true,
+        "retrievable": true,
+        "searchable": true,
+        "sortable": false,
+        "analyzer": "standard.lucene",
+        "indexAnalyzer": null,
+        "searchAnalyzer": null,
+        "synonymMaps": [],
+        "fields": []
+      },
+      {
+        "name": "merged_content",
+        "type": "Edm.String",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": true,
+        "searchable": true,
+        "sortable": false
+      },
+      {
+        "name": "text",
+        "type": "Collection(Edm.String)",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": true,
+        "searchable": true
+      },
+      {
+        "name": "layoutText",
+        "type": "Collection(Edm.String)",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": true,
+        "searchable": true
+      },
+      {
+        "name": "imageTags",
+        "type": "Collection(Edm.String)",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": true,
+        "searchable": true
+      },
+      {
+        "name": "imageCaption",
+        "type": "Collection(Edm.String)",
+        "facetable": false,
+        "filterable": false,
+        "retrievable": true,
+        "searchable": true
+      },
+      {
+        "name": "sentiment",
+        "type": "Edm.Double",
+        "facetable": false,
+        "filterable": true,
+        "retrievable": true,
+        "sortable": true
+      },
+      {
+        "name": "url",
+        "type": "Edm.String",
+        "facetable": false,
+        "filterable": true,
+        "retrievable": true,
+        "searchable": false,
+        "sortable": false
+      },
+      {
+      "name": "top_words",
+      "type": "Collection(Edm.String)",
+      "searchable": true,
+      "sortable": false,
+      "filterable": true,
+      "facetable": false
+      }
+    ]
+  }

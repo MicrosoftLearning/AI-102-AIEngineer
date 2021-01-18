@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Margies Travel</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+    </head>
+    <body>
+        <h1>Margie's Travel</h1>
+        <div class="searchBoxForm">
+        <p>Enter a search term</p>
+        <form name="search_form" action="/search" method="GET">
+            <input name="search" type="text" value="{{ search_terms }}"></input>
+            <input name="submit" type="submit" value="Search"></input>
+        </form>
+        </div>
+        {% block content %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,122 @@
+@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Margie's Travel";
+}
+
+<div>
+    <h1 class="display-4">Search</h1>
+    
+
+    <form name="searchForm" method="get">
+        <input name="search" type="text" value="@Model.SearchTerms"/>
+        <input name="submit" type="submit" value="Search"/>
+        <p>@Model.SearchTerms</p>
+    </form>
+
+
+
+        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+
+            <input name="search" type="hidden" value="@Model.SearchTerms"/>
+
+            @if (Model != null)
+            {
+                @if (Model.search_results != null){
+                    // Show the result count.
+                    <p>
+                        @Html.DisplayFor(m => m.search_results.TotalCount) Results
+                    </p>
+
+                    // Create author filter options
+                    List<string> authors = Model.search_results.Facets["metadata_author"].Select(x => x.Value.ToString()).ToList();
+                    if (authors.Count > 0)
+                    {
+                        <p class="filterTitle">Filter by author:</p>
+                            @for (var c = 0; c < authors.Count; c++)
+                            {
+                                <div><input name="facet" value="@authors[c]" type="radio"> @authors[c] </div>
+
+                            }
+                    }
+
+                    // Create sort list
+                    <p class="sortList">Sort by: <select id="sort" name="sort">
+                        <option value="search.score()" selected="@(Model.SortOrder == "search.score()")">Relevance</option>
+                        <option value="metadata_storage_name asc" selected="@(Model.SortOrder == "metadata_storage_name asc")">File name</option>
+                        <option value="metadata_storage_size desc" selected="@(Model.SortOrder == "metadata_storage_size desc")">Largest file size</option>
+                        <option value="metadata_storage_last_modified desc" selected="@(Model.SortOrder == "metadata_storage_last_modified desc")">Most recently modified</option>
+                        <option value="sentiment desc" selected="@(Model.SortOrder == "sentiment desc")">Positive to negative</option>
+                    </select>
+                    </p>
+                    <input name="refine" type="submit" value="Refine Results" class="refineButton"></input>
+
+                    // Display search results
+                    @foreach (var result in Model.search_results.GetResults())
+                    {
+                        <div class="result">
+                            <p class="resultLink"><a href="@result.Document.url" target="_blank">@result.Document.metadata_storage_name</a></p>
+                            @if (result.Highlights != null){
+                                @foreach (var highlight in result.Highlights)
+                                {
+                                    @foreach (var val in highlight.Value)
+                                    {
+                                    <div class='resultExtract'>@Html.Raw(val)</div>
+                                    }
+                                }
+                            }
+                            <ul class="resultAttributes">
+                                <li>Author: @result.Document.metadata_author</li>
+                                <li>Language: @result.Document.language</li>
+                                <li>Size: @result.Document.metadata_storage_size bytes</li>
+                                <li>Modified: @result.Document.metadata_storage_last_modified</li>
+                                <li>Sentiment: @if(result.Document.sentiment >= 0.5){
+                                                    @Html.Raw("&#128578;")
+                                                    }
+                                                    else{
+                                                       @Html.Raw("&#128577")
+                                                    }
+                                    @result.Document.sentiment</li>
+                                 @if(result.Document.keyphrases !=  null){
+                                <li>Key Phrases:</li>
+                                    <ul class="resultAttributes">
+                                        @foreach (var key_phrase in result.Document.keyphrases.Take(5))
+                                        {
+                                            <li>@key_phrase</li>
+                                        }
+                                    </ul>
+                                 }
+                                @if(result.Document.locations !=  null){
+                                <li>Locations:</li>
+                                        <ul class="resultAttributes">
+                                        @foreach (var location in result.Document.locations.Take(5))
+                                            {
+                                                <li>@location</li>
+                                            }
+                                        </ul>
+                                }
+                                @if(result.Document.imageTags !=  null){
+                                <li>Image Tags:</li>
+                                    <ul class="resultAttributes">
+                                        @foreach (var tag in result.Document.imageTags.Take(5))
+                                        {
+                                            <li>@tag</li>
+                                        }
+                                    </ul>
+                                }
+                            </ul>
+                        <hr/>
+                        </div>
+                    }
+
+                }
+                else
+                {
+                    <div><img src="images/margies.jpg"/></div>
+                }
+            }
+        }
+
+</div>

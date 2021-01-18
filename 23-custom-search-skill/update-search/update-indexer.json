@@ -1,0 +1,71 @@
+{
+    "name": "margies-custom-indexer",
+    "description": "Indexer for Margies Travel",
+    "dataSourceName": "margies-custom-data",
+    "skillsetName": "margies-custom-skillset",
+    "targetIndexName": "margies-custom-index",
+    "parameters": {
+      "maxFailedItems": -1,
+      "maxFailedItemsPerBatch": -1,
+      "configuration": {
+        "dataToExtract": "contentAndMetadata",
+        "parsingMode": "default",
+        "imageAction": "generateNormalizedImages"
+      }
+    },
+    "fieldMappings": [
+      {
+        "sourceFieldName": "metadata_storage_path",
+        "targetFieldName": "metadata_storage_path",
+        "mappingFunction": {
+          "name": "base64Encode"
+        }
+      },
+      {
+        "sourceFieldName": "metadata_storage_path",
+        "targetFieldName": "url"
+      }
+    ],
+    "outputFieldMappings": [
+      {
+        "sourceFieldName": "/document/merged_content/locations",
+        "targetFieldName": "locations"
+      },
+      {
+        "sourceFieldName": "/document/merged_content/keyphrases",
+        "targetFieldName": "keyphrases"
+      },
+      {
+        "sourceFieldName": "/document/language",
+        "targetFieldName": "language"
+      },
+      {
+        "sourceFieldName": "/document/merged_content",
+        "targetFieldName": "merged_content"
+      },
+      {
+        "sourceFieldName": "/document/normalized_images/*/text",
+        "targetFieldName": "text"
+      },
+      {
+        "sourceFieldName": "/document/normalized_images/*/layoutText",
+        "targetFieldName": "layoutText"
+      },
+      {
+        "sourceFieldName": "/document/normalized_images/*/imageTags/*/name",
+        "targetFieldName": "imageTags"
+      },
+      {
+        "sourceFieldName": "/document/normalized_images/*/imageCaption",
+        "targetFieldName": "imageCaption"
+      },
+      {
+        "sourceFieldName": "/document/sentimentScore",
+        "targetFieldName": "sentiment"
+      },
+      {
+        "sourceFieldName" : "/document/topWords", 
+        "targetFieldName" : "top_words"
+      }
+    ]
+  }
