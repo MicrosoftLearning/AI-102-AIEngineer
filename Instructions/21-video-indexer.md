@@ -31,6 +31,8 @@ You can use the Video Indexer portal to upload and index a video.
 2. In Video Indexer, select the **Upload** option. Then drag the **responsible_ai.mp4** from File Manager to the upload area, review the default names and settings, select the checkbox to verify compliance with Microsoft's policies for facial recognition, and upload it.
 3. After the file has uploaded, wait a few minutes while Video Indexer automatically indexes it.
 
+> **Note**: In this exercise, we're using this video to explore Video Indexer functionality; but you should take the time to watch it in full when you've finished the exercise as it contains useful information and guidance for developing AI-enabled applications responsibly! 
+
 ## Review video insights
 
 The indexing process extracts insights from the video, which you can view in the portal.
