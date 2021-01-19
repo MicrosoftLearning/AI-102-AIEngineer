@@ -117,6 +117,39 @@ The Video Indexer portal is a useful interface to manage video indexing projects
 
 ![Video Indexer widgets in a web page](./images/video-indexer-widgets.png)
 
+## Use the Video Indexer REST API
+
+Video Indexer provides a REST API that you can use to upload and manage videos in your account.
+
+### Get your API details
+
+To use the Video Indexer API, you need some information to authenticate requests:
+
+1. In the [Video Indexer portal](https://www.videoindexer.ai/), expand the menu (≡) and select the **Account settings** page.
+2. Note the **Account ID** on this page - you will need it later.
+3. Open a new browser tab and go to the [Video Indexer developer portal](https://api-portal.videoindexer.ai/), signing in using the credentials for your Video Indexer account.
+4. On the **Products** page, select **Authorization**.
+5. If you already have a subscription for the Authorization API, select it. Otherwise, create a new subscription.
+6. On the page with your subscription(s), observe that you have been assigned two keys (primary and secondary) for each subscription. Then select **Show** for any of the keys to see it. You will need this key shortly.
+
+> If you are using a free Video indexer account, the *location* is always "trial". If you have upgraded to a full 
+
+### Use the REST API
+
+Now that you have the account ID and an API key, you can use the REST API to work with videos in your account. In this procedure, you'll use a PowerShell script to make REST calls; but the same principles apply with HTTP utilities such as cURL or Postman, or any programming language capable of sending and receiving JSON over HTTP.
+
+All interactions with the Video Indexer REST API follow the same pattern:
+
+- An initial request to the **AccessToken** method with the API key in the header is used to obtain an access token.
+- Subsequent requests use the access token to authenticate when calling REST methods to work with videos.
+
+1. In Visual Studio Code, in the **21-video-indexer** folder, open **get-videos.ps1**.
+2. In the PowerShell script, replace the **YOUR_ACCOUNT_ID** and **YOUR_API_KEY** placeholders with the account ID and API key values you identified previously.
+3. Observe that the *location* for a free account is "trial". If you have created an unrestricted Video Indexer account (with an associated Azure resource), you can change this to the location where your Azure resource is provisioned (for example "eastus").
+4. Review the code in the script, noting that invokes two REST methods: one to get an access token, and another to list the videos in your account.
+5. Save your changes, and then at the top-right of the script pane, use the **&#9655;** button to run the script.
+6. View the JSON response from the REST service, which should contain details of the **responsible_ai** video you indexed previously.
+
 ## More information
 
 For more information about **Video Indexer****, see the [Video Indexer documentation](https://docs.microsoft.com/azure/media-services/video-indexer/).

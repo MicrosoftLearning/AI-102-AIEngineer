@@ -61,6 +61,7 @@ pip install --upgrade numpy
     - Python
     - C#
     - Azure Functions
+    - PowerShell
 
 
 ## Bot Framework Emulator
@@ -70,4 +71,3 @@ Follow the instructions at https://github.com/Microsoft/BotFramework-Emulator/bl
 ## Bot Framework Composer
 
 Install from https://docs.microsoft.com/en-us/composer/install-composer.
-
