@@ -68,7 +68,7 @@ When you created your cognitive services resource, two authentication keys were 
 
     The command returns a list of the keys for your cognitive services resource - there are two keys, named **key1** and **key2**.
 
-4. To test your cognitive service, you can use **curl** - a command line tool for HTTP requests. In the **02-cognitive-security** folder, open **rest-test.cmd** and edit the **curl** command it contains, replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your cognitive services resource.
+4. To test your cognitive service, you can use **curl** - a command line tool for HTTP requests. In the **02-cognitive-security** folder, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your cognitive services resource.
 
     ```
     curl -X POST "<yourEndpoint>/text/analytics/v3.0/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':[{'id':1,'text':'hello'}]}"
@@ -91,7 +91,7 @@ When you created your cognitive services resource, two authentication keys were 
     The list of keys for your cognitive services resource is returned - note that **key1** has changed since you last retrieved them.
 
 7. Re-run the **rest-test** command with the old key (you can use the **^** key to cycle through previous commands), and verify that it now fails.
-8. Edit the *curl* command in **rest-test.cmd** replacing the key with the new **key1** value. Then rerun the **rest-test** command and verify that it succeeds.
+8. Edit the *curl* command in **rest-test.cmd** replacing the key with the new **key1** value, and save the changes. Then rerun the **rest-test** command and verify that it succeeds.
 
 > **Tip**: In this exercise, you used the full names of Azure CLI parameters, such as **--resource-group**.  You can also use shorter alternatives, such as **-g**, to make your commands less verbose (but a little harder to understand).  The [Cognitive Services CLI command reference](https://docs.microsoft.com/cli/azure/cognitiveservices?view=azure-cli-latest) lists the parameter options for each cognitive services CLI command.
 
