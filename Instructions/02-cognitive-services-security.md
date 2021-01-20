@@ -57,7 +57,7 @@ When you created your cognitive services resource, two authentication keys were 
     > If you need to change the subscription, run this command, changing *&lt;subscriptionName&gt;* to the correct subscription name.
     >
     > ```
-    > az account set --subscription <subscriptionName>
+    > az account set --subscription "<subscriptionName>"
     > ```
 
 3. Now you can use the following command to get the list of cognitive services keys, replacing *&lt;resourceName&gt;* with the name of your cognitive services resource, and *&lt;resourceGroup&gt;* with the name of the resource group in which you created it.
