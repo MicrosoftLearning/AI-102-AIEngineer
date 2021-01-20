@@ -23,6 +23,8 @@ The Video Indexer portal provides a web-based interface for managing video index
 1. Open the Video Indexer portal at [https://www.videoindexer.ai/](https://www.videoindexer.ai/).
 2. If you have an existing Video Indexer account, sign in. Otherwise, sign up for a free account and sign in using your Microsoft account (or any other valid account type).
 
+> **Tip**: If the Video Indexer portal doesn't load in the hosted lab environment, you can open it in your own local browser and complete the following tasks there - returning to the hosted environment when you reach the **Use Video Indexer widgets** task. You'll need to download the **[responsible_ai.mp4](https://github.com/MicrosoftLearning/AI-102-AIEngineer/raw/master/20-video-indexer/responsible_ai.mp4)** video to your local computer.
+
 ## Upload and index a video
 
 You can use the Video Indexer portal to upload and index a video.
@@ -108,7 +110,7 @@ The Video Indexer portal is a useful interface to manage video indexing projects
 1. In Visual Studio Code, in the **21-video-indexer** folder, open **analyze-video.html**. This is a basic HTML page to which you will add the Video Indexer **Player** and **Insights** widgets. Note the reference to the **vb.widgets.mediator.js** script in the header - this script enables multiple Video Indexer widgets on the page to interact with one another.
 2. In the Video Indexer portal, return to the **Media files** page and open your **responsible_ai** video.
 3. Under the video player, select **\</> Embed** to view the HTML iframe code to embed the widgets.
-4. In the **Share and Embed** dialog box, select the **Player** widget and then copy the embed code to the clipboard.
+4. In the **Share and Embed** dialog box, select the **Player** widget, set the video size to 560 x 315,  and then copy the embed code to the clipboard.
 5. In Visual Studio Code, in the **analyze-video.html** file, paste the copied code under the comment **\<-- Player widget goes here -- >**.
 6. Edit the Player widget code to change the **width** and **height** properties to **400** and **300** respectively.
 6. Back in the **Share and Embed** dialog box, select the **Insights** widget and then copy the embed code to the clipboard. Then close the **Share and Embed** dialog box, switch back to Visual Studio Code, and paste the copied code under the comment **\<-- Insights widget goes here -- >**.
@@ -127,9 +129,9 @@ Video Indexer provides a REST API that you can use to upload and manage videos i
 
 To use the Video Indexer API, you need some information to authenticate requests:
 
-1. In the [Video Indexer portal](https://www.videoindexer.ai/), expand the menu (≡) and select the **Account settings** page.
+1. In the Video Indexer portal [(https://www.videoindexer.ai/)](https://www.videoindexer.ai/), expand the menu (≡) and select the **Account settings** page.
 2. Note the **Account ID** on this page - you will need it later.
-3. Open a new browser tab and go to the [Video Indexer developer portal](https://api-portal.videoindexer.ai/), signing in using the credentials for your Video Indexer account.
+3. Open a new browser tab and go to the Video Indexer developer portal [(https://api-portal.videoindexer.ai/)](https://api-portal.videoindexer.ai/), signing in using the credentials for your Video Indexer account.
 4. On the **Products** page, select **Authorization**.
 5. If you already have a subscription for the Authorization API, select it. Otherwise, create a new subscription.
 6. On the page with your subscription(s), observe that you have been assigned two keys (primary and secondary) for each subscription. Then select **Show** for any of the keys to see it. You will need this key shortly.
