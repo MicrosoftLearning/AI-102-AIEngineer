@@ -140,7 +140,7 @@ To access the secret in the key vault, your application must use a service princ
       "tenant": "1234abcd5678fghi90jklm"
     }
     ```
-    Make a note of the **appId**, **password**, and **tenant** values - you will need them later (if you close this terminal, you won't be able to retrieve the password; so it's important to note the values now!)
+    Make a note of the **appId**, **password**, and **tenant** values - you will need them later (if you close this terminal, you won't be able to retrieve the password; so it's important to note the values now - you can paste the output into a new text file in Visual Studio Code to ensure you can find the values you need later!)
 
 2. To assign permission for your new service principal to access secrets in your Key Vault, run the following Azure CLI command, replacing *&lt;keyVaultName&gt;* with the name of your Azure Key Vault resource and *&lt;spName&gt;* with the same value you provided when creating the service principal.
 
@@ -154,7 +154,7 @@ Now you're ready to use the service principal identity in an application, so it 
 
 > **Note**: In this exercise, we'll store the service principal credentials in environment variables and use them to authenticate the **DefaultAzureCredential** identity in your application code. This is fine for development and testing, but in a real production application, an administrator would assign a *managed identity* to the application so that it uses the service principal identity to access resources, without caching or storing the password.
 
-1. In Visual Studio Code, in the **AI-102** project, browse to the **02-cognitive-security** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
+1. In Visual Studio Code, expand the **02-cognitive-security** folder and the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **keyvault-client** folder and open an integrated terminal. Then install the packages you will need to use Azure Key Vault and the Text Analytics API in your cognitive services resource by running the appropriate command for your language preference:
 
    **C#**
