@@ -123,7 +123,7 @@ To access the secret in the key vault, your application must use a service princ
 
 1. To create a service principal with owner role on the resource group, run the following Azure CLI command, replacing *&lt;spName&gt;* with a suitable name for an application identity (for example, *ai-app*). Also replace *&lt;subscriptionId&gt;* and *&lt;resourceGroup&gt;* with the correct values for your subscription ID and the resource group containing your cognitive services and key vault resources:
 
-    > **Tip**: If you are unsure of your subscription ID, use the `az account show` command to retrieve your subscription information - the subscription ID is the **id** attribute in the output.
+    > **Tip**: If you are unsure of your subscription ID, use the **az account show** command to retrieve your subscription information - the subscription ID is the **id** attribute in the output.
 
     ```
     az ad sp create-for-rbac -n "https://<spName>" --role owner --scopes subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>
@@ -162,7 +162,7 @@ Now you're ready to use the service principal identity in an application, so it 
     ```
     dotnet add package Azure.AI.TextAnalytics --version 5.0.0
     dotnet add package Azure.Identity --version 1.3.0
-    dotnet add package Azure.Security.KeyVaults.Secrets --version 4.1.0
+    dotnet add package Azure.Security.KeyVault.Secrets --version 4.2.0-beta.3
     ```
 
    **Python**
