@@ -40,7 +40,7 @@ The cognitive services APIs are REST-based, so you can consume them by submittin
 
 > **Note**: In this exercise, you can choose to use the REST API from either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
-1. In Visual Studio Code open the **AI-102** project, and in the **Explorer** pane, browse to the **01-getting-started** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
+1. In Visual Studio Code, in the **Explorer** pane, browse to the **01-getting-started** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. View the contents of the **rest-client** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
     - **Python**: .env
@@ -81,7 +81,7 @@ You can write code that consumes cognitive services REST APIs directly, but ther
 
 > **Note**: In this exercise, you can choose to use the SDK for either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
-1. In Visual Studio Code open the **AI-102** project, and in the **Explorer** pane, browse to the **01-getting-started** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
+1. In Visual Studio Code, in the **Explorer** pane, in the **01-getting-started** folder, expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **sdk-client** folder and open an integrated terminal. Then install the Text Analytics SDK package by running the appropriate command for your language preference:
 
    **C#**
@@ -121,7 +121,7 @@ You can write code that consumes cognitive services REST APIs directly, but ther
     **Python**
 
     ```
-    python rest-client.py
+    python sdk-client.py
     ```
 
 6. When prompted, enter some text and review the language that is detected by the service. For example, try entering "Goodbye", "Au revoir", and "Hasta la vista".
