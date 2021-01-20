@@ -93,7 +93,7 @@ When you created your cognitive services resource, two authentication keys were 
 7. Re-run the **rest-test** command with the old key (you can use the **^** key to cycle through previous commands), and verify that it now fails.
 8. Edit the *curl* command in **rest-test.cmd** replacing the key with the new **key1** value. Then rerun the **rest-test** command and verify that it succeeds.
 
-> **Tip**: In this exercise, you used the full names of Azure CLI parameters, such as ``` --resource-group ```.  You can also use shorter alternatives, such as ``` -g ```, to make your commands less verbose (but a little harder to understand).  The [Cognitive Services CLI command reference](https://docs.microsoft.com/cli/azure/cognitiveservices?view=azure-cli-latest) lists the parameter options for each cognitive services CLI command.
+> **Tip**: In this exercise, you used the full names of Azure CLI parameters, such as **--resource-group**.  You can also use shorter alternatives, such as **-g**, to make your commands less verbose (but a little harder to understand).  The [Cognitive Services CLI command reference](https://docs.microsoft.com/cli/azure/cognitiveservices?view=azure-cli-latest) lists the parameter options for each cognitive services CLI command.
 
 ## Secure key access with Azure Key Vault
 
