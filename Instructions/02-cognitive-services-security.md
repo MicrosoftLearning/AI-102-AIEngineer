@@ -104,7 +104,7 @@ You can develop applications that consume cognitive services by using a key for 
 First, you need to create a key vault and add a *secret* for the cognitive services key.
 
 1. Make a note of the **key1** value for your cognitive services resource (or copy it to the clipboard).
-2. In the Azure portal, select the **&#65291;Create a resource** button, search for *Key Vault*, and create a **Key Vault** resource with the following settings:
+2. In the Azure portal, on the **Home** page, select the **&#65291;Create a resource** button, search for *Key Vault*, and create a **Key Vault** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *The same resource group as your cognitive service resource*
     - **Key vault name**: *Enter a unique name*
