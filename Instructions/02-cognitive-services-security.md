@@ -40,7 +40,7 @@ When you created your cognitive services resource, two authentication keys were 
     - An HTTP *endpoint* to which client applications can send requests.
     - Two *keys* that can be used for authentication (client applications can use either of the keys. A common practice is to use one for development, and another for production. You can easily regenerate the development key after developers have finished their work to prevent continued access).
     - The *location* where the resource is hosted. This is required for requests to some (but not all) APIs.
-2. In Visual Studio Code, open a terminal and enter the following command to sign into your Azure subscription by using the Azure CLI.
+2. In Visual Studio Code, right-click the **02-cognitive-security** folder and open an integrated terminal. Then enter the following command to sign into your Azure subscription by using the Azure CLI.
 
     ```
     az login
@@ -68,15 +68,21 @@ When you created your cognitive services resource, two authentication keys were 
 
     The command returns a list of the keys for your cognitive services resource - there are two keys, named **key1** and **key2**.
 
-4. To test your cognitive service, you can use *curl* - a command line tool for HTTP requests. Enter the following command (on a single line), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your cognitive services resource.
+4. To test your cognitive service, you can use **curl** - a command line tool for HTTP requests. In the **02-cognitive-security** folder, open **rest-test.cmd** and edit the **curl** command it contains, replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your cognitive services resource.
 
     ```
     curl -X POST "<yourEndpoint>/text/analytics/v3.0/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':[{'id':1,'text':'hello'}]}"
     ```
 
+5. Save your changes, and then in the integrated terminal for the **o2-cognitive-security** folder, run the following command:
+
+    ```
+    rest-test
+    ```
+
     The command returns a JSON document containing information about the language detected in the input data (which should be English).
 
-5. If a key becomes compromised, or the developers who have it no longer require access, you can regenerate it in the portal or by using the Azure CLI. Run the following command to regenerate your **key1** key (replacing *&lt;resourceName&gt;* and *&lt;resourceGroup&gt;* for your resource).
+6. If a key becomes compromised, or the developers who have it no longer require access, you can regenerate it in the portal or by using the Azure CLI. Run the following command to regenerate your **key1** key (replacing *&lt;resourceName&gt;* and *&lt;resourceGroup&gt;* for your resource).
 
     ```
     az cognitiveservices account keys regenerate --name <resourceName> --resource-group <resourceGroup> --key-name key1
@@ -84,8 +90,8 @@ When you created your cognitive services resource, two authentication keys were 
 
     The list of keys for your cognitive services resource is returned - note that **key1** has changed since you last retrieved them.
 
-6. Re-run the *curl* command with the old key (you can use the **^** key to cycle through previous commands), and verify that it now fails.
-7. Re-run the *curl* command, replacing the key with the new **key1** value and verify that it succeeds.
+7. Re-run the **rest-test** command with the old key (you can use the **^** key to cycle through previous commands), and verify that it now fails.
+8. Edit the *curl* command in **rest-test.cmd** replacing the key with the new **key1** value. Then rerun the **rest-test** command and verify that it succeeds.
 
 > **Tip**: In this exercise, you used the full names of Azure CLI parameters, such as ``` --resource-group ```.  You can also use shorter alternatives, such as ``` -g ```, to make your commands less verbose (but a little harder to understand).  The [Cognitive Services CLI command reference](https://docs.microsoft.com/cli/azure/cognitiveservices?view=azure-cli-latest) lists the parameter options for each cognitive services CLI command.
 
