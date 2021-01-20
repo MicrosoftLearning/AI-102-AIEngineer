@@ -74,7 +74,7 @@ When you created your cognitive services resource, two authentication keys were 
     curl -X POST "<yourEndpoint>/text/analytics/v3.0/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':[{'id':1,'text':'hello'}]}"
     ```
 
-5. Save your changes, and then in the integrated terminal for the **o2-cognitive-security** folder, run the following command:
+5. Save your changes, and then in the integrated terminal for the **02-cognitive-security** folder, run the following command:
 
     ```
     rest-test
@@ -119,9 +119,9 @@ First, you need to create a key vault and add a *secret* for the cognitive servi
 
 ### Create a service principal
 
-To access the secret in the key vault, your application must use a service principal that has access to the secret.
+To access the secret in the key vault, your application must use a service principal that has access to the secret. You'll use the Azure command line interface (CLI) to create the service principal and grant access to the secret in Azure Vault.
 
-1. To create a service principal with owner role on the resource group, run the following Azure CLI command, replacing *&lt;spName&gt;* with a suitable name for an application identity (for example, *ai-app*). Also replace *&lt;subscriptionId&gt;* and *&lt;resourceGroup&gt;* with the correct values for your subscription ID and the resource group containing your cognitive services and key vault resources:
+1. Rerurn to Visual Studio Code, and in the interactive terminal for the **02-cognitive-security** folder, run the following Azure CLI command, replacing *&lt;spName&gt;* with a suitable name for an application identity (for example, *ai-app*). Also replace *&lt;subscriptionId&gt;* and *&lt;resourceGroup&gt;* with the correct values for your subscription ID and the resource group containing your cognitive services and key vault resources:
 
     > **Tip**: If you are unsure of your subscription ID, use the **az account show** command to retrieve your subscription information - the subscription ID is the **id** attribute in the output.
 
@@ -152,7 +152,7 @@ To access the secret in the key vault, your application must use a service princ
 
 Now you're ready to use the service principal identity in an application, so it can access the secret congitive services key in your key vault and use it to connect to your cognitive services resource.
 
-> **Note**: In this exercise, we'll store the service principal credentials in environment variables and use them to authenticate the **DefaultAzureCredential** identity in your application code. This is fine for development and testing, but in a real production application, an administrator would assign a *managed identity* to the application so that it uses the service principal identity to access resources, without caching or storing the password.
+> **Note**: In this exercise, we'll store the service principal credentials in the application configuration and use them to authenticate a **ClientSecretCredential** identity in your application code. This is fine for development and testing, but in a real production application, an administrator would assign a *managed identity* to the application so that it uses the service principal identity to access resources, without caching or storing the password.
 
 1. In Visual Studio Code, expand the **02-cognitive-security** folder and the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **keyvault-client** folder and open an integrated terminal. Then install the packages you will need to use Azure Key Vault and the Text Analytics API in your cognitive services resource by running the appropriate command for your language preference:
@@ -177,7 +177,15 @@ Now you're ready to use the service principal identity in an application, so it 
     - **C#**: appsettings.json
     - **Python**: .env
 
-    Open the configuration file and update the configuration value it contains to reflect the **endpoint** for your Cognitive Services resource and the name of the Azure Key Vault resource. Save your changes.
+    Open the configuration file and update the configuration values it contains to reflect the following settings:
+    
+    - The **endpoint** for your Cognitive Services resource
+    - The name of your **Azure Key Vault** resource
+    - The **tenant** for your service principal
+    - The **appId** for your service principal
+    - The **password** for your service principal
+
+     Save your changes.
 4. Note that the **keyvault-client** folder contains a code file for the client application:
 
     - **C#**: Program.cs
@@ -185,16 +193,9 @@ Now you're ready to use the service principal identity in an application, so it 
 
     Open the code file and review the code it contains, noting the following details:
     - The namespace for the SDK you installed is imported
-    - Code in the **Main** function retrieves the cognitive services endpoint and name of your key vault resource, and then it uses the default Azure credentials to get the cognitive services key from the key vault.
+    - Code in the **Main** function retrieves the application configuration settings, and then it uses the service principal credentials to get the cognitive services key from the key vault.
     - The **GetLanguage** function uses the SDK to create a client for the service, and then uses the client to detect the language of the text that was entered.
-5. Return to the integrated terminal for the **keyvault-client** folder, and run the following commands to set environment variables, replacing *&lt;appId&gt;*, *&lt;tenant&gt;*, and, *&lt;password&gt;* with the corresponding values from the output when you created the service principal. These are used for the default Azure credentials, and will cause your application to use the service principal identity.
-
-    ```
-    setx AZURE_CLIENT_ID <appId>
-    setx AZURE_TENANT_ID <tenant>
-    setx AZURE_CLIENT_SECRET <password>
-    ```
-6. Enter the following command to run the program:
+5. Return to the integrated terminal for the **keyvault-client** folder, and enter the following command to run the program:
 
     **C#**
 
@@ -210,15 +211,6 @@ Now you're ready to use the service principal identity in an application, so it 
 
 6. When prompted, enter some text and review the language that is detected by the service. For example, try entering "Hello", "Bonjour", and "Hola".
 7. When you have finished testing the application, enter "quit" to stop the program.
-
-### Reset the security context
-
-1. In the Terminal window, enter the command `az logout` to log out of your Azure subscription.
-2. In the Windows Search box, enter **Edit the system environment variables**. Then in the **System Properties** dialog box, select **Environment variables**.
-3. Delete the following system environment variables:
-    - AZURE_CLIENT_ID
-    - AZURE_TENANT_ID
-    - AZURE_CLIENT_SECRET
 
 ## More information
 

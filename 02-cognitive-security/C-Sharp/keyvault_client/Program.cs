@@ -22,10 +22,14 @@ namespace keyvault_client
                 IConfigurationRoot configuration = builder.Build();
                 cogSvcEndpoint = configuration["CognitiveServicesEndpoint"];
                 string keyVaultName = configuration["KeyVault"];
+                string appTenant = configuration["TenantId"];
+                string appId = configuration["AppId"];
+                string appPassword = configuration["AppPassword"];
 
-                // Get secret cognitive services key from keyvault
+                // Get cognitive services key from keyvault using the service principal credentials
                 var keyVaultUri = new Uri($"https://{keyVaultName}.vault.azure.net/");
-                var keyVaultClient = new SecretClient(keyVaultUri, new DefaultAzureCredential());
+                ClientSecretCredential credential = new ClientSecretCredential(appTenant, appId, appPassword);
+                var keyVaultClient = new SecretClient(keyVaultUri, credential);
                 KeyVaultSecret secretKey = keyVaultClient.GetSecret("Cognitive-Services-Key");
                 cogSvcKey = secretKey.Value;
 
