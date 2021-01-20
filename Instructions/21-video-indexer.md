@@ -110,7 +110,7 @@ The Video Indexer portal is a useful interface to manage video indexing projects
 3. Under the video player, select **\</> Embed** to view the HTML iframe code to embed the widgets.
 4. In the **Share and Embed** dialog box, select the **Player** widget and then copy the embed code to the clipboard.
 5. In Visual Studio Code, in the **analyze-video.html** file, paste the copied code under the comment **\<-- Player widget goes here -- >**.
-6. Edit the Player widget code to change the **width** and **height** properties to **400** and **300* respectively.
+6. Edit the Player widget code to change the **width** and **height** properties to **400** and **300** respectively.
 6. Back in the **Share and Embed** dialog box, select the **Insights** widget and then copy the embed code to the clipboard. Then close the **Share and Embed** dialog box, switch back to Visual Studio Code, and paste the copied code under the comment **\<-- Insights widget goes here -- >**.
 7. Edit the Insights widget code to change the **width** and **height** properties to **350** and **600** respectively.
 8. Save the file. Then in the **Explorer** pane, right-click **analyze-video.html** and select **Reveal in File Explorer**.
