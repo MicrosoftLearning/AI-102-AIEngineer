@@ -42,7 +42,7 @@ When you created your cognitive services resource, two authentication keys were 
     - The *location* where the resource is hosted. This is required for requests to some (but not all) APIs.
 2. In Visual Studio Code, open a terminal and enter the following command to sign into your Azure subscription by using the Azure CLI.
 
-    ```azurecli
+    ```
     az login
     ```
 
@@ -50,19 +50,19 @@ When you created your cognitive services resource, two authentication keys were 
 
     > **Tip**: If you have multiple subscriptions, you'll need to ensure that you are working in the one that contains your cognitive services resource.  Use this command to determine your current subscription.
     >
-    > ```azurecli
+    > ```
     > az account show
     > ```
     >
     > If you need to change the subscription, run this command, changing *&lt;subscriptionName&gt;* to the correct subscription name.
     >
-    > ```azurecli
+    > ```
     > az account set --subscription <subscriptionName>
     > ```
 
 3. Now you can use the following command to get the list of cognitive services keys, replacing *&lt;resourceName&gt;* with the name of your cognitive services resource, and *&lt;resourceGroup&gt;* with the name of the resource group in which you created it.
 
-    ```azurecli
+    ```
     az cognitiveservices account keys list --name <resourceName> --resource-group <resourceGroup>
     ```
 
@@ -70,7 +70,7 @@ When you created your cognitive services resource, two authentication keys were 
 
 4. To test your cognitive service, you can use *curl* - a command line tool for HTTP requests. Enter the following command (on a single line), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your cognitive services resource.
 
-    ```curl
+    ```
     curl -X POST "<yourEndpoint>/text/analytics/v3.0/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':[{'id':1,'text':'hello'}]}"
     ```
 
@@ -78,7 +78,7 @@ When you created your cognitive services resource, two authentication keys were 
 
 5. If a key becomes compromised, or the developers who have it no longer require access, you can regenerate it in the portal or by using the Azure CLI. Run the following command to regenerate your **key1** key (replacing *&lt;resourceName&gt;* and *&lt;resourceGroup&gt;* for your resource).
 
-    ```azurecli
+    ```
     az cognitiveservices account keys regenerate --name <resourceName> --resource-group <resourceGroup> --key-name key1
     ```
 
@@ -119,13 +119,13 @@ To access the secret in the key vault, your application must use a service princ
 
     > **Tip**: If you are unsure of your subscription ID, use the `az account show` command to retrieve your subscription information - the subscription ID is the **id** attribute in the output.
 
-    ```azurecli
+    ```
     az ad sp create-for-rbac -n "https://<spName>" --role owner --scopes subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>
     ```
 
     The output of this command includes information about your new service principal. It should look similar to this:
 
-    ```azurecli
+    ```
     {
       "appId": "abcd12345efghi67890jklmn",
       "displayName": "ai-app",
@@ -138,7 +138,7 @@ To access the secret in the key vault, your application must use a service princ
 
 2. To assign permission for your new service principal to access secrets in your Key Vault, run the following Azure CLI command, replacing *&lt;keyVaultName&gt;* with the name of your Azure Key Vault resource and *&lt;spName&gt;* with the same value you provided when creating the service principal.
 
-    ```azurecli
+    ```
     az keyvault set-policy -n <keyVaultName> --spn "https://<spName>" --secret-permissions get list
     ```
 
@@ -183,7 +183,7 @@ Now you're ready to use the service principal identity in an application, so it 
     - The **GetLanguage** function uses the SDK to create a client for the service, and then uses the client to detect the language of the text that was entered.
 5. Return to the integrated terminal for the **keyvault-client** folder, and run the following commands to set environment variables, replacing *&lt;appId&gt;*, *&lt;tenant&gt;*, and, *&lt;password&gt;* with the corresponding values from the output when you created the service principal. These are used for the default Azure credentials, and will cause your application to use the service principal identity.
 
-    ```azurecli
+    ```
     setx AZURE_CLIENT_ID <appId>
     setx AZURE_TENANT_ID <tenant>
     setx AZURE_CLIENT_SECRET <password>
