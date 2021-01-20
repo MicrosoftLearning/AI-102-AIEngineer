@@ -23,7 +23,7 @@ The Video Indexer portal provides a web-based interface for managing video index
 1. Open the Video Indexer portal at [https://www.videoindexer.ai/](https://www.videoindexer.ai/).
 2. If you have an existing Video Indexer account, sign in. Otherwise, sign up for a free account and sign in using your Microsoft account (or any other valid account type).
 
-> **Tip**: If the Video Indexer portal doesn't load in the hosted lab environment, you can open it in your own local browser and complete the following tasks there - returning to the hosted environment when you reach the **Use Video Indexer widgets** task. You'll need to download the **[responsible_ai.mp4](https://github.com/MicrosoftLearning/AI-102-AIEngineer/raw/master/20-video-indexer/responsible_ai.mp4)** video to your local computer.
+> **Tip**: If the Video Indexer portal doesn't load in the hosted lab environment, you can open it in your own locally installed web browser and complete the following tasks there - returning to the hosted environment when you reach the **Use Video Indexer widgets** task. You'll need to download the **[responsible_ai.mp4](https://github.com/MicrosoftLearning/AI-102-AIEngineer/raw/master/20-video-indexer/responsible_ai.mp4)** video to your local computer.
 
 ## Upload and index a video
 
@@ -156,4 +156,4 @@ All interactions with the Video Indexer REST API follow the same pattern:
 
 ## More information
 
-For more information about **Video Indexer****, see the [Video Indexer documentation](https://docs.microsoft.com/azure/media-services/video-indexer/).
+For more information about **Video Indexer**, see the [Video Indexer documentation](https://docs.microsoft.com/azure/media-services/video-indexer/).
