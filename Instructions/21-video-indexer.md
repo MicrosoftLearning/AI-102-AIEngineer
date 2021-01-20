@@ -136,8 +136,6 @@ To use the Video Indexer API, you need some information to authenticate requests
 5. If you already have a subscription for the Authorization API, select it. Otherwise, create a new subscription.
 6. On the page with your subscription(s), observe that you have been assigned two keys (primary and secondary) for each subscription. Then select **Show** for any of the keys to see it. You will need this key shortly.
 
-> If you are using a free Video indexer account, the *location* is always "trial". If you have upgraded to a full 
-
 ### Use the REST API
 
 Now that you have the account ID and an API key, you can use the REST API to work with videos in your account. In this procedure, you'll use a PowerShell script to make REST calls; but the same principles apply with HTTP utilities such as cURL or Postman, or any programming language capable of sending and receiving JSON over HTTP.
