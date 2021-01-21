@@ -56,7 +56,7 @@ Now that you have created an authoring resource, you can use it to create a Lang
     - Europe: [https://eu.luis.ai](https://eu.luis.ai)
     - Australia: [https://au.luis.ai](https://au.luis.ai)
  2. Sign in using the Microsoft account associated with your Azure subscription. If this is the first time you have signed into the Language Understanding portal, you may need to grant the app some permissions to access your account details. Then complete the *Welcome* steps by selecting your Azure subscription and the authoring resource you just created.
-3. Open the **Conversation Apps** page, and select your subscription and Language Understanding authoring resource. Then create a new app for conversation with the following settings:
+3. On the **Conversation Apps** page, ensure your subscription and Language Understanding authoring resource are selected. Then create a new app for conversation with the following settings:
     - **Name**: Clock
     - **Culture**: English (*if this option is not available, leave it blank*)
     - **Description**: Natural language clock
@@ -181,12 +181,12 @@ In some cases, valid values for an entity can be restricted to a list of specifi
 
 ### Add a *Regex* entity
 
-Sometimes, entities have a specific format, such as a serial number, form code, or date. You can define a regular expression (*regex) that describe an expected format to help your app identify matching entity values.
+Sometimes, entities have a specific format, such as a serial number, form code, or date. You can define a regular expression (*regex*) that describes an expected format to help your app identify matching entity values.
 
 1. On the **Entities** page, select **&#65291; Create** to create a new entity.
 2. In the **Create an entity** dialog box, create a **Regex** entity named **Date** with the following regex:
 
-    ```regex
+    ```
     [0-9]{2}/[0-9]{2}/[0-9]{4}
     ```
 
