@@ -9,6 +9,15 @@ Using cognitive services hosted in Azure enables application developers to focus
 
 Many of the cognitive services APIs can be packaged and deployed in a *container*, enabling organizations to host cognitive services in their own infrastructure; for example in local Docker servers, Azure Container Instances, or Azure Kubernetes Services clusters. Containerized cognitive services need to communicate with an Azure-based cognitive services account to support billing; but application data is not passed to the back-end service, and organizations have greater control over the deployment configuration of their containers, enabling custom solutions for authentication, scalability, and other considerations.
 
+## Clone the repository for this course
+
+If you have not already done so, you must clone the code repository for this course:
+
+1. Start Visual Studio Code.
+2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the **https://github.com/MicrosoftLearning/AI-102-AIEngineer** repository to a local folder.
+3. When the repository has been cloned, open the folder in Visual Studio Code.
+4. Wait while additional files are installed to support the C# code projects in the repo.
+
 ## Provision a Cognitive Services resource
 
 If you don't already have on in your subscription, you'll need to provision a **Cognitive Services** resource.
@@ -64,7 +73,7 @@ Many commonly used cognitive services APIs are available in container images. Fo
 
     > **Note**: In this exercise, you've deployed the cognitive services container image for text translation to an Azure Container Instances (ACI) resource. You can use a similar approach to deploy it to a *[Docker](https://www.docker.com/products/docker-desktop)* host on your own computer or network by running the following command (on a single line) to deploy the language detection container to your local Docker instance, replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and either of the keys for your cognitive services resource.
     >
-    > ```bash
+    > ```
     > docker run --rm -it -p 5000:5000 --memory 4g --cpus 1 mcr.microsoft.com/azure-cognitive-services/textanalytics/language Eula=accept Billing=<yourEndpoint> ApiKey=<yourKey>
     > ```
     >
@@ -72,15 +81,20 @@ Many commonly used cognitive services APIs are available in container images. Fo
 
 ## Use the container
 
-1. Start Visual Studio Code and open a new terminal window.
-2. In the new terminal, enter the following command (replacing *<your_ACI_IP_address_or_FQDN>* with the IP address or FQDN for your container) to call the language detection REST API in your container. Note that you do not need to specify the cognitive services endpoint or key - the request is processed by the containerized service. The container in turn communicates periodically with the service in Azure to report usage for billing, but does not send request data.
-
-    ```curl
+1. In Visual Studio Code, in the **04-containers** folder, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;your_ACI_IP_address_or_FQDN&gt;* with the IP address or FQDN for your container.
+    ```
     curl -X POST "http://<your_ACI_IP_address_or_FQDN>:5000/text/analytics/v3.0/languages?" -H "Content-Type: application/json" --data-ascii "{'documents':[{'id':1,'text':'Hello world.'},{'id':2,'text':'Salut tout le monde.'}]}"
     ```
 
-    The command returns a JSON document containing information about the language detected in the two input documents (which should be English and French).
+    Save your changes to the script. Note that you do not need to specify the cognitive services endpoint or key - the request is processed by the containerized service. The container in turn communicates periodically with the service in Azure to report usage for billing, but does not send request data.
 
+2. Right-click the **04-containers** folder and open an integrated terminal. Then enter the following command to run the script:
+
+    ```
+    rest-test
+    ```
+
+    The command returns a JSON document containing information about the language detected in the two input documents (which should be English and French).
 
 ## More information
 
