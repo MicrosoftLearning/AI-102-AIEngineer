@@ -71,7 +71,7 @@ Let's start by defining an alert rule so you can detect activity in your cogniti
 
     The command returns a list of the keys for your cognitive services resource.
 
-11. Switch back to the browser containing the Azure portal, and refresh your **Alert page**. You should see a **Sev 4** alert listed in the table (if not, wait a few minutes and refresh again).
+11. Switch back to the browser containing the Azure portal, and refresh your **Alert page**. You should see a **Sev 4** alert listed in the table (if not, wait up to five minutes and refresh again).
 12. Select the alert to see its details.
 
 ## Visualize a metric
@@ -81,7 +81,7 @@ As well as defining alerts, you can view metrics for your cognitive services res
 1. In the Azure portal, in the page for your cognitive services resource, select **Metrics** (in the **Monitoring** section).
 2. If there is no existing chart, select **+ New chart**. Then in the **Metric** list, review the possible metrics you can visualize and select **Total Calls**.
 3. In the **Aggregation** list, select **Count**.  This will enable you to monitor the total calls to you Cognitive Service resource; which is useful in determining how much the service is being used over a period of time.
-4. To test your cognitive service, you can use **curl** - a command line tool for HTTP requests. In Visual Studio Codel in the **03-monitor** folder, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your cognitive services resource.
+4. To generate some requests to your cognitive service, you will use **curl** - a command line tool for HTTP requests. In Visual Studio Code, in the **03-monitor** folder, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your cognitive services resource.
 
     ```
     curl -X POST "<yourEndpoint>/text/analytics/v3.0/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':[{'id':1,'text':'hello'}]}"
