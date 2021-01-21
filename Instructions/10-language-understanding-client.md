@@ -34,9 +34,7 @@ To use the Language Understanding service, you need two kinds of resource:
     - **Authoring location**: *Select your preferred location*
     - **Authoring pricing tier**: F0
     - **Prediction location**: *Choose the <u>same location</u> as your authoring location*
-    - **Prediction pricing tier**: F0\*
-
-    \**If F0 is not available, choose S0*
+    - **Prediction pricing tier**: F0 (*If F0 is not available, choose S0*)
 
 3. Wait for the resources to be created, and note that two Language Understanding resources are provisioned; one for authoring, and another for prediction. You can view both of these by navigating to the resource group where you created them.
 
@@ -46,11 +44,8 @@ In this exercise, you'll use an app that contains a language model for clock-rel
 
 > **Note**: If you already have a **Clock** app from a previous exercise, you can use it in this exercise. Otherwise, follow these instructions to create it.
 
-1. In a new browser tab, open the Language Understanding portal for the location where you created your authoring resource:
-    - US: [https://www.luis.ai](https://www.luis.ai)
-    - Europe: [https://eu.luis.ai](https://eu.luis.ai)
-    - Australia: [https://au.luis.ai](https://au.luis.ai)
- 2. Sign in using the Microsoft account associated with your Azure subscription. If this is the first time you have signed into the Language Understanding portal, you may need to grant the app some permissions to access your account details. Then complete the *Welcome* steps by selecting your Azure subscription and the authoring resource you just created.
+1. In a new browser tab, open the Language Understanding portal at [https://www.luis.ai](https://www.luis.ai).
+2. Sign in using the Microsoft account associated with your Azure subscription. If this is the first time you have signed into the Language Understanding portal, you may need to grant the app some permissions to access your account details. Then complete the *Welcome* steps by selecting your Azure subscription and the authoring resource you just created.
 3. Open the **Conversation Apps** page, next to **&#65291;New app**, view the drop-down list and select **Import As LU**.
 Browse to the **10-luis-client** subfolder in the project folder containing the lab files for this exercise, and select **Clock&period;lu**. Then specify a unique name for the clock app.
 4. If a panel with tips for creating an effective Language Understanding app is displayed, close it.

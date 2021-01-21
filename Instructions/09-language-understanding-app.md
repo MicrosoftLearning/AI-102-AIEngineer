@@ -51,11 +51,8 @@ If you don't already have Language Understanding authoring and prediction resour
 
 Now that you have created an authoring resource, you can use it to create a Language Understanding app.
 
-1. In a new browser tab, open the Language Understanding portal for the authoring region where you created your authoring resource:
-    - US: [https://www.luis.ai](https://www.luis.ai)
-    - Europe: [https://eu.luis.ai](https://eu.luis.ai)
-    - Australia: [https://au.luis.ai](https://au.luis.ai)
- 2. Sign in using the Microsoft account associated with your Azure subscription. If this is the first time you have signed into the Language Understanding portal, you may need to grant the app some permissions to access your account details. Then complete the *Welcome* steps by selecting your Azure subscription and the authoring resource you just created.
+1. In a new browser tab, open the Language Understanding portal at [https://www.luis.ai](https://www.luis.ai).
+2. Sign in using the Microsoft account associated with your Azure subscription. If this is the first time you have signed into the Language Understanding portal, you may need to grant the app some permissions to access your account details. Then complete the *Welcome* steps by selecting your Azure subscription and the authoring resource you just created.
 3. On the **Conversation Apps** page, ensure your subscription and Language Understanding authoring resource are selected. Then create a new app for conversation with the following settings:
     - **Name**: Clock
     - **Culture**: English (*if this option is not available, leave it blank*)
