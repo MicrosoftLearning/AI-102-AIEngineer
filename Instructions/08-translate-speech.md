@@ -14,7 +14,7 @@ The **Speech** service includes a **Speech translation** API that you can use to
 If you have not already done so, you must clone the code repository for this course:
 
 1. Start Visual Studio Code.
-2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the **https://github.com/MicrosoftLearning/AI-102-AIEngineer** repository to a local folder.
+2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder.
 3. When the repository has been cloned, open the folder in Visual Studio Code.
 4. Wait while additional files are installed to support the C# code projects in the repo.
 
@@ -42,17 +42,17 @@ In this exercise, you'll complete a partially implemented client application tha
 1. In Visual Studio Code open the **AI-102** project, and in the **Explorer** pane, browse to the **08-speech-translation** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **translator** folder and open an integrated terminal. Then install the Speech SDK package by running the appropriate command for your language preference:
 
-   **C#**
+**C#**
 
-    ```
-    dotnet add package Microsoft.CognitiveServices.Speech --version 1.14.0
-    ```
+```
+dotnet add package Microsoft.CognitiveServices.Speech --version 1.14.0
+```
 
-   **Python**
+**Python**
 
-   ```
-   pip install azure-cognitiveservices-speech==1.14.0
-   ```
+```
+pip install azure-cognitiveservices-speech==1.14.0
+```
 
 3. View the contents of the **translator** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
@@ -66,77 +66,77 @@ In this exercise, you'll complete a partially implemented client application tha
 
     Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Speech SDK:
 
-    **C#**
+**C#**
 
-    ```C#
-    // Import namespaces
-    using Microsoft.CognitiveServices.Speech;
-    using Microsoft.CognitiveServices.Speech.Audio;
-    using Microsoft.CognitiveServices.Speech.Translation;
-    ```
+```C#
+// Import namespaces
+using Microsoft.CognitiveServices.Speech;
+using Microsoft.CognitiveServices.Speech.Audio;
+using Microsoft.CognitiveServices.Speech.Translation;
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Import namespaces
-    import azure.cognitiveservices.speech as speech_sdk
-    ```
+```Python
+# Import namespaces
+import azure.cognitiveservices.speech as speech_sdk
+```
 
 5. In the **Main** function, note that code to load the cognitive services key and region from the configuration file has already been provided. You must use these variables to create a **SpeechTranslationConfig** for your cognitive services resource, which you will use to translate spoken input. Add the following code under the comment **Configure translation**:
 
-    **C#**
+**C#**
 
-    ```C#
-    // Configure translation
-    translationConfig = SpeechTranslationConfig.FromSubscription(cogSvcKey, cogSvcRegion);
-    translationConfig.SpeechRecognitionLanguage = "en-US";
-    translationConfig.AddTargetLanguage("fr");
-    translationConfig.AddTargetLanguage("es");
-    translationConfig.AddTargetLanguage("hi");
-    Console.WriteLine("Ready to translate from " + translationConfig.SpeechRecognitionLanguage);
-    ```
+```C#
+// Configure translation
+translationConfig = SpeechTranslationConfig.FromSubscription(cogSvcKey, cogSvcRegion);
+translationConfig.SpeechRecognitionLanguage = "en-US";
+translationConfig.AddTargetLanguage("fr");
+translationConfig.AddTargetLanguage("es");
+translationConfig.AddTargetLanguage("hi");
+Console.WriteLine("Ready to translate from " + translationConfig.SpeechRecognitionLanguage);
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Configure translation
-    translation_config = speech_sdk.translation.SpeechTranslationConfig(cog_key, cog_region)
-    translation_config.speech_recognition_language = 'en-US'
-    translation_config.add_target_language('fr')
-    translation_config.add_target_language('es')
-    translation_config.add_target_language('hi')
-    print('Ready to translate from',translation_config.speech_recognition_language)
-    ```
+```Python
+# Configure translation
+translation_config = speech_sdk.translation.SpeechTranslationConfig(cog_key, cog_region)
+translation_config.speech_recognition_language = 'en-US'
+translation_config.add_target_language('fr')
+translation_config.add_target_language('es')
+translation_config.add_target_language('hi')
+print('Ready to translate from',translation_config.speech_recognition_language)
+```
 
 6. You will use the **SpeechTranslationConfig** to translate speech into text, but you will also use a **SpeechConfig** to synthesize translations into speech. Add the following code under the comment **Configure speech**:
 
-    **C#**
+**C#**
 
-    ```C#
-    // Configure speech
-    speechConfig = SpeechConfig.FromSubscription(cogSvcKey, cogSvcRegion);
-    ```
+```C#
+// Configure speech
+speechConfig = SpeechConfig.FromSubscription(cogSvcKey, cogSvcRegion);
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Configure speech
-    speech_config = speech_sdk.SpeechConfig(cog_key, cog_region)
-    ```
+```Python
+# Configure speech
+speech_config = speech_sdk.SpeechConfig(cog_key, cog_region)
+```
 
 7. Save your changes and return to the integrated terminal for the **translator** folder, and enter the following command to run the program:
 
-    **C#**
+**C#**
 
-    ```
-    dotnet run
-    ```
+```
+dotnet run
+```
 
-    **Python**
+**Python**
 
-    ```
-    python translator.py
-    ```
+```
+python translator.py
+```
 
 8. If you are using C#, you can ignore any warnings about using the **await** operator in asynchronous methods - we'll fix that later. The code should display a message that it is ready to translate from en-US. Press ENTER to end the program.
 
@@ -149,46 +149,46 @@ Now that you have a **SpeechTranslationConfig** for the speech service in your c
 
    **C#**
 
-    ```C#
-    // Translate speech
-    using AudioConfig audioConfig = AudioConfig.FromDefaultMicrophoneInput();
-    using TranslationRecognizer translator = new TranslationRecognizer(translationConfig, audioConfig);
-    Console.WriteLine("Speak now...");
-    TranslationRecognitionResult result = await translator.RecognizeOnceAsync();
-    Console.WriteLine($"Translating '{result.Text}'");
-    translation = result.Translations[targetLanguage];
-    Console.OutputEncoding = Encoding.UTF8;
-    Console.WriteLine(translation);
-    ```
+```C#
+// Translate speech
+using AudioConfig audioConfig = AudioConfig.FromDefaultMicrophoneInput();
+using TranslationRecognizer translator = new TranslationRecognizer(translationConfig, audioConfig);
+Console.WriteLine("Speak now...");
+TranslationRecognitionResult result = await translator.RecognizeOnceAsync();
+Console.WriteLine($"Translating '{result.Text}'");
+translation = result.Translations[targetLanguage];
+Console.OutputEncoding = Encoding.UTF8;
+Console.WriteLine(translation);
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Translate speech
-    audio_config = speech_sdk.AudioConfig(use_default_microphone=True)
-    translator = speech_sdk.translation.TranslationRecognizer(translation_config, audio_config)
-    print("Speak now...")
-    result = translator.recognize_once_async().get()
-    print('Translating "{}"'.format(result.text))
-    translation = result.translations[targetLanguage]
-    print(translation)
-    ```
+```Python
+# Translate speech
+audio_config = speech_sdk.AudioConfig(use_default_microphone=True)
+translator = speech_sdk.translation.TranslationRecognizer(translation_config, audio_config)
+print("Speak now...")
+result = translator.recognize_once_async().get()
+print('Translating "{}"'.format(result.text))
+translation = result.translations[targetLanguage]
+print(translation)
+```
 
-    > **Note**: *You can also translate speech input from an audio file by modifying the **AudioConfig** object to reference an file path.*
+> **Note**: *You can also translate speech input from an audio file by modifying the **AudioConfig** object to reference an file path.*
 
 3. Save your changes and return to the integrated terminal for the **translator** folder, and enter the following command to run the program:
 
-    **C#**
+**C#**
 
-    ```
-    dotnet run
-    ```
+```
+dotnet run
+```
 
-    **Python**
+**Python**
 
-    ```
-    python translator.py
-    ```
+```
+python translator.py
+```
 
 4. When prompted, enter a valid language code (*fr*, *es*, or *hi*), and then speak clearly into the microphone and say "where is the station?" or some other phrase you might use when traveling abroad. The program should transcribe your spoken input and translate it to the language you specified (French, Spanish, or Hindi). Repeat this process, trying each language supported by the application. When you're finished, press ENTER to end the program.
 
@@ -202,54 +202,54 @@ So far, your application translates spoken input to text; which might be suffici
 
 1. In the **Translate** function, under the comment **Synthesize translation**, add the following code to use a **SpeechSynthesizer** client to synthesize the translation as speech through the default speaker:
 
-   **C#**
+**C#**
 
-    ```C#
-    // Synthesize translation
-    var voices = new Dictionary<string, string>
-                    {
-                        ["fr"] = "fr-FR-Julie",
-                        ["es"] = "es-ES-Laura",
-                        ["hi"] = "hi-IN-Kalpana"
-                    };
-    speechConfig.SpeechSynthesisVoiceName = voices[targetLanguage];
-    using SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig);
-    SpeechSynthesisResult speak = await speechSynthesizer.SpeakTextAsync(translation);
-    if (speak.Reason != ResultReason.SynthesizingAudioCompleted)
-    {
-        Console.WriteLine(speak.Reason);
-    }
-    ```
+```C#
+// Synthesize translation
+var voices = new Dictionary<string, string>
+                {
+                    ["fr"] = "fr-FR-Julie",
+                    ["es"] = "es-ES-Laura",
+                    ["hi"] = "hi-IN-Kalpana"
+                };
+speechConfig.SpeechSynthesisVoiceName = voices[targetLanguage];
+using SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig);
+SpeechSynthesisResult speak = await speechSynthesizer.SpeakTextAsync(translation);
+if (speak.Reason != ResultReason.SynthesizingAudioCompleted)
+{
+    Console.WriteLine(speak.Reason);
+}
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Synthesize translation
-    voices = {
-            "fr": "fr-FR-Julie",
-            "es": "es-ES-Laura",
-            "hi": "hi-IN-Kalpana"
-    }
-    speech_config.speech_synthesis_voice_name = voices.get(targetLanguage)
-    speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config)
-    speak = speech_synthesizer.speak_text_async(translation).get()
-    if speak.reason != speech_sdk.ResultReason.SynthesizingAudioCompleted:
-        print(speak.reason)
-    ```
+```Python
+# Synthesize translation
+voices = {
+        "fr": "fr-FR-Julie",
+        "es": "es-ES-Laura",
+        "hi": "hi-IN-Kalpana"
+}
+speech_config.speech_synthesis_voice_name = voices.get(targetLanguage)
+speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config)
+speak = speech_synthesizer.speak_text_async(translation).get()
+if speak.reason != speech_sdk.ResultReason.SynthesizingAudioCompleted:
+    print(speak.reason)
+```
 
 2. Save your changes and return to the integrated terminal for the **translator** folder, and enter the following command to run the program:
 
-    **C#**
+**C#**
 
-    ```
-    dotnet run
-    ```
+```
+dotnet run
+```
 
-    **Python**
+**Python**
 
-    ```
-    python translator.py
-    ```
+```
+python translator.py
+```
 
 3. When prompted, enter a valid language code (*fr*, *es*, or *hi*), and then speak clearly into the microphone and say a phrase you might use when traveling abroad. The program should transcribe your spoken input and respond with a spoken translation. Repeat this process, trying each language supported by the application. When you're finished, press ENTER to end the program.
 

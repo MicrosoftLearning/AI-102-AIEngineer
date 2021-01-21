@@ -14,7 +14,7 @@ For example, suppose a travel agency wants to process hotel reviews that have be
 If you have not already done so, you must clone the code repository for this course:
 
 1. Start Visual Studio Code.
-2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the **https://github.com/MicrosoftLearning/AI-102-AIEngineer** repository to a local folder.
+2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder.
 3. When the repository has been cloned, open the folder in Visual Studio Code.
 4. Wait while additional files are installed to support the C# code projects in the repo.
 
@@ -42,17 +42,17 @@ In this exercise, you'll complete a partially implemented client application tha
 1. In Visual Studio Code, in the **Explorer** pane, browse to the **05-analyze-text** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **text-analysis** folder and open an integrated terminal. Then install the Text Analytics SDK package by running the appropriate command for your language preference:
 
-   **C#**
+**C#**
 
-    ```
-    dotnet add package Azure.AI.TextAnalytics --version 5.0.0
-    ```
+```
+dotnet add package Azure.AI.TextAnalytics --version 5.0.0
+```
 
-   **Python**
+**Python**
 
-   ```
-   pip install azure-ai-textanalytics==5.0.0
-   ```
+```
+pip install azure-ai-textanalytics==5.0.0
+```
 
 3. View the contents of the **text-analysis** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
@@ -67,54 +67,54 @@ In this exercise, you'll complete a partially implemented client application tha
 
     Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Text Analytics SDK:
 
-    **C#**
+**C#**
 
-    ```C#
-    // import namespaces
-    using Azure;
-    using Azure.AI.TextAnalytics;
-    ```
+```C#
+// import namespaces
+using Azure;
+using Azure.AI.TextAnalytics;
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # import namespaces
-    from azure.core.credentials import AzureKeyCredential
-    from azure.ai.textanalytics import TextAnalyticsClient
-    ```
+```Python
+# import namespaces
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.textanalytics import TextAnalyticsClient
+```
 
 5. In the **Main** function, note that code to load the cognitive services endpoint and key from the configuration file has already been provided. Then find the comment **Create client using endpoint and key**, and add the following code to create a client for the Text Analysis API:
 
-    **C#**
+**C#**
 
-    ```C#
-    // Create client using endpoint and key
-    AzureKeyCredential credentials = new AzureKeyCredential(cogSvcKey);
-    Uri endpoint = new Uri(cogSvcEndpoint);
-    TextAnalyticsClient CogClient = new TextAnalyticsClient(endpoint, credentials);
-    ```
+```C#
+// Create client using endpoint and key
+AzureKeyCredential credentials = new AzureKeyCredential(cogSvcKey);
+Uri endpoint = new Uri(cogSvcEndpoint);
+TextAnalyticsClient CogClient = new TextAnalyticsClient(endpoint, credentials);
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Create client using endpoint and key
-    credential = AzureKeyCredential(cog_key)
-    cog_client = TextAnalyticsClient(endpoint=cog_endpoint, credential=credential)
-    ```
+```Python
+# Create client using endpoint and key
+credential = AzureKeyCredential(cog_key)
+cog_client = TextAnalyticsClient(endpoint=cog_endpoint, credential=credential)
+```
 
 6. Save your changes and return to the integrated terminal for the **text-analysis** folder, and enter the following command to run the program:
 
-    **C#**
+**C#**
 
-    ```
-    dotnet run
-    ```
+```
+dotnet run
+```
 
-    **Python**
+**Python**
 
-    ```
-    python text-analysis.py
-    ```
+```
+python text-analysis.py
+```
 
 6. Observe the output as the code should run without error, displaying the contents of each review text file in the **reviews** folder. The application successfully creates a client for the Text Analytics API but doesn't make use of it. We'll fix that in the next procedure.
 
@@ -124,37 +124,37 @@ Now that you have created a client for the Text Analytics API, let's use it to d
 
 1. In the **Main** function for your program, find the comment **Get language**. Then, under this comment, add the code necessary to detect the language in each review document:
 
-   **C#**
+**C#**
 
-    ```C
-    // Get language
-    DetectedLanguage detectedLanguage = CogClient.DetectLanguage(text);
-    Console.WriteLine($"\nLanguage: {detectedLanguage.Name}");
-    ```
+```C
+// Get language
+DetectedLanguage detectedLanguage = CogClient.DetectLanguage(text);
+Console.WriteLine($"\nLanguage: {detectedLanguage.Name}");
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Get language
-    detectedLanguage = cog_client.detect_language(documents=[text])[0]
-    print('\nLanguage: {}'.format(detectedLanguage.primary_language.name))
-    ```
+```Python
+# Get language
+detectedLanguage = cog_client.detect_language(documents=[text])[0]
+print('\nLanguage: {}'.format(detectedLanguage.primary_language.name))
+```
 
-    > **Note**: *In this example, each review is analyzed individually, resulting in a separate call to the service for each file. An alternative approach is to create a collection of documents and pass them to the service in a single call. In both approaches, the response from the service consists of a collection of documents; which is why in the Python code above, the index of the first (and only) document in the response ([0]) is specified.*
+> **Note**: *In this example, each review is analyzed individually, resulting in a separate call to the service for each file. An alternative approach is to create a collection of documents and pass them to the service in a single call. In both approaches, the response from the service consists of a collection of documents; which is why in the Python code above, the index of the first (and only) document in the response ([0]) is specified.*
 
 6. Save your changes and return to the integrated terminal for the **text-analysis** folder, and enter the following command to run the program:
 
-    **C#**
+**C#**
 
-    ```
-    dotnet run
-    ```
+```
+dotnet run
+```
 
-    **Python**
+**Python**
 
-    ```
-    python text-analysis.py
-    ```
+```
+python text-analysis.py
+```
 
 7. Observe the output, noting that this time the language for each review is identified.
 
@@ -164,35 +164,35 @@ Now that you have created a client for the Text Analytics API, let's use it to d
 
 1. In the **Main** function for your program, find the comment **Get sentiment**. Then, under this comment, add the code necessary to detect the sentiment of each review document:
 
-   **C#**
+**C#**
 
-    ```C
-    // Get sentiment
-    DocumentSentiment sentimentAnalysis = CogClient.AnalyzeSentiment(text);
-    Console.WriteLine($"\nSentiment: {sentimentAnalysis.Sentiment}");
-    ```
+```C
+// Get sentiment
+DocumentSentiment sentimentAnalysis = CogClient.AnalyzeSentiment(text);
+Console.WriteLine($"\nSentiment: {sentimentAnalysis.Sentiment}");
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Get sentiment
-    sentimentAnalysis = cog_client.analyze_sentiment(documents=[text])[0]
-    print("\nSentiment: {}".format(sentimentAnalysis.sentiment))
-    ```
+```Python
+# Get sentiment
+sentimentAnalysis = cog_client.analyze_sentiment(documents=[text])[0]
+print("\nSentiment: {}".format(sentimentAnalysis.sentiment))
+```
 
 2. Save your changes and return to the integrated terminal for the **text-analysis** folder, and enter the following command to run the program:
 
-    **C#**
+**C#**
 
-    ```
-    dotnet run
-    ```
+```
+dotnet run
+```
 
-    **Python**
+**Python**
 
-    ```
-    python text-analysis.py
-    ```
+```
+python text-analysis.py
+```
 
 3. Observe the output, noting that the sentiment of the reviews is detected.
 
@@ -202,45 +202,45 @@ It can be useful to identify key phrases in a body of text to help determine the
 
 1. In the **Main** function for your program, find the comment **Get key phrases**. Then, under this comment, add the code necessary to detect the key phrases in each review document:
 
-   **C#**
+**C#**
 
-    ```C
-    // Get key phrases
-    KeyPhraseCollection phrases = CogClient.ExtractKeyPhrases(text);
-    if (phrases.Count > 0)
+```C
+// Get key phrases
+KeyPhraseCollection phrases = CogClient.ExtractKeyPhrases(text);
+if (phrases.Count > 0)
+{
+    Console.WriteLine("\nKey Phrases:");
+    foreach(string phrase in phrases)
     {
-        Console.WriteLine("\nKey Phrases:");
-        foreach(string phrase in phrases)
-        {
-            Console.WriteLine($"\t{phrase}");
-        }
+        Console.WriteLine($"\t{phrase}");
     }
-    ```
+}
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Get key phrases
-    phrases = cog_client.extract_key_phrases(documents=[text])[0].key_phrases
-    if len(phrases) > 0:
-        print("\nKey Phrases:")
-        for phrase in phrases:
-            print('\t{}'.format(phrase))
-    ```
+```Python
+# Get key phrases
+phrases = cog_client.extract_key_phrases(documents=[text])[0].key_phrases
+if len(phrases) > 0:
+    print("\nKey Phrases:")
+    for phrase in phrases:
+        print('\t{}'.format(phrase))
+```
 
 2. Save your changes and return to the integrated terminal for the **text-analysis** folder, and enter the following command to run the program:
 
-    **C#**
+**C#**
 
-    ```
-    dotnet run
-    ```
+```
+dotnet run
+```
 
-    **Python**
+**Python**
 
-    ```
-    python text-analysis.py
-    ```
+```
+python text-analysis.py
+```
 
 3. Observe the output, noting that each document contains key phrases that give some insights into what the review is about.
 
@@ -250,45 +250,45 @@ Often, documents or other bodies of text mention people, places, time periods, o
 
 1. In the **Main** function for your program, find the comment **Get entities**. Then, under this comment, add the code necessary to identify entities that are mentioned in each review:
 
-   **C#**
+**C#**
 
-    ```C
-    // Get entities
-    CategorizedEntityCollection entities = CogClient.RecognizeEntities(text);
-    if (entities.Count > 0)
+```C
+// Get entities
+CategorizedEntityCollection entities = CogClient.RecognizeEntities(text);
+if (entities.Count > 0)
+{
+    Console.WriteLine("\nEntities:");
+    foreach(CategorizedEntity entity in entities)
     {
-        Console.WriteLine("\nEntities:");
-        foreach(CategorizedEntity entity in entities)
-        {
-            Console.WriteLine($"\t{entity.Text} ({entity.Category})");
-        }
+        Console.WriteLine($"\t{entity.Text} ({entity.Category})");
     }
-    ```
+}
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Get entities
-    entities = cog_client.recognize_entities(documents=[text])[0].entities
-    if len(entities) > 0:
-        print("\nEntities")
-        for entity in entities:
-            print('\t{} ({})'.format(entity.text, entity.category))
-    ```
+```Python
+# Get entities
+entities = cog_client.recognize_entities(documents=[text])[0].entities
+if len(entities) > 0:
+    print("\nEntities")
+    for entity in entities:
+        print('\t{} ({})'.format(entity.text, entity.category))
+```
 
 2. Save your changes and return to the integrated terminal for the **text-analysis** folder, and enter the following command to run the program:
 
-    **C#**
+**C#**
 
-    ```
-    dotnet run
-    ```
+```
+dotnet run
+```
 
-    **Python**
+**Python**
 
-    ```
-    python text-analysis.py
-    ```
+```
+python text-analysis.py
+```
 
 3. Observe the output, noting the entities that have been detected in the text.
 
@@ -300,43 +300,43 @@ In addition to categorized entities, the Text Analytics API can detect entities 
 
    **C#**
 
-    ```C
-    // Get linked entities
-    LinkedEntityCollection linkedEntities = CogClient.RecognizeLinkedEntities(text);
-    if (linkedEntities.Count > 0)
+```C
+// Get linked entities
+LinkedEntityCollection linkedEntities = CogClient.RecognizeLinkedEntities(text);
+if (linkedEntities.Count > 0)
+{
+    Console.WriteLine("\nLinks:");
+    foreach(LinkedEntity linkedEntity in linkedEntities)
     {
-        Console.WriteLine("\nLinks:");
-        foreach(LinkedEntity linkedEntity in linkedEntities)
-        {
-            Console.WriteLine($"\t{linkedEntity.Name} ({linkedEntity.Url})");
-        }
+        Console.WriteLine($"\t{linkedEntity.Name} ({linkedEntity.Url})");
     }
-    ```
+}
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Get linked entities
-    entities = cog_client.recognize_linked_entities(documents=[text])[0].entities
-    if len(entities) > 0:
-        print("\nLinks")
-        for linked_entity in entities:
-            print('\t{} ({})'.format(linked_entity.name, linked_entity.url))
-    ```
+```Python
+# Get linked entities
+entities = cog_client.recognize_linked_entities(documents=[text])[0].entities
+if len(entities) > 0:
+    print("\nLinks")
+    for linked_entity in entities:
+        print('\t{} ({})'.format(linked_entity.name, linked_entity.url))
+```
 
 2. Save your changes and return to the integrated terminal for the **text-analysis** folder, and enter the following command to run the program:
 
-    **C#**
+**C#**
 
-    ```
-    dotnet run
-    ```
+```
+dotnet run
+```
 
-    **Python**
+**Python**
 
-    ```
-    python text-analysis.py
-    ```
+```
+python text-analysis.py
+```
 
 3. Observe the output, noting the linked entities that are identified.
 

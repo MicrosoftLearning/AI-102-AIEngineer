@@ -12,7 +12,7 @@ Azure Cognitive Services can be a critical part of an overall application infras
 If you have not already done so, you must clone the code repository for this course:
 
 1. Start Visual Studio Code.
-2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the **https://github.com/MicrosoftLearning/AI-102-AIEngineer** repository to a local folder.
+2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder.
 3. When the repository has been cloned, open the folder in Visual Studio Code.
 4. Wait while additional files are installed to support the C# code projects in the repo.
 
@@ -45,31 +45,31 @@ Let's start by defining an alert rule so you can detect activity in your cogniti
 8. In the **Alert Details** section, set the **Alert rule name** to **Key List Alert**, and click **Create alert rule**. Wait for the alert rule to be created.
 9. In Visual Studio Code, right-click the **03-monitor** folder and open an integrated terminal. Then enter the following command to sign into your Azure subscription by using the Azure CLI.
 
-    ```
-    az login
-    ```
+```
+az login
+```
 
-    If you are not already signed in, a web browser will open and prompt you to sign into Azure. Do so, and then close the browser and return to Visual Studio Code.
+If you are not already signed in, a web browser will open and prompt you to sign into Azure. Do so, and then close the browser and return to Visual Studio Code.
 
-    > **Tip**: If you have multiple subscriptions, you'll need to ensure that you are working in the one that contains your cognitive services resource.  Use this command to determine your current subscription.
-    >
-    > ```
-    > az account show
-    > ```
-    >
-    > If you need to change the subscription, run this command, changing *&lt;subscriptionName&gt;* to the correct subscription name.
-    >
-    > ```
-    > az account set --subscription <subscriptionName>
-    > ```
+> **Tip**: If you have multiple subscriptions, you'll need to ensure that you are working in the one that contains your cognitive services resource.  Use this command to determine your current subscription.
+>
+> ```
+> az account show
+> ```
+>
+> If you need to change the subscription, run this command, changing *&lt;subscriptionName&gt;* to the correct subscription name.
+>
+> ```
+> az account set --subscription <subscriptionName>
+> ```
 
 10. Now you can use the following command to get the list of cognitive services keys, replacing *&lt;resourceName&gt;* with the name of your cognitive services resource, and *&lt;resourceGroup&gt;* with the name of the resource group in which you created it.
 
-    ```
-    az cognitiveservices account keys list --name <resourceName> --resource-group <resourceGroup>
-    ```
+```
+az cognitiveservices account keys list --name <resourceName> --resource-group <resourceGroup>
+```
 
-    The command returns a list of the keys for your cognitive services resource.
+The command returns a list of the keys for your cognitive services resource.
 
 11. Switch back to the browser containing the Azure portal, and refresh your **Alert page**. You should see a **Sev 4** alert listed in the table (if not, wait up to five minutes and refresh again).
 12. Select the alert to see its details.
@@ -83,17 +83,17 @@ As well as defining alerts, you can view metrics for your cognitive services res
 3. In the **Aggregation** list, select **Count**.  This will enable you to monitor the total calls to you Cognitive Service resource; which is useful in determining how much the service is being used over a period of time.
 4. To generate some requests to your cognitive service, you will use **curl** - a command line tool for HTTP requests. In Visual Studio Code, in the **03-monitor** folder, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your cognitive services resource.
 
-    ```
-    curl -X POST "<yourEndpoint>/text/analytics/v3.0/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':[{'id':1,'text':'hello'}]}"
-    ```
+```
+curl -X POST "<yourEndpoint>/text/analytics/v3.0/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':[{'id':1,'text':'hello'}]}"
+```
 
 5. Save your changes, and then in the integrated terminal for the **03-monitor** folder, run the following command:
 
-    ```
-    rest-test
-    ```
+```
+rest-test
+```
 
-    The command returns a JSON document containing information about the language detected in the input data (which should be English).
+The command returns a JSON document containing information about the language detected in the input data (which should be English).
 
 6. Re-run the **rest-test** command multiple times to generate some call activity (you can use the **^** key to cycle through previous commands).
 7. Return to the **Metrics** page in the Azure portal and refresh the **Total Calls** count chart. It may take a few minutes for the calls you made using *curl* to be reflected in the chart - keep refreshing the chart until it updates to include them.

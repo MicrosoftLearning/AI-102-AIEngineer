@@ -20,7 +20,7 @@ This kind of input is an example of an *utterance* (something a user might say o
 If you have not already done so, you must clone the code repository for this course:
 
 1. Start Visual Studio Code.
-2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the **https://github.com/MicrosoftLearning/AI-102-AIEngineer** repository to a local folder.
+2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder.
 3. When the repository has been cloned, open the folder in Visual Studio Code.
 4. Wait while additional files are installed to support the C# code projects in the repo.
 
@@ -255,21 +255,21 @@ In a real project, you'd iteratively refine intents and entities, retrain, and r
 7. Replace the placeholder values in the script with the **App ID**, **Endpoint URL**, and either the **Primary Key** or **Secondary Key** for your Language Understanding app; and then save the updated file.
 8. Right-click the **09-luis-app** folder and open an integrated terminal. Then enter the following command (be sure to include the quotation marks!):
 
-    ```bash
+    ```
     GetIntent "What's the time?"
     ```
 
 9. Review the JSON response returned by your app, which should indicate the top scoring intent predicted for your input (which should be **GetTime**).
 10. Try the following command:
 
-    ```bash
+    ```
     GetIntent "What's today's date?"
     ```
 
 11. Examine the response and verify that it predicts the **GetDate** intent.
 12. Try the following command:
 
-    ```bash
+    ```
     GetIntent "What time is it in Sydney?"
     ```
 
@@ -277,7 +277,7 @@ In a real project, you'd iteratively refine intents and entities, retrain, and r
 
 14. Try this command:
 
-    ```bash
+    ```
     GetIntent "What's the time in Nairobi?"
     ```
 

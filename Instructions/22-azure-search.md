@@ -16,7 +16,7 @@ To address this challenge, Margie's Travel can use Azure Cognitive Search to imp
 If you have not already done so, you must clone the code repository for this course:
 
 1. Start Visual Studio Code.
-2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the **https://github.com/MicrosoftLearning/AI-102-AIEngineer** repository to a local folder.
+2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder.
 3. When the repository has been cloned, open the folder in Visual Studio Code.
 4. Wait while additional files are installed to support the C# code projects in the repo.
 
@@ -116,6 +116,7 @@ Now that you have the necessary Azure resources in place, you can create a searc
 7. Change the **Index name** to **margies-index**.
 8. Set the **Key** set to **metadata_storage_path** and leave the **Suggester name** and **Search mode** blank.
 9. Make the following changes to the index fields, leaving all other fields with their default settings:
+
     | Field name | Retrievable | Filterable | Sortable | Facetable | Searchable |
     | ---------- | ----------- | ---------- | -------- | --------- | ---------- |
     | metadata_storage_size | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | | |
@@ -190,79 +191,80 @@ The components of the search solution are based on JSON definitions, which you c
 4. In the **Skills** list, select **Sentiment Skill** to show a JSON template for this skill.
 5. Copy the template to the clipboard, and then on the left side, in the JSON for your skillset definition, paste the copied skill in a newly inserted line immediately after the following line (which should be line 6) - be careful not to overwrite the **{** marking the beginning of the first existing skill:
 
-    ```json
-    "skills": [
-    ```
+```
+"skills": [
+```
 
 6. Add a comma immediately after the newly inserted skill, and reformat the JSON indentation to make it more readable. It should look like this:
 
-    ```json
+```
+{
+"@odata.context": "https://....",
+"@odata.etag": "\"....\"",
+"name": "margies-skillset",
+"description": "Skillset created from the portal....",
+"skills": [
+    /* Insert the new skill here */
     {
-    "@odata.context": "https://....",
-    "@odata.etag": "\"....\"",
-    "name": "margies-skillset",
-    "description": "Skillset created from the portal....",
-    "skills": [
-        /* Insert the new skill here */
-        {
-            "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
-            "defaultLanguageCode": "",
-            "name": "",
-            "description": "",
-            "context": "",
-            "inputs": [
-                {
-                    "name": "text",
-                    "source": ""
-                },
-                {
-                    "name": "languageCode",
-                    "source": ""
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "score",
-                    "targetName": "score"
-                }
-            ]
-        },
-        /* Add a comma after the new skill, before the first existing skill */
-        {
-            "@odata.type": "#Microsoft.Skills.Text.EntityRecognitionSkill",
-            "name": "#1",
-            ...
-    }
-    ```
+        "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
+        "defaultLanguageCode": "",
+        "name": "",
+        "description": "",
+        "context": "",
+        "inputs": [
+            {
+                "name": "text",
+                "source": ""
+            },
+            {
+                "name": "languageCode",
+                "source": ""
+            }
+        ],
+        "outputs": [
+            {
+                "name": "score",
+                "targetName": "score"
+            }
+        ]
+    },
+    /* Add a comma after the new skill, before the first existing skill */
+    {
+        "@odata.type": "#Microsoft.Skills.Text.EntityRecognitionSkill",
+        "name": "#1",
+        ...
+}
+```
+
 7. Update the new skill definition like this:
 
-    ```json
-        {
-            "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
-            "defaultLanguageCode": "en",
-            "name": "get-sentiment",
-            "description": "Evaluate sentiment",
-            "context": "/document",
-            "inputs": [
-                {
-                    "name": "text",
-                    "source": "/document/merged_content"
-                },
-                {
-                    "name": "languageCode",
-                    "source": "/document/language"
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "score",
-                    "targetName": "sentimentScore"
-                }
-            ]
-        },
-    ```
+```
+    {
+        "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
+        "defaultLanguageCode": "en",
+        "name": "get-sentiment",
+        "description": "Evaluate sentiment",
+        "context": "/document",
+        "inputs": [
+            {
+                "name": "text",
+                "source": "/document/merged_content"
+            },
+            {
+                "name": "languageCode",
+                "source": "/document/language"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "score",
+                "targetName": "sentimentScore"
+            }
+        ]
+    },
+```
 
-    The new skill is named **get-sentiment**, and will evaluate the text found in the **merged_content** field of the document being indexed (which includes the source content as well as any text extracted from images in the content). It uses the extracted **language** of the document (with a default of English), and evaluates a score for the sentiment of the content. This score is then  output as a new field named **sentimentScore** at the **document** level of the object that represents the indexed document.
+The new skill is named **get-sentiment**, and will evaluate the text found in the **merged_content** field of the document being indexed (which includes the source content as well as any text extracted from images in the content). It uses the extracted **language** of the document (with a default of English), and evaluates a score for the sentiment of the content. This score is then  output as a new field named **sentimentScore** at the **document** level of the object that represents the indexed document.
 
 8. Select **Save** to save the skillset with the new skill.
 9. Close the **margies-skillset** page to return to the blade for your Azure Cognitive Search resource.
@@ -273,45 +275,45 @@ The components of the search solution are based on JSON definitions, which you c
 2. Select **margies-index** and view the **Index Definition (JSON)** page. This shows a JSON definition for your index, including definitions for each field. Some fields are based on metadata and content in the source document, and others are the results of skills in the skillset.
 3. You added a skill to the skillset to extract a sentiment score for the document. Now you must add a corresponding field in the index to which this value can be mapped. At the bottom of the **fields** list (before the closing **]**, which is followed by index properties such as **suggesters**), add the following field (being sure to include the comma at the beginning, after the previous field):
 
-    ```json
-    ,
-    {
-      "name": "sentiment",
-      "type": "Edm.Double",
-      "facetable": false,
-      "filterable": true,
-      "key": false,
-      "retrievable": true,
-      "searchable": false,
-      "sortable": true,
-      "analyzer": null,
-      "indexAnalyzer": null,
-      "searchAnalyzer": null,
-      "synonymMaps": [],
-      "fields": []
-    }
-    ```
+```
+,
+{
+    "name": "sentiment",
+    "type": "Edm.Double",
+    "facetable": false,
+    "filterable": true,
+    "key": false,
+    "retrievable": true,
+    "searchable": false,
+    "sortable": true,
+    "analyzer": null,
+    "indexAnalyzer": null,
+    "searchAnalyzer": null,
+    "synonymMaps": [],
+    "fields": []
+}
+```
 
 4. The index includes the **metadata_storage_path** field (the URL of the document), which is currently used as the index key. The key is Base-64 encoded, making it efficient as a key but requiring client applications to decode it if they want to use the actual URL value as a field. We'll resolve this by adding another field that will be mapped to the unencoded value. Add the following field definition immediately after the **sentiment** field you just added:
 
-    ```json
-    ,
-    {
-      "name": "url",
-      "type": "Edm.String",
-      "facetable": false,
-      "filterable": true,
-      "key": false,
-      "retrievable": true,
-      "searchable": false,
-      "sortable": false,
-      "analyzer": null,
-      "indexAnalyzer": null,
-      "searchAnalyzer": null,
-      "synonymMaps": [],
-      "fields": []
-    }
-    ```
+```
+,
+{
+    "name": "url",
+    "type": "Edm.String",
+    "facetable": false,
+    "filterable": true,
+    "key": false,
+    "retrievable": true,
+    "searchable": false,
+    "sortable": false,
+    "analyzer": null,
+    "indexAnalyzer": null,
+    "searchAnalyzer": null,
+    "synonymMaps": [],
+    "fields": []
+}
+```
 
 5. Select **Save** to save the index with the new fields.
 6. Close the **margies-index** page to return to the blade for your Azure Cognitive Search resource.
@@ -322,34 +324,34 @@ The components of the search solution are based on JSON definitions, which you c
 2. Select **margies-indexer** and view the **Indexer Definition (JSON)** page. This shows a JSON definition for your indexer, which maps fields extracted from document content and metadata (in the **fieldMappings** section), and values extracted by skills in the skillset (in the **outputFieldMappings** section), to fields in the index.
 3. In the **fieldMappings** section, after the existing mapping for the **metadata_storage_path** value to the base-54 encoded key field, add another mapping to map the same value to the **url** field, so that the entire **fieldMappings** section looks like this (be sure to include the comma between the existing mapping and the new one):
 
-    ```json
-    "fieldMappings": [
-        {
-        "sourceFieldName": "metadata_storage_path",
-        "targetFieldName": "metadata_storage_path",
-        "mappingFunction": {
-            "name": "base64Encode",
-            "parameters": null
-            }
-        },
-        {
-            "sourceFieldName" : "metadata_storage_path",
-            "targetFieldName" : "url"
+```
+"fieldMappings": [
+    {
+    "sourceFieldName": "metadata_storage_path",
+    "targetFieldName": "metadata_storage_path",
+    "mappingFunction": {
+        "name": "base64Encode",
+        "parameters": null
         }
-    ],
-    ```
+    },
+    {
+        "sourceFieldName" : "metadata_storage_path",
+        "targetFieldName" : "url"
+    }
+],
+```
 
-    All of the other metadata and content field in the source document are implicitly mapped to fields of the same name in the index.
+All of the other metadata and content field in the source document are implicitly mapped to fields of the same name in the index.
 
 4. At the end of the **ouputFieldMappings** section, add the following mapping to map the **sentimentScore** value extracted by your sentiment skill to the **sentiment** field you added to the index:
 
-    ```json
-    ,
-    {
-      "sourceFieldName": "/document/sentimentScore",
-      "targetFieldName": "sentiment"
-    }
-    ```
+```
+,
+{
+    "sourceFieldName": "/document/sentimentScore",
+    "targetFieldName": "sentiment"
+}
+```
 
 5. Select **Save** to save the indexer with the new mappings.
 6. Select **Reset** to reset the index, and confirm that you want to do this when prompted. You've added new fields to an already-populated index, so you'll need to reset and reindex to update the existing index records with the new field values.
@@ -391,17 +393,18 @@ Now that you have a useful index, you can use it from a client application. You 
 1. In Visual Studio Code open the **ai-102** project, and in the **Explorer** pane, browse to the **22-create-a-search-solution** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **margies-travel** folder and open an integrated terminal. Then install the Azure Cognitive Search SDK package by running the appropriate command for your language preference:
 
-   **C#**
+**C#**
 
-    ```
-    dotnet add package Azure.Search.Documents --version 11.1.1
-    ```
+```
+dotnet add package Azure.Search.Documents --version 11.1.1
+```
 
-   **Python**
+**Python**
 
-   ```
-   pip install azure-search-documents==11.0.0
-   ```
+```
+pip install azure-search-documents==11.0.0
+```
+
 3. View the contents of the **margies-travel** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
     - **Python**: .env
@@ -417,40 +420,40 @@ The **margies-travel** folder contains code files for a web application (a Micro
     - **Python**: app&period;py
 2. Near the top of the code file, find the comment **Import namespaces**, and add the following code below this comment:
 
-    **C#**
+**C#**
 
-    ```C#
-    // Import namespaces
-    using Azure;
-    using Azure.Search.Documents;
-    using Azure.Search.Documents.Models;
-    ```
+```C#
+// Import namespaces
+using Azure;
+using Azure.Search.Documents;
+using Azure.Search.Documents.Models;
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Import namespaces
-    from azure.core.credentials import AzureKeyCredential
-    from azure.search.documents import SearchClient
-    ```
+```Python
+# Import namespaces
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents import SearchClient
+```
 
 3. In the **search_query** function, find the comment **Create a search client**, and add the following code:
 
-    **C#**
+**C#**
 
-    ```C#
-    // Create a search client
-    AzureKeyCredential credential = new AzureKeyCredential(QueryKey);
-    SearchClient searchClient = new SearchClient(SearchEndpoint, IndexName, credential);
-    ```
+```C#
+// Create a search client
+AzureKeyCredential credential = new AzureKeyCredential(QueryKey);
+SearchClient searchClient = new SearchClient(SearchEndpoint, IndexName, credential);
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Create a search client
-    azure_credential = AzureKeyCredential(search_key)
-    search_client = SearchClient(search_endpoint, search_index, azure_credential)
-    ```
+```Python
+# Create a search client
+azure_credential = AzureKeyCredential(search_key)
+search_client = SearchClient(search_endpoint, search_index, azure_credential)
+```
 
 4. In the **search_query** function, find the comment **Submit search query**, and add the following code to submit a search for the specified text with the following options:
     - A *search mode* that requires **all** of the individual words in the search text are found.
@@ -461,49 +464,49 @@ The **margies-travel** folder contains code files for a web application (a Micro
     - Up to three extracts of the **merged_content** and **imageCaption** fields with the search terms highlighted are included in the results.
     - The results include only the fields specified.
 
-    **C#**
+**C#**
 
-    ```C#
-    // Submit search query
-    var options = new SearchOptions{
-        IncludeTotalCount = true,
-        SearchMode = SearchMode.All,
-        Filter = FilterExpression,
-        OrderBy = {SortOrder},
-        Facets = {"metadata_author"},
-        HighlightFields = {"merged_content-3","imageCaption-3"} 
-    };
-    options.Select.Add("url");
-    options.Select.Add("metadata_storage_name");
-    options.Select.Add("metadata_author");
-    options.Select.Add("metadata_storage_size");
-    options.Select.Add("metadata_storage_last_modified");
-    options.Select.Add("language");
-    options.Select.Add("sentiment");
-    options.Select.Add("merged_content");
-    options.Select.Add("keyphrases");
-    options.Select.Add("locations");
-    options.Select.Add("imageTags");
-    options.Select.Add("imageCaption");
-    SearchResults<SearchResult> results = searchClient.Search<SearchResult>(SearchTerms, options);
-    return results;
-    ```
+```C#
+// Submit search query
+var options = new SearchOptions{
+    IncludeTotalCount = true,
+    SearchMode = SearchMode.All,
+    Filter = FilterExpression,
+    OrderBy = {SortOrder},
+    Facets = {"metadata_author"},
+    HighlightFields = {"merged_content-3","imageCaption-3"} 
+};
+options.Select.Add("url");
+options.Select.Add("metadata_storage_name");
+options.Select.Add("metadata_author");
+options.Select.Add("metadata_storage_size");
+options.Select.Add("metadata_storage_last_modified");
+options.Select.Add("language");
+options.Select.Add("sentiment");
+options.Select.Add("merged_content");
+options.Select.Add("keyphrases");
+options.Select.Add("locations");
+options.Select.Add("imageTags");
+options.Select.Add("imageCaption");
+SearchResults<SearchResult> results = searchClient.Search<SearchResult>(SearchTerms, options);
+return results;
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Submit search query
-    results =  search_client.search(search_text,
-                                    search_mode="all",
-                                    include_total_count=True,
-                                    filter=filter_by,
-                                    order_by=sort_order,
-                                    facets=['metadata_author'],
-                                    highlight_fields='merged_content-3,imageCaption-3',
-                                    # select fields on a single line
-                                    select = "url,metadata_storage_name,metadata_author,metadata_storage_last_modified,language,sentiment,merged_content,keyphrases,locations,imageTags,imageCaption")
-    return results
-    ```
+```Python
+# Submit search query
+results =  search_client.search(search_text,
+                                search_mode="all",
+                                include_total_count=True,
+                                filter=filter_by,
+                                order_by=sort_order,
+                                facets=['metadata_author'],
+                                highlight_fields='merged_content-3,imageCaption-3',
+                                # select fields on a single line
+                                select = "url,metadata_storage_name,metadata_author,metadata_storage_last_modified,language,sentiment,merged_content,keyphrases,locations,imageTags,imageCaption")
+return results
+```
 
 5. Save your changes.
 
@@ -533,29 +536,29 @@ The web app already includes code to process and render the search results.
 
  1. return to the integrated terminal for the **margies-travel** folder, and enter the following command to run the program:
 
-    **C#**
+**C#**
 
-    ```
-    dotnet run
-    ```
+```
+dotnet run
+```
 
-    **Python**
+**Python**
 
-    ```
-    flask run
-    ```
-    In the message that is displayed when the app starts successfully, follow the link to the running web application (`https://localhost:5000/` or `https://127.0.0.1:5000/`) to open the Margies Travel site in a web browser:
+```
+flask run
+```
 
-2. In the Margie's Travel website, enter **London hotel** into the search box and click **Search**.
-3. Review the search results. They include the file name (with a hyperlink to the file URL), an extract of the file content with the search terms (*London* and *hotel*) emphasized, and other attributes of the file from the index fields.
-4. Observe that the results page includes some user interface elements that enable you to refine the results. These include:
+2. In the message that is displayed when the app starts successfully, follow the link to the running web application (*https://localhost:5000/* or *https://127.0.0.1:5000/*) to open the Margies Travel site in a web browser.
+3. In the Margie's Travel website, enter **London hotel** into the search box and click **Search**.
+4. Review the search results. They include the file name (with a hyperlink to the file URL), an extract of the file content with the search terms (*London* and *hotel*) emphasized, and other attributes of the file from the index fields.
+5. Observe that the results page includes some user interface elements that enable you to refine the results. These include:
     - A *filter* based on a facet value for the **metadata_author** field. This demonstrates how you can use *facetable* fields to return a list of *facets* - fields with a small set of discrete values that can displayed as potential filter values in the user interface.
     - The ability to *order* the results based on a specified field and sort direction (ascending or descending). The default order is based on *relevancy*, which is calculated as a **search.score()** value based on a *scoring profile* that evaluates the frequency and importance of search terms in the index fields.
-5. Select the **Reviewer** filter and the **Positive to negative** sort option, and then select **Refine Results**.
-6. Observe that the results are filtered to include only reviews, and sorted into descending order of sentiment.
-7. In the **Search** box, enter a new search for **quiet hotel in New York** and review the results.
-8. Try the following search terms:
+6. Select the **Reviewer** filter and the **Positive to negative** sort option, and then select **Refine Results**.
+7. Observe that the results are filtered to include only reviews, and sorted into descending order of sentiment.
+8. In the **Search** box, enter a new search for **quiet hotel in New York** and review the results.
+9. Try the following search terms:
     - **Tower of London** (observe that this term is identified as a *key phrase* in some documents).
     - **skyscraper** (observe that this word doesn't appear in the actual content of any documents, but is found in the *image captions* and *image tags* that were generated for images in some documents).
     - **Mojave desert** (observe that this term is identified as a *location* in some documents).
-9. Close the browser tab containing the Margie's Travel web site and return to Visual Studio Code. Then in the Python terminal for the **margies-travel** folder (where the dotnet or flask application is running), enter Ctrl+C to stop the app.
+10. Close the browser tab containing the Margie's Travel web site and return to Visual Studio Code. Then in the Python terminal for the **margies-travel** folder (where the dotnet or flask application is running), enter Ctrl+C to stop the app.

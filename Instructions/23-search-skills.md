@@ -14,7 +14,7 @@ In this exercise, you'll create a custom skill that tabulates the frequency of i
 If you have not already done so, you must clone the code repository for this course:
 
 1. Start Visual Studio Code.
-2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the **https://github.com/MicrosoftLearning/AI-102-AIEngineer** repository to a local folder.
+2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder.
 3. When the repository has been cloned, open the folder in Visual Studio Code.
 4. Wait while additional files are installed to support the C# code projects in the repo.
 
@@ -36,14 +36,14 @@ If you have previously completed the **[Create an Azure Cognitive Search solutio
 6. Right-click the the **23-custom-search-skill** folder and select **Open in Integrated Terminal**.
 7. In the terminal pane, enter the following command to establish an authenticated connection to your Azure subscription.
 
-    ```bash
+    ```
     az login --output none
     ```
 
 8. When prompted, open `https://microsoft.com/devicelogin`, enter the provided code, and sign into your Azure subscription. Then return to Visual Studio Code and wait for the sign-in process to complete.
 9. Run the following command to list Azure locations.
 
-    ```bash
+    ```
     az account list-locations -o table
     ```
 
@@ -51,9 +51,10 @@ If you have previously completed the **[Create an Azure Cognitive Search solutio
 11. In the **setup.cmd** script, modify the **subscription_id**, **resource_group**, and **location** variable declarations with the appropriate values for your subscription ID, resource group name, and location name. Then save your changes.
 12. In the terminal for the **23-custom-search-skill** folder, enter the following command to run the script:
 
-    ```bash
+    ```
     setup
     ```
+
     > **Note**: The Search CLI module is in preview, and may get stuck in the *- Running ..* process. If this happens for over 2 minutes, press CTRL+C to cancel the long-running operation, and then select **N** when asked if you want to terminate the script. It should then complete successfully.
     >
     > If the script fails, ensure you saved it with the correct variable names and try again.
@@ -83,7 +84,7 @@ In this exercise, you'll use the Azure Cognitive Search REST interface to create
 1. In Visual Studio Code, in the **23-custom-search-skill** folder, expand the **create-search** folder and select **data_source.json**. This file contains a JSON definition for a data source named **margies-custom-data**.
 2. Replace the **YOUR_CONNECTION_STRING** placeholder with the connection string for your Azure storage account, which should resemble the following:
 
-    ```text
+    ```
     DefaultEndpointsProtocol=https;AccountName=ai102str123;AccountKey=12345abcdefg...==;EndpointSuffix=core.windows.net
     ```
 
@@ -109,7 +110,7 @@ In this exercise, you'll use the Azure Cognitive Search REST interface to create
 14. Right-click the the **create-search** folder and select **Open in Integrated Terminal**.
 15. In the terminal pane for the **create-search** folder, enter the following command run the batch script.
 
-    ```bash
+    ```
     create-search
     ```
 
@@ -171,256 +172,256 @@ To implement the word count functionality as a custom skill, you'll create an Az
 
 5. Replace the entire contents of the file with the following code for your chosen language:
 
-    ### **C#**
+### **C#**
 
-    ```C#
-    using System.IO;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Azure.WebJobs;
-    using Microsoft.Azure.WebJobs.Extensions.Http;
-    using Microsoft.AspNetCore.Http;
-    using Newtonsoft.Json;
-    using System.Collections.Generic;
-    using Microsoft.Extensions.Logging;
-    using System.Text.RegularExpressions;
-    using System.Linq;
+```C#
+using System.IO;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
+using System.Text.RegularExpressions;
+using System.Linq;
 
-    namespace margies.search
+namespace margies.search
+{
+    public static class wordcount
     {
-        public static class wordcount
+
+        //define classes for responses
+        private class WebApiResponseError
         {
+            public string message { get; set; }
+        }
 
-            //define classes for responses
-            private class WebApiResponseError
+        private class WebApiResponseWarning
+        {
+            public string message { get; set; }
+        }
+
+        private class WebApiResponseRecord
+        {
+            public string recordId { get; set; }
+            public Dictionary<string, object> data { get; set; }
+            public List<WebApiResponseError> errors { get; set; }
+            public List<WebApiResponseWarning> warnings { get; set; }
+        }
+
+        private class WebApiEnricherResponse
+        {
+            public List<WebApiResponseRecord> values { get; set; }
+        }
+
+        //function for custom skill
+        [FunctionName("wordcount")]
+        public static IActionResult Run(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req, ILogger log)
+        {
+            log.LogInformation("Function initiated.");
+
+            string recordId = null;
+            string originalText = null;
+
+            string requestBody = new StreamReader(req.Body).ReadToEnd();
+            dynamic data = JsonConvert.DeserializeObject(requestBody);
+
+            // Validation
+            if (data?.values == null)
             {
-                public string message { get; set; }
+                return new BadRequestObjectResult(" Could not find values array");
+            }
+            if (data?.values.HasValues == false || data?.values.First.HasValues == false)
+            {
+                return new BadRequestObjectResult("Could not find valid records in values array");
             }
 
-            private class WebApiResponseWarning
+            WebApiEnricherResponse response = new WebApiEnricherResponse();
+            response.values = new List<WebApiResponseRecord>();
+            foreach (var record in data?.values)
             {
-                public string message { get; set; }
-            }
+                recordId = record.recordId?.Value as string;
+                originalText = record.data?.text?.Value as string;
 
-            private class WebApiResponseRecord
-            {
-                public string recordId { get; set; }
-                public Dictionary<string, object> data { get; set; }
-                public List<WebApiResponseError> errors { get; set; }
-                public List<WebApiResponseWarning> warnings { get; set; }
-            }
-
-            private class WebApiEnricherResponse
-            {
-                public List<WebApiResponseRecord> values { get; set; }
-            }
-
-            //function for custom skill
-            [FunctionName("wordcount")]
-            public static IActionResult Run(
-                [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req, ILogger log)
-            {
-                log.LogInformation("Function initiated.");
-
-                string recordId = null;
-                string originalText = null;
-
-                string requestBody = new StreamReader(req.Body).ReadToEnd();
-                dynamic data = JsonConvert.DeserializeObject(requestBody);
-
-                // Validation
-                if (data?.values == null)
+                if (recordId == null)
                 {
-                    return new BadRequestObjectResult(" Could not find values array");
-                }
-                if (data?.values.HasValues == false || data?.values.First.HasValues == false)
-                {
-                    return new BadRequestObjectResult("Could not find valid records in values array");
-                }
-
-                WebApiEnricherResponse response = new WebApiEnricherResponse();
-                response.values = new List<WebApiResponseRecord>();
-                foreach (var record in data?.values)
-                {
-                    recordId = record.recordId?.Value as string;
-                    originalText = record.data?.text?.Value as string;
-
-                    if (recordId == null)
-                    {
-                        return new BadRequestObjectResult("recordId cannot be null");
-                    }
-
-                    // Put together response.
-                    WebApiResponseRecord responseRecord = new WebApiResponseRecord();
-                    responseRecord.data = new Dictionary<string, object>();
-                    responseRecord.recordId = recordId;
-                    responseRecord.data.Add("text", Count(originalText));
-
-                    response.values.Add(responseRecord);
+                    return new BadRequestObjectResult("recordId cannot be null");
                 }
 
-                return (ActionResult)new OkObjectResult(response); 
+                // Put together response.
+                WebApiResponseRecord responseRecord = new WebApiResponseRecord();
+                responseRecord.data = new Dictionary<string, object>();
+                responseRecord.recordId = recordId;
+                responseRecord.data.Add("text", Count(originalText));
+
+                response.values.Add(responseRecord);
             }
 
+            return (ActionResult)new OkObjectResult(response); 
+        }
 
-                public static string RemoveHtmlTags(string html)
+
+            public static string RemoveHtmlTags(string html)
+        {
+            string htmlRemoved = Regex.Replace(html, @"<script[^>]*>[\s\S]*?</script>|<[^>]+>| ", " ").Trim();
+            string normalised = Regex.Replace(htmlRemoved, @"\s{2,}", " ");
+            return normalised;
+        }
+
+        public static List<string> Count(string text)
+        {
+            
+            //remove html elements
+            text=text.ToLowerInvariant();
+            string html = RemoveHtmlTags(text);
+            
+            //split into list of words
+            List<string> list = html.Split(" ").ToList();
+            
+            //remove any non alphabet characters
+            var onlyAlphabetRegEx = new Regex(@"^[A-z]+$");
+            list = list.Where(f => onlyAlphabetRegEx.IsMatch(f)).ToList();
+
+            //remove stop words
+            string[] stopwords = { "", "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", 
+                    "you're", "you've", "you'll", "you'd", "your", "yours", "yourself", 
+                    "yourselves", "he", "him", "his", "himself", "she", "she's", "her", 
+                    "hers", "herself", "it", "it's", "its", "itself", "they", "them", 
+                    "their", "theirs", "themselves", "what", "which", "who", "whom", 
+                    "this", "that", "that'll", "these", "those", "am", "is", "are", "was",
+                    "were", "be", "been", "being", "have", "has", "had", "having", "do", 
+                    "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", 
+                    "because", "as", "until", "while", "of", "at", "by", "for", "with", 
+                    "about", "against", "between", "into", "through", "during", "before", 
+                    "after", "above", "below", "to", "from", "up", "down", "in", "out", 
+                    "on", "off", "over", "under", "again", "further", "then", "once", "here", 
+                    "there", "when", "where", "why", "how", "all", "any", "both", "each", 
+                    "few", "more", "most", "other", "some", "such", "no", "nor", "not", 
+                    "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", 
+                    "will", "just", "don", "don't", "should", "should've", "now", "d", "ll",
+                    "m", "o", "re", "ve", "y", "ain", "aren", "aren't", "couldn", "couldn't", 
+                    "didn", "didn't", "doesn", "doesn't", "hadn", "hadn't", "hasn", "hasn't", 
+                    "haven", "haven't", "isn", "isn't", "ma", "mightn", "mightn't", "mustn", 
+                    "mustn't", "needn", "needn't", "shan", "shan't", "shouldn", "shouldn't", "wasn", 
+                    "wasn't", "weren", "weren't", "won", "won't", "wouldn", "wouldn't"}; 
+            list = list.Where(x => x.Length > 2).Where(x => !stopwords.Contains(x)).ToList();
+            
+            //get distict words by key and count, and then order by count.
+            var keywords = list.GroupBy(x => x).OrderByDescending(x => x.Count());
+            var klist = keywords.ToList();
+
+            // return the top 10 words
+            var numofWords = 10;
+            if(klist.Count<10)
+                numofWords=klist.Count;
+            List<string> resList = new List<string>();
+            for (int i = 0; i < numofWords; i++)
             {
-                string htmlRemoved = Regex.Replace(html, @"<script[^>]*>[\s\S]*?</script>|<[^>]+>| ", " ").Trim();
-                string normalised = Regex.Replace(htmlRemoved, @"\s{2,}", " ");
-                return normalised;
+                resList.Add(klist[i].Key);
             }
-
-            public static List<string> Count(string text)
-            {
-                
-                //remove html elements
-                text=text.ToLowerInvariant();
-                string html = RemoveHtmlTags(text);
-                
-                //split into list of words
-                List<string> list = html.Split(" ").ToList();
-                
-                //remove any non alphabet characters
-                var onlyAlphabetRegEx = new Regex(@"^[A-z]+$");
-                list = list.Where(f => onlyAlphabetRegEx.IsMatch(f)).ToList();
-
-                //remove stop words
-                string[] stopwords = { "", "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", 
-                        "you're", "you've", "you'll", "you'd", "your", "yours", "yourself", 
-                        "yourselves", "he", "him", "his", "himself", "she", "she's", "her", 
-                        "hers", "herself", "it", "it's", "its", "itself", "they", "them", 
-                        "their", "theirs", "themselves", "what", "which", "who", "whom", 
-                        "this", "that", "that'll", "these", "those", "am", "is", "are", "was",
-                        "were", "be", "been", "being", "have", "has", "had", "having", "do", 
-                        "does", "did", "doing", "a", "an", "the", "and", "but", "if", "or", 
-                        "because", "as", "until", "while", "of", "at", "by", "for", "with", 
-                        "about", "against", "between", "into", "through", "during", "before", 
-                        "after", "above", "below", "to", "from", "up", "down", "in", "out", 
-                        "on", "off", "over", "under", "again", "further", "then", "once", "here", 
-                        "there", "when", "where", "why", "how", "all", "any", "both", "each", 
-                        "few", "more", "most", "other", "some", "such", "no", "nor", "not", 
-                        "only", "own", "same", "so", "than", "too", "very", "s", "t", "can", 
-                        "will", "just", "don", "don't", "should", "should've", "now", "d", "ll",
-                        "m", "o", "re", "ve", "y", "ain", "aren", "aren't", "couldn", "couldn't", 
-                        "didn", "didn't", "doesn", "doesn't", "hadn", "hadn't", "hasn", "hasn't", 
-                        "haven", "haven't", "isn", "isn't", "ma", "mightn", "mightn't", "mustn", 
-                        "mustn't", "needn", "needn't", "shan", "shan't", "shouldn", "shouldn't", "wasn", 
-                        "wasn't", "weren", "weren't", "won", "won't", "wouldn", "wouldn't"}; 
-                list = list.Where(x => x.Length > 2).Where(x => !stopwords.Contains(x)).ToList();
-                
-                //get distict words by key and count, and then order by count.
-                var keywords = list.GroupBy(x => x).OrderByDescending(x => x.Count());
-                var klist = keywords.ToList();
-
-                // return the top 10 words
-                var numofWords = 10;
-                if(klist.Count<10)
-                    numofWords=klist.Count;
-                List<string> resList = new List<string>();
-                for (int i = 0; i < numofWords; i++)
-                {
-                    resList.Add(klist[i].Key);
-                }
-                return resList;
-            }
+            return resList;
         }
     }
-    ```
+}
+```
 
-    ## **Python**
+## **Python**
 
-    ```Python
-    import logging
-    import os
-    import sys
-    import json
-    from string import punctuation
-    from collections import Counter
-    import azure.functions as func
+```Python
+import logging
+import os
+import sys
+import json
+from string import punctuation
+from collections import Counter
+import azure.functions as func
 
 
-    def main(req: func.HttpRequest) -> func.HttpResponse:
-        logging.info('Wordcount function initiated.')
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Wordcount function initiated.')
 
-        # The result will be a "values" bag
-        result = {
-            "values": []
-        }
-        statuscode = 200
+    # The result will be a "values" bag
+    result = {
+        "values": []
+    }
+    statuscode = 200
 
-        # We're going to exclude words from this list in the word counts
-        stopwords = ['', 'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 
-                    "you're", "you've", "you'll", "you'd", 'your', 'yours', 'yourself', 
-                    'yourselves', 'he', 'him', 'his', 'himself', 'she', "she's", 'her', 
-                    'hers', 'herself', 'it', "it's", 'its', 'itself', 'they', 'them', 
-                    'their', 'theirs', 'themselves', 'what', 'which', 'who', 'whom', 
-                    'this', 'that', "that'll", 'these', 'those', 'am', 'is', 'are', 'was',
-                    'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having', 'do', 
-                    'does', 'did', 'doing', 'a', 'an', 'the', 'and', 'but', 'if', 'or', 
-                    'because', 'as', 'until', 'while', 'of', 'at', 'by', 'for', 'with', 
-                    'about', 'against', 'between', 'into', 'through', 'during', 'before', 
-                    'after', 'above', 'below', 'to', 'from', 'up', 'down', 'in', 'out', 
-                    'on', 'off', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 
-                    'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 
-                    'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 
-                    'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 
-                    'will', 'just', 'don', "don't", 'should', "should've", 'now', 'd', 'll',
-                    'm', 'o', 're', 've', 'y', 'ain', 'aren', "aren't", 'couldn', "couldn't", 
-                    'didn', "didn't", 'doesn', "doesn't", 'hadn', "hadn't", 'hasn', "hasn't", 
-                    'haven', "haven't", 'isn', "isn't", 'ma', 'mightn', "mightn't", 'mustn', 
-                    "mustn't", 'needn', "needn't", 'shan', "shan't", 'shouldn', "shouldn't", 'wasn', 
-                    "wasn't", 'weren', "weren't", 'won', "won't", 'wouldn', "wouldn't"]
+    # We're going to exclude words from this list in the word counts
+    stopwords = ['', 'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 
+                "you're", "you've", "you'll", "you'd", 'your', 'yours', 'yourself', 
+                'yourselves', 'he', 'him', 'his', 'himself', 'she', "she's", 'her', 
+                'hers', 'herself', 'it', "it's", 'its', 'itself', 'they', 'them', 
+                'their', 'theirs', 'themselves', 'what', 'which', 'who', 'whom', 
+                'this', 'that', "that'll", 'these', 'those', 'am', 'is', 'are', 'was',
+                'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having', 'do', 
+                'does', 'did', 'doing', 'a', 'an', 'the', 'and', 'but', 'if', 'or', 
+                'because', 'as', 'until', 'while', 'of', 'at', 'by', 'for', 'with', 
+                'about', 'against', 'between', 'into', 'through', 'during', 'before', 
+                'after', 'above', 'below', 'to', 'from', 'up', 'down', 'in', 'out', 
+                'on', 'off', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 
+                'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 
+                'few', 'more', 'most', 'other', 'some', 'such', 'no', 'nor', 'not', 
+                'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 
+                'will', 'just', 'don', "don't", 'should', "should've", 'now', 'd', 'll',
+                'm', 'o', 're', 've', 'y', 'ain', 'aren', "aren't", 'couldn', "couldn't", 
+                'didn', "didn't", 'doesn', "doesn't", 'hadn', "hadn't", 'hasn', "hasn't", 
+                'haven', "haven't", 'isn', "isn't", 'ma', 'mightn', "mightn't", 'mustn', 
+                "mustn't", 'needn', "needn't", 'shan', "shan't", 'shouldn', "shouldn't", 'wasn', 
+                "wasn't", 'weren', "weren't", 'won', "won't", 'wouldn', "wouldn't"]
 
-        try:
-            values = req.get_json().get('values')
-            logging.info(values)
+    try:
+        values = req.get_json().get('values')
+        logging.info(values)
 
-            for rec in values:
-                # Construct the basic JSON response for this record
-                val = {
-                        "recordId": rec['recordId'],
-                        "data": {
-                            "text":None
-                        },
-                        "errors": None,
-                        "warnings": None
-                    }
-                try:
-                    # get the text to be processed from the input record
-                    txt = rec['data']['text']
-                    # remove numeric digits
-                    txt = ''.join(c for c in txt if not c.isdigit())
-                    # remove punctuation and make lower case
-                    txt = ''.join(c for c in txt if c not in punctuation).lower()
-                    # remove stopwords
-                    txt = ' '.join(w for w in txt.split() if w not in stopwords)
-                    # Count the words and get the most common 10
-                    wordcount = Counter(txt.split()).most_common(10)
-                    words = [w[0] for w in wordcount]
-                    # Add the top 10 words to the output for this text record
-                    val["data"]["text"] = words
-                except:
-                    # An error occured for this text record, so add lists of errors and warning
-                    val["errors"] =[{"message": "An error occurred processing the text."}]
-                    val["warnings"] = [{"message": "One or more inputs failed to process."}]
-                finally:
-                    # Add the value for this record to the response
-                    result["values"].append(val)
-        except Exception as ex:
-            statuscode = 500
-            # A global error occurred, so return an error response
+        for rec in values:
+            # Construct the basic JSON response for this record
             val = {
-                    "recordId": None,
+                    "recordId": rec['recordId'],
                     "data": {
                         "text":None
                     },
-                    "errors": [{"message": ex.args}],
-                    "warnings": [{"message": "The request failed to process."}]
+                    "errors": None,
+                    "warnings": None
                 }
-            result["values"].append(val)
-        finally:
-            # Return the response
-            return func.HttpResponse(body=json.dumps(result), mimetype="application/json", status_code=statuscode)
-    ```
+            try:
+                # get the text to be processed from the input record
+                txt = rec['data']['text']
+                # remove numeric digits
+                txt = ''.join(c for c in txt if not c.isdigit())
+                # remove punctuation and make lower case
+                txt = ''.join(c for c in txt if c not in punctuation).lower()
+                # remove stopwords
+                txt = ' '.join(w for w in txt.split() if w not in stopwords)
+                # Count the words and get the most common 10
+                wordcount = Counter(txt.split()).most_common(10)
+                words = [w[0] for w in wordcount]
+                # Add the top 10 words to the output for this text record
+                val["data"]["text"] = words
+            except:
+                # An error occured for this text record, so add lists of errors and warning
+                val["errors"] =[{"message": "An error occurred processing the text."}]
+                val["warnings"] = [{"message": "One or more inputs failed to process."}]
+            finally:
+                # Add the value for this record to the response
+                result["values"].append(val)
+    except Exception as ex:
+        statuscode = 500
+        # A global error occurred, so return an error response
+        val = {
+                "recordId": None,
+                "data": {
+                    "text":None
+                },
+                "errors": [{"message": ex.args}],
+                "warnings": [{"message": "The request failed to process."}]
+            }
+        result["values"].append(val)
+    finally:
+        # Return the response
+        return func.HttpResponse(body=json.dumps(result), mimetype="application/json", status_code=statuscode)
+```
 
 6. Save the updated file.
 7. Right-click the **wordcount** folder containing your code files and select **Deploy to Function App**. Then deploy the function with the following language-specific settings (signing into Azure if prompted):
@@ -459,68 +460,69 @@ Now that you've deployed the function to Azure, you can test it in the Azure por
 3. On the **wordcount** function blade, view the **Code + Test** page and open the **Test/Run** pane.
 4. In the **Test/Run** pane, replace the existing **Body** with the following JSON, which reflects the schema expected by an Azure Cognitive Search skill in which records containing data for one or more documents are submitted for processing:
 
-    ```json
-    {
-        "values": [
+```
+{
+    "values": [
+        {
+            "recordId": "a1",
+            "data":
             {
-                "recordId": "a1",
-                "data":
-                {
-                "text":  "Tiger, tiger burning bright in the darkness of the night.",
-                "language": "en"
-                }
-            },
-            {
-                "recordId": "a2",
-                "data":
-                {
-                "text":  "The rain in spain stays mainly in the plains! That's where you'll find the rain!",
-                "language": "en"
-                }
+            "text":  "Tiger, tiger burning bright in the darkness of the night.",
+            "language": "en"
             }
-        ]
-    }
-    ```
+        },
+        {
+            "recordId": "a2",
+            "data":
+            {
+            "text":  "The rain in spain stays mainly in the plains! That's where you'll find the rain!",
+            "language": "en"
+            }
+        }
+    ]
+}
+```
 
 5. Click **Run** and view the HTTP response content that is returned by your function. This reflects the schema expected by Azure Cognitive Search when consuming a skill, in which a response for each document is returned. In this case, the response consists of up to 10 terms in each document in descending order of how frequently they appear:
 
-    ```text
+```
+{
+"values": [
     {
-    "values": [
-        {
-        "recordId": "a1",
-        "data": {
-            "text": [
-            "tiger",
-            "burning",
-            "bright",
-            "darkness",
-            "night"
-            ]
-        },
-        "errors": null,
-        "warnings": null
-        },
-        {
-        "recordId": "a2",
-        "data": {
-            "text": [
-            "rain",
-            "spain",
-            "stays",
-            "mainly",
-            "plains",
-            "thats",
-            "youll",
-            "find"
-            ]
-        },
-        "errors": null,
-        "warnings": null
-        }
-    ]
+    "recordId": "a1",
+    "data": {
+        "text": [
+        "tiger",
+        "burning",
+        "bright",
+        "darkness",
+        "night"
+        ]
+    },
+    "errors": null,
+    "warnings": null
+    },
+    {
+    "recordId": "a2",
+    "data": {
+        "text": [
+        "rain",
+        "spain",
+        "stays",
+        "mainly",
+        "plains",
+        "thats",
+        "youll",
+        "find"
+        ]
+    },
+    "errors": null,
+    "warnings": null
     }
-    ```
+]
+}
+```
+
 6. Close the **Test/Run** pane and in the **wordcount** function blade, click **Get function URL**. Then copy the URL for the default key to the clipboard. You'll need this in the next procedure.
 
 ## Add the custom skill to the search solution
@@ -548,7 +550,7 @@ Now you need to include your function as a custom skill in the search solution s
 13. Right-click the the **update-search** folder and select **Open in Integrated Terminal**.
 14. In the terminal pane for the **update-search** folder, enter the following command run the batch script.
 
-    ```bash
+    ```
     update-search
     ```
 

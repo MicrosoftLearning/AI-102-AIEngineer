@@ -9,14 +9,14 @@ Bot Framework Composer is a visual designer that lets you quickly and easily bui
 
 ## Get an OpenWeather API key
 
-In this exercise, you will create a bot that retrieves the weather conditions for the zipcode entered by the user. You will require an API key for the service to work so visit the [OpenWeather site*](https://openweathermap.org/price) to create a user account and get a free API key before you start.
+In this exercise, you will create a bot that retrieves the weather conditions for the zipcode entered by the user. You will require an API key for the service to work so visit the [OpenWeather site](https://openweathermap.org/price) to create a user account and get a free API key before you start.
 
 ## Clone the repository for this course
 
 If you have not already done so, you must clone the code repository for this course:
 
 1. Start Visual Studio Code.
-2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the **https://github.com/MicrosoftLearning/AI-102-AIEngineer** repository to a local folder.
+2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder.
 3. When the repository has been cloned, open the folder in Visual Studio Code.
 4. Wait while additional files are installed to support the C# code projects in the repo.
 
@@ -52,7 +52,7 @@ Your basic bot is complete so now let's test it.
 
 1. Select **Start Bot** in the upper right-hand corner of Composer, and wait a minute or so while your bot is compiled and started. After a few minutes, a **Test in Emulator** option is available next to the button.
 
-    * If a Windows Firewall message is displayed, enable access for all networks.
+    - If a Windows Firewall message is displayed, enable access for all networks.
 
 1. In the Bot Framework Composer, select **Test in Emulator**. Then wait for the Bot Framework Emulator to start.
 
@@ -155,7 +155,7 @@ The **getWeather** dialog flow so far consists of a simple message. Now you need
 1. On the authoring canvas, under the **Send HTTP Request** action on the you created, add a **Create a condition** > **Branch: if/else** action. This action defines a branch in the dialog flow with **True** and **False** paths.
 1. In the **Properties** of the branch action, set the **Condition** field to write the following expression:
 
-    ```code
+    ```
     =dialog.api_response.statusCode == 200
     ```
 
@@ -220,7 +220,7 @@ Currently, your weather bot has only one phrase to greet users with. To add some
 2. Select the **Send a response** action that currently sends the message *Hi! I'm WeatherBot.*.
 3. In the properties pane, modify the contents of the **Language Generation** text area to include the following phrases:
 
-    ```code
+    ```
     - Hello. I'm WeatherBot. Enter "weather" to start.
     - Hi! I am WeatherBot and can retrieve weather conditions for you. Try saying "weather".
     - Need to know the weather conditions? Say "weather" and I can help.
@@ -235,7 +235,7 @@ All of your bot responses are based on templates, which you can create and manag
 
 4. To create a template for weather condition responses, add the following code at the end of the current list of templates.
 
-```code
+```
 # DescribeWeather(weather)
 - IF: ${weather.weather=="Clouds"}
     - It is cloudy
@@ -293,7 +293,7 @@ The interactions with the weather bot so far has been through text.  Users enter
 2. In the authoring canvas, select the **Prompt for text** action that contains the prompt for the zipcode.
 3. In the properties pane, update **Prompt for text** with the following value (Ensure that you remove the **-** dash along with the existing text).
 
-    ```json
+    ```
     [Activity
         Text = What is your zip code?
         SuggestedActions = help | cancel
@@ -304,7 +304,7 @@ The interactions with the weather bot so far has been through text.  Users enter
 
 1. In the **True** path after checking the response from the HTTP weather service, edit the **Send a response** action for the weather report and the existing template with this text.
 
-```json
+```
 [ThumbnailCard
     title = Weather for ${dialog.weather.city}
     text = ${DescribeWeather(dialog.weather)}. The temperature is ${dialog.weather.temp}&deg;.
