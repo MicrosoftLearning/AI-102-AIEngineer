@@ -390,7 +390,7 @@ Now that you have a useful index, you can use it from a client application. You 
 
 ### Prepare to use the Azure Cognitive Search SDK
 
-1. In Visual Studio Code open the **ai-102** project, and in the **Explorer** pane, browse to the **22-create-a-search-solution** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
+1. In Visual Studio Code, in the **Explorer** pane, browse to the **22-create-a-search-solution** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **margies-travel** folder and open an integrated terminal. Then install the Azure Cognitive Search SDK package by running the appropriate command for your language preference:
 
 **C#**

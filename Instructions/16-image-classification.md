@@ -94,7 +94,7 @@ The Custom Vision portal provides a convenient user interface that you can use t
 
 > **Note**: In this exercise, you can choose to use the API from either the **C#** or **Python** SDK. In the steps below, perform the actions appropriate for your preferred language.
 
-1. In Visual Studio Code open the **AI-102** project, and in the **Explorer** pane, browse to the **image_classification** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
+1. In Visual Studio Code, in the **Explorer** pane, browse to the **16-image_classification** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **train-classifier** folder and open an integrated terminal. Then install the Custom Vision Training package by running the appropriate command for your language preference:
 
 **C#**

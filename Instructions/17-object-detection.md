@@ -86,7 +86,7 @@ You can use the graphical tool in the Custom Vision portal to tag your images, b
 1. Click the *settings* (&#9881;) icon at the top right of the **Training Images** page in the Custom Vision portal to view the project settings.
 2. Under **General** (on the left), note the **Project Id** that uniquely identifies this project.
 3. On the left, under **Resources** note that the details for the *training* resource, including its key and endpoint are shown (you can also obtain this information by viewing the resource in the Azure portal).
-4. In Visual Studio Code open the **AI-102** project, and in the **Explorer** pane, browse to the **object-detection** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
+4. In Visual Studio Code, in the **Explorer** pane, browse to the **17-object-detection** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 5. Right-click the **train-detector** folder and open an integrated terminal. Then install the Custom Vision Training package by running the appropriate command for your language preference:
 
 **C#**

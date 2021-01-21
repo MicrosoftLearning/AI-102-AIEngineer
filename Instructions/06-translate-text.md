@@ -39,7 +39,7 @@ In this exercise, you'll complete a partially implemented client application tha
 
 > **Note**: You can choose to use the API from either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
-1. In Visual Studio Code open the **AI-102** project, and in the **Explorer** pane, browse to the **06-translate-text** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
+1. In Visual Studio Code, in the **Explorer** pane, browse to the **06-translate-text** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. View the contents of the **text-translation** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
     - **Python**: .env
@@ -53,7 +53,7 @@ In this exercise, you'll complete a partially implemented client application tha
     Open the code file and examine the code it contains.
 
 4. In the **Main** function, note that code to load the cognitive services key and region from the configuration file has already been provided. The endpoint for the translation service is also specified in your code.
-5. Save your changes and return to the integrated terminal for the **text-analysis** folder, and enter the following command to run the program:
+5. Save your changes. Then right-click the **text-analysis** folder, open an integrated terminal, and enter the following command to run the program:
 
 **C#**
 

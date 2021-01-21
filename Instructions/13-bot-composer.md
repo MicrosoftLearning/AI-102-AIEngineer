@@ -11,15 +11,6 @@ Bot Framework Composer is a visual designer that lets you quickly and easily bui
 
 In this exercise, you will create a bot that retrieves the weather conditions for the zipcode entered by the user. You will require an API key for the service to work so visit the [OpenWeather site](https://openweathermap.org/price) to create a user account and get a free API key before you start.
 
-## Clone the repository for this course
-
-If you have not already done so, you must clone the code repository for this course:
-
-1. Start Visual Studio Code.
-2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder.
-3. When the repository has been cloned, open the folder in Visual Studio Code.
-4. Wait while additional files are installed to support the C# code projects in the repo.
-
 ## Create a basic bot
 
 Now you're ready to use Composer to create a bot.

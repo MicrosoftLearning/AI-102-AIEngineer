@@ -228,7 +228,7 @@ Now that you've modified ths language model, you need to retrain and retest the 
 
 You can use the test pane to test individual utterances interactively, but for more complex language models it is generally more efficient to perform *batch testing*.
 
-1. In Visual Studio Code, in the **AI-102** project, open the **batch-test.json** file in the **09-luis-app** folder. This file consists of a JSON document that contains multiple test cases for the clock language model you created.
+1. In Visual Studio Code, open the **batch-test.json** file in the **09-luis-app** folder. This file consists of a JSON document that contains multiple test cases for the clock language model you created.
 2. In the Language Understanding portal, in the Test panel, select **Batch testing panel**. Then select **&#65291; Import** and import the **batch-test.json** file, assigning the name **clock-test**.
 3. In the Batch testing panel, run the **clock-test** test.
 4. When the test has completed, select **See results**.
