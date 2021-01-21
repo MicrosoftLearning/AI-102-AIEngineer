@@ -39,7 +39,7 @@ In this exercise, you'll complete a partially implemented client application tha
 
 > **Note**: You can choose to use the SDK for either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
-1. In Visual Studio Code open the **AI-102** project, and in the **Explorer** pane, browse to the **05-analyze-text** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
+1. In Visual Studio Code, in the **Explorer** pane, browse to the **05-analyze-text** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **text-analysis** folder and open an integrated terminal. Then install the Text Analytics SDK package by running the appropriate command for your language preference:
 
    **C#**
@@ -59,7 +59,7 @@ In this exercise, you'll complete a partially implemented client application tha
     - **Python**: .env
 
     Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your cognitive services resource. Save your changes.
-    
+
 4. Note that the **text-analysis** folder contains a code file for the client application:
 
     - **C#**: Program.cs
