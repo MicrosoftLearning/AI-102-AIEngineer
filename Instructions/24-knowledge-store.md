@@ -40,7 +40,7 @@ If you have previously completed the **[Create an Azure Cognitive Search solutio
 6. Right-click the the **24-knowledge-store** folder and select **Open in Integrated Terminal**.
 7. In the terminal pane, enter the following command to establish an authenticated connection to your Azure subscription.
 
-    ```bash
+    ```
     az login --output none
     ```
 
