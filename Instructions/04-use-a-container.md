@@ -37,7 +37,7 @@ If you don't already have on in your subscription, you'll need to provision a **
 
 Many commonly used cognitive services APIs are available in container images. For a full list, check out the [cognitive services documentation](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-container-support#container-availability-in-azure-cognitive-services). In this exercise, you'll use the container image for the Text Analytics *language detection* API; but the principles are the same for all of the available images.
 
-1. In the Azure portal, select the **&#65291;Create a resource** button, search for *container instances*, and create a **Container Instances** resource with the following settings:
+1. In the Azure portal, on the **Home** page, select the **&#65291;Create a resource** button, search for *container instances*, and create a **Container Instances** resource with the following settings:
 
     - **Basics**:
         - **Subscription**: *Your Azure subscription*
@@ -56,11 +56,13 @@ Many commonly used cognitive services APIs are available in container images. Fo
     - **Advanced**:
         - **Restart policy**: On failure
         - **Environment variables**:
+
             | Mark as secure | Key | Value |
             | -------------- | --- | ----- |
             | Yes | ApiKey | *Either key for your cognitive services resource* |
             | Yes | Billing | *The endpoint URI for your cognitive services resource* |
             | No | Eula | accept |
+
         - **Command override**: [ ]
     - **Tags**:
         - *Don't add any tags*
