@@ -76,7 +76,7 @@ In this exercise, you'll complete a partially implemented client application tha
 dotnet add package Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime --version 3.0.0
 ```
 
-    > **Note**: In addition to the **Runtime** (prediction) package, there is an **Authoring** package that you can use to write code to create and manage Language Understanding models.
+*In addition to the **Runtime** (prediction) package, there is an **Authoring** package that you can use to write code to create and manage Language Understanding models.*
 
 **Python**
 
@@ -84,7 +84,7 @@ dotnet add package Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime --ver
 pip install azure-cognitiveservices-language-luis==0.7.0
 ```
 
-> **Note**: The Python SDK package includes classes for both *prediction* and *authoring*.
+*The Python SDK package includes classes for both **prediction** and **authoring**.*
 
 3. View the contents of the **clock-client** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
