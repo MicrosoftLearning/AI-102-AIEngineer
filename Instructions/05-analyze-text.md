@@ -53,11 +53,13 @@ In this exercise, you'll complete a partially implemented client application tha
    ```
    pip install azure-ai-textanalytics==5.0.0
    ```
+
 3. View the contents of the **text-analysis** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
     - **Python**: .env
 
     Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your cognitive services resource. Save your changes.
+    
 4. Note that the **text-analysis** folder contains a code file for the client application:
 
     - **C#**: Program.cs
