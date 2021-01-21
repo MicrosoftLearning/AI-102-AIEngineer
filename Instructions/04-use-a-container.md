@@ -68,7 +68,7 @@ Many commonly used cognitive services APIs are available in container images. Fo
         - *Don't add any tags*
 
 2. Wait for deployment to complete, and then go to the deployed resource.
-3. Observe the following properties of your container instance resource on its **Overview**page:
+3. Observe the following properties of your container instance resource on its **Overview** page:
     - **Status**: This should be *Running*.
     - **IP Address**: This is the public IP address you can use to access your container instances.
     - **FQDN**: This is the *fully-qualified domain name* of the container instances resource, you can use this to access the container instances instead of the IP address.
