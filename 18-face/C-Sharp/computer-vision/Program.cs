@@ -30,7 +30,7 @@ namespace detect_faces
 
 
                 // Detect faces in an image
-                string imageFile = "images/faces2.jpg";
+                string imageFile = "images/people.jpg";
                 await AnalyzeFaces(imageFile);
                
             }
