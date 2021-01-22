@@ -86,7 +86,7 @@ The project you have created has been assigned a unique identifier, which you wi
 
 1. Click the *settings* (&#9881;) icon at the top right of the **Performance** page to view the project settings.
 2. Under **General** (on the left), note the **Project Id** that uniquely identifies this project.
-3. On the left, under **Resources** note that the details for the *training* resource, including its key and endpoint are shown (you can also obtain this information by viewing the resource in the Azure portal).
+3. On the right, under **Resources** note that the details for the *training* resource, including its key and endpoint are shown (you can also obtain this information by viewing the resource in the Azure portal).
 
 ## Use the *training* API
 
