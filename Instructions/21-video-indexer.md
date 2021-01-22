@@ -16,21 +16,15 @@ If you have not already done so, you must clone the code repository for this cou
 3. When the repository has been cloned, open the folder in Visual Studio Code.
 4. Wait while additional files are installed to support the C# code projects in the repo.
 
-## Sign into the Video Indexer portal
+## Upload a video to Video Indexer
 
-The Video Indexer portal provides a web-based interface for managing video indexer projects.
+> **Important**: In this exercise, you must use the web browser on your local computer (<u>not</u> the browser in the hosted lab environment) to access the Video Indexer portal. If you are using the hosted lab environment, you may want to open a new browser instance and resize it so you can see the browser side-by-side with these instructions. For all other tasks, you can use the hosted lab environment.
 
-1. Open the Video Indexer portal at [https://www.videoindexer.ai/](https://www.videoindexer.ai/).
-2. If you have an existing Video Indexer account, sign in. Otherwise, sign up for a free account and sign in using your Microsoft account (or any other valid account type).
+First, you'll need to sign into the Video Indexer portal and upload a video.
 
-> **Tip**: If the Video Indexer portal doesn't load in the hosted lab environment, you can open it in your own locally installed web browser and complete the following tasks there - returning to the hosted environment when you reach the **Use Video Indexer widgets** task. You'll need to download the **[responsible_ai.mp4](https://github.com/MicrosoftLearning/AI-102-AIEngineer/raw/master/20-video-indexer/responsible_ai.mp4)** video to your local computer.
-
-## Upload and index a video
-
-You can use the Video Indexer portal to upload and index a video.
-
-1. In Visual Studio Code, expand the **21-video-indexer** folder, and then right-click **responsible_ai.mp4** and select **Reveal in File Explorer**.
-2. In Video Indexer, select the **Upload** option. Then drag the **responsible_ai.mp4** from File Manager to the upload area, review the default names and settings, select the checkbox to verify compliance with Microsoft's policies for facial recognition, and upload it.
+1. Using the browser on your **<u>local</u>** computer, open the Video Indexer portal at [https://www.videoindexer.ai/](https://www.videoindexer.ai/).
+3. If you have an existing Video Indexer account, sign in. Otherwise, sign up for a free account and sign in using your Microsoft account (or any other valid account type).
+4. In Video Indexer, select the **Upload** option. Then select the option to **enter a file URL** and enter `https://aka.ms/responsible-ai-video`. Change the default name to **Responsible AI**, review the default settings, select the checkbox to verify compliance with Microsoft's policies for facial recognition, and upload the file.
 3. After the file has uploaded, wait a few minutes while Video Indexer automatically indexes it.
 
 > **Note**: In this exercise, we're using this video to explore Video Indexer functionality; but you should take the time to watch it in full when you've finished the exercise as it contains useful information and guidance for developing AI-enabled applications responsibly! 
@@ -39,13 +33,13 @@ You can use the Video Indexer portal to upload and index a video.
 
 The indexing process extracts insights from the video, which you can view in the portal.
 
-1. When the video is indexed, select it to view it in the portal. You'll see the video player alongside a pane that shows insights extracted from the video.
+1. In the Video Indexer portal, when the video is indexed, select it to view it. You'll see the video player alongside a pane that shows insights extracted from the video.
 
 ![Video indexer with a video player and Insights pane](./images/video-indexer-insights.png)
 
 2. As the video plays, select the **Timeline** tab to view a transcript of the video audio.
 
-![Video indexer with a video player and Timeline pane showing the vide transcript.](./images/video-indexer-transcript.png)
+![Video indexer with a video player and Timeline pane showing the video transcript.](./images/video-indexer-transcript.png)
 
 3. At the top left of the portal, select the **View** symbol (which looks similar to &#128455;), and in the list of insights, in addition to **Transcript**, select **OCR** and **Speakers**.
 
@@ -72,6 +66,7 @@ You can use Video indexer to search the video for insights.
 1. In the **Insights** pane, in the **Search** box, enter *Bee*. You may need to scroll down in the Insights pane to see results for all types of insight.
 2. Observe that one matching *label* is found, with its location in the video indicated beneath.
 3. Select the beginning of the section where the presence of a bee is indicated, and view the video at that point (you may need to pause the video and select carefully - the bee only appears briefly!)
+4. Clear the **Search** box to show all insights for the video.
 
 ![Video indexer search results for Bee](./images/video-indexer-search.png)
 
@@ -109,15 +104,13 @@ The Video Indexer portal is a useful interface to manage video indexing projects
 
 1. In Visual Studio Code, in the **21-video-indexer** folder, open **analyze-video.html**. This is a basic HTML page to which you will add the Video Indexer **Player** and **Insights** widgets. Note the reference to the **vb.widgets.mediator.js** script in the header - this script enables multiple Video Indexer widgets on the page to interact with one another.
 2. In the Video Indexer portal, return to the **Media files** page and open your **responsible_ai** video.
-3. Under the video player, select **\</> Embed** to view the HTML iframe code to embed the widgets.
+3. Under the video player, select **&lt;/&gt; Embed** to view the HTML iframe code to embed the widgets.
 4. In the **Share and Embed** dialog box, select the **Player** widget, set the video size to 560 x 315,  and then copy the embed code to the clipboard.
-5. In Visual Studio Code, in the **analyze-video.html** file, paste the copied code under the comment **\<-- Player widget goes here -- >**.
-6. Edit the Player widget code to change the **width** and **height** properties to **400** and **300** respectively.
-6. Back in the **Share and Embed** dialog box, select the **Insights** widget and then copy the embed code to the clipboard. Then close the **Share and Embed** dialog box, switch back to Visual Studio Code, and paste the copied code under the comment **\<-- Insights widget goes here -- >**.
-7. Edit the Insights widget code to change the **width** and **height** properties to **350** and **600** respectively.
-8. Save the file. Then in the **Explorer** pane, right-click **analyze-video.html** and select **Reveal in File Explorer**.
-9. In File Explorer, open **analyze-video.html** in your browser to see the web page.
-10. Experiment with the widgets, using the **Insights** widget to search for insights and jump to them in the video.
+5. In Visual Studio Code, in the **analyze-video.html** file, paste the copied code under the comment **&lt;-- Player widget goes here -- &gt;**.
+6. Back in the **Share and Embed** dialog box, select the **Insights** widget and then copy the embed code to the clipboard. Then close the **Share and Embed** dialog box, switch back to Visual Studio Code, and paste the copied code under the comment **&lt;-- Insights widget goes here -- &gt;**.
+7. Save the file. Then in the **Explorer** pane, right-click **analyze-video.html** and select **Reveal in File Explorer**.
+8. In File Explorer, open **analyze-video.html** in your browser to see the web page.
+9. Experiment with the widgets, using the **Insights** widget to search for insights and jump to them in the video.
 
 ![Video Indexer widgets in a web page](./images/video-indexer-widgets.png)
 
