@@ -29,7 +29,7 @@ def main():
         AnalyzeImage(image_file)
 
         # Generate thumbnail
-        GenerateThumbnail(image_file)
+        GetThumbnail(image_file)
 
     except Exception as ex:
         print(ex)
@@ -44,7 +44,7 @@ def AnalyzeImage(image_file):
 
         
 
-def GenerateThumbnail(image_file):
+def GetThumbnail(image_file):
     print('Generating thumbnail')
 
     # Generate a thumbnail

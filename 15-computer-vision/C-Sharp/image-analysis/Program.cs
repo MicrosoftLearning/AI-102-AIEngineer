@@ -35,7 +35,7 @@ namespace image_analysis
                 await AnalyzeImage(imageFile);
 
                 // Get thumbnail
-                await GetThumnail(imageFile);
+                await GetThumbnail(imageFile);
 
                
             }
@@ -56,7 +56,7 @@ namespace image_analysis
                 
         }
 
-        static async Task GetThumnail(string imageFile)
+        static async Task GetThumbnail(string imageFile)
         {
             Console.WriteLine("Generating thumbnail");
 
