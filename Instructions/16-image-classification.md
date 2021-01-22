@@ -45,7 +45,7 @@ In this exercise, you'll create **Custom Vision** resources for training and pre
 
 To train an image classification model, you need to create a Custom Vision project based on your training resource. To do this, you'll use the Custom Vision portal.
 
-1. View the training images in the **image-classification/training-images** folder where you cloned the AI-102 repository. This folder contains subfolders of apple, banana, and orange images.
+1. In Visual Studio Code, view the training images in the **16-image-classification/training-images** folder where you cloned the repository. This folder contains subfolders of apple, banana, and orange images.
 2. In a new browser tab, open the Custom Vision portal at [https://customvision.ai](https://customvision.ai). If prompted, sign in using the Microsoft account associated with your Azure subscription and agree to the terms of service.
 3. In the Custom Vision portal, create a new project with the following settings:
     - **Name**: Classify Fruit
@@ -54,7 +54,7 @@ To train an image classification model, you need to create a Custom Vision proje
     - **Project Types**: Classification
     - **Classification Types**: Multiclass (single tag per image)
     - **Domains**: Food
-4. Click **\[+\] Add images**, and select all of the files in the **training-images/apple** folder you viewd previously. Then upload the image files, specifying the tag *apple*, like this:
+4. In the new project, click **\[+\] Add images**, and select all of the files in the **training-images/apple** folder you viewed previously. Then upload the image files, specifying the tag *apple*, like this:
 
 ![Upload apple with apple tag](./images/upload_apples.jpg)
    
@@ -66,7 +66,7 @@ To train an image classification model, you need to create a Custom Vision proje
 7. In the Custom Vision project, above the images, click **Train** to train a classification model using the tagged images. Select the **Quick Training** option, and then wait for the training iteration to complete (this may take a minute or so).
 8. When the model iteration has been trained, review the *Precision*, *Recall*, and *AP* performance metrics - these measure the prediction accuracy of the classification model, and should all be high.
 
-> **Note**: The performance metrics are based on a probability threshold of 50% for each prediction (in other words, if the model calculates a 50% or higher probability that an image is of a particular class, then that class is predicted). You can adjust this at the top right of the page.
+> **Note**: The performance metrics are based on a probability threshold of 50% for each prediction (in other words, if the model calculates a 50% or higher probability that an image is of a particular class, then that class is predicted). You can adjust this at the top-left of the page.
 
 ## Test the model
 
@@ -155,8 +155,7 @@ Now you're ready to publish your trained model so that it can be used from a cli
 
 Now that you've published the image classification model, you can use it from a client application. Once again, you can choose to use **C#** or **Python**.
 
-1. In Visual Studio Code, in the **AI-102** project, browse to the **image-classification** folder and in the folder for your preferred language (**C-Sharp** or **Python**), expand the **test-classifier** folder.
-2. Right-click the **test-classifier** folder and open an integrated terminal. Then enter the following SDK-specific command to install the Custom Vision Prediction package:
+1. In Visual Studio Code, in the **16-image-classification** folder, in the subfolder for your preferred language (**C-Sharp** or **Python**), right- the **test-classifier** folder and open an integrated terminal. Then enter the following SDK-specific command to install the Custom Vision Prediction package:
 
 **C#**
 
@@ -164,7 +163,7 @@ Now that you've published the image classification model, you can use it from a 
 dotnet add package Microsoft.Azure.CognitiveServices.Vision.CustomVision.Prediction --version 2.0.0
 ```
 
-    **Python**
+**Python**
 
 ```
 pip install azure-cognitiveservices-vision-customvision==2.0.0
@@ -172,6 +171,7 @@ pip install azure-cognitiveservices-vision-customvision==2.0.0
 
 > **Note**: The Python SDK package includes both training and prediction packages, and may already be installed.
 
+2. Expand the **test-classifier** folder to view the files it contains, which are used to implement a test client application for your image classification model.
 3. Open the configuration file for your client application (*appsettings.json* for C# or *.env* for Python) and update the configuration values it contains to reflect the endpoint and key for your Custom Vision *prediction* resource, the project ID for the classification project, and the name of your published model (which should be *fruit-classifier*). Save your changes.
 4. Open the code file for your client application (*Program.cs* for C#, *test-classification&period;py* for Python) and review the code it contains, noting the following details:
     - Namespaces from the package you installed are imported

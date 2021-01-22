@@ -80,7 +80,7 @@ namespace train_classifier
                 Console.Write(".");
                 Thread.Sleep(5000);
 
-                // Re-query the iteration to get it's updated status
+                // Re-query the iteration to get its updated status
                 iteration = training_client.GetIteration(custom_vision_project.Id, iteration.Id);
             }
 
