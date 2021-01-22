@@ -24,7 +24,7 @@ To create and host a knowledge base, you need a QnA Maker resource in your Azure
     - **Azure Search location**\*: *Choose a location in the same global region as your QnA Maker resource*.
     - **Azure Search pricing tier**: Free (F) (*If this tier is not available, select Basic (B)*)
 
-    \**QnA Maker uses Azure Search to index and query the knowledge base of questions and answers.*
+    \*QnA Maker uses Azure Search to index and query the knowledge base of questions and answers.
 
 3. Select the legal terms checkbox and create the resource.
 4. Wait for deployment to complete, and then view the deployment details.
@@ -64,7 +64,7 @@ Your knowledge base has been populated with question and answer pairs from the M
     - **Link to QnA**\*: `You can learn more about certification on the [Microsoft certification page](https://docs.microsoft.com/learn/certifications/).`
     - **Context-only**: Selected. *This option ensures that the answer is only ever returned in the context of a follow-up question from the original certification question.*
 
-    \**Typing in the **Link to QnA** box searches the existing answers in the knowledge base. When no match is found, it defaults to creating a new QnA pair. Note that the text you type here is in Markdown format.*
+    \*Typing in the **Link to QnA** box searches the existing answers in the knowledge base. When no match is found, it defaults to creating a new QnA pair. Note that the text you type here is in Markdown format.
 
 ## Train and test the knowledge base
 
@@ -73,7 +73,7 @@ Now that you have a knowledge base, you can test it in the QnA Maker portal.
 1. At the top right of the page, click **Save and train** to train your knowledge base.
 2. After training has completed, click **&larr; Test** to open the test pane.
 3. In the test pane, at the bottom enter the message *Hello*. A suitable response should be returned.
-4. In the test pane, at the bottom enter the message *What is a learning path?*. An appropriate response from the FAQ should be returned.
+4. In the test pane, at the bottom enter the message *What is Microsoft Learn?*. An appropriate response from the FAQ should be returned.
 5. Enter the message *That makes me happy!* An appropriate chit-chat response should be returned.
 6. Enter the message *Tell me about certification*. The answer you created should be returned along with a follow-up prompt button.
 7. Select the **Learn more about certification** follow-up button. The follow-up answer with a link to the certification page should be returned.
@@ -87,7 +87,7 @@ he knowledge base provides a back-end service that client applications can use t
 2. When publishing is complete, view the sample code provided to use your knowledge base's REST endpoint. There is an example for *Postman* and an example for *Curl*.
 3. View the **Curl** tab and copy the example code.
 4. Start Visual Studio Code and open a terminal pane.
-5. Paste the code you copied into the terminal, and then edit it to replace **\<your question>** with *What is Microsoft Learn?**.
+5. Paste the code you copied into the terminal, and then edit it to replace **&lt;your question&gt;** with **What is a learning path?**.
 6. Enter the command and view the JSON response that is returned from your knowledge base.
 
 ## Create a bot for the knowledge base
@@ -107,7 +107,6 @@ Most commonly, the client applications used to retrieve answers from a knowledge
   - **App service plan/location**: *This should be set automatically to a suitable plan and location.*
   - **Application Insights**: Off
   - **Microsoft App ID and password**: Auto create App ID and password.
-3. Wait for your bot to be created (the notification icon at the top right, which looks like a bell, will be animated while you wait). Then in the notification that deployment has completed, click **Go to resource** (or alternatively, on the home page, click **Resource groups*, open the resource group where you created the web app bot, and click it.)
+3. Wait for your bot to be created (the notification icon at the top right, which looks like a bell, will be animated while you wait). Then in the notification that deployment has completed, click **Go to resource** (or alternatively, on the home page, click **Resource groups**, open the resource group where you created the web app bot, and click it.)
 4. In the blade for your bot, view the **Test in Web Chat** page, and wait until the bot displays the message **Hello and welcome!** (it may take a few seconds to initialize).
 5. Use the test chat interface to ensure your bot answers questions from your knowledge base as expected. For example, try submitting *What is Microsoft certification?*.
-
