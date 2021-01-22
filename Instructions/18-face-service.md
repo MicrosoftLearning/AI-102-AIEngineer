@@ -651,7 +651,7 @@ foreach(var person in people)
 }
 ```
 
-    **Python**
+**Python**
 
 ```Python
 # Delete group if it already exists
