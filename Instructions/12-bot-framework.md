@@ -88,9 +88,9 @@ dotnet run
 python app.py
 ```
 
-    When the bot starts, note the endpoint at which it is running is shown. This should be similar to `http://localhost:3978`.
+When the bot starts, note the endpoint at which it is running is shown. This should be similar to **http://localhost:3978**.
 
-2. Start the Bot Framework Emulator, and open your bot by specifying the endpoint with the `/api/messages` path appended, like this:
+2. Start the Bot Framework Emulator, and open your bot by specifying the endpoint with the **/api/messages** path appended, like this:
 
     `http://localhost:3978/api/messages`
 
@@ -166,9 +166,9 @@ dotnet run
 python app.py
 ```
 
-    As before, when the bot starts, note the endpoint at which it is running is shown. This should be similar to `http://localhost:3978`.
+As before, when the bot starts, note the endpoint at which it is running is shown.
 
-5. Start the Bot Framework Emulator, and open your bot by specifying the endpoint with the `/api/messages` path appended, like this:
+5. Start the Bot Framework Emulator, and open your bot by specifying the endpoint with the **/api/messages** path appended, like this:
 
     `http://localhost:3978/api/messages`
 
@@ -176,7 +176,7 @@ python app.py
 7. Enter a message such as *Hello* and view the response from the bot, which should be *Ask me what the time is*.
 8. Enter *What is the time?* and view the response.
 
-    The bot now responds to the query "What is the time?" by displaying the local time where the bot is running. For any other query, it prompts the user to ask it what the time is. This is a fairly limited bot, which could be improved through integration with the Language Understanding service and additional custom code, but it serves as a working example of how you can build a solution with the Bot Framework SDK by extending a bot created from a template.
+    The bot now responds to the query "What is the time?" by displaying the local time where the bot is running. For any other query, it prompts the user to ask it what the time is. This is a very limited bot, which could be improved through integration with the Language Understanding service and additional custom code, but it serves as a working example of how you can build a solution with the Bot Framework SDK by extending a bot created from a template.
 
 9. Close the Bot Framework Emulator and return to Visual Studio Code, then in the terminal window, enter **CTRL+C** to stop the bot.
 
@@ -220,14 +220,14 @@ az ad app create --display-name "TimeBot" --password "Super$ecretPassw0rd" --ava
 
 When you use the Bot Framework SDK to create a bot from a template, the Azure Resource Manager templates necessary to create the required Azure resources are provided for you.
 
-1. In the terminal pane for your **TimeBot** folder, enter the following command (on a single line), replacing the \<PLACEHOLDER\> values as follows:
-    - **\<YOUR_RESOURCE_GROUP\>**: The name of your existing resource group.
-    - **\<YOUR_APP_ID\>**: The **appId** value you noted in the previous procedure.
-    - **\<REGION\>**: An Azure region code (such as *eastus*).
+1. In the terminal pane for your **TimeBot** folder, enter the following command (on a single line), replacing the PLACEHOLDER values as follows:
+    - **YOUR_RESOURCE_GROUP**: The name of your existing resource group.
+    - **YOUR_APP_ID**: The **appId** value you noted in the previous procedure.
+    - **REGION**: An Azure region code (such as *eastus*).
     - **All other placeholders**: Unique values that will be used to name the new resources. In particular, make a note of the value you use for the **BotId** and **newWebAppName** parameters - you will need them later.
 
 ```
-az deployment group create --resource-group "<YOUR_RESOURCE_GROUP>" --template-file "deploymenttemplates/template-with-preexisting-rg.json" --parameters appId="<YOUR_APP_ID>" appSecret="Super$ecretPassw0rd" botId="<A_UNIQUE_BOT_ID>" newWebAppName="<A_UNIQUE_WEB_APP_NAME>" newAppServicePlanName="<A_UNIQUE_PLAN_NAME>" appServicePlanLocation="<REGION>" --name "<A_UNIQUE_SERVICE_NAME>"
+az deployment group create --resource-group "YOUR_RESOURCE_GROUP" --template-file "deploymenttemplates/template-with-preexisting-rg.json" --parameters appId="YOUR_APP_ID" appSecret="Super$ecretPassw0rd" botId="A_UNIQUE_BOT_ID" newWebAppName="A_UNIQUE_WEB_APP_NAME" newAppServicePlanName="A_UNIQUE_PLAN_NAME" appServicePlanLocation="REGION" --name "A_UNIQUE_SERVICE_NAME"
 ```
 
 2. Wait for the command to complete. If it is successful, a JSON response will be displayed.
@@ -250,7 +250,7 @@ az bot prepare-deploy --lang Csharp --code-dir "." --proj-file-path "TimeBot.csp
 
 **Python**
 
-> *Python dependencies are managed on the deployment target through the inclusion of a `requirements.txt` file in the folder containing the code files. In this case, there are no package dependencies, so there is not need to create a requirements file*
+> *Python dependencies are managed on the deployment target through the inclusion of a **requirements.txt** file in the folder containing the code files. In this case, there are no package dependencies, so there is not need to create a requirements file*
 
 2. In Visual Studio Code, in the terminal pane for your **TimeBot** folder, enter the following command to package your code files in a zip for deployment.
 
@@ -262,16 +262,16 @@ powershell Compress-Archive * TimeBot.zip
 
 Now that your code is prepared, you can deploy it.
 
-1. In Visual Studio Code, in the terminal pane for your **TimeBot** folder, enter the following command (on a single line) to deploy your packaged code files, replacing the \<PLACEHOLDER\> values as follows:
-    - **\<YOUR_RESOURCE_GROUP\>**: The name of your existing resource group.
-    - **\<YOUR_WEB_APP_NAME\>**: The unique name you specified for the **newWebAppName** parameter when creating Azure resources.
+1. In Visual Studio Code, in the terminal pane for your **TimeBot** folder, enter the following command (on a single line) to deploy your packaged code files, replacing the PLACEHOLDER values as follows:
+    - **YOUR_RESOURCE_GROUP**: The name of your existing resource group.
+    - **YOUR_WEB_APP_NAME**: The unique name you specified for the **newWebAppName** parameter when creating Azure resources.
 
 ```
-az webapp deployment source config-zip --resource-group "<YOUR_RESOURCE_GROUP>" --name "<YOUR_WEB_APP_NAME>" --src "TimeBot.zip"
+az webapp deployment source config-zip --resource-group "YOUR_RESOURCE_GROUP" --name "YOUR_WEB_APP_NAME" --src "TimeBot.zip"
 ```
 
 2. In the Azure portal, in the resource group containing your resources, open the **Bot Channels Registration** resource (which will have the name you assigned to the **BotId** parameter when creating Azure resources).
-3. In the **Bot management** section, select **Test in Web Chat**. Then wait for your bot to initialize and display the message *Hello and welcome!*.
+3. In the **Bot management** section, select **Test in Web Chat**. Then wait for your bot to initialize.
 4. Enter a message such as *Hello* and view the response from the bot, which should be *Ask me what the time is*.
 5. Enter *What is the time?* and view the response.
 
@@ -285,7 +285,7 @@ One of the key benefits of the Azure Not Service is the ability to deliver your 
 4. Copy the **Embed code**.
 5. In Visual Studio Code, expand the **12-bot-framework/web-client** folder and select the **default.html** file it contains.
 6. In the HTML code, paste the embed code you copied directly beneath the comment **add the iframe for the bot here**
-7. Back in the Azure portal, select **Show** for one of your secret keys (it doesn't matter which one), and copy it. Then return to Visual Studio Code and paste it in the HTML embed code you added previously, replacing `YOUR_SECRET_HERE`.
+7. Back in the Azure portal, select **Show** for one of your secret keys (it doesn't matter which one), and copy it. Then return to Visual Studio Code and paste it in the HTML embed code you added previously, replacing **YOUR_SECRET_HERE**.
 8. In Visual Studio Code, in the **Explorer** pane, right-click **default.html** and select **Reveal in File Explorer**.
 9. In the File Explorer window, open **default.html** in Microdoft Edge.
 10. In the web page that opens, test the bot by entering *Hello*. Note that it won't initialize until you submit a message, so the greeting message will be followed immediately by a prompt to ask what the time is.
