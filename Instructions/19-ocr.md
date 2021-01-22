@@ -210,7 +210,7 @@ The **Read** API uses a newer text recognition model than the OCR API, and perfo
 The **Read** API uses an asynchronous operation model, in which a request to start text recognition is submitted; and the operation ID returned from the request can subsequently be used to check progress and retrieve results.
 
 1. In the code file for your application, in the **Main** function, examine the code that runs if the user selects menu option **2**. This code calls the **GetTextRead** function, passing the path to a PDF document file.
-2. In the **read-text/images** folder, right-click **Rome.pdf** and select *8reveal in File Explorer**. Then in File Explorer, open the PDF file to view it.
+2. In the **read-text/images** folder, right-click **Rome.pdf** and select **reveal in File Explorer**. Then in File Explorer, open the PDF file to view it.
 3. Back in the code file in Visual Studio Code, find the **GetTextRead** function, and under the existing code that prints a message to the console, add the following code:
 
 **C#**
