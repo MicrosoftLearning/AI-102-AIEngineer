@@ -44,12 +44,11 @@ You can learn more about custom model input requirements [in the Form Recognizer
 ## Store training data in an Azure blob storage container
 
 1. Return to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
-2. View the **Resource groups** in your subscription.
-3. If you are using a restricted subscription in which a resource group has been provided for you, select the resource group to view its properties. Otherwise, create a new resource group with a name of your choice, and go to it when it has been created.
-4. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with the name of the resource group in subsequent steps.
-5. In Visual Studio Code, in the **21-custom-form** folder, select **setup.cmd**. You will use this batch script to run the Azure command line interface (CLI) commands required to create the Azure resources you need.
-6. Right-click the the **21-custom-form** folder and select **Open in Integrated Terminal**.
-7. In the terminal pane, enter the following command to establish an authenticated connection to your Azure subscription.
+2. View the **Resource group** in which you created the Form Recognizer resource previously.
+3. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with the name of the resource group in subsequent steps.
+4. In Visual Studio Code, in the **21-custom-form** folder, select **setup.cmd**. You will use this batch script to run the Azure command line interface (CLI) commands required to create the Azure resources you need.
+5. Right-click the the **21-custom-form** folder and select **Open in Integrated Terminal**.
+6. In the terminal pane, enter the following command to establish an authenticated connection to your Azure subscription.
 
 ```
 az login --output none
@@ -72,9 +71,27 @@ setup
 
 13. When the script completes, review the displayed output and note your Azure resource's Storage account name.
 
-14. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account just created and a container with the **sampleforms** blob. The blob should contain all the forms from your local **21-custom-form/sample-forms** folder.
+14. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account just created.
 
-![Screenshot of sampleforms container.](./images/container_img.jpg)
+15. Open the storage account and in the pane on the left, select **Storage Explorer**. Then in Storage Explorer, expand **BLOB CONTAINERS** and select the **sampleforms** container to verify that the files have been uploaded from your local **21-custom-form/sample-forms** folder.
+
+## Create a Shared Access Signature
+
+To get the form data from your blob storage container, the Form Recognizer service must used a shared access signature (SAS); which you will generate in this procedure.
+
+1. In the Azure portal, in the Storage Explorer pane for your storage account,right click the **sampleforms** container and select **Get Shared Access Signature**.
+2. Create a shared access signature using the following configurations: 
+    - Access Policy: (none)
+    - Start time: *leave as is for this exercise*
+    - End time: *leave as is for this exercise*
+    - Time Zone: Local 
+    - Permissions: _Select **Read** and **List**_
+
+3. After selcting **Create**, copy the **URI** thst is generated as shown here:
+
+![Visual of how to copy Shared Access Signature URI.](./images/sas_example.jpg)
+
+4. Paste the SAS URI somewhere you will be able to retrieve it again later (for example, in a new text file in Visual Studio Code).
 
 ## Train a model *without* labels
 
@@ -82,7 +99,7 @@ You will use the Form Recognizer SDK to train and test a custom model.
 
 > **Note**: In this exercise, you can choose to use the API from either the **C#** or **Python** SDK. In the steps below, perform the actions appropriate for your preferred language.
 
-1. Browse to the **21-custom-form** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
+1. In Visual Studio Code, in the **21-custom-form** folder, expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **train-without-labels** folder and open an integrated terminal.
 
 3. Install the Form Recognizer package by running the appropriate command for your language preference:
@@ -103,33 +120,11 @@ pip install azure-ai-formrecognizer==3.0.0
     - **C#**: appsettings.json
     - **Python**: .env
 
-    Open the configuration file. You will need a Form Recognizer key and endpoint, and the URI of your blob container for the configuration file.
+4. Edit the configuration file, modifying the settings to reflect:
+    - The endpoint for your Form Recognizer resource.
+    - One of the keys for your Form Recognizer resource.
+    - The SAS URI for your blob container.
 
-### Get the Form Recognizer keys and endpoint
-
-1. Navigate from the Azure Portal to the **Form Recognizer** resource you created earlier.
-2. Select **Keys and Endpoint** on the left hand panel. Copy **Key 1** and **Endpoint** into the configuration file.
-
-### Create a Shared Access Signature
-
-Now you will obtain our storage blob container's URI by creating a Shared Access Signature.  
-
-1. Navigate from the Azure Portal to your resources. From the main menu of your Storage Account, navigate to **Storage Explorer**, select **BLOB CONTAINERS**, and right click on the container **sampleforms**.
-
-![Visual of how to get shared access signature.](./images/shared_access_sig.jpg)
-
-2. Select **Get Shared Access Signature**. Then use the following configurations: 
-    - Access Policy: (none)
-    - Start time: *leave as is for this exercise*
-    - End time: *leave as is for this exercise*
-    - Time Zone: Local 
-    - Permissions: _Select **Read** and **List**_
-
-3. Select **Create** and copy the **URI**.
-
-![Visual of how to copy Shared Access Signature URI.](./images/sas_example.jpg)
-
-4. Paste it to your local configuration file's storage url value.
 5. Note that the **train-without-labels** folder contains a code file for the client application:
 
     - **C#**: Program.cs
@@ -138,7 +133,8 @@ Now you will obtain our storage blob container's URI by creating a Shared Access
     Open the code file and review the code it contains, noting the following details:
     - Namespaces from the package you installed are imported
     - The **Main** function retrieves the configuration settings, and uses the key and endpoint to create an authenticated **Client**.
-    - The code uses the the training client with a parameter to indicate that training labels should <u>not</u> be used.
+    - The code uses the the training client to train a model using the images in your blob storage container, which is acessed using the SAS URI you generated.
+    - Training is performed with a parameter to indicate that training labels should <u>not</u> be used. Form Recognizer uses an *unsupervised* technique to extract the fields from the form images.
 
 6. Return the integrated terminal for the **train-without-labels** folder, and enter the following command to run the program:
 
@@ -155,11 +151,11 @@ python train-model-without-labels.py
 ```
 
 7. Wait for the program to end. Then review the model output and locate the Model ID in the terminal.  
-8. Copy the Model ID from the terminal output. You will use it when analyzing new forms.  
-
-Now you're ready use your trained model. Notice how you trained your model using files from a storage container URI. You could also have trained the model using local files. Similarly, you can test your model using forms from a URI or from local files. You will test the form model with a local file.
+8. Copy the Model ID from the terminal output, and paste it somewhere you can easily retrieve it. You will use it when analyzing new forms.  
 
 ## Test the model created without labels
+
+Now you're ready use your trained model. Notice how you trained your model using files from a storage container URI. You could also have trained the model using local files. Similarly, you can test your model using forms from a URI or from local files. You will test the form model with a local file.
 
 Now that you've got the model ID, you can use it from a client application. Once again, you can choose to use **C#** or **Python**.
 
@@ -187,6 +183,7 @@ pip install azure-ai-formrecognizer==3.0.0
 5. In the **test-without-labels** folder, open the code file for your client application (*Program.cs* for C#, *test-model-without-labels&period;py* for Python) and review the code it contains, noting the following details:
     - Namespaces from the package you installed are imported
     - The **Main** function retrieves the configuration settings, and uses the key and endpoint to create an authenticated **Client**.
+    - The client is then used to extract form fields and values from the **test1.jpg** image.
     
 6. Return the integrated terminal for the **test-without-labels** folder, and enter the following command to run the program:
 
@@ -208,8 +205,6 @@ python test-model-without-labels.py
 >
 > - Field 'field-X' has label 'Vendor Name:' with value 'Dwight Schrute' and a confidence score of ..
 > - Field 'field-X' has label 'Company Name:' with value 'Dunder Mifflin Paper' and a confidence score of ..
-
-Now let's train a model using labels.
 
 ## Train a model *with* labels using the client library
 
@@ -244,7 +239,8 @@ pip install azure-ai-formrecognizer==3.0.0
     Open the code file and review the code it contains, noting the following details:
     - Namespaces from the package you installed are imported
     - The **Main** function retrieves the configuration settings, and uses the key and endpoint to create an authenticated **Client**.
-    - The code uses the the training client with a parameter indicating that training labels should be used.
+    - The code uses the the training client to train a model using the images in your blob storage container, which is acessed using the SAS URI you generated.
+    - Training is performed with a parameter to indicate that training labels should be used. Form Recognizer uses an *supervised* technique to extract the fields from the form images.
 
 6. Return the integrated terminal for the **train-with-labels** folder, and enter the following command to run the program:
 
