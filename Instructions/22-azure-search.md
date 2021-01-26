@@ -101,7 +101,7 @@ Now that you have the necessary Azure resources in place, you can create a searc
     - Change the **Skillset name** to **margies-skillset**.
     - Select the option **Enable OCR and merge all text into merged_content field**.
     - Set the **Source data field** to **merged_content**.
-    - Leave the **Enrichment granularity level** as **Source field**, which is set the enture ciontents of the document being indexed; but note that you can change this to extract information at more granular levels, like pages or sentences.
+    - Leave the **Enrichment granularity level** as **Source field**, which is set the enture contents of the document being indexed; but note that you can change this to extract information at more granular levels, like pages or sentences.
     - Select the following enriched fields:
 
         | Cognitive Skill | Parameter | Field name |
@@ -168,7 +168,7 @@ Now that you have an index, you can search it.
 6. Let's try one more query string:
 
     ```
-    search="New York"&$count=true&$select=metadata_storage_name&$filter=author eq 'Reviewer'
+    search="New York"&$count=true&$select=metadata_storage_name&$filter=metadata_author eq 'Reviewer'
     ```
 
     This query returns the filename of any documents authored by *Reviewer* that mention "New York".
@@ -191,9 +191,9 @@ The components of the search solution are based on JSON definitions, which you c
 4. In the **Skills** list, select **Sentiment Skill** to show a JSON template for this skill.
 5. Copy the template to the clipboard, and then on the left side, in the JSON for your skillset definition, paste the copied skill in a newly inserted line immediately after the following line (which should be line 6) - be careful not to overwrite the **{** marking the beginning of the first existing skill:
 
-```
-"skills": [
-```
+
+    "skills": [
+
 
 6. Add a comma immediately after the newly inserted skill, and reformat the JSON indentation to make it more readable. It should look like this:
 
@@ -271,7 +271,7 @@ The new skill is named **get-sentiment**, and will evaluate the text found in th
 
 ### Review and modify the index
 
-1. On the blade for your Azure Cognitive Search resource, select the **Indexes** tab (<u>not</u> Indexe**r**s), where **margies-index** should be listed.
+1. On the blade for your Azure Cognitive Search resource, select the **Indexes** tab (<u>not</u> *Indexers*), where **margies-index** should be listed.
 2. Select **margies-index** and view the **Index Definition (JSON)** page. This shows a JSON definition for your index, including definitions for each field. Some fields are based on metadata and content in the source document, and others are the results of skills in the skillset.
 3. You added a skill to the skillset to extract a sentiment score for the document. Now you must add a corresponding field in the index to which this value can be mapped. At the bottom of the **fields** list (before the closing **]**, which is followed by index properties such as **suggesters**), add the following field (being sure to include the comma at the beginning, after the previous field):
 
@@ -320,7 +320,7 @@ The new skill is named **get-sentiment**, and will evaluate the text found in th
 
 ### Review and modify the indexer
 
-1. On the blade for your Azure Cognitive Search resource, select the **Indexers** tab (<u>not</u> Indexes), where **margies-indexer** should be listed.
+1. On the blade for your Azure Cognitive Search resource, select the **Indexers** tab (<u>not</u> *Indexes*), where **margies-indexer** should be listed.
 2. Select **margies-indexer** and view the **Indexer Definition (JSON)** page. This shows a JSON definition for your indexer, which maps fields extracted from document content and metadata (in the **fieldMappings** section), and values extracted by skills in the skillset (in the **outputFieldMappings** section), to fields in the index.
 3. In the **fieldMappings** section, after the existing mapping for the **metadata_storage_path** value to the base-54 encoded key field, add another mapping to map the same value to the **url** field, so that the entire **fieldMappings** section looks like this (be sure to include the comma between the existing mapping and the new one):
 
@@ -359,8 +359,7 @@ All of the other metadata and content field in the source document are implicitl
 
     *Note that in a free-tier resource, you can only run the indexer once every three minutes; so if you have already run the indexer recently, you may need to wait before running it again.*
 
-8. Select **Refresh** to track the progress of the indexing operation. It may take a minute or so to complete.
-9. When indexing has completed successfully, close the **margies-indexer** page to return to the blade for your Azure Cognitive Search resource.
+8. Close the **margies-indexer** page to return to the blade for your Azure Cognitive Search resource, and select **Refresh** to track the progress of the indexing operation. It may take a minute or so to complete.
 
     *There may be some warnings for a few documents that are too large to evaluate sentiment. Often sentiment analysis is performed at the page or sentence level rather than the full document; but in this case scenario, most of the documents - particularly the hotel reviews, are short enough for useful document-level sentiment scores to be evaluated.*
 

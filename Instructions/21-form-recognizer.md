@@ -201,11 +201,6 @@ python test-model-without-labels.py
 
 7. View the output and notice the prediction confidence scores. Notice how the output provides field names field-1, field-2 etc. 
 
->**Check In**: Can you find either of these fields in the terminal output?
->
-> - Field 'field-X' has label 'Vendor Name:' with value 'Dwight Schrute' and a confidence score of ..
-> - Field 'field-X' has label 'Company Name:' with value 'Dunder Mifflin Paper' and a confidence score of ..
-
 ## Train a model *with* labels using the client library
 
 Suppose after you trained a model with the invoice forms, you wanted to see how a model trained on labeled data performs. When you trained a model without labels you only used the **.jpg** forms from your Azure blob container. Now you will train a model using the **.jpg** and **.json** files.
