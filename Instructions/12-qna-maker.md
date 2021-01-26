@@ -1,9 +1,9 @@
 ---
 lab:
-    title: 'Create a QnA Bot'
+    title: 'Create a QnA Solution'
 ---
 
-# Create a QnA Bot
+# Create a QnA Solution
 
 One of the most common conversational scenarios is providing support through a knowledge base of frequently asked questions (FAQs). Many organizations publish FAQs as documents or web pages, which works well for a small set of question and answer pairs, but large documents can be difficult and time-consuming to search.
 

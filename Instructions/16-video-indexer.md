@@ -102,7 +102,7 @@ Observe also that you can also create custom models for language (for example to
 
 The Video Indexer portal is a useful interface to manage video indexing projects. However, there may be occasions when you want to make the video and its insights available to people who don't have access to your Video Indexer account. Video Indexer provides widgets that you can embed in a web page for this purpose.
 
-1. In Visual Studio Code, in the **21-video-indexer** folder, open **analyze-video.html**. This is a basic HTML page to which you will add the Video Indexer **Player** and **Insights** widgets. Note the reference to the **vb.widgets.mediator.js** script in the header - this script enables multiple Video Indexer widgets on the page to interact with one another.
+1. In Visual Studio Code, in the **20-video-indexer** folder, open **analyze-video.html**. This is a basic HTML page to which you will add the Video Indexer **Player** and **Insights** widgets. Note the reference to the **vb.widgets.mediator.js** script in the header - this script enables multiple Video Indexer widgets on the page to interact with one another.
 2. In the Video Indexer portal, return to the **Media files** page and open your **responsible_ai** video.
 3. Under the video player, select **&lt;/&gt; Embed** to view the HTML iframe code to embed the widgets.
 4. In the **Share and Embed** dialog box, select the **Player** widget, set the video size to 560 x 315,  and then copy the embed code to the clipboard.
@@ -138,7 +138,7 @@ All interactions with the Video Indexer REST API follow the same pattern:
 - An initial request to the **AccessToken** method with the API key in the header is used to obtain an access token.
 - Subsequent requests use the access token to authenticate when calling REST methods to work with videos.
 
-1. In Visual Studio Code, in the **21-video-indexer** folder, open **get-videos.ps1**.
+1. In Visual Studio Code, in the **20-video-indexer** folder, open **get-videos.ps1**.
 2. In the PowerShell script, replace the **YOUR_ACCOUNT_ID** and **YOUR_API_KEY** placeholders with the account ID and API key values you identified previously.
 3. Observe that the *location* for a free account is "trial". If you have created an unrestricted Video Indexer account (with an associated Azure resource), you can change this to the location where your Azure resource is provisioned (for example "eastus").
 4. Review the code in the script, noting that invokes two REST methods: one to get an access token, and another to list the videos in your account.
