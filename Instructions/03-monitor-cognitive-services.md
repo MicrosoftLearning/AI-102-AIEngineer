@@ -27,13 +27,23 @@ If you don't already have on in your subscription, you'll need to provision a **
     - **Region**: *Choose any available region*
     - **Name**: *Enter a unique name*
     - **Pricing tier**: Standard S0
-3. Select the required checkboxes and create the resource.
+3. Select any required checkboxes and create the resource.
 4. Wait for deployment to complete, and then view the deployment details.
 5. When the resource has been deployed, go to it and view its **Keys and Endpoint** page. Make a note of the endpoint URI - you will need it later.
 
+## Ensure the *microsoft.insights* resource provider is registered
+
+To use the monitoring capabilities in Microsoft Azure, the *microsoft.insights* resource provider must be registered in your subscription.
+
+1. In the Azure portal, on the **Home** page, select **Subscriptions** (or expand the **&#8801;** menu, select **All Services**, and in the **All** category, select **Subscriptions**).
+2. Select your Azure subscription (if you have multiple subscriptions, select the one in which you created your Cognitive Services resource).
+3. In the blade for your subscription, in the pane on the left, in the **Settings** section, select **Resource providers**.
+4. In the list of resource providers, select **microsoft.insights**.
+5. If the microsoft.insights resource provider is not registered, use the **Register** button to register it.
+
 ## Configure an alert
 
-Let's start by defining an alert rule so you can detect activity in your cognitive services resource.
+Let's start monitoring by defining an alert rule so you can detect activity in your cognitive services resource.
 
 1. In the Azure portal, go to your cognitive services resource and view its **Alerts** page (in the **Monitoring** section).
 2. Select **+ New alert rule**
