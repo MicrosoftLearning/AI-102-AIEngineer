@@ -493,7 +493,7 @@
                             160,
                             640
                         ],
-                        "text": "Vendor Name: Hillary Swank",
+                        "text": "Vendor Name: Balozi Khamisi",
                         "words": [
                             {
                                 "boundingBox": [
@@ -534,7 +534,7 @@
                                     351,
                                     641
                                 ],
-                                "text": "Hillary",
+                                "text": "Balozi",
                                 "confidence": 0.959
                             },
                             {
@@ -548,7 +548,7 @@
                                     438,
                                     641
                                 ],
-                                "text": "Swank",
+                                "text": "Khamisi",
                                 "confidence": 0.954
                             }
                         ]
@@ -897,7 +897,7 @@
                             165,
                             880
                         ],
-                        "text": "Name: Bernie Sanders",
+                        "text": "Name: Kidane Tsehaye",
                         "words": [
                             {
                                 "boundingBox": [
@@ -924,7 +924,7 @@
                                     257,
                                     880
                                 ],
-                                "text": "Bernie",
+                                "text": "Kidane",
                                 "confidence": 0.958
                             },
                             {
@@ -938,7 +938,7 @@
                                     343,
                                     880
                                 ],
-                                "text": "Sanders",
+                                "text": "Tsehaye",
                                 "confidence": 0.959
                             }
                         ]
@@ -2019,7 +2019,7 @@
                             481,
                             1708
                         ],
-                        "text": "Bernie Sanders",
+                        "text": "Kidane Tsehaye",
                         "words": [
                             {
                                 "boundingBox": [
@@ -2032,7 +2032,7 @@
                                     482,
                                     1707
                                 ],
-                                "text": "Bernie",
+                                "text": "Kidane",
                                 "confidence": 0.909
                             },
                             {
@@ -2046,7 +2046,7 @@
                                     613,
                                     1708
                                 ],
-                                "text": "Sanders",
+                                "text": "Tsehaye",
                                 "confidence": 0.958
                             }
                         ]
@@ -2123,7 +2123,7 @@
                             543,
                             1742
                         ],
-                        "text": "Bernie Sanders",
+                        "text": "Kidane Tsehaye",
                         "words": [
                             {
                                 "boundingBox": [
@@ -2136,7 +2136,7 @@
                                     544,
                                     1743
                                 ],
-                                "text": "Bernie",
+                                "text": "Kidane",
                                 "confidence": 0.959
                             },
                             {
@@ -2150,7 +2150,7 @@
                                     626,
                                     1743
                                 ],
-                                "text": "Sanders",
+                                "text": "Tsehaye",
                                 "confidence": 0.959
                             }
                         ]
@@ -2811,7 +2811,7 @@
                             {
                                 "rowIndex": 3,
                                 "columnIndex": 0,
-                                "text": "Bernie Sanders",
+                                "text": "Kidane Tsehaye",
                                 "boundingBox": [
                                     482,
                                     1658,

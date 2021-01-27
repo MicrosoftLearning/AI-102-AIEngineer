@@ -155,7 +155,7 @@
             "value": [
                 {
                     "page": 1,
-                    "text": "Hillary",
+                    "text": "Balozi",
                     "boundingBoxes": [
                         [
                             0.20705882352941177,
@@ -171,7 +171,7 @@
                 },
                 {
                     "page": 1,
-                    "text": "Swank",
+                    "text": "Khamisi",
                     "boundingBoxes": [
                         [
                             0.25823529411764706,
@@ -469,7 +469,7 @@
             "value": [
                 {
                     "page": 1,
-                    "text": "Bernie",
+                    "text": "Kidane",
                     "boundingBoxes": [
                         [
                             0.28411764705882353,
@@ -485,7 +485,7 @@
                 },
                 {
                     "page": 1,
-                    "text": "Sanders",
+                    "text": "Tsehaye",
                     "boundingBoxes": [
                         [
                             0.3611764705882353,
