@@ -79,7 +79,7 @@ python rest-client.py
 
 ## Use an SDK
 
-You can write code that consumes cognitive services REST APIs directly, but there are software development kits (SDKs) for many popular programming languages, including Microsoft C#, Python, Node.js. Using an SDK can greatly simplify development of applications that consume cognitive services.
+You can write code that consumes cognitive services REST APIs directly, but there are software development kits (SDKs) for many popular programming languages, including Microsoft C#, Python, and Node.js. Using an SDK can greatly simplify development of applications that consume cognitive services.
 
 > **Note**: In this exercise, you can choose to use the SDK for either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
