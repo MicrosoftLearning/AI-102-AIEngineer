@@ -1,4 +1,9 @@
-# Build custom models with the Form Recognizer service 
+---
+lab:
+    title: 'Extract Data from Forms'
+---
+
+# Extract Data from Forms 
 
 Suppose a company needs to automate a data entry process. Currently an employee might manually read a purchase order and enter the data into a database. You want to build a model that will use a machine learning model to read the form and produce structured data that can be used to automatically update a database.
 
