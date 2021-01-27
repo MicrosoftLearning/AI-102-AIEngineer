@@ -53,7 +53,7 @@ In this exercise, you'll complete a partially implemented client application tha
     Open the code file and examine the code it contains.
 
 4. In the **Main** function, note that code to load the cognitive services key and region from the configuration file has already been provided. The endpoint for the translation service is also specified in your code.
-5. Save your changes. Then right-click the **translate-text** folder, open an integrated terminal, and enter the following command to run the program:
+5. Save your changes. Then right-click the **text-translation** folder, open an integrated terminal, and enter the following command to run the program:
 
 **C#**
 
