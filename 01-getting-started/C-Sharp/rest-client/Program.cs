@@ -57,8 +57,12 @@ namespace rest_client
                             new JProperty("text", text)
                     ))));
                 
+                // Encode as UTF-8
+                UTF8Encoding utf8 = new UTF8Encoding(true, true);
+                byte[] encodedBytes = utf8.GetBytes(jsonBody.ToString());
+                
                 // Let's take a look at the JSON we'll send to the service
-                Console.WriteLine(jsonBody.ToString());
+                Console.WriteLine(utf8.GetString(encodedBytes, 0, encodedBytes.Length));
 
                 // Make an HTTP request to the REST interface
                 var client = new HttpClient();
@@ -70,12 +74,9 @@ namespace rest_client
                 // Use the endpoint to access the Text Analytics language API
                 var uri = cogSvcEndpoint + "text/analytics/v3.0/languages?" + queryString;
 
-                // Prepare the JSON request body
-                byte[] byteData = Encoding.UTF8.GetBytes(jsonBody.ToString());
-
                 // Send the request and get the response
                 HttpResponseMessage response;
-                using (var content = new ByteArrayContent(byteData))
+                using (var content = new ByteArrayContent(encodedBytes))
                 {
                     content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                     response = await client.PostAsync(uri, content);
