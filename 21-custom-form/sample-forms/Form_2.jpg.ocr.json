@@ -869,7 +869,7 @@
                             165,
                             880
                         ],
-                        "text": "Name: Diogo Martin",
+                        "text": "Name: Frank Sinatra",
                         "words": [
                             {
                                 "boundingBox": [
@@ -896,7 +896,7 @@
                                     256,
                                     880
                                 ],
-                                "text": "Diogo",
+                                "text": "Frank",
                                 "confidence": 0.959
                             },
                             {
@@ -910,7 +910,7 @@
                                     333,
                                     879
                                 ],
-                                "text": "Martin",
+                                "text": "Sinatra",
                                 "confidence": 0.959
                             }
                         ]
@@ -2111,7 +2111,7 @@
                             494,
                             1711
                         ],
-                        "text": "Diogo Martin",
+                        "text": "Frank Sinatra",
                         "words": [
                             {
                                 "boundingBox": [
@@ -2124,7 +2124,7 @@
                                     498,
                                     1712
                                 ],
-                                "text": "Diogo",
+                                "text": "Frank",
                                 "confidence": 0.844
                             },
                             {
@@ -2138,7 +2138,7 @@
                                     618,
                                     1712
                                 ],
-                                "text": "Martin",
+                                "text": "Sinatra",
                                 "confidence": 0.915
                             }
                         ]
@@ -2215,7 +2215,7 @@
                             555,
                             1742
                         ],
-                        "text": "Diogo Martin",
+                        "text": "Frank Sinatra",
                         "words": [
                             {
                                 "boundingBox": [
@@ -2228,7 +2228,7 @@
                                     555,
                                     1743
                                 ],
-                                "text": "Diogo",
+                                "text": "Frank",
                                 "confidence": 0.959
                             },
                             {
@@ -2242,7 +2242,7 @@
                                     626,
                                     1743
                                 ],
-                                "text": "Martin",
+                                "text": "Sinatra",
                                 "confidence": 0.959
                             }
                         ]
