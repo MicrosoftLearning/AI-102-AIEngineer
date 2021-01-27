@@ -869,7 +869,7 @@
                             164,
                             881
                         ],
-                        "text": "Name: Wesley Smith",
+                        "text": "Name: Wesley Snipes",
                         "words": [
                             {
                                 "boundingBox": [
@@ -910,7 +910,7 @@
                                     353,
                                     882
                                 ],
-                                "text": "Smith",
+                                "text": "Snipes",
                                 "confidence": 0.959
                             }
                         ]
@@ -2139,7 +2139,7 @@
                             529,
                             1711
                         ],
-                        "text": "Wesley Smith",
+                        "text": "Wesley Snipes",
                         "words": [
                             {
                                 "boundingBox": [
@@ -2166,7 +2166,7 @@
                                     643,
                                     1711
                                 ],
-                                "text": "Smith",
+                                "text": "Snipes",
                                 "confidence": 0.817
                             }
                         ]
@@ -2243,7 +2243,7 @@
                             548,
                             1744
                         ],
-                        "text": "Wesley Smith",
+                        "text": "Wesley Snipes",
                         "words": [
                             {
                                 "boundingBox": [
@@ -2270,7 +2270,7 @@
                                     638,
                                     1744
                                 ],
-                                "text": "Smith",
+                                "text": "Snipes",
                                 "confidence": 0.958
                             }
                         ]

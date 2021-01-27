@@ -437,7 +437,7 @@
             "value": [
                 {
                     "page": 1,
-                    "text": "Frank",
+                    "text": "Diogo",
                     "boundingBoxes": [
                         [
                             0.29352941176470587,
@@ -453,7 +453,7 @@
                 },
                 {
                     "page": 1,
-                    "text": "Sinatra",
+                    "text": "Martin",
                     "boundingBoxes": [
                         [
                             0.36411764705882355,
