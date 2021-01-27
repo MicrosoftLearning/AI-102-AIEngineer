@@ -154,7 +154,7 @@ python text-translation.py
 
 ## Translate text
 
-Now that your application can determine the language in which reviews are written, tou can use the Translator service to translate any non-English reviews into English.
+Now that your application can determine the language in which reviews are written, you can use the Translator service to translate any non-English reviews into English.
 
 1. In your code file, find the **Translate** function, which currently returns and empty string for all text values.
 2. In the **Translate** function, under the comment **Use the Translator translate function**, add the following code to use the Translator's REST API to translate the specified text from its source language into English, being careful not to replace the code at the end of the function that returns the translation:
