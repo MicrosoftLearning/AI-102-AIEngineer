@@ -180,6 +180,8 @@ dotnet add package Azure.AI.FormRecognizer --version 3.0.0
 pip install azure-ai-formrecognizer==3.0.0
 ```
 
+*This isn't strictly necessary if you previously used pip to install the package into Python environment; but it does no harm to ensure it's installed!*
+
 4. In the **test-without-labels** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
     - Your Form Recognizer endpoint.
     - Your Form Recognizer key.
@@ -225,6 +227,8 @@ dotnet add package Azure.AI.FormRecognizer --version 3.0.0
 ```
 pip install azure-ai-formrecognizer==3.0.0
 ```
+
+*This isn't strictly necessary if you previously used pip to install the package into Python environment; but it does no harm to ensure it's installed!*
 
 4. In the **train-with-labels** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
     - Your Form Recognizer endpoint.
@@ -278,6 +282,8 @@ dotnet add package Azure.AI.FormRecognizer --version 3.0.0
 ```
 pip install azure-ai-formrecognizer==3.0.0
 ```
+
+*This isn't strictly necessary if you previously used pip to install the package into Python environment; but it does no harm to ensure it's installed!*
 
 4. In the **test-with-labels** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
     - Your Form Recognizer endpoint.
