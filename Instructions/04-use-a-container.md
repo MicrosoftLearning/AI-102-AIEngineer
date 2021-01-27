@@ -41,7 +41,7 @@ Many commonly used cognitive services APIs are available in container images. Fo
 
     - **Basics**:
         - **Subscription**: *Your Azure subscription*
-        - **Resource group**: *Choose the resource group containing your cogntive services resource*
+        - **Resource group**: *Choose the resource group containing your cognitive services resource*
         - **Container name**: *Enter a unique name*
         - **Region**: *Choose any available region*
         - **Image source**: Docker Hub or other Registry
@@ -97,6 +97,13 @@ rest-test
 ```
 
 4. Verify that the command returns a JSON document containing information about the language detected in the two input documents (which should be English and French).
+
+## Clean Up
+
+If you've finished experimenting with your container instance, you should delete it.
+
+1. In the Azure portal, open the resource group where you created your resources for this exercise.
+2. Select the container instance resource and delete it.
 
 ## More information
 
