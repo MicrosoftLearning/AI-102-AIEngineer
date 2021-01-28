@@ -377,7 +377,7 @@ If you don't already have Language Understanding authoring and prediction resour
 3. Wait for the resources to be created, and note that two Language Understanding resources are provisioned; one for authoring, and another for prediction. You can view both of these by navigating to the resource group where you created them.
 4. After the deployment has finished, go the resource page for the **authoring** resource and view the **Keys and Endpoint** page. Then copy one of the keys to the clipboard.
 5. Back in the Bot Framework Composer, in the **&#8285;** menu for the top-level **WeatherBot** bot, select **Settings**.
-6. Paste your Language Understanding authoring key into the **LUIS authoring key** property.
+6. Paste your Language Understanding authoring key into the **LUIS authoring key** property, and select the **LUIS region** where you created your Language Understanding service.
 7. Return to the **Design** page.
 
 ### Test the natural language *cancel* functionality
