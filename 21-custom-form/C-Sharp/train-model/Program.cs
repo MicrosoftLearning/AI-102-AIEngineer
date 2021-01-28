@@ -10,7 +10,7 @@ using Azure.AI.FormRecognizer;
 using Azure.AI.FormRecognizer.Models;
 using Azure.AI.FormRecognizer.Training;
 
-namespace train_model_without_labels
+namespace train_model
 {
     class Program
     {     
@@ -18,18 +18,16 @@ namespace train_model_without_labels
         {   
             try
             {   
-                // Get configuration settings from AppSettings
+                // Get configuration settings
                 IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
                 IConfigurationRoot configuration = builder.Build();
                 string formEndpoint = configuration["FormEndpoint"];
                 string formKey = configuration["FormKey"];
+                string trainingStorageUri = configuration["StorageUri"];
                 
                 // Authenticate Form Training Client 
                 var credential = new AzureKeyCredential(formKey);
-                var trainingClient = new FormTrainingClient(new Uri(formEndpoint), credential);
-         
-                // Get form data for training from storage blob   
-                string trainingStorageUri = configuration["StorageUri"];
+                var trainingClient = new FormTrainingClient(new Uri(formEndpoint), credential);  
 
                 // Train model 
                 CustomFormModel model = await trainingClient

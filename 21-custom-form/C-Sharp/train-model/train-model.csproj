@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>train_model_with_labels</RootNamespace>
+    <RootNamespace>train_model</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

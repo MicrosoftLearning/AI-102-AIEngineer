@@ -13,9 +13,7 @@ def main():
         # Get configuration settings 
         load_dotenv()
         form_endpoint = os.getenv('FORM_ENDPOINT')
-        print(form_endpoint)
         form_key = os.getenv('FORM_KEY')
-        print(form_key)
         
         # Create client using endpoint and key
         form_recognizer_client = FormRecognizerClient(form_endpoint, AzureKeyCredential(form_key))
