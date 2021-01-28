@@ -230,7 +230,7 @@ Suppose after you trained a model with the invoice forms, you wanted to see how 
 
 **C#**
 
-```
+```C#
 // Train model 
 CustomFormModel model = await trainingClient
 .StartTrainingAsync(new Uri(trainingStorageUri), useTrainingLabels: true)
@@ -239,7 +239,7 @@ CustomFormModel model = await trainingClient
 
 **Python**
 
-```
+```Python
 # Train model 
 poller = form_training_client.begin_training(trainingDataUrl, use_training_labels=True)
 model = poller.result()
