@@ -96,6 +96,9 @@ Most commonly, the client applications used to retrieve answers from a knowledge
 
 1. On the page containing the publishing confirmation and sample Curl code, select **Create Bot**. This opens the Azure portal in a new browser tab so you can create a Web App Bot in your Azure subscription.
 2. In the Azure portal, create a Web App Bot with the following settings (most of these will be pre-populated for you):
+
+    *If some values are missing, refresh your browser.*  
+
   - **Bot handle**: *A unique name for your bot*
   - **Subscription**: *Your Azure subscription*
   - **Resource group**: *The resource group containing your QnA Maker resource*
