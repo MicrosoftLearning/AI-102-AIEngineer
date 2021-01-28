@@ -38,7 +38,10 @@ To use the Language Understanding service, you need two kinds of resource:
 If you don't already have Language Understanding authoring and prediction resources:
 
 1. Open the Azure portal at [https://portal.azure.com](https://portal.azure.com), and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *language understanding*, and create a **Language Understanding** resource with the following settings:
+2. Select the **&#65291;Create a resource** button, search for *language understanding*, and create a **Language Understanding** resource with the following settings.
+
+    *Ensure you select **Language Understanding**, <u>not</u> Language Understanding (Azure Cognitive Services)*
+
     - **Create option**: Both
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
@@ -47,7 +50,7 @@ If you don't already have Language Understanding authoring and prediction resour
     - **Authoring pricing tier**: F0
     - **Prediction location**: *Choose a location in the same authoring region as your authoring location*
     - **Prediction pricing tier**: F0
-3. Wait for the resources to be created, and note that two Language Understanding resources are provisioned; one for authoring, and another for prediction. You can view both of these by navigating to the resource group where you created them.
+3. Wait for the resources to be created, and note that two Language Understanding resources are provisioned; one for authoring, and another for prediction. You can view both of these by navigating to the resource group where you created them. If you select **Go to resource**, it will open the *authoring* resource.
 
 ## Create a Language Understanding app
 
@@ -158,13 +161,13 @@ In some cases, valid values for an entity can be restricted to a list of specifi
 
     | Normalized values | synonyms|
     |-------------------|---------|
-    | Sunday | Sun |
-    | Monday | Mon |
-    | Tuesday | Tue |
-    | Wednesday | Wed |
-    | Thursday | Thu |
-    | Friday | Fri |
-    | Saturday | Sat |
+    | sunday | sun |
+    | monday | mon |
+    | tuesday | tue |
+    | wednesday | wed |
+    | thursday | thu |
+    | friday | fri |
+    | saturday | sat |
 
 3. After the **Weekday** entity has been created, return to the **Intents** page and select the **GetDate** intent.
 4. Enter the following new example utterance:
@@ -189,7 +192,7 @@ Sometimes, entities have a specific format, such as a serial number, form code, 
     [0-9]{2}/[0-9]{2}/[0-9]{4}
     ```
 
-    > **Note**: This is a simple regex that checks for two digits followed by a back slash, another two digits, another backslash, and four digits - for example *01/11/2020*. It allows for invalid dates, such as *56/00/9999*; but it's important to remember that the entity regex is used to identify data entry that is *intended* as a date - not to validate date values.
+    > **Note**: This is a simple regex that checks for two digits followed by a "/", another two digits, another "/", and four digits - for example *01/11/2020*. It allows for invalid dates, such as *56/00/9999*; but it's important to remember that the entity regex is used to identify data entry that is *intended* as a date - not to validate date values.
 
 3. After the **Date** entity has been created, return to the **Intents** page and select the **GetDay** intent.
 4. Enter the following new example utterance:
