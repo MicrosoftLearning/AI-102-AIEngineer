@@ -104,7 +104,7 @@ Most commonly, the client applications used to retrieve answers from a knowledge
   - **App name**: *Same as the **Bot handle** with *.azurewebsites.net* appended automatically
   - **SDK language**: *Choose either C# or Node.js*
   - **QnA Auth Key**: *This should automatically be set to the authentication key for your QnA knowledge base*
-  - **App service plan/location**: *This should be set automatically to a suitable plan and location.*
+  - **App service plan/location**: *This may be set automatically to a suitable plan and location if one exists. If not, create a new plan*
   - **Application Insights**: Off
   - **Microsoft App ID and password**: Auto create App ID and password.
 3. Wait for your bot to be created (the notification icon at the top right, which looks like a bell, will be animated while you wait). Then in the notification that deployment has completed, click **Go to resource** (or alternatively, on the home page, click **Resource groups**, open the resource group where you created the web app bot, and click it.)
