@@ -149,9 +149,9 @@ Make a note of the **appId**, **password**, and **tenant** values - you will nee
 
 2. To assign permission for your new service principal to access secrets in your Key Vault, run the following Azure CLI command, replacing *&lt;keyVaultName&gt;* with the name of your Azure Key Vault resource and *&lt;spName&gt;* with the same value you provided when creating the service principal.
 
-    ```
-    az keyvault set-policy -n <keyVaultName> --spn "https://<spName>" --secret-permissions get list
-    ```
+```
+az keyvault set-policy -n <keyVaultName> --spn "https://<spName>" --secret-permissions get list
+```
 
 ### Use the service principal in an application
 
