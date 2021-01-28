@@ -44,7 +44,9 @@ To create a knowledge base in your QnA Maker resource, you can use the QnA Maker
 
     You can create a knowledge base from scratch, but it's common to start by importing questions and answers from an existing FAQ page or document.
 
-5. In the **Step 4** section, in the **URL** box type `https://docs.microsoft.com/en-us/learn/support/faq` and click **&#65291; Add URL**. Then in the **Chit-chat** section, select **Friendly**.
+5. In the **Step 4** section:
+    - In the **URL** box type `https://docs.microsoft.com/en-us/learn/support/faq` and click **&#65291; Add URL**.
+    - In the **Chit-chat** section, select **Friendly**.
 6. In the **Step 5** section, select **Create your KB** and wait for your knowledge base to be created.
 
 ## Modify the knowledge base

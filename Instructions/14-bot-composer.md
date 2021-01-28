@@ -143,7 +143,7 @@ The **getWeather** dialog flow so far consists of a simple message. Now you need
 
     Now you need to add logic to the dialog flow that handles the response, which might indicate success or failure of the HTTP request. 
 
-1. On the authoring canvas, under the **Send HTTP Request** action on the you created, add a **Create a condition** > **Branch: if/else** action. This action defines a branch in the dialog flow with **True** and **False** paths.
+1. On the authoring canvas, under the **Send HTTP Request** action you created, add a **Create a condition** > **Branch: if/else** action. This action defines a branch in the dialog flow with **True** and **False** paths.
 1. In the **Properties** of the branch action, set the **Condition** field to write the following expression:
 
     ```
