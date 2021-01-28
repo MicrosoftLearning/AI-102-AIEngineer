@@ -74,7 +74,7 @@ dir
 
 ## Test the bot in the Bot Framework Emulator
 
-You've created a bot based on the *EchoBot* template. Now you can run it locally and test it by using the Bot Framework Emulator.
+You've created a bot based on the *EchoBot* template. Now you can run it locally and test it by using the Bot Framework Emulator (which should be installed on your system).
 
 1. In the terminal pane, ensure that the current directory is the **TimeBot** folder containing your bot code files, and then enter the following command to start your bot running locally.
 
