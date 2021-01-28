@@ -279,7 +279,7 @@ az webapp deployment source config-zip --resource-group "YOUR_RESOURCE_GROUP" --
 
 ## Explore bot channels
 
-One of the key benefits of the Azure Not Service is the ability to deliver your bot through multiple *channels*.
+One of the key benefits of the Azure Bot Service is the ability to deliver your bot through multiple *channels*.
 
 1. In the Azure portal, on the page where you were previously testing your Bot, select **Channels**.
 2. Note that the **Web Chat** channel has been added automatically, and that other channels for common communication platforms are available.
