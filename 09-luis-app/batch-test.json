@@ -46,7 +46,7 @@
         ]
     },
     {
-        "text": "what time is it in San Franscisco now?",
+        "text": "what time is it in San Francisco now?",
         "intent": "GetTime",
         "entities":
         [
