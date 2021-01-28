@@ -81,7 +81,7 @@ Now that you have a knowledge base, you can test it in the QnA Maker portal.
 
 ## Publish the knowledge base
 
-he knowledge base provides a back-end service that client applications can use to answer questions. Now you are ready to publish your knowledge base and access its REST interface from a client.
+The knowledge base provides a back-end service that client applications can use to answer questions. Now you are ready to publish your knowledge base and access its REST interface from a client.
 
 1. At the top of the QnA Maker page, click **Publish**. Then in the **Learn FAQ** page, click **Publish**.
 2. When publishing is complete, view the sample code provided to use your knowledge base's REST endpoint. There is an example for *Postman* and an example for *Curl*.
