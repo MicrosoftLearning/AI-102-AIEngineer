@@ -916,7 +916,7 @@ for person in people:
                     result = 'Verified'
 ```
 
-3. Examine the code you added to the **VerifyFace** function. It lLooks up the ID of the person in the group with the specified name. If the person exists, the code gets the face ID of the first face in the image. Finally, if there is a face in the image, the code verifies it against the ID of the specified person.
+3. Examine the code you added to the **VerifyFace** function. It looks up the ID of the person in the group with the specified name. If the person exists, the code gets the face ID of the first face in the image. Finally, if there is a face in the image, the code verifies it against the ID of the specified person.
 4. Save your changes and return to the integrated terminal for the **face-api** folder, and enter the following command to run the program:
 
 **C#**
