@@ -63,7 +63,7 @@ cookiecutter https://github.com/microsoft/botbuilder-python/releases/download/Te
 
 If you're using Python, when prompted by cookiecutter, enter the following details:
 - **bot_name**: TimeBot
-- **bot_description**: A bot for all time
+- **bot_description**: A bot for our times
 
 5. In the terminal pane, enter the following commands to change the current directory to the **TimeBot** folder list the code files that have been generated for your bot:
 
@@ -207,7 +207,7 @@ az login
 2. If you have multiple Azure subscriptions, enter the following command to select the subscription in which you want to deploy the bot.
 
 ```
-az account set --subscription "<YOUR_SUBSCRIPTION_NAME>"
+az account set --subscription "<YOUR_SUBSCRIPTION_ID>"
 ```
 
 3. Enter the following command to create an application registration for **TimeBot** with the password **Super$ecretPassw0rd** (you can use an alternative display name and password if you wish, but make a note of them - you'll need them later).
@@ -285,7 +285,7 @@ One of the key benefits of the Azure Bot Service is the ability to deliver your 
 2. Note that the **Web Chat** channel has been added automatically, and that other channels for common communication platforms are available.
 3. Next to the **Web Chat** channel, click **Edit**. This opens a page with the settings you need to embed your bot in a web page. To embed your bot, you need the HTML embed code provided as well as one of the secret keys generated for your bot.
 4. Copy the **Embed code**.
-5. In Visual Studio Code, expand the **12-bot-framework/web-client** folder and select the **default.html** file it contains.
+5. In Visual Studio Code, expand the **13-bot-framework/web-client** folder and select the **default.html** file it contains.
 6. In the HTML code, paste the embed code you copied directly beneath the comment **add the iframe for the bot here**
 7. Back in the Azure portal, select **Show** for one of your secret keys (it doesn't matter which one), and copy it. Then return to Visual Studio Code and paste it in the HTML embed code you added previously, replacing **YOUR_SECRET_HERE**.
 8. In Visual Studio Code, in the **Explorer** pane, right-click **default.html** and select **Reveal in File Explorer**.
