@@ -160,7 +160,7 @@ python text-analysis.py
 
 7. Observe the output, noting that this time the language for each review is identified.
 
-## Perform sentiment analysis
+## Evaluate sentiment
 
 *Sentiment analysis* is a commonly used technique to classify text as *positive* or *negative* (or possible *neutral* or *mixed*). It's commonly used to analyze social media posts, product reviews, and other items where the sentiment of the text may provide useful insights.
 
