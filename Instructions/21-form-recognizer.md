@@ -44,7 +44,7 @@ You'll use the sample forms in the **21-custom-form/sample-forms** folder in thi
 
     You will use the **.jpg** files to train your first model _without_ labels.  
 
-    Later, you will use the files ending in **.json** and **.jpg** to train your second model _with_ labels. The **.json** files contain special label information. To train with labels, you need to have special label information files *&lt;filename&gt;.jpg.labels.json*) in your blob storage container alongside the forms.
+    Later, you will use the files ending in **.json** and **.jpg** to train your second model _with_ labels. The **.json** files contain label information. To train with labels, you need to have the label information files in your blob storage container alongside the forms.
 
 You can learn more about custom model input requirements [in the Form Recognizer documentation](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/build-training-data-set#custom-model-input-requirements).
 
@@ -214,9 +214,15 @@ python test-model-without-labels.py
 
 Suppose after you trained a model with the invoice forms, you wanted to see how a model trained on labeled data performs. When you trained a model without labels you only used the **.jpg** forms from your Azure blob container. Now you will train a model using the **.jpg** and **.json** files.
 
-1. In Visual Studio Code, in the **21-custom-form** folder, expand the **C-Sharp** or **Python** folder depending on your language preference.
-2. Right-click the **train-with-labels** folder and open an integrated terminal.
-3. Install the Form Recognizer package by running the appropriate command for your language preference:
+1. In Visual Studio Code, in the **21-custom-form/sample-forms** folder, open **fields.json** and review the JSON document it contains. This file defines the fields that you will train amodel to extract from the forms.
+2. Open **Form_1.jpg.labels.json** and review the JSON it contains. This file identifies the location and values for named fields in the **Form_1.jpg** training document.
+3. Open **Form_1.jpg.ocr.json** and review the JSON it contains. This file contains a JSOn representation of the text layout of **Form_1.jpg**, including the location of all text areas found in the form.
+
+    *The field information files have been provided for you in this exercise. For your own projects, you can create these files manually or use the [sample labeling tool](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool).*
+
+4. In Visual Studio Code, in the **21-custom-form** folder, expand the **C-Sharp** or **Python** folder depending on your language preference.
+5. Right-click the **train-with-labels** folder and open an integrated terminal.
+6. Install the Form Recognizer package by running the appropriate command for your language preference:
 
 **C#**
 
@@ -232,12 +238,12 @@ pip install azure-ai-formrecognizer==3.0.0
 
 *This isn't strictly necessary if you previously used pip to install the package into Python environment; but it does no harm to ensure it's installed!*
 
-4. In the **train-with-labels** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
+7. In the **train-with-labels** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
     - Your Form Recognizer endpoint.
     - Your Form Recognizer key.
     - The Shared Access Signature for your blob container.
 
-5. Note that the **train-with-labels** folder contains a code file for the client application:
+8. Note that the **train-with-labels** folder contains a code file for the client application:
 
     - **C#**: Program.cs
     - **Python**: train-model-with-labels&period;py
@@ -248,7 +254,7 @@ pip install azure-ai-formrecognizer==3.0.0
     - The code uses the the training client to train a model using the images in your blob storage container, which is acessed using the SAS URI you generated.
     - Training is performed with a parameter to indicate that training labels should be used. Form Recognizer uses a *supervised* technique to extract the fields from the form images.
 
-6. Return the integrated terminal for the **train-with-labels** folder, and enter the following command to run the program:
+9. Return the integrated terminal for the **train-with-labels** folder, and enter the following command to run the program:
 
 **C#**
 
@@ -262,8 +268,8 @@ dotnet run
 python train-model-with-labels.py
 ```
 
-7. Wait for the program to end, then review the model output.
-8. Copy the Model ID in the terminal output. You will use your Model ID when analyzing new forms.  
+10. Wait for the program to end, then review the model output.
+11. Copy the Model ID in the terminal output. You will use your Model ID when analyzing new forms.  
 
 ## Test the model created with labels
 
