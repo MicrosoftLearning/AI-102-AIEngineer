@@ -130,7 +130,7 @@ The **getWeather** dialog flow so far consists of a simple message. Now you need
 1. Set the properties for the **HTTP request** as follows, specifying your [OpenWeather](https://openweathermap.org/price) API key:
     - **HTTP method**: GET
     - **Url**: `http://weatherbot-ignite-2019.azurewebsites.net/api/getWeather?zipcode=${user.zipcode}&api_token=YOUR_API_KEY`
-    - **Result property**: dialog.api_response
+    - **Result property**: `dialog.api_response`
 
     The result can include any of the following four properties from the HTTP response:
 
