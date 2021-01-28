@@ -399,3 +399,7 @@ python speaking-clock-client.py
     > **Note**: The logic in the application is deliberately simple, and has a number of limitations, but should serve the purpose of testing the ability for the Language Understanding model to predict intents from spoken input using the Speech SDK. You may have trouble recognizing the **GetDay** intent with a specific date entity due to the difficulty in verbalizing a date in *MM/DD/YYYY* format!
 
 8. When you have finished testing, say "stop".
+
+## More information
+
+To learn more about Speech and Language Understanding integration, see the [Speech documentation](https://docs.microsoft.com/azure/cognitive-services/speech-service/quickstarts/intent-recognition).

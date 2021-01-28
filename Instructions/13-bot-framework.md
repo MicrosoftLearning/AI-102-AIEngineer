@@ -292,3 +292,7 @@ One of the key benefits of the Azure Not Service is the ability to deliver your 
 9. In the File Explorer window, open **default.html** in Microdoft Edge.
 10. In the web page that opens, test the bot by entering *Hello*. Note that it won't initialize until you submit a message, so the greeting message will be followed immediately by a prompt to ask what the time is.
 11. Test the bot by submitting *What is the time?*.
+
+## More information
+
+To learn more about the Bot Framework, view the [Bot Framework documentation](https://docs.microsoft.com/azure/bot-service/index-bf-sdk).

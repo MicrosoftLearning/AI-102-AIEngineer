@@ -321,3 +321,7 @@ python clock-client.py
     >   3. Implement logic to respond appropriately to the predicted intent and entities.
 
 6. When you have finished testing, enter *quit*.
+
+## More information
+
+To learn more about creating a Language Understanding client, see the [developer documentation](https://docs.microsoft.com/azure/cognitive-services/luis/developer-reference-resource)

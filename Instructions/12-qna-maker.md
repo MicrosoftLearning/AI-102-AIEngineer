@@ -110,3 +110,7 @@ Most commonly, the client applications used to retrieve answers from a knowledge
 3. Wait for your bot to be created (the notification icon at the top right, which looks like a bell, will be animated while you wait). Then in the notification that deployment has completed, click **Go to resource** (or alternatively, on the home page, click **Resource groups**, open the resource group where you created the web app bot, and click it.)
 4. In the blade for your bot, view the **Test in Web Chat** page, and wait until the bot displays the message **Hello and welcome!** (it may take a few seconds to initialize).
 5. Use the test chat interface to ensure your bot answers questions from your knowledge base as expected. For example, try submitting *What is Microsoft certification?*.
+
+## More information
+
+To learn more about QnA Maker, see the [QnA Maker documentation](https://docs.microsoft.com/azure/cognitive-services/qnamaker/).

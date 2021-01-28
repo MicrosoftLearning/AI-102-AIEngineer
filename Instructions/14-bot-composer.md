@@ -386,3 +386,17 @@ If you don't already have Language Understanding authoring and prediction resour
 1. Enter your name, and then *what's the weather?*
 1. When prompted for a zipcode, enter *I want to stop* and the bot should respond with the message **Canceling.**
 1. When you have finished testing, close the emulator and composer.
+
+## Challenge (if time permits)
+
+You now have a reasonably sophisticated bot that can handle a conversation that includes multiple dialogs.
+
+You may notice that after you have entered your zip code once, subsequent requests for the weather use the previously entered zip code value. While this is reasonable if the intention is for the bot to learn *your* zip code and remember it; you may want to change the bot's behavior so that each request for the weather prompts for a zip code - enabling you to check the weather in multiple locations.
+
+Think about how you might implement this behavior, and then if time permits, make the necessary changes to your bot.
+
+> **Hint**: One approach is to delete the zip code property after a weather forecast has been retrieved and displayed.
+
+## More information
+
+To learn more about Bot Framework Composer, view the [Bot Framework Composer documentation](https://docs.microsoft.com/composer/introduction).
