@@ -66,7 +66,7 @@ First, you need to define a dialog flow that will be used to handle questions ab
 
     ![Add Dialog menu](./images/add-dialog.png)
 
-    Then create a new dialog named **getWeather** with the description **Get the current weather condition for the provide zip code**.
+    Then create a new dialog named **getWeather** with the description **Get the current weather condition for the provided zip code**.
 1. In the navigation pane, select the **BeginDialog** node for the new **getWeather** dialog. Then on the authoring canvas, use the **+** symbol to add a **Send a response** action.
 1. In the properties panel for the new action, in the **Language Generation** area, enter `- Ready to check the weather?`.
 
@@ -94,7 +94,7 @@ Now you need some way for the new dialog to be initiated from the existing welco
     - Enter `weather-regex` for the **What is the name of this trigger (RegEx)** value.
     - Enter `weather` for the **Please input regex pattern** value.
 
-    > The text entered in the regex pattern text box is a simply regular expression pattern that will cause the bot to look for the word *weather* in any incoming message.  If weather is present, the message becomes a **recognized intent**.
+    > The text entered in the regex pattern text box is a simple regular expression pattern that will cause the bot to look for the word *weather* in any incoming message.  If weather is present, the message becomes a **recognized intent**.
 
 1. Now that the trigger is created, you need to configure an action for it. In the authoring canvas for the trigger, elect the **+** symbol under your new **weather-regex** trigger node. Then in the list of actions, select **Dialog Management** and select **Begin a new dialog**.
 1. With the **Begin a new dialog** action selected, in the properties pane, select the **getWeather** dialog from the **Dialog name** drop-down list to start the **getWeather** dialog you defined earlier when the **weather-regex** trigger is recognized.
