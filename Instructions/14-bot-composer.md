@@ -31,7 +31,7 @@ Now you're ready to use Composer to create a bot.
 
 1. In the properties pane, on the **Bot Asks** tab, set the **Prompt for text** value to `- What's your name?`. Then, on the **User Input** tab, set the **Property** value to **user&period;name** to define a variable that you can access later in the bot conversation.
 1. Back in the authoring canvas, select the **+** symbol under the **User Input(Text)** action you just added, and add a **Send a response** action.
-1. Select the newly added **Send a response** action and in the properties pane, set the **Language generation** value to `- Hello ${user&period;name}, nice to meet you!`.
+1. Select the newly added **Send a response** action and in the properties pane, set the **Language generation** value to `- Hello ${user.name}, nice to meet you!`.
 
     The completed activity flow should look like this:
 
