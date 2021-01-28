@@ -563,3 +563,7 @@ flask run
     - **skyscraper** (observe that this word doesn't appear in the actual content of any documents, but is found in the *image captions* and *image tags* that were generated for images in some documents).
     - **Mojave desert** (observe that this term is identified as a *location* in some documents).
 10. Close the browser tab containing the Margie's Travel web site and return to Visual Studio Code. Then in the Python terminal for the **margies-travel** folder (where the dotnet or flask application is running), enter Ctrl+C to stop the app.
+
+## More information
+
+To learn more about Azure Cognitive Search, see the [Azure Cognitive Search documentation](https://docs.microsoft.com/azure/search/search-what-is-azure-search).

@@ -572,3 +572,7 @@ Now that you have an index, you can search it.
     ```
 
     This query retrieves the **url** and **top_words** fields for all documents that mention *Las Vegas*.
+
+## More information
+
+To learn more about creating custom skills for Azure Cognitive Search, see the [Azure Cognitive Search documentation](https://docs.microsoft.com/azure/search/cognitive-search-custom-skill-interface).

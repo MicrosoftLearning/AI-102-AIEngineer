@@ -218,3 +218,7 @@ The *table* projections defined in the skillset form a relational schema of enri
     - **Locations** (contains a row for each individual location with the **document_id** for the document in which the location appears).
 
 The ability to create *table* projections enables you to build analytical and reporting solutions that query the relational schema; for example, using Microsoft Power BI. The automatically generated key columns can be used to join the tables in queries - for example to return all of the locations mentioned in a specific document.
+
+## More information
+
+To learn more about creating knowledge stores with Azure Cognitive Search, see the [Azure Cognitive Search documentation](https://docs.microsoft.com/azure/search/knowledge-store-concept-intro).
