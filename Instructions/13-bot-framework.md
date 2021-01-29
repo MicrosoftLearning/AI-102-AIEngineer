@@ -258,11 +258,9 @@ type requirements.txt
 
 > *Python dependencies are managed on the deployment target through the inclusion of a **requirements.txt** file in the folder containing the code files. Bt default, this contains the packages required by the template. If your bot code requires additional packages, you would add them to the file.*
 
-2. In Visual Studio Code, in the terminal pane for your **TimeBot** folder, enter the following command to package your code files in a zip for deployment.
-
-```
-powershell Compress-Archive * TimeBot.zip
-```
+2. In Visual Studio Code, in the **Explorer** pane, right-click any of the files in your **TimeBot** folder, and select **Reveal in File Explorer**.
+3. In the File Explorer window, select <u>all</u> of the files in the **TimeBot** folder. Then right-click any of the selected files and select **Send to** > **Compressed (zipped) folder**.
+4. Rename the resulting zipped file in your **TimeBot** folder to **TimeBot.zip**.
 
 ### Deploy and test the bot
 
