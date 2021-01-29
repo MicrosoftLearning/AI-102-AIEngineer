@@ -37,7 +37,7 @@ To use the Language Understanding service, you need two kinds of resource:
 
 If you don't already have Language Understanding authoring and prediction resources:
 
-1. Open the Azure portal at [https://portal.azure.com](https://portal.azure.com), and sign in using the Microsoft account associated with your Azure subscription.
+1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 2. Select the **&#65291;Create a resource** button, search for *language understanding*, and create a **Language Understanding** resource with the following settings.
 
     *Ensure you select **Language Understanding**, <u>not</u> Language Understanding (Azure Cognitive Services)*
@@ -56,7 +56,7 @@ If you don't already have Language Understanding authoring and prediction resour
 
 Now that you have created an authoring resource, you can use it to create a Language Understanding app.
 
-1. In a new browser tab, open the Language Understanding portal at [https://www.luis.ai](https://www.luis.ai).
+1. In a new browser tab, open the Language Understanding portal at `https://www.luis.ai`.
 2. Sign in using the Microsoft account associated with your Azure subscription. If this is the first time you have signed into the Language Understanding portal, you may need to grant the app some permissions to access your account details. Then complete the *Welcome* steps by selecting your Azure subscription and the authoring resource you just created.
 3. On the **Conversation Apps** page, ensure your subscription and Language Understanding authoring resource are selected. Then create a new app for conversation with the following settings:
     - **Name**: Clock

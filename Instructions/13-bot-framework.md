@@ -190,7 +190,7 @@ Now you're ready to deploy your bot to Azure. Deployment involves multiple steps
 
 A bot relies on multiple Azure resources, which can be created in a single resource group.
 
-1. Open the Azure portal at [https://portal.azure.com](https://portal.azure.com), and sign in using the Microsoft account associated with your Azure subscription.
+1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 2. View the **Resource Groups** page to see the resource groups that exist in your subscription.
 3. If you are using a "sandbox" subscription that restricts you to an existing resource group, note the resource group name. Otherwise use the **&#65291;Add** button to create a new resource group with a unique name in any available region.
 

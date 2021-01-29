@@ -13,7 +13,7 @@ QnA Maker is a cognitive service that enables you to create a knowledge base of 
 
 To create and host a knowledge base, you need a QnA Maker resource in your Azure subscription.
 
-1. Open the Azure portal at [https://portal.azure.com](https://portal.azure.com), and sign in using the Microsoft account associated with your Azure subscription.
+1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 2. Select the **&#65291;Create a resource** button, search for *QnA*, and create a **QnA Maker** resource with the following settings:
     - **Managed**: Selected
     - **Subscription**: *Your Azure subscription*
@@ -33,7 +33,7 @@ To create and host a knowledge base, you need a QnA Maker resource in your Azure
 
 To create a knowledge base in your QnA Maker resource, you can use the QnA Maker portal. In this case, you'll create a knowledge base containing questions and answers about [Microsoft Learn](https://docs.microsoft.com/learn).
 
-1. In a new browser tab, go to the QnA Maker portal at [https://qnamaker.ai](https://qnamaker.ai) and sign in using the Microsoft account associated with your Azure subscription.
+1. In a new browser tab, go to the QnA Maker portal at `https://qnamaker.ai` and sign in using the Microsoft account associated with your Azure subscription.
 2. At the top of the portal, select **Create a knowledge base**.
 3. You have already created a QnA Maker resource, so you can skip step 1. In the **Step 2** section, select the following settings:
     - **Microsoft Azure Directory ID**: The Azure directory containing your subscription.

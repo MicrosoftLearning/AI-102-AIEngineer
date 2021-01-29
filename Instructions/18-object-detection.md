@@ -22,7 +22,7 @@ If you have not already done so, you must clone the code repository for this cou
 
 If you already have **Custom Vision** resources for training and prediction in your Azure subscription, you can use them in this exercise. If not, use the following instructions to create them.
 
-1. In a new browser tab, open the Azure portal at [https://portal.azure.com](https://portal.azure.com), and sign in using the Microsoft account associated with your Azure subscription.
+1. In a new browser tab, open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 2. Select the **&#65291;Create a resource** button, search for *custom vision*, and create a **Custom Vision** resource with the following settings:
     - **Create options**: Both
     - **Subscription**: *Your Azure subscription*
@@ -43,7 +43,7 @@ If you already have **Custom Vision** resources for training and prediction in y
 
 To train an object detection model, you need to create a Custom Vision project based on your training resource. To do this, you'll use the Custom Vision portal.
 
-1. In a new browser tab, open the Custom Vision portal at [https://customvision.ai](https://customvision.ai), and sign in using the Microsoft account associated with your Azure subscription.
+1. In a new browser tab, open the Custom Vision portal at `https://customvision.ai`, and sign in using the Microsoft account associated with your Azure subscription.
 2. Create a new project with the following settings:
     - **Name**: Detect Fruit
     - **Description**: Object detection for fruit.

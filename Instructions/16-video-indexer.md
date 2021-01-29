@@ -20,11 +20,9 @@ If you have not already done so, you must clone the code repository for this cou
 
 ## Upload a video to Video Indexer
 
-> **Important**: In this exercise, you must use the web browser on your local computer (<u>not</u> the browser in the hosted lab environment) to access the Video Indexer portal. If you are using the hosted lab environment, you may want to open a new browser instance and resize it so you can see the browser side-by-side with these instructions. For all other tasks, you can use the hosted lab environment.
-
 First, you'll need to sign into the Video Indexer portal and upload a video.
 
-1. Using the browser on your **<u>local</u>** computer, open the Video Indexer portal at [https://www.videoindexer.ai/](https://www.videoindexer.ai/).
+1. In your browser, open the Video Indexer portal at `https://www.videoindexer.ai`.
 3. If you have an existing Video Indexer account, sign in. Otherwise, sign up for a free account and sign in using your Microsoft account (or any other valid account type).
 4. In Video Indexer, select the **Upload** option. Then select the option to **enter a file URL** and enter `https://aka.ms/responsible-ai-video`. Change the default name to **Responsible AI**, review the default settings, select the checkbox to verify compliance with Microsoft's policies for facial recognition, and upload the file.
 3. After the file has uploaded, wait a few minutes while Video Indexer automatically indexes it.
@@ -105,7 +103,7 @@ Observe also that you can also create custom models for language (for example to
 The Video Indexer portal is a useful interface to manage video indexing projects. However, there may be occasions when you want to make the video and its insights available to people who don't have access to your Video Indexer account. Video Indexer provides widgets that you can embed in a web page for this purpose.
 
 1. In Visual Studio Code, in the **16-video-indexer** folder, open **analyze-video.html**. This is a basic HTML page to which you will add the Video Indexer **Player** and **Insights** widgets. Note the reference to the **vb.widgets.mediator.js** script in the header - this script enables multiple Video Indexer widgets on the page to interact with one another.
-2. In the Video Indexer portal, return to the **Media files** page and open your **responsible_ai** video.
+2. In the Video Indexer portal, return to the **Media files** page and open your **Responsible AI** video.
 3. Under the video player, select **&lt;/&gt; Embed** to view the HTML iframe code to embed the widgets.
 4. In the **Share and Embed** dialog box, select the **Player** widget, set the video size to 560 x 315,  and then copy the embed code to the clipboard.
 5. In Visual Studio Code, in the **analyze-video.html** file, paste the copied code under the comment **&lt;-- Player widget goes here -- &gt;**.
@@ -124,9 +122,9 @@ Video Indexer provides a REST API that you can use to upload and manage videos i
 
 To use the Video Indexer API, you need some information to authenticate requests:
 
-1. In the Video Indexer portal [(https://www.videoindexer.ai/)](https://www.videoindexer.ai/), expand the menu (≡) and select the **Account settings** page.
+1. In the Video Indexer portal, expand the menu (≡) and select the **Account settings** page.
 2. Note the **Account ID** on this page - you will need it later.
-3. Open a new browser tab and go to the Video Indexer developer portal [(https://api-portal.videoindexer.ai/)](https://api-portal.videoindexer.ai/), signing in using the credentials for your Video Indexer account.
+3. Open a new browser tab and go to the Video Indexer developer portal at `https://api-portal.videoindexer.ai`, signing in using the credentials for your Video Indexer account.
 4. On the **Products** page, select **Authorization**.
 5. If you already have a subscription for the Authorization API, select it. Otherwise, create a new subscription.
 6. On the page with your subscription(s), observe that you have been assigned two keys (primary and secondary) for each subscription. Then select **Show** for any of the keys to see it. You will need this key shortly.
@@ -145,7 +143,7 @@ All interactions with the Video Indexer REST API follow the same pattern:
 3. Observe that the *location* for a free account is "trial". If you have created an unrestricted Video Indexer account (with an associated Azure resource), you can change this to the location where your Azure resource is provisioned (for example "eastus").
 4. Review the code in the script, noting that invokes two REST methods: one to get an access token, and another to list the videos in your account.
 5. Save your changes, and then at the top-right of the script pane, use the **&#9655;** button to run the script.
-6. View the JSON response from the REST service, which should contain details of the **responsible_ai** video you indexed previously.
+6. View the JSON response from the REST service, which should contain details of the **Responsible AI** video you indexed previously.
 
 ## More information
 

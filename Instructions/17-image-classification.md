@@ -26,7 +26,7 @@ Before you can train a model, you will need Azure resources for *training* and *
 
 In this exercise, you'll create **Custom Vision** resources for training and prediction so that you can manage access and costs for these workloads separately.
 
-1. In a new browser tab, open the Azure portal at [https://portal.azure.com](https://portal.azure.com), and sign in using the Microsoft account associated with your Azure subscription.
+1. In a new browser tab, open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 2. Select the **&#65291;Create a resource** button, search for *custom vision*, and create a **Custom Vision** resource with the following settings:
     - **Create options**: Both
     - **Subscription**: *Your Azure subscription*
@@ -48,7 +48,7 @@ In this exercise, you'll create **Custom Vision** resources for training and pre
 To train an image classification model, you need to create a Custom Vision project based on your training resource. To do this, you'll use the Custom Vision portal.
 
 1. In Visual Studio Code, view the training images in the **17-image-classification/training-images** folder where you cloned the repository. This folder contains subfolders of apple, banana, and orange images.
-2. In a new browser tab, open the Custom Vision portal at [https://customvision.ai](https://customvision.ai). If prompted, sign in using the Microsoft account associated with your Azure subscription and agree to the terms of service.
+2. In a new browser tab, open the Custom Vision portal at `https://customvision.ai`. If prompted, sign in using the Microsoft account associated with your Azure subscription and agree to the terms of service.
 3. In the Custom Vision portal, create a new project with the following settings:
     - **Name**: Classify Fruit
     - **Description**: Image classification for fruit
