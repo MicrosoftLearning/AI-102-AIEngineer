@@ -106,7 +106,7 @@ cv_client = ComputerVisionClient(cog_endpoint, credential)
 
 ## Use the OCR API
 
-The **OCR** API is an optical character recognition API that is optimized for reading small to medium amounts of printed text in *.jpg*, *.png*, *.gif*, and *.bmp* format images. It supports a wide range of languages and in addition to reading text in the image it can can determine the orientation of each text region and return information about the rotation angle of the text in relation to the image
+The **OCR** API is an optical character recognition API that is optimized for reading small to medium amounts of printed text in *.jpg*, *.png*, *.gif*, and *.bmp* format images. It supports a wide range of languages and in addition to reading text in the image it can determine the orientation of each text region and return information about the rotation angle of the text in relation to the image
 
 1. In the code file for your application, in the **Main** function, examine the code that runs if the user selects menu option **1**. This code calls the **GetTextOcr** function, passing the path to an image file.
 2. In the **read-text/images** folder, open **Lincoln.jpg** to view the image that your code will process.
