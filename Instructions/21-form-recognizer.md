@@ -155,7 +155,7 @@ dotnet run
 python train-model.py
 ```
 
-7. Wait for the program to end. Then review the model output and locate the Model ID in the terminal. You will need this value in the next procedure.  
+7. Wait for the program to end. Then review the model output and locate the Model ID in the terminal. You will need this value in the next procedure, so do not close the terminal!
 
 ## Test the model created without labels
 
