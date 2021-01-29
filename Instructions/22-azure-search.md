@@ -549,7 +549,7 @@ dotnet run
 flask run
 ```
 
-2. In the message that is displayed when the app starts successfully, follow the link to the running web application (*https://localhost:5000/* or *https://127.0.0.1:5000/*) to open the Margies Travel site in a web browser.
+2. In the message that is displayed when the app starts successfully, follow the link to the running web application (*http://localhost:5000/* or *http://127.0.0.1:5000/*) to open the Margies Travel site in a web browser.
 3. In the Margie's Travel website, enter **London hotel** into the search box and click **Search**.
 4. Review the search results. They include the file name (with a hyperlink to the file URL), an extract of the file content with the search terms (*London* and *hotel*) emphasized, and other attributes of the file from the index fields.
 5. Observe that the results page includes some user interface elements that enable you to refine the results. These include:
