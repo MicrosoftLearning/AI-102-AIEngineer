@@ -48,22 +48,18 @@ You'll use the sample forms in the **21-custom-form/sample-forms** folder in thi
 
     Later, you will use the files ending in **.json** and **.jpg** to train your second model _with_ labels. The **.json** files contain label information. To train with labels, you need to have the label information files in your blob storage container alongside the forms.
 
-You can learn more about custom model input requirements [in the Form Recognizer documentation](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/build-training-data-set#custom-model-input-requirements).
-
-## Store training data in an Azure blob storage container
-
-1. Return to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
-2. View the **Resource group** in which you created the Form Recognizer resource previously.
-3. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with the name of the resource group in subsequent steps.
-4. In Visual Studio Code, in the **21-custom-form** folder, select **setup.cmd**. You will use this batch script to run the Azure command line interface (CLI) commands required to create the Azure resources you need.
-5. Right-click the the **21-custom-form** folder and select **Open in Integrated Terminal**.
-6. In the terminal pane, enter the following command to establish an authenticated connection to your Azure subscription.
+2. Return to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
+3. View the **Resource group** in which you created the Form Recognizer resource previously.
+4. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with the name of the resource group in subsequent steps.
+5. In Visual Studio Code, in the **21-custom-form** folder, select **setup.cmd**. You will use this batch script to run the Azure command line interface (CLI) commands required to create the Azure resources you need.
+6. Right-click the the **21-custom-form** folder and select **Open in Integrated Terminal**.
+7. In the terminal pane, enter the following command to establish an authenticated connection to your Azure subscription.
 
 ```
 az login --output none
 ```
 
-8. When prompted, open `https://microsoft.com/devicelogin`, enter the provided code, and sign into your Azure subscription. Then return to Visual Studio Code and wait for the sign-in process to complete.
+8. When prompted, sign into your Azure subscription. Then return to Visual Studio Code and wait for the sign-in process to complete.
 9. Run the following command to list Azure locations.
 
 ```
