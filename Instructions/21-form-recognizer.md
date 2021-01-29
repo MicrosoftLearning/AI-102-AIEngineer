@@ -87,8 +87,8 @@ To get the form data from your blob storage container, the Form Recognizer servi
 1. In the Azure portal, in the Storage Explorer pane for your storage account,right click the **sampleforms** container and select **Get Shared Access Signature**.
 2. Create a shared access signature using the following configurations: 
     - Access Policy: (none)
-    - Start time: *leave as is for this exercise*
-    - End time: *leave as is for this exercise*
+    - Start time: *Any time <u>yesterday</u>*
+    - End time: *Any time <u>tomorrow</u>*
     - Time Zone: Local 
     - Permissions: _Select **Read** and **List**_
 
