@@ -158,7 +158,7 @@ Now you're ready to publish your trained model so that it can be used from a cli
     - **Model name**: fruit-detector
     - **Prediction Resource**: *The **prediction** resource you created previously (<u>not</u> the training resource)*.
 2. At the top left of the **Project Settings** page, click the *Projects Gallery* (&#128065;) icon to return to the Custom Vision portal home page, where your project is now listed.
-3. On the Custom Vision portal home page, at the top right, click the *settings* (&#9881;) icon to view the settings for your Custom Vision service. Then, under **Resources**, expand your *prediction* resource (<u>not</u> the training resource) to see its **Key** and **Endpoint** values (you can also obtain this information by viewing the resource in the Azure portal).
+3. On the Custom Vision portal home page, at the top right, click the *settings* (&#9881;) icon to view the settings for your Custom Vision service. Then, under **Resources**, find your *prediction* resource (<u>not</u> the training resource) to determine its **Key** and **Endpoint** values (you can also obtain this information by viewing the resource in the Azure portal).
 
 ## Use the image classifier from a client application
 
