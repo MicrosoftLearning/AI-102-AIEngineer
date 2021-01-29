@@ -43,7 +43,7 @@ The indexing process extracts insights from the video, which you can view in the
 
 ![Video indexer with a video player and Timeline pane showing the video transcript.](./images/video-indexer-transcript.png)
 
-3. At the top left of the portal, select the **View** symbol (which looks similar to &#128455;), and in the list of insights, in addition to **Transcript**, select **OCR** and **Speakers**.
+3. At the top right of the portal, select the **View** symbol (which looks similar to &#128455;), and in the list of insights, in addition to **Transcript**, select **OCR** and **Speakers**.
 
 ![Video indexer view menu with Transcript, OCR, and Speakers selected](./images/video-indexer-view-menu.png)
 
