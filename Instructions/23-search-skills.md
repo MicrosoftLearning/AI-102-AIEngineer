@@ -42,7 +42,7 @@ If you have previously completed the **[Create an Azure Cognitive Search solutio
     az login --output none
     ```
 
-8. When prompted, open `https://microsoft.com/devicelogin`, enter the provided code, and sign into your Azure subscription. Then return to Visual Studio Code and wait for the sign-in process to complete.
+8. When prompted, sign into your Azure subscription. Then return to Visual Studio Code and wait for the sign-in process to complete.
 9. Run the following command to list Azure locations.
 
     ```
