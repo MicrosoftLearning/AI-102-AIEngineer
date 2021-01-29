@@ -256,7 +256,7 @@ az bot prepare-deploy --lang Csharp --code-dir "." --proj-file-path "TimeBot.csp
 type requirements.txt
 ```
 
-> *Python dependencies are managed on the deployment target through the inclusion of a **requirements.txt** file in the folder containing the code files. Bt default, this contains the packages required by the template. If your bot code requires additional packages, you would add them to the file.
+> *Python dependencies are managed on the deployment target through the inclusion of a **requirements.txt** file in the folder containing the code files. Bt default, this contains the packages required by the template. If your bot code requires additional packages, you would add them to the file.*
 
 2. In Visual Studio Code, in the terminal pane for your **TimeBot** folder, enter the following command to package your code files in a zip for deployment.
 

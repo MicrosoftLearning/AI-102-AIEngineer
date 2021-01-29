@@ -103,7 +103,7 @@ Now that you have the necessary Azure resources in place, you can create a searc
     - Change the **Skillset name** to **margies-skillset**.
     - Select the option **Enable OCR and merge all text into merged_content field**.
     - Set the **Source data field** to **merged_content**.
-    - Leave the **Enrichment granularity level** as **Source field**, which is set the enture contents of the document being indexed; but note that you can change this to extract information at more granular levels, like pages or sentences.
+    - Leave the **Enrichment granularity level** as **Source field**, which is set the entire contents of the document being indexed; but note that you can change this to extract information at more granular levels, like pages or sentences.
     - Select the following enriched fields:
 
         | Cognitive Skill | Parameter | Field name |
