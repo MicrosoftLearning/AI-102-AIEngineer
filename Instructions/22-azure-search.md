@@ -117,7 +117,7 @@ Now that you have the necessary Azure resources in place, you can create a searc
 6. Proceed to the next step (*Customize target index*).
 7. Change the **Index name** to **margies-index**.
 8. Set the **Key** set to **metadata_storage_path** and leave the **Suggester name** and **Search mode** blank.
-9. Make the following changes to the index fields, leaving all other fields with their default settings:
+9. Make the following changes to the index fields, leaving all other fields with their default settings (you may need to scroll to the right to see the entire table):
 
     | Field name | Retrievable | Filterable | Sortable | Facetable | Searchable |
     | ---------- | ----------- | ---------- | -------- | --------- | ---------- |
