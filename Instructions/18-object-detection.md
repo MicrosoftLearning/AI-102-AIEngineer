@@ -100,7 +100,7 @@ dotnet add package Microsoft.Azure.CognitiveServices.Vision.CustomVision.Trainin
 **Python**
 
 ```
-pip install azure-cognitiveservices-vision-customvision==2.0.0
+pip install azure-cognitiveservices-vision-customvision==3.1.0
 ```
 
 6. View the contents of the **train-detector** folder, and note that it contains a file for configuration settings:
