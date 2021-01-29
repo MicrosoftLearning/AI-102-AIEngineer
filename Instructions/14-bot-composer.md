@@ -9,7 +9,7 @@ Bot Framework Composer is a visual designer that lets you quickly and easily bui
 
 ## Get an OpenWeather API key
 
-In this exercise, you will create a bot that retrieves the weather conditions for the zipcode entered by the user. You will require an API key for the service to work so visit the [OpenWeather site](https://openweathermap.org/price) to create a user account and get a free API key before you start.
+In this exercise, you will create a bot that retrieves the weather conditions for the zipcode entered by the user. You will require an API key for the service to work so visit the OpenWeather site at `https://openweathermap.org/price` to create a user account and get a free API key before you start.
 
 ## Create a basic bot
 
