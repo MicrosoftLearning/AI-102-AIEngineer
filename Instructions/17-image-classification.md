@@ -168,7 +168,7 @@ dotnet add package Microsoft.Azure.CognitiveServices.Vision.CustomVision.Predict
 **Python**
 
 ```
-pip install azure-cognitiveservices-vision-customvision==2.0.0
+pip install azure-cognitiveservices-vision-customvision==3.1.0
 ```
 
 > **Note**: The Python SDK package includes both training and prediction packages, and may already be installed.
