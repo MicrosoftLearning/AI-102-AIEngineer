@@ -176,7 +176,7 @@ As before, when the bot starts, note the endpoint at which it is running is show
 
 6. After the conversation is opened in a **Live chat** pane, wait for the message *Hello and welcome!*.
 7. Enter a message such as *Hello* and view the response from the bot, which should be *Ask me what the time is*.
-8. Enter *What is the time?* and view the response.
+8. Enter *What is the time?* (including the question mark) and view the response.
 
     The bot now responds to the query "What is the time?" by displaying the local time where the bot is running. For any other query, it prompts the user to ask it what the time is. This is a very limited bot, which could be improved through integration with the Language Understanding service and additional custom code, but it serves as a working example of how you can build a solution with the Bot Framework SDK by extending a bot created from a template.
 
@@ -252,7 +252,11 @@ az bot prepare-deploy --lang Csharp --code-dir "." --proj-file-path "TimeBot.csp
 
 **Python**
 
-> *Python dependencies are managed on the deployment target through the inclusion of a **requirements.txt** file in the folder containing the code files. In this case, there are no package dependencies, so there is no need to create a requirements file*
+```
+type requirements.txt
+```
+
+> *Python dependencies are managed on the deployment target through the inclusion of a **requirements.txt** file in the folder containing the code files.
 
 2. In Visual Studio Code, in the terminal pane for your **TimeBot** folder, enter the following command to package your code files in a zip for deployment.
 
