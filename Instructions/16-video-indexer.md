@@ -22,7 +22,7 @@ If you have not already done so, you must clone the code repository for this cou
 
 First, you'll need to sign into the Video Indexer portal and upload a video.
 
-> **Tip**: If the Video Indexer page is slow to load in the hosted lab environment, use your locally installed browser. Yiu can switch back to the hosted VM for the later tasks.
+> **Tip**: If the Video Indexer page is slow to load in the hosted lab environment, use your locally installed browser. You can switch back to the hosted VM for the later tasks.
 
 1. In your browser, open the Video Indexer portal at `https://www.videoindexer.ai`.
 2. If you have an existing Video Indexer account, sign in. Otherwise, sign up for a free account and sign in using your Microsoft account (or any other valid account type). If you have difficulty signing in, try opening a private browser session.
