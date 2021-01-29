@@ -45,7 +45,7 @@ The solution you will create for Margie's Travel requires the following resource
 4. In the blade for your storage account, in the pane on the left, select **Storage Explorer**.
 5. In Storage Explorer, right-click **BLOB CONTAINERS** and create a blob container named **margies** with **Blob** level public access (the container will host documents that Margie's Travel makes publicly available in their web site).
 6. Expand **BLOB CONTAINERS** and select your new **margies** container.
-7. In the **margies** container, use the **&#65291;New Folder** button to create a new folder named **collateral**.
+7. In the **margies** container, use the **&#65291;New Folder** button to create a new folder named **collateral**. After creating the folder, Storage Explorer will open it - it is currently empty.
 8. In the **margies > collateral** folder, select **Upload**, and in the **Upload blob** pane, select *all* of the files in the local **ai-102/22-create-a-search-solution/data/collateral** folder (in the folder where you cloned the repo) and upload them.
 9. Use the **&uarr;** button to navigate back up to the root of the **margies** container. Then create a new folder named **reviews**, alongside the existing **collateral** folder.
 10. In the **margies > reviews** folder, select **Upload**, and in the **Upload blob** pane, select *all* of the files in the local **ai-102/22-create-a-search-solution/data/reviews** folder and upload them.
