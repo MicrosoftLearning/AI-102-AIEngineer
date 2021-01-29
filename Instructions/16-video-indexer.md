@@ -22,10 +22,12 @@ If you have not already done so, you must clone the code repository for this cou
 
 First, you'll need to sign into the Video Indexer portal and upload a video.
 
+> **Tip**: If the Video Indexer page is slow to load in the hosted lab environment, use your locally installed browser. Yiu can switch back to the hosted VM for the later tasks.
+
 1. In your browser, open the Video Indexer portal at `https://www.videoindexer.ai`.
-3. If you have an existing Video Indexer account, sign in. Otherwise, sign up for a free account and sign in using your Microsoft account (or any other valid account type).
-4. In Video Indexer, select the **Upload** option. Then select the option to **enter a file URL** and enter `https://aka.ms/responsible-ai-video`. Change the default name to **Responsible AI**, review the default settings, select the checkbox to verify compliance with Microsoft's policies for facial recognition, and upload the file.
-3. After the file has uploaded, wait a few minutes while Video Indexer automatically indexes it.
+2. If you have an existing Video Indexer account, sign in. Otherwise, sign up for a free account and sign in using your Microsoft account (or any other valid account type). If you have difficulty signing in, try opening a private browser session.
+3. In Video Indexer, select the **Upload** option. Then select the option to **enter a file URL** and enter `https://aka.ms/responsible-ai-video`. Change the default name to **Responsible AI**, review the default settings, select the checkbox to verify compliance with Microsoft's policies for facial recognition, and upload the file.
+4. After the file has uploaded, wait a few minutes while Video Indexer automatically indexes it.
 
 > **Note**: In this exercise, we're using this video to explore Video Indexer functionality; but you should take the time to watch it in full when you've finished the exercise as it contains useful information and guidance for developing AI-enabled applications responsibly! 
 
