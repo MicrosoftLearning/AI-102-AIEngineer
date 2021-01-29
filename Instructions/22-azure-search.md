@@ -324,7 +324,7 @@ The new skill is named **get-sentiment**, and will evaluate the text found in th
 
 1. On the blade for your Azure Cognitive Search resource, select the **Indexers** tab (<u>not</u> *Indexes*), where **margies-indexer** should be listed.
 2. Select **margies-indexer** and view the **Indexer Definition (JSON)** page. This shows a JSON definition for your indexer, which maps fields extracted from document content and metadata (in the **fieldMappings** section), and values extracted by skills in the skillset (in the **outputFieldMappings** section), to fields in the index.
-3. In the **fieldMappings** section, after the existing mapping for the **metadata_storage_path** value to the base-54 encoded key field, add another mapping to map the same value to the **url** field, so that the entire **fieldMappings** section looks like this (be sure to include the comma between the existing mapping and the new one):
+3. In the **fieldMappings** section, after the existing mapping for the **metadata_storage_path** value to the base-64 encoded key field, add another mapping to map the same value to the **url** field, so that the entire **fieldMappings** section looks like this (be sure to include the comma between the existing mapping and the new one):
 
 ```
 "fieldMappings": [
