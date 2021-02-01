@@ -9,7 +9,7 @@ In this exercise, you'll get started with Cognitive Services by creating a **Cog
 
 ## Clone the repository for this course
 
-If you have already cloned **AI-102-AIEngineer** code repository to the computer where you're working on this lab, open it in Visual Studio Code; otherwise, follow these steps to clone it now.
+If you have not already cloned **AI-102-AIEngineer** code repository to the environment where you're working on this lab, follow these steps to do so. Otherwise, open the cloned folder in Visual Studio Code.
 
 1. Start Visual Studio Code.
 2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).

@@ -11,7 +11,7 @@ For example, suppose a travel agency wants to examine hotel reviews that have be
 
 ## Clone the repository for this course
 
-If you have not already done so, you must clone the code repository for this course:
+If you have already cloned **AI-102-AIEngineer** code repository to the environment where you're working on this lab, open it in Visual Studio Code; otherwise, follow these steps to clone it now.
 
 1. Start Visual Studio Code.
 2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
@@ -46,7 +46,7 @@ In this exercise, you'll complete a partially implemented client application tha
     - **C#**: appsettings.json
     - **Python**: .env
 
-    Open the configuration file and update the configuration values it contains to include an authentication **key** for your cognitive services resource, and the **location** where it is deployed. Save your changes.
+    Open the configuration file and update the configuration values it contains to include an authentication **key** for your cognitive services resource, and the **location** where it is deployed (<u>not</u> the endpoint). Save your changes.
 3. Note that the **text-translation** folder contains a code file for the client application:
 
     - **C#**: Program.cs
@@ -55,7 +55,7 @@ In this exercise, you'll complete a partially implemented client application tha
     Open the code file and examine the code it contains.
 
 4. In the **Main** function, note that code to load the cognitive services key and region from the configuration file has already been provided. The endpoint for the translation service is also specified in your code.
-5. Save your changes. Then right-click the **text-translation** folder, open an integrated terminal, and enter the following command to run the program:
+5. Right-click the **text-translation** folder, open an integrated terminal, and enter the following command to run the program:
 
 **C#**
 
