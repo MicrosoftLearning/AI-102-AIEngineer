@@ -147,9 +147,11 @@ python translator.py
 Now that you have a **SpeechTranslationConfig** for the speech service in your cognitive services resource, you can use the **Speech translation** API to recognize and translate speech.
 
 1. In the **Main** function for your program, note that the code uses the **Translate** function to translate spoken input.
-2. In the **Translate** function, under the comment **Translate speech**, add the following code to create a **TranslationRecognizer** client that can be used to recognize and translate speech using the default system microphone for input:
+2. In the **Translate** function, under the comment **Translate speech**, add the following code to create a **TranslationRecognizer** client that can be used to recognize and translate speech using the default system microphone for input.
 
-   **C#**
+    > **Note**: *You can also translate speech input from an audio file by modifying the **AudioConfig** object to reference an file path.*
+
+**C#**
 
 ```C#
 // Translate speech
@@ -176,7 +178,7 @@ translation = result.translations[targetLanguage]
 print(translation)
 ```
 
-> **Note**: *You can also translate speech input from an audio file by modifying the **AudioConfig** object to reference an file path.*
+> **Note**: The code in your application translates the input to all three languages in a single call. Only the translation for the specific language is displayed, but you could retrieve any of the translations by specifying the target language code in the **translations** collection of the result.
 
 3. Save your changes and return to the integrated terminal for the **translator** folder, and enter the following command to run the program:
 
@@ -194,11 +196,9 @@ python translator.py
 
 4. When prompted, enter a valid language code (*fr*, *es*, or *hi*), and then speak clearly into the microphone and say "where is the station?" or some other phrase you might use when traveling abroad. The program should transcribe your spoken input and translate it to the language you specified (French, Spanish, or Hindi). Repeat this process, trying each language supported by the application. When you're finished, press ENTER to end the program.
 
-    > **Note** *The TranslationRecognizer gives you around 5 seconds to speak. If it detects no spoken input, it produces a "No match" result.*
+    > **Note**: The TranslationRecognizer gives you around 5 seconds to speak. If it detects no spoken input, it produces a "No match" result.
     >
     > The translation to Hindi may not always be displayed correctly in the Console window due to character encoding issues.
-
-The code in your application translates the input to all three languages in a single call. Only the translation for the specific language is displayed, but you can retrieve any of the translations by specifying the target language code in the **translations** collection of the result.
 
 ## Synthesize the translation to speech
 
