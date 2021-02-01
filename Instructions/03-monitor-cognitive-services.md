@@ -9,7 +9,7 @@ Azure Cognitive Services can be a critical part of an overall application infras
 
 ## Clone the repository for this course
 
-If you have not already done so, you must clone the code repository for this course:
+If you have already cloned **AI-102-AIEngineer** code repository to the computer where you're working on this lab, open it in Visual Studio Code; otherwise, follow these steps to clone it now.
 
 1. Start Visual Studio Code.
 2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
@@ -61,7 +61,7 @@ Let's start monitoring by defining an alert rule so you can detect activity in y
 az login
 ```
 
-If you are not already signed in, a web browser will open and prompt you to sign into Azure. Do so, and then close the browser and return to Visual Studio Code.
+A web browser tab will open and prompt you to sign into Azure. Do so, and then close the browser tab and return to Visual Studio Code.
 
 > **Tip**: If you have multiple subscriptions, you'll need to ensure that you are working in the one that contains your cognitive services resource.  Use this command to determine your current subscription.
 >

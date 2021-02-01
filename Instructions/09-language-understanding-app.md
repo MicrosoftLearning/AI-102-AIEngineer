@@ -48,7 +48,7 @@ If you don't already have Language Understanding authoring and prediction resour
     - **Name**: *Enter a unique name*
     - **Authoring location**: *Select your preferred location*
     - **Authoring pricing tier**: F0
-    - **Prediction location**: *Choose a location in the same authoring region as your authoring location*
+    - **Prediction location**: *The same as your authoring location*
     - **Prediction pricing tier**: F0
 3. Wait for the resources to be created, and note that two Language Understanding resources are provisioned; one for authoring, and another for prediction. You can view both of these by navigating to the resource group where you created them. If you select **Go to resource**, it will open the *authoring* resource.
 

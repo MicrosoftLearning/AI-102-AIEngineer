@@ -9,7 +9,7 @@ In this exercise, you'll get started with Cognitive Services by creating a **Cog
 
 ## Clone the repository for this course
 
-If you have not already done so, you must clone the code repository for this course:
+If you have already cloned **AI-102-AIEngineer** code repository to the computer where you're working on this lab, open it in Visual Studio Code; otherwise, follow these steps to clone it now.
 
 1. Start Visual Studio Code.
 2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
@@ -33,7 +33,7 @@ Azure Cognitive Services are cloud-based services that encapsulate artificial in
 4. Wait for deployment to complete, and then view the deployment details.
 5. Go to the resource and view its **Keys and Endpoint** page. This page contains the information that you will need to connect to your resource and use it from applications you develop. Specifically:
     - An HTTP *endpoint* to which client applications can send requests.
-    - Two *keys* that can be used for authentication (client applications can use either of the keys. A common practice is to use one for development, and another for production. You can easily regenerate the development key after developers have finished their work to prevent continued access).
+    - Two *keys* that can be used for authentication (client applications can use either key to authenticate).
     - The *location* where the resource is hosted. This is required for requests to some (but not all) APIs.
 
 ## Use a REST Interface
@@ -81,8 +81,6 @@ python rest-client.py
 
 You can write code that consumes cognitive services REST APIs directly, but there are software development kits (SDKs) for many popular programming languages, including Microsoft C#, Python, and Node.js. Using an SDK can greatly simplify development of applications that consume cognitive services.
 
-> **Note**: In this exercise, you can choose to use the SDK for either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
-
 1. In Visual Studio Code, in the **Explorer** pane, in the **01-getting-started** folder, expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **sdk-client** folder and open an integrated terminal. Then install the Text Analytics SDK package by running the appropriate command for your language preference:
 
@@ -129,6 +127,8 @@ python sdk-client.py
 
 6. When prompted, enter some text and review the language that is detected by the service. For example, try entering "Goodbye", "Au revoir", and "Hasta la vista".
 7. When you have finished testing the application, enter "quit" to stop the program.
+
+> **Note**: Some languages that require Unicode character sets may not be recognized in this simple console application.
 
 ## More information
 

@@ -11,7 +11,7 @@ Many of the cognitive services APIs can be packaged and deployed in a *container
 
 ## Clone the repository for this course
 
-If you have not already done so, you must clone the code repository for this course:
+If you have already cloned **AI-102-AIEngineer** code repository to the computer where you're working on this lab, open it in Visual Studio Code; otherwise, follow these steps to clone it now.
 
 1. Start Visual Studio Code.
 2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
