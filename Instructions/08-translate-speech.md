@@ -196,7 +196,9 @@ python translator.py
 
     > **Note** *The TranslationRecognizer gives you around 5 seconds to speak. If it detects no spoken input, it produces a "No match" result.*
     >
-    > *The code in your application translates the input to all three languages in a single call. Only the translation for the specific language is displayed, but you can retrieve any of the translations by specifying the target language code in the **translations** collection of the result.*
+    > The translation to Hindi may not always be displayed correctly in the Console window due to character encoding issues.
+
+The code in your application translates the input to all three languages in a single call. Only the translation for the specific language is displayed, but you can retrieve any of the translations by specifying the target language code in the **translations** collection of the result.
 
 ## Synthesize the translation to speech
 
