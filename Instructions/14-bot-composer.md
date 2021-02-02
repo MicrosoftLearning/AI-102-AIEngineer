@@ -158,7 +158,6 @@ The **getWeather** dialog flow so far consists of a simple message. Now you need
 
     ```
     - The weather in ${dialog.weather.city} is ${dialog.weather.weather} and the temp is ${dialog.weather.temp}&deg;.
-
     ```
 
 1. You also need to account for a response from the weather service that is not 200, so in the **False** branch, add a **Send a response** action and set its **Language generation** text to `- I got an error: ${dialog.api_response.content.message}.`
