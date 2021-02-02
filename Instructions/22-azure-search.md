@@ -67,7 +67,7 @@ If you don't already have on in your subscription, you'll need to provision a **
     - **Account kind**: Storage V2
     - **Replication**: Locally-redundant storage (LRS)
 3. Wait for deployment to complete, and then go to the deployed resource.
-4. OIn the **Overview** page, note the **Subscription ID** -this identifies the subscription in which the storage account is provisioned.
+4. On the **Overview** page, note the **Subscription ID** -this identifies the subscription in which the storage account is provisioned.
 5. On the **Access keys** page, note that two keys have been generated for your storage account. Then select **Show keys** to veiw the keys.
 
     > **Tip**: Keep the **Storage Account** blade open - you will need the subscription ID and one of the keys in the next procedure.
