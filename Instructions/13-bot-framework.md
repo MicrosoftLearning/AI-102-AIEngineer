@@ -11,7 +11,7 @@ In this exercise, you'll use the Microsoft Bot Framework SDK to create and deplo
 
 ## Clone the repository for this course
 
-If you have not already done so, you must clone the code repository for this course:
+If you have not already cloned **AI-102-AIEngineer** code repository to the environment where you're working on this lab, follow these steps to do so. Otherwise, open the cloned folder in Visual Studio Code.
 
 1. Start Visual Studio Code.
 2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
@@ -36,6 +36,7 @@ You can use the Bot Framework SDK to create a bot based on a template, and then 
 dotnet new -i Microsoft.Bot.Framework.CSharp.EchoBot
 dotnet new -i Microsoft.Bot.Framework.CSharp.CoreBot
 dotnet new -i Microsoft.Bot.Framework.CSharp.EmptyBot
+
 ```
 
 **Python**
@@ -45,6 +46,7 @@ pip install botbuilder-core
 pip install asyncio
 pip install aiohttp
 pip install cookiecutter==1.7.0
+
 ```
 
 4. After the templates and packages have been installed, run the following command to create a bot based on the *EchoBot* template:
