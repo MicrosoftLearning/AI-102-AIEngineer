@@ -23,7 +23,6 @@ namespace speaking_clock
                 // Configure speech service
 
 
-                Console.WriteLine("Say 'stop' to end");
                 string command = "";
                 while (command.ToLower() != "stop.")
                 {
