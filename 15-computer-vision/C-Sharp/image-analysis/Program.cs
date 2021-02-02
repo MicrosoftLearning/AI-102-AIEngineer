@@ -25,11 +25,16 @@ namespace image_analysis
                 string cogSvcEndpoint = configuration["CognitiveServicesEndpoint"];
                 string cogSvcKey = configuration["CognitiveServiceKey"];
 
-                // Authenticate Computer Vision client
-
-
                 // Get image
                 string imageFile = "images/street.jpg";
+                if (args.Length > 0)
+                {
+                    imageFile = args[0];
+                }
+
+
+                // Authenticate Computer Vision client
+
 
                 // Analyze image
                 await AnalyzeImage(imageFile);

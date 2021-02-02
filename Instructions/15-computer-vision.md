@@ -9,7 +9,7 @@ Computer vision is an artificial intelligence capability that enables software s
 
 ## Clone the repository for this course
 
-If you have not already done so, you must clone the code repository for this course:
+If you have not already cloned **AI-102-AIEngineer** code repository to the environment where you're working on this lab, follow these steps to do so. Otherwise, open the cloned folder in Visual Studio Code.
 
 1. Start Visual Studio Code.
 2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
@@ -207,23 +207,23 @@ for caption in analysis.description.captions:
 
 ```
 
-5. Save your changes and return to the integrated terminal for the **image-analysis** folder, and enter the following command to run the program:
+5. Save your changes and return to the integrated terminal for the **image-analysis** folder, and enter the following command to run the program with the argument **images/street.jpg**:
 
 **C#**
 
 ```
-dotnet run
+dotnet run images/street.jpg
 ```
 
 **Python**
 
 ```
-python image-analysis.py
+python image-analysis.py images/street.jpg
 ```
 
 6. Observe the output, which should include a suggested caption for the **street.jpg** image.
-7. In the **Main function**, change the **imageFile** variable declaration to reference the **building.jpg** file in the **images** folder and then re-run the program to see the caption that gets generated.
-8. Repeat the previous step to generate a caption for the **person.jpg** file.
+7. Run the program again, this time with the argument **images/building.jpg** to see the caption that gets generated for the **building.jpg** image.
+8. Repeat the previous step to generate a caption for the **images/person.jpg** file.
 
 ## Get suggested tags for an image
 

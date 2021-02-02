@@ -19,11 +19,13 @@ def main():
         cog_endpoint = os.getenv('COG_SERVICE_ENDPOINT')
         cog_key = os.getenv('COG_SERVICE_KEY')
 
+        # Get image
+        image_file = 'images/street.jpg'
+        if len(sys.argv) > 0:
+            image_file = sys.argv[1]
+
         # Authenticate Computer Vision client
 
-
-        # Get image
-        image_file = os.path.join('images','street.jpg')
 
         # Analyze image
         AnalyzeImage(image_file)
