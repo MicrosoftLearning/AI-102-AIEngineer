@@ -29,6 +29,13 @@ To create and host a knowledge base, you need a QnA Maker resource in your Azure
 3. Select the legal terms checkbox and create the resource.
 4. Wait for deployment to complete, and then view the deployment details.
 
+> **Note**: If you experience an error because required Azure resource providers are not enabled, perform the following steps:
+>
+> 1. In the Azure portal, on the **Home** page, select **Subscriptions** (or expand the **&#8801;** menu, select **All Services**, and in the **All** category, select **Subscriptions**).
+> 2. Select your Azure subscription (if you have multiple subscriptions, select the one in which you created your Cognitive Services resource).
+> 3. In the blade for your subscription, in the pane on the left, in the **Settings** section, select **Resource providers**.
+> 4. Ensure that the **Microsoft.BotService** and **Microsoft.Search** resource providers are registered.
+
 ## Create a knowledge base
 
 To create a knowledge base in your QnA Maker resource, you can use the QnA Maker portal. In this case, you'll create a knowledge base containing questions and answers about [Microsoft Learn](https://docs.microsoft.com/learn).
@@ -39,7 +46,7 @@ To create a knowledge base in your QnA Maker resource, you can use the QnA Maker
     - **Microsoft Azure Directory ID**: The Azure directory containing your subscription.
     - **Azure subscription name**: Your Azure subscription.
     - **Azure QnA Service**: The QnA Maker resource you created previously.
-    - **Language**: English.
+    - **Language**: English (*by default, this option is only available for the first knowledge base you create*).
 4. In the **Step 3** section, enter **Learn FAQ** as the name for your knowledge base.
 
     You can create a knowledge base from scratch, but it's common to start by importing questions and answers from an existing FAQ page or document.
