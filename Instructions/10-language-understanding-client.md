@@ -20,12 +20,7 @@ If you have already cloned **AI-102-AIEngineer** code repository to the environm
 
 ## Create Language Understanding resources
 
-To use the Language Understanding service, you need two kinds of resource:
-
-- An *authoring* resource: used to define, train, and test the language understanding app. This must be a **Language Understanding - Authoring** resource in your Azure subscription.
-- A *prediction* resource: used to publish your language understanding app and handle requests from client applications that use it. This can be either a **Language Understanding** or **Cognitive Services** resource in your Azure subscription.
-
-> **Note**: If you already have Language Understanding authoring and prediction resources in your Azure subscription, you can use them in this exercise. Otherwise, follow these instructions to create them.
+If you already have Language Understanding authoring and prediction resources in your Azure subscription, you can use them in this exercise. Otherwise, follow these instructions to create them.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 2. Select the **&#65291;Create a resource** button, search for *language understanding*, and create a **Language Understanding** resource with the following settings:
@@ -42,9 +37,7 @@ To use the Language Understanding service, you need two kinds of resource:
 
 ## Import, train, and publish a Language Understanding app
 
-In this exercise, you'll use an app that contains a language model for clock-related intents. For example, the user input *what is the time?* predicts an intent named **GetTime**.
-
-> **Note**: If you already have a **Clock** app from a previous exercise, you can use it in this exercise. Otherwise, follow these instructions to create it.
+If you already have a **Clock** app from a previous exercise, you can use it in this exercise. Otherwise, follow these instructions to create it.
 
 1. In a new browser tab, open the Language Understanding portal at `https://www.luis.ai`.
 2. Sign in using the Microsoft account associated with your Azure subscription. If this is the first time you have signed into the Language Understanding portal, you may need to grant the app some permissions to access your account details. Then complete the *Welcome* steps by selecting your Azure subscription and the authoring resource you just created.
