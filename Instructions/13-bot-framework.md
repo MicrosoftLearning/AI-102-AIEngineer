@@ -92,7 +92,7 @@ dotnet run
 python app.py
 ```
 
-When the bot starts, note the endpoint at which it is running is shown. This should be similar to **http://localhost:3978**.
+When the bot starts, note the endpoint at which it is running is shown. This should be similar to **http:// localhost:3978**.
 
 2. Start the Bot Framework Emulator, and open your bot by specifying the endpoint with the **/api/messages** path appended, like this:
 

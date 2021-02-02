@@ -13,7 +13,7 @@ To address this challenge, Margie's Travel can use Azure Cognitive Search to imp
 
 ## Clone the repository for this course
 
-If you have not already done so, you must clone the code repository for this course:
+If you have not already cloned **AI-102-AIEngineer** code repository to the environment where you're working on this lab, follow these steps to do so. Otherwise, open the cloned folder in Visual Studio Code.
 
 1. Start Visual Studio Code.
 2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
@@ -26,37 +26,21 @@ If you have not already done so, you must clone the code repository for this cou
 
 The solution you will create for Margie's Travel requires the following resources in your Azure subscription:
 
-- A **Storage account** with a blob container in which the documents to be searched are stored.
-- A **Cognitive Services** resource, which provides AI services for skills that your search solution can use to enrich the data in the data source with AI-generated insights.
 - An **Azure Cognitive Search** resource, which will manage indexing and querying.
+- A **Cognitive Services** resource, which provides AI services for skills that your search solution can use to enrich the data in the data source with AI-generated insights.
+- A **Storage account** with a blob container in which the documents to be searched are stored.
 
-### Create a storage account and upload files
+### Create an Azure Cognitive Search resource
 
-1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *storage*, and create a **Storage account** resource with the following settings:
+1. Return to the home page of the Azure portal, and then select the **&#65291;Create a resource** button, search for *search*, and create a **Azure Cognitive Search** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
-    - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
-    - **Storage account name**: *Enter a unique name*
-    - **Location**: *Choose any available location*
-    - **Performance**: Standard
-    - **Account kind**: Storage V2
-    - **Replication**: Locally-redundant storage (LRS)
-3. Wait for deployment to complete, and then go to the deployed resource.
-4. In the blade for your storage account, in the pane on the left, select **Storage Explorer**.
-5. In Storage Explorer, right-click **BLOB CONTAINERS** and create a blob container named **margies** with **Blob** level public access (the container will host documents that Margie's Travel makes publicly available in their web site).
-6. Expand **BLOB CONTAINERS** and select your new **margies** container.
-7. In the **margies** container, use the **&#65291;New Folder** button to create a new folder named **collateral**. After creating the folder, Storage Explorer will open it - it is currently empty.
-8. In the **margies > collateral** folder, select **Upload**, and in the **Upload blob** pane, select *all* of the files in the local **ai-102/22-create-a-search-solution/data/collateral** folder (in the folder where you cloned the repo) and upload them.
-9. Use the **&uarr;** button to navigate back up to the root of the **margies** container. Then create a new folder named **reviews**, alongside the existing **collateral** folder.
-10. In the **margies > reviews** folder, select **Upload**, and in the **Upload blob** pane, select *all* of the files in the local **ai-102/22-create-a-search-solution/data/reviews** folder and upload them.
+    - **Resource group**: *The same resource group as your storage account and cognitive services resource*
+    - **URL**: *Enter a unique name*
+    - **Location**: *The same location as your storage account*
+    - **Pricing tier**: Basic
 
-    You should end up with a blob container structure like this:
-    
-    - **margies** (container)
-        - **collateral** (folder)
-            - 6 brochures (PDF files)
-        - **reviews** (folder)
-            - 66 hotel reviews (PDF files)
+2. Wait for deployment to complete, and then go to the deployed resource.
+3. Review the **Overview** page on the blade for your Azure Cognitive Search resource in the Azure portal. Here, you can use a visual interface to create, test, manage, and monitor the various components of a search solution; including data sources, indexes, indexers, and skillsets.
 
 ### Create a Cognitive Services resource
 
@@ -71,21 +55,47 @@ If you don't already have on in your subscription, you'll need to provision a **
 2. Select the required checkboxes and create the resource.
 3. Wait for deployment to complete, and then view the deployment details.
 
-### Create an Azure Cognitive Search resource
+### Create a storage account
 
-1. Return to the home page of the Azure portal, and then select the **&#65291;Create a resource** button, search for *search*, and create a **Azure Cognitive Search** resource with the following settings:
+1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
+2. Select the **&#65291;Create a resource** button, search for *storage*, and create a **Storage account** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
-    - **Resource group**: *The same resource group as your storage account and cognitive services resource*
-    - **URL**: *Enter a unique name*
-    - **Location**: *The same location as your storage account*
-    - **Pricing tier**: Basic
+    - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
+    - **Storage account name**: *Enter a unique name*
+    - **Location**: *Choose any available location*
+    - **Performance**: Standard
+    - **Account kind**: Storage V2
+    - **Replication**: Locally-redundant storage (LRS)
+3. Wait for deployment to complete, and then go to the deployed resource.
+4. OIn the **Overview** page, note the **Subscription ID** -this identifies the subscription in which the storage account is provisioned.
+5. On the **Access keys** page, note that two keys have been generated for your storage account. Then select **Show keys** to veiw the keys.
 
-2. Wait for deployment to complete, and then go to the deployed resource.
-3. Review the **Overview** page on the blade for your Azure Cognitive Search resource in the Azure portal. Here, you can use a visual interface to create, test, manage, and monitor the various components of a search solution; including data sources, indexes, indexers, and skillsets.
+    > **Tip**: Keep the **Storage Account** blade open - you will need the subscription ID and one of the keys in the next procedure.
+
+## Upload Documents to Azure Storage
+
+Now that you have the required resources, you can upload some documents to your Azure Storage account.
+
+1. In Visual Studio Code, in the **Explorer** pane, expand the ****22-create-a-search-solution** folder and select **UploadFiles.cmd**.
+2. Edit the batch file to replace the **YOUR_SUBSCRIPTION_ID**, **YOUR_AZURE_STORAGE_ACCOUNT_NAME**, and **YOUR_AZURE_STORAGE_KEY** placeholders with the appropriate subscription ID, Azure storage account name, and Azure storage account key values for the storage account you created previously.
+3. Save your changes, and then right-click the **22-create-a-search-solution** folder and open an interactive terminal.
+4. Enter the following command to sign into your Azure subscription by using the Azure CLI.
+
+```
+az login
+```
+
+A web browser tab will open and prompt you to sign into Azure. Do so, and then close the browser tab and return to Visual Studio Code.
+
+5. Enter the following command to run the batch file. This will create a blob container in your storage account and upload the documents in the **data** folder to it.
+
+```
+UploadDocs
+```
 
 ## Index the documents
 
-Now that you have the necessary Azure resources in place, you can create a search solution by indexing the documents.
+Now that you have the documents in place, you can create a search solution by indexing them.
 
 1. On the **Overview** page for your Azure Cognitive Search resource, select **import data**.
 2. On the **Connect to your data** page, in the **Data Source** list, select **Azure Blob Storage**. Then complete the data store details with the following values:
