@@ -30,26 +30,29 @@ The solution you will create for Margie's Travel requires the following resource
 - A **Cognitive Services** resource, which provides AI services for skills that your search solution can use to enrich the data in the data source with AI-generated insights.
 - A **Storage account** with a blob container in which the documents to be searched are stored.
 
+> **Important**: Your Azure Cognitive Search and Cognitive Services resources must be in the same location!
+
 ### Create an Azure Cognitive Search resource
 
-1. Return to the home page of the Azure portal, and then select the **&#65291;Create a resource** button, search for *search*, and create a **Azure Cognitive Search** resource with the following settings:
+1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
+2. Select the **&#65291;Create a resource** button, search for *search*, and create a **Azure Cognitive Search** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
-    - **Resource group**: *The same resource group as your storage account and cognitive services resource*
+    - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **URL**: *Enter a unique name*
-    - **Location**: *The same location as your storage account*
+    - **Location**: *Select a location - note that your Azure Cognitive Search and Cognitive Services resources must be in the same location*
     - **Pricing tier**: Basic
 
-2. Wait for deployment to complete, and then go to the deployed resource.
-3. Review the **Overview** page on the blade for your Azure Cognitive Search resource in the Azure portal. Here, you can use a visual interface to create, test, manage, and monitor the various components of a search solution; including data sources, indexes, indexers, and skillsets.
+3. Wait for deployment to complete, and then go to the deployed resource.
+4. Review the **Overview** page on the blade for your Azure Cognitive Search resource in the Azure portal. Here, you can use a visual interface to create, test, manage, and monitor the various components of a search solution; including data sources, indexes, indexers, and skillsets.
 
 ### Create a Cognitive Services resource
 
-If you don't already have on in your subscription, you'll need to provision a **Cognitive Services** resource. Your search solution will use this to enrich the data in the datastore with AI-generated insights.
+If you don't already have one in your subscription, you'll need to provision a **Cognitive Services** resource. Your search solution will use this to enrich the data in the datastore with AI-generated insights.
 
 1. Return to the home page of the Azure portal, and then select the **&#65291;Create a resource** button, search for *cognitive services*, and create a **Cognitive Services** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
-    - **Resource group**: *The same resource group as your storage account*
-    - **Region**: *Choose any available region*
+    - **Resource group**: *The same resource group as your Azure Cognitive Search resource*
+    - **Region**: *The same location as your Azure Cognitive Search resource*
     - **Name**: *Enter a unique name*
     - **Pricing tier**: Standard S0
 2. Select the required checkboxes and create the resource.
@@ -57,18 +60,17 @@ If you don't already have on in your subscription, you'll need to provision a **
 
 ### Create a storage account
 
-1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *storage*, and create a **Storage account** resource with the following settings:
+1. Return to the home page of the Azure portal, and then select the **&#65291;Create a resource** button, search for *storage*, and create a **Storage account** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
-    - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
+    - **Resource group**: **The same resource group as your Azure Cognitive Search and Cognitive Services resources*
     - **Storage account name**: *Enter a unique name*
     - **Location**: *Choose any available location*
     - **Performance**: Standard
     - **Account kind**: Storage V2
     - **Replication**: Locally-redundant storage (LRS)
-3. Wait for deployment to complete, and then go to the deployed resource.
-4. On the **Overview** page, note the **Subscription ID** -this identifies the subscription in which the storage account is provisioned.
-5. On the **Access keys** page, note that two keys have been generated for your storage account. Then select **Show keys** to veiw the keys.
+2. Wait for deployment to complete, and then go to the deployed resource.
+3. On the **Overview** page, note the **Subscription ID** -this identifies the subscription in which the storage account is provisioned.
+4. On the **Access keys** page, note that two keys have been generated for your storage account. Then select **Show keys** to veiw the keys.
 
     > **Tip**: Keep the **Storage Account** blade open - you will need the subscription ID and one of the keys in the next procedure.
 
@@ -97,14 +99,15 @@ UploadDocs
 
 Now that you have the documents in place, you can create a search solution by indexing them.
 
-1. On the **Overview** page for your Azure Cognitive Search resource, select **import data**.
+1. In the Azure portal, browse to your Azure Cognitive Search resource. Then, on its **Overview** page, select **import data**.
 2. On the **Connect to your data** page, in the **Data Source** list, select **Azure Blob Storage**. Then complete the data store details with the following values:
     - **Data Source**: Azure Blob Storage
     - **Data source name**: margies-data
     - **Data to extract**: Content and metadata
     - **Parsing mode**: Default
-    - **Connection string**: *Select **Choose an existing connection**. Then select your storage account, and finally select the **margies** container you created previously.*
+    - **Connection string**: *Select **Choose an existing connection**. Then select your storage account, and finally select the **margies** container that was created by the UploadDocs.cmd script.*
     - **Authenticate using managed identity**: Unselected
+    - **Container name**: margies
     - **Blob folder**: *Leave this blank*
     - **Description**: Brochures and reviews in Margie's Travel web site.
 3. Proceed to the next step (*Add cognitive skills*).
@@ -136,6 +139,7 @@ Now that you have the documents in place, you can create a search solution by in
     | metadata_storage_name | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; |
     | metadata_author | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; |
     | locations | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | | | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; |
+    | keyphrases | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | | | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; |
     | language | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | | | |
 
 11. Proceed to the next step (*Create an indexer*).
@@ -146,13 +150,13 @@ Now that you have the documents in place, you can create a search solution by in
     1. Extracts the document metadata fields and content from the data source
     2. Runs the skillset of cognitive skills to generate additional enriched fields
     3. Maps the extracted fields to the index.
-16. View the **Indexers** tab of the blade for your Azure Cognitive Search resource, which should show the newly created **margies-indexer**. Wait a few minutes, and click **&orarr; Refresh** until the **Status** indicates success.
+16. In the bottom half of the **Overview** page for your Azure Cognitive Search resource, view the **Indexers** tab, which should show the newly created **margies-indexer**. Wait a few minutes, and click **&orarr; Refresh** until the **Status** indicates success.
 
 ## Search the index
 
 Now that you have an index, you can search it.
 
-1. At the top of the blade for your Azure Cognitive Search resource, select **Search explorer**.
+1. At the top of the **Overview** page for your Azure Cognitive Search resource, select **Search explorer**.
 2. In Search explorer, in the **Query string** box, enter `*` (a single asterisk), and then select **Search**.
 
     This query retrieves all documents in the index in JSON format. Examine the results and note the fields for each document, which contain document content, metadata, and enriched data extracted by the cognitive skills you selected.
@@ -191,14 +195,37 @@ The components of the search solution are based on JSON definitions, which you c
 
 ### Review the data source
 
-1. In the Azure portal, return to the **Overview** page on the blade for your Azure Cognitive Search resource, and select the **Data sources** tab. The **margies-data** data source should be listed.
+1. In the Azure portal, return to the **Overview** page for your Azure Cognitive Search resource; and in the bottom half of the page, select the **Data sources** tab. The **margies-data** data source should be listed.
 2. Select the **margies-data** data source to view its settings. Then select the **Data Source Definition (JSON)** tab to view the JSON definition of the data source. This includes the information it uses to connect to the blob container in your storage account.
-3. Close the **margies-data** page to return to the blade for your Azure Cognitive Search resource.
+3. Close the **margies-data** page to return to the **Overview** page.
 
 ### Review and modify the skillset
 
-1. On the blade for your Azure Cognitive Search resource, select the **Skillsets** tab, where **margies-skillset** should be listed.
+1. In the bottom half of the **Overview** page,  select the **Skillsets** tab, where **margies-skillset** should be listed.
 2. Select **margies-skillset** and view the **Skillset Definition (JSON)** page. This shows a JSON definition that includes the six skills you specified in the user interface previously.
+
+    The JSON structure can be difficult to understand at first, but the important thing to understand is that the **"skills"** element is a list (enclosed by **[...]** brackets) that contains all of the skills in your enrichment pipeline. Each skill is enclosed in **{...}** braces, and they are separated by commas - like this:
+
+    ```
+    "skills": [
+        {
+            "@odata.type": "skill_1_type",
+            "name" : "#1",
+            ...
+        },
+        {
+            "@odata.type": "skill_2_type",
+            "name" : "#2",
+            ...
+        },
+        {
+            "@odata.type": "skill_3_type",
+            "name" : "#3",
+            ...
+        }
+    ]
+    ```
+
 3. On the right side of the page, note that there are templates for additional skills you might want to add to the skillset. For example, it would be good to identify the *sentiment* of the documents being indexed - particularly the hotel reviews, so we can easily find reviews that are positive or negative.
 4. In the **Skills** list, select **Sentiment Skill** to show a JSON template for this skill.
 5. Copy the template to the clipboard, and then on the left side, in the JSON for your skillset definition, paste the copied skill in a newly inserted line immediately after the following line (which should be line 6) - be careful not to overwrite the **{** marking the beginning of the first existing skill:
@@ -207,47 +234,7 @@ The components of the search solution are based on JSON definitions, which you c
     "skills": [
 
 
-6. Add a comma immediately after the newly inserted skill, and reformat the JSON indentation to make it more readable. It should look like this:
-
-```
-{
-"@odata.context": "https://....",
-"@odata.etag": "\"....\"",
-"name": "margies-skillset",
-"description": "Skillset created from the portal....",
-"skills": [
-    /* Insert the new skill here */
-    {
-        "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
-        "defaultLanguageCode": "",
-        "name": "",
-        "description": "",
-        "context": "",
-        "inputs": [
-            {
-                "name": "text",
-                "source": ""
-            },
-            {
-                "name": "languageCode",
-                "source": ""
-            }
-        ],
-        "outputs": [
-            {
-                "name": "score",
-                "targetName": "score"
-            }
-        ]
-    },
-    /* Add a comma after the new skill, before the first existing skill */
-    {
-        "@odata.type": "#Microsoft.Skills.Text.EntityRecognitionSkill",
-        "name": "#1",
-        ...
-}
-```
-
+6. Add a comma immediately after the newly inserted skill to separate it from the next skill (which was previously the first skill in the list).
 7. Update the new skill definition like this:
 
 ```
@@ -279,13 +266,13 @@ The components of the search solution are based on JSON definitions, which you c
 The new skill is named **get-sentiment**, and will evaluate the text found in the **merged_content** field of the document being indexed (which includes the source content as well as any text extracted from images in the content). It uses the extracted **language** of the document (with a default of English), and evaluates a score for the sentiment of the content. This score is then  output as a new field named **sentimentScore** at the **document** level of the object that represents the indexed document.
 
 8. Select **Save** to save the skillset with the new skill.
-9. Close the **margies-skillset** page to return to the blade for your Azure Cognitive Search resource.
+9. Close the **margies-skillset** page to return to the **Overview** page** for your Azure Cognitive Search resource.
 
 ### Review and modify the index
 
-1. On the blade for your Azure Cognitive Search resource, select the **Indexes** tab (<u>not</u> *Indexers*), where **margies-index** should be listed.
+1. On the **Overview** page** for your Azure Cognitive Search resource, select the **Indexes** tab (<u>not</u> *Indexers*), where **margies-index** should be listed.
 2. Select **margies-index** and view the **Index Definition (JSON)** page. This shows a JSON definition for your index, including definitions for each field. Some fields are based on metadata and content in the source document, and others are the results of skills in the skillset.
-3. You added a skill to the skillset to extract a sentiment score for the document. Now you must add a corresponding field in the index to which this value can be mapped. At the bottom of the **fields** list (before the closing **]**, which is followed by index properties such as **suggesters**), add the following field (being sure to include the comma at the beginning, after the previous field):
+3. You added a skill to the skillset to extract a sentiment score for the document. Now you must add a corresponding field in the index to which this value can be mapped. At the bottom of the **fields** list (before the **]** that denotes the end of the list, which is followed by index properties such as **suggesters**), add the following field (being sure to include the comma at the beginning, to separate the new field from the previous field):
 
 ```
 ,
@@ -334,31 +321,21 @@ The new skill is named **get-sentiment**, and will evaluate the text found in th
 
 1. On the blade for your Azure Cognitive Search resource, select the **Indexers** tab (<u>not</u> *Indexes*), where **margies-indexer** should be listed.
 2. Select **margies-indexer** and view the **Indexer Definition (JSON)** page. This shows a JSON definition for your indexer, which maps fields extracted from document content and metadata (in the **fieldMappings** section), and values extracted by skills in the skillset (in the **outputFieldMappings** section), to fields in the index.
-3. In the **fieldMappings** section, after the existing mapping for the **metadata_storage_path** value to the base-64 encoded key field, add another mapping to map the same value to the **url** field, so that the entire **fieldMappings** section looks like this (be sure to include the comma between the existing mapping and the new one):
+3. In the **fieldMappings** list, add a comma after the existing mapping for the **metadata_storage_path** value to the base-64 encoded key field; and then add the following JSON to map the same value to the **url** field, but without the Base-64 encoding:
 
 ```
-"fieldMappings": [
-    {
-    "sourceFieldName": "metadata_storage_path",
-    "targetFieldName": "metadata_storage_path",
-    "mappingFunction": {
-        "name": "base64Encode",
-        "parameters": null
-        }
-    },
-    {
-        "sourceFieldName" : "metadata_storage_path",
-        "targetFieldName" : "url"
-    }
-],
+{
+    "sourceFieldName" : "metadata_storage_path",
+    "targetFieldName" : "url"
+}
+
 ```
 
 All of the other metadata and content field in the source document are implicitly mapped to fields of the same name in the index.
 
-4. At the end of the **ouputFieldMappings** section, add the following mapping to map the **sentimentScore** value extracted by your sentiment skill to the **sentiment** field you added to the index:
+4. At the end of the **ouputFieldMappings** section, add the following mapping to map the **sentimentScore** value extracted by your sentiment skill to the **sentiment** field you added to the index (remember to separate it from the previous mapping with a comma!):
 
 ```
-,
 {
     "sourceFieldName": "/document/sentimentScore",
     "targetFieldName": "sentiment"
@@ -368,10 +345,7 @@ All of the other metadata and content field in the source document are implicitl
 5. Select **Save** to save the indexer with the new mappings.
 6. Select **Reset** to reset the index, and confirm that you want to do this when prompted. You've added new fields to an already-populated index, so you'll need to reset and reindex to update the existing index records with the new field values.
 7. Select **Run** to run the updated indexer, confirming that you want to run it now when prompted.
-
-    *Note that in a free-tier resource, you can only run the indexer once every three minutes; so if you have already run the indexer recently, you may need to wait before running it again.*
-
-8. Close the **margies-indexer** page to return to the blade for your Azure Cognitive Search resource, and select **Refresh** to track the progress of the indexing operation. It may take a minute or so to complete.
+8. Close the **margies-indexer** page to return to the **Overview** page** for your Azure Cognitive Search resource, and select **Refresh** to track the progress of the indexing operation. It may take a minute or so to complete.
 
     *There may be some warnings for a few documents that are too large to evaluate sentiment. Often sentiment analysis is performed at the page or sentence level rather than the full document; but in this case scenario, most of the documents - particularly the hotel reviews, are short enough for useful document-level sentiment scores to be evaluated.*
 
@@ -386,6 +360,8 @@ All of the other metadata and content field in the source document are implicitl
 
     This query retrieves the **url**, **sentiment**, and **keyphrases** for all documents that mention *London* authored by *Reviewer* that have a **sentiment** score greater than *0.5* (in other words, positive reviews that mention London)
 
+3. Close the **Search explorer** page to return to the **Overview** page.
+
 ## Create a search client application
 
 Now that you have a useful index, you can use it from a client application. You can do this by consuming the REST interface, submitting requests and receiving responses in JSON format over HTTP; or you can use the software development kit (SDK) for your preferred programming language. In this exercise, we'll use the SDK.
@@ -394,7 +370,7 @@ Now that you have a useful index, you can use it from a client application. You 
 
 ### Get the endpoint and keys for your search resource
 
-1. In the Azure portal, return to the blade for your Azure Cognitive Search resource and on the **Overview** page, note the **Url** value, which should be similar to **https://*your_resource_name*.search.windows.net**. This is the endpoint for your search resource.
+1. In the Azure portal, on the **Overview** page for your Azure Cognitive Search resource, note the **Url** value, which should be similar to **https://*your_resource_name*.search.windows.net**. This is the endpoint for your search resource.
 2. On the **Keys** page, note that there are two **admin** keys, and a single **query** key. An *admin* key is used to create and manage search resources; a *query* key is used by client applications that only need to perform search queries.
 
     *You will need the endpoint and query key for your client application.*
@@ -422,51 +398,16 @@ pip install azure-search-documents==11.0.0
 
     Open the configuration file and update the configuration values it contains to reflect the **endpoint** and **query key** for your Azure Cognitive Search resource. Save your changes.
 
-### Add code to search an index
+### Explore code to search an index
 
 The **margies-travel** folder contains code files for a web application (a Microsoft C# *ASP&period;NET Razor* web application or a Python *Flask* application), which you will update to include search functionality.
 
 1. Open the following code file in the web application, depending on your choice of programming language:
     - **C#**:Pages/Index.cshtml.cs
     - **Python**: app&period;py
-2. Near the top of the code file, find the comment **Import namespaces**, and add the following code below this comment:
-
-**C#**
-
-```C#
-// Import namespaces
-using Azure;
-using Azure.Search.Documents;
-using Azure.Search.Documents.Models;
-```
-
-**Python**
-
-```Python
-# Import namespaces
-from azure.core.credentials import AzureKeyCredential
-from azure.search.documents import SearchClient
-```
-
-3. In the **search_query** function, find the comment **Create a search client**, and add the following code:
-
-**C#**
-
-```C#
-// Create a search client
-AzureKeyCredential credential = new AzureKeyCredential(QueryKey);
-SearchClient searchClient = new SearchClient(SearchEndpoint, IndexName, credential);
-```
-
-**Python**
-
-```Python
-# Create a search client
-azure_credential = AzureKeyCredential(search_key)
-search_client = SearchClient(search_endpoint, search_index, azure_credential)
-```
-
-4. In the **search_query** function, find the comment **Submit search query**, and add the following code to submit a search for the specified text with the following options:
+2. Near the top of the code file, find the comment **Import search namespaces**, and note the namespaces that have been imported to work with the Azure Cognitive Search SDK:
+3. In the **search_query** function, find the comment **Create a search client**, and note that the code creates a **SearchClient** object using the endpoint and query key for your Azure Cognitive Search resource:
+4. In the **search_query** function, find the comment **Submit search query**, and review the code to submit a search for the specified text with the following options:
     - A *search mode* that requires **all** of the individual words in the search text are found.
     - The total number of documents found by the search is included in the results.
     - The results are filtered to include only documents that match the provided filter expression.
@@ -474,52 +415,6 @@ search_client = SearchClient(search_endpoint, search_index, azure_credential)
     - Each discrete value of the **metadata_author** field is returned as a *facet* that can be used to display pre-defined values for filtering.
     - Up to three extracts of the **merged_content** and **imageCaption** fields with the search terms highlighted are included in the results.
     - The results include only the fields specified.
-
-**C#**
-
-```C#
-// Submit search query
-var options = new SearchOptions{
-    IncludeTotalCount = true,
-    SearchMode = SearchMode.All,
-    Filter = FilterExpression,
-    OrderBy = {SortOrder},
-    Facets = {"metadata_author"},
-    HighlightFields = {"merged_content-3","imageCaption-3"} 
-};
-options.Select.Add("url");
-options.Select.Add("metadata_storage_name");
-options.Select.Add("metadata_author");
-options.Select.Add("metadata_storage_size");
-options.Select.Add("metadata_storage_last_modified");
-options.Select.Add("language");
-options.Select.Add("sentiment");
-options.Select.Add("merged_content");
-options.Select.Add("keyphrases");
-options.Select.Add("locations");
-options.Select.Add("imageTags");
-options.Select.Add("imageCaption");
-SearchResults<SearchResult> results = searchClient.Search<SearchResult>(SearchTerms, options);
-return results;
-```
-
-**Python**
-
-```Python
-# Submit search query
-results =  search_client.search(search_text,
-                                search_mode="all",
-                                include_total_count=True,
-                                filter=filter_by,
-                                order_by=sort_order,
-                                facets=['metadata_author'],
-                                highlight_fields='merged_content-3,imageCaption-3',
-                                # select fields on a single line
-                                select = "url,metadata_storage_name,metadata_author,metadata_storage_last_modified,language,sentiment,merged_content,keyphrases,locations,imageTags,imageCaption")
-return results
-```
-
-5. Save your changes.
 
 ### Explore code to render search results
 

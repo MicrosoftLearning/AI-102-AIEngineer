@@ -9,7 +9,10 @@ using Microsoft.AspNetCore.WebUtilities;
 using search_client.Models;
 using Microsoft.Extensions.Configuration;
 
-// Import namespaces
+// Import search namespaces
+using Azure;
+using Azure.Search.Documents;
+using Azure.Search.Documents.Models;
 
 
 
@@ -39,10 +42,34 @@ namespace search_client.Pages
         {
 
             // Create a search client
+            AzureKeyCredential credential = new AzureKeyCredential(QueryKey);
+            SearchClient searchClient = new SearchClient(SearchEndpoint, IndexName, credential);
 
 
 
             // Submit search query
+            var options = new SearchOptions{
+                IncludeTotalCount = true,
+                SearchMode = SearchMode.All,
+                Filter = FilterExpression,
+                OrderBy = {SortOrder},
+                Facets = {"metadata_author"},
+                HighlightFields = {"merged_content-3","imageCaption-3"} 
+            };
+            options.Select.Add("url");
+            options.Select.Add("metadata_storage_name");
+            options.Select.Add("metadata_author");
+            options.Select.Add("metadata_storage_size");
+            options.Select.Add("metadata_storage_last_modified");
+            options.Select.Add("language");
+            options.Select.Add("sentiment");
+            options.Select.Add("merged_content");
+            options.Select.Add("keyphrases");
+            options.Select.Add("locations");
+            options.Select.Add("imageTags");
+            options.Select.Add("imageCaption");
+            SearchResults<SearchResult> results = searchClient.Search<SearchResult>(SearchTerms, options);
+            return results;
 
 
 

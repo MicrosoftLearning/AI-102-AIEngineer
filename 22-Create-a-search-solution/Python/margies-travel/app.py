@@ -2,8 +2,9 @@ import os
 from flask import Flask, request, render_template, redirect, url_for
 from dotenv import load_dotenv
 
-# Import namespaces
-
+# Import search namespaces
+from azure.core.credentials import AzureKeyCredential
+from azure.search.documents import SearchClient
 
 
 app = Flask(__name__)
@@ -19,9 +20,20 @@ def search_query(search_text, filter_by=None, sort_order=None):
     try:
 
         # Create a search client
+        azure_credential = AzureKeyCredential(search_key)
+        search_client = SearchClient(search_endpoint, search_index, azure_credential)
         
 
         # Submit search query
+        results =  search_client.search(search_text,
+                                        search_mode="all",
+                                        include_total_count=True,
+                                        filter=filter_by,
+                                        order_by=sort_order,
+                                        facets=['metadata_author'],
+                                        highlight_fields='merged_content-3,imageCaption-3',
+                                        select = "url,metadata_storage_name,metadata_author,metadata_storage_last_modified,language,sentiment,merged_content,keyphrases,locations,imageTags,imageCaption")
+        return results
         
 
 
