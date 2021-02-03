@@ -15,7 +15,7 @@ In this exercise, you'll implement a knowledge store for *Margie's Travel*, a fi
 
 ## Clone the repository for this course
 
-If you have not already done so, you must clone the code repository for this course:
+If you have already cloned **AI-102-AIEngineer** code repository to the environment where you're working on this lab, open it in Visual Studio Code; otherwise, follow these steps to clone it now.
 
 1. Start Visual Studio Code.
 2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
@@ -26,13 +26,7 @@ If you have not already done so, you must clone the code repository for this cou
 
 ## Create Azure resources
 
-The solution for Margie's Travel requires the following resources in your Azure subscription:
-
-- An Azure Storage account with a blob container in which the documents to be searched are stored.
-- An Azure Cognitive Search resource, which will manage indexing and querying.
-- An Azure Cognitive Services resource, which provides the AI services for skills in your enrichment pipeline
-
-If you have previously completed the **[Create an Azure Cognitive Search solution](22-azure-search.md)** exercise, and still have these Azure resources in your subscription, you can skip this section and start at the **Create a search solution** section. Otherwise, follow the steps below to provision the required Azure resources.
+> **Note**: If you have previously completed the **[Create an Azure Cognitive Search solution](22-azure-search.md)** exercise, and still have these Azure resources in your subscription, you can skip this section and start at the **Create a search solution** section. Otherwise, follow the steps below to provision the required Azure resources.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 2. View the **Resource groups** in your subscription.
@@ -152,7 +146,7 @@ After you have run an indexer that uses a skillset to create a knowledge store, 
 
 The *object* projections defined in the Margie's Travel skillset consist of a JSON file for each indexed document. These files are stored in a blob container in the Azure Storage account specified in the skillset definition.
 
-1. In the [Azure portal](https://portal.azure.com?portal=true), view the Azure Storage account you created previously.
+1. In the Azure portal, view the Azure Storage account you created previously.
 2. Select the **Storage explorer** tab (in the pane on the left) to view the storage account in the storage explorer interface in the Azure portal.
 2. Expand **BLOB CONTAINERS** to view the containers in the storage account. In addition to the **margies** container where the source data is stored, there should be two new containers: **margies-images** and **margies-knowledge**. These were created by the indexing process.
 3. Select the **margies-knowledge** container. It should contain a folder for each indexed document.

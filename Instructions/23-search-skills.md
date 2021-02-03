@@ -11,7 +11,7 @@ In this exercise, you'll create a custom skill that tabulates the frequency of i
 
 ## Clone the repository for this course
 
-If you have not already done so, you must clone the code repository for this course:
+If you have already cloned **AI-102-AIEngineer** code repository to the environment where you're working on this lab, open it in Visual Studio Code; otherwise, follow these steps to clone it now.
 
 1. Start Visual Studio Code.
 2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
@@ -22,13 +22,7 @@ If you have not already done so, you must clone the code repository for this cou
 
 ## Create Azure resources
 
-The solution for Margie's Travel requires the following resources in your Azure subscription:
-
-- An Azure Storage account with a blob container in which the documents to be searched are stored.
-- An Azure Cognitive Search resource, which will manage indexing and querying.
-- An Azure Cognitive Services resource, which provides the AI services for skills in your enrichment pipeline
-
-If you have previously completed the **[Create an Azure Cognitive Search solution](22-azure-search.md)** exercise, and still have these Azure resources in your subscription, you can skip this section and start at the **Create a search solution** section. Otherwise, follow the steps below to provision the required Azure resources.
+> **Note**: If you have previously completed the **[Create an Azure Cognitive Search solution](22-azure-search.md)** exercise, and still have these Azure resources in your subscription, you can skip this section and start at the **Create a search solution** section. Otherwise, follow the steps below to provision the required Azure resources.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 2. View the **Resource groups** in your subscription.
@@ -142,7 +136,7 @@ You can enhance the index further by creating custom skills. For example, it mig
 To implement the word count functionality as a custom skill, you'll create an Azure Function in your preferred language.
 
 1. In Visual Studio Code, view the Azure Extensions tab (**&boxplus;**), and verify that the **Azure Functions** extension is installed. This extension enables you to create and deploy Azure Functions from Visual Studio Code.
-2. On Azure tab (**&Delta;**), in the **Azure Functions** pane, create new Azure Function project (&#128194;) with the following settings, depending on your preferred language:
+2. On Azure tab (**&Delta;**), in the **Azure Functions** pane, create a new project (&#128194;) with the following settings, depending on your preferred language:
 
     ### **C#**
 
@@ -453,6 +447,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     - **Storage account**: The storage count where the Margie's Travel docs are stored.
     - **Application Insights**: Skip for now
 
+8. Wait for Visual Studio Code to deploy the function. A notification will appear when deployment is complete.
+
 ## Test the function
 
 Now that you've deployed the function to Azure, you can test it in the Azure portal.
@@ -532,12 +528,12 @@ Now that you've deployed the function to Azure, you can test it in the Azure por
 Now you need to include your function as a custom skill in the search solution skillset, and map the results it produces to a field in the index. 
 
 1. In Visual Studio Code, in the **23-custom-search-skill/update-search** folder, open the **update-skillset.json** file. This contains the JSON definition of a skillset.
-2. At the top of the skillset definition, in the **cognitiveServices** element, replace the **YOUR_COGNITIVE_SERVICES_KEY** placeholder with either of the keys for your cognitive services resources.
+2. Review the skillset definition. It includes the same skills as before, as well as a new **WebApiSkill** skill named **get-top-words**.
+3. Edit the **get-top-words** skill definition to set the **uri** value to the URL for your Azure function (which you copied to the clipboard in the previous procedure), replacing **YOUR-FUNCTION-APP-URL**.
+4. At the top of the skillset definition, in the **cognitiveServices** element, replace the **YOUR_COGNITIVE_SERVICES_KEY** placeholder with either of the keys for your cognitive services resources.
 
     *You can find the keys on the **Keys and Endpoint** page for your cognitive services resource in the Azure portal.*
 
-3. Review the skillset definition. It includes the same skills as before, as well as a new **WebApiSkill** skill named **get-top-words**.
-4. Edit the **get-top-words** skill definition to set the **uri** value to the URL for your Azure function (which you copied to the clipboard in the previous procedure), replacing **YOUR-FUNCTION-APP-URL**.
 5. Save and close the updated JSON file.
 6. In the **update-search** folder, open **update-index.json**. This file contains the JSON definition for the **margies-custom-index** index, with an additional field named **top_words** at the bottom of the index definition.
 7. Review the JSON for the index, then close the file without making any changes.
