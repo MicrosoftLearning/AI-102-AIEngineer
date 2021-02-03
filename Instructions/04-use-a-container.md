@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Use a Cognitive Services Container'
+    module: 'Module 2 - Developing AI Apps with Cognitive Services'
 ---
 
 # Use a Cognitive Services Container

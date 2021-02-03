@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Create a Language Understanding Client Application'
+    module: 'Module 5 - Creating Language Understanding Solutions'
 ---
 
 # Create a Language Understanding Client Application

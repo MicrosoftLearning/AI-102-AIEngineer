@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Translate Text'
+    module: 'Module 3 - Getting Started with Natural Language Processing'
 ---
 
 # Translate Text

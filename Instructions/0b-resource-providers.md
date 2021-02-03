@@ -1,3 +1,9 @@
+---
+lab:
+    title: 'Enable Resource Providers'
+    module: 'Setup'
+---
+
 # Enable Resource Providers
 
 There are some resource providers that must be registered in your Azure subscription. Follow these steps to ensure that they're registered.

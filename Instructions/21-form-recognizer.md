@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Extract Data from Forms'
+    module: 'Module 11 - Reading Text in Images and Documents'
 ---
 
 # Extract Data from Forms 

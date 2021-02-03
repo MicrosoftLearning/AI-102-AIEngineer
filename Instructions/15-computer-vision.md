@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Analyze Images with Computer Vision'
+    module: 'Module 8 - Getting Started with Computer Vision'
 ---
 
 # Analyze Images with Computer Vision

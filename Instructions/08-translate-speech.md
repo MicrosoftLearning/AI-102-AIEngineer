@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Translate Speech'
+    module: 'Module 4 - Building Speech-Enabled Applications'
 ---
 
 # Translate Speech

@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Create a QnA Solution'
+    module: 'Module 6 - Building a QnA Solution'
 ---
 
 # Create a QnA Solution

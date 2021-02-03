@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Get Started with Cognitive Services'
+    module: 'Module 2 - Developing AI Apps with Cognitive Services'
 ---
 
 # Get Started with Cognitive Services

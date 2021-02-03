@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Create a Bot with Bot Framework Composer'
+    module: 'Module 7 - Conversational AI and the Azure Bot Service'
 ---
 
 # Create a Bot with Bot Framework Composer

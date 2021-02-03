@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Use the Speech and Language Understanding Services'
+    module: 'Module 5 - Creating Language Understanding Solutions'
 ---
 
 # Use the Speech and Language Understanding Services

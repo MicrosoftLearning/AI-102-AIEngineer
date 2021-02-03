@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Recognize and Synthesize Speech'
+    module: 'Module 4 - Building Speech-Enabled Applications'
 ---
 
 # Recognize and Synthesize Speech

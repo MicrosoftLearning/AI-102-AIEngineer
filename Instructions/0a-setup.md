@@ -1,6 +1,13 @@
 ---
 lab:
     title: 'Lab Environment Setup'
+    module: 'Setup'
+---
+
+---
+lab:
+    title: '05: Implementing Highly Available Azure IaaS Compute Architecture'
+    module: 'Module 05: Implement Load Balancing and Network Security'
 ---
 
 # Lab Environment Setup

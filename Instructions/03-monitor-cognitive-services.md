@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Monitor Cognitive Services'
+    module: 'Module 2 - Developing AI Apps with Cognitive Services'
 ---
 
 # Monitor Cognitive Services

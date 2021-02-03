@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Detect Objects in Images with Custom Vision'
+    module: 'Module 9 - Developing Custom Vision Solutions'
 ---
 
 # Detect Objects in Images with Custom Vision

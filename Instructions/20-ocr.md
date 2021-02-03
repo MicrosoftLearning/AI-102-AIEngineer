@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Read Text in Images'
+    module: 'Module 11 - Reading Text in Images and Documents'
 ---
 
 # Read Text in Images

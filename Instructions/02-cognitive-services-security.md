@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Manage Cognitive Services Security'
+    module: 'Module 2 - Developing AI Apps with Cognitive Services'
 ---
 
 # Manage Cognitive Services Security

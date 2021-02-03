@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Analyze Video with Video Indexer'
+    module: 'Module 8 - Getting Started with Computer Vision'
 ---
 
 # Analyze Video with Video Indexer

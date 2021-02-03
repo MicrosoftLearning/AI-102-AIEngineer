@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Classify Images with Custom Vision'
+    module: 'Module 9 - Developing Custom Vision Solutions'
 ---
 
 # Classify Images with Custom Vision

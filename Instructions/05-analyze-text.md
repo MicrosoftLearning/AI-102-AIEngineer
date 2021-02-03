@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Analyze Text'
+    module: 'Module 3 - Getting Started with Natural Language Processing'
 ---
 
 # Analyze Text

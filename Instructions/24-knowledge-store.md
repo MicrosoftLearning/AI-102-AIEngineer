@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Create a Knowledge Store with Azure Cognitive Search'
+    module: 'Module 12 - Creating a Knowledge Mining Solution'
 ---
 
 # Create a Knowledge Store with Azure Cognitive Search
