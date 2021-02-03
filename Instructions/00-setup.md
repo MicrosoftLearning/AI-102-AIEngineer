@@ -4,12 +4,6 @@ lab:
     module: 'Setup'
 ---
 
----
-lab:
-    title: '05: Implementing Highly Available Azure IaaS Compute Architecture'
-    module: 'Module 05: Implement Load Balancing and Network Security'
----
-
 # Lab Environment Setup
 
 These exercises are designed to be completed in a hosted lab environment. However, if you want to complete them on your own computer, you can do so by installing the following software. You may experience unexpected dialogs and behavior when using your own environment.
