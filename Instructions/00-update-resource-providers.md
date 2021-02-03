@@ -14,7 +14,7 @@ There are some resource providers that must be registered in your Azure subscrip
 4. In the blade for your subscription, in the pane on the left, in the **Settings** section, select **Resource providers**.
 5. In the list of resource providers, ensure the following providers are registered (if not, select them and click **register**):
     - Microsoft.BotService
-    - Microsoft&period;Web
+    - Microsoft.Web
     - Microsoft.ManagedIdentity
     - Microsoft.Search
     - Microsoft.Storage
