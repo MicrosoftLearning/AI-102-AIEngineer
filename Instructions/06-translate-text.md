@@ -202,8 +202,8 @@ url = translator_endpoint + path
 # Build the request
 params = {
     'api-version': '3.0',
-    'from': [source_language],
-    'to': 'en'
+    'from': source_language,
+    'to': ['en']
 }
 
 headers = {
