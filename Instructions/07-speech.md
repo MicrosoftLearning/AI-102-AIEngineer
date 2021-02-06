@@ -311,6 +311,65 @@ python speaking-clock.py
 
 3. When prompted, speak clearly into the microphone and say "what time is it?". The program should speak in the specified voice, telling you the time. When prompted again, say "stop" to end the program.
 
+## Use Speech Synthesis Markup Language
+
+Speech Synthesis Markup Language (SSML) enables you to customize the way your speech is synthesized using an XML-based format.
+
+1. In the **TellTime** function, replace all of the current code under the comment **Synthesize spoken output** with the following code (leave the code under the comment **Print the response**):
+
+   **C#**
+
+```C#
+// Synthesize spoken output
+string responseSsml = $@"
+    <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>
+        <voice name='en-GB-Susan'>
+            {responseText}
+            <break strength='weak'/>
+            Say stop to end!
+        </voice>
+    </speak>";
+SpeechSynthesisResult speak = await speechSynthesizer.SpeakSsmlAsync(responseSsml);
+if (speak.Reason != ResultReason.SynthesizingAudioCompleted)
+{
+    Console.WriteLine(speak.Reason);
+}
+```
+
+**Python**
+
+```Python
+# Synthesize spoken output
+responseSsml = " \
+    <speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'> \
+        <voice name='en-GB-Susan'> \
+            {} \
+            <break strength='weak'/> \
+            Say stop to end! \
+        </voice> \
+    </speak>".format(response_text)
+speak = speech_synthesizer.speak_ssml_async(responseSsml).get()
+if speak.reason != speech_sdk.ResultReason.SynthesizingAudioCompleted:
+    print(speak.reason)
+```
+
+2. Save your changes and return to the integrated terminal for the **speaking-clock** folder, and enter the following command to run the program:
+
+**C#**
+
+```
+dotnet run
+```
+
+**Python**
+
+```
+python speaking-clock.py
+```
+
+3. When prompted, speak clearly into the microphone and say "what time is it?". The program should speak in the voice that is specified in the SSML (overriding the voice specified in the SpeechConfig), telling you the time, and then after a pause telling you to say "stop" to end.
+4. When prompted again, say "stop" to end the program.
+
 ## More information
 
 For more information about using the **Speech-to-text** and **Text-to-speech** APIs, see the [Speech-to-text documentation](https://docs.microsoft.com/azure/cognitive-services/speech-service/index-speech-to-text) and [Text-to-speech documentation](https://docs.microsoft.com/azure/cognitive-services/speech-service/index-text-to-speech).
