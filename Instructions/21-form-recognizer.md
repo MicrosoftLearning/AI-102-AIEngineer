@@ -56,6 +56,8 @@ You'll use the sample forms from the **21-custom-form/sample-forms** folder in t
 
 4. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with your **resource group name** in subsequent steps.
 
+![An example of the resource group page.](./images/resource_group_variables.png)
+
 5. In Visual Studio Code, in the **21-custom-form** folder, select **setup.cmd**. You will use this batch script to run the Azure command line interface (CLI) commands required to create the other Azure resources you need.
 
 6. Right-click the the **21-custom-form** folder and select **Open in Integrated Terminal**.
