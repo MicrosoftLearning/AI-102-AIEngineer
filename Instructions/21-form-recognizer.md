@@ -23,7 +23,7 @@ If you have not already done so, you must clone the code repository for this cou
 
 ## Create a Form Recognizer resource
 
-To use the Form Recognizer service, you need a Form Recognizer resource in your Azure subscription.
+To use the Form Recognizer service, you need a Form Recognizer resource in your Azure subscription. You'll use the Azure portal to create a resource.
 
 1.  Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 
@@ -44,17 +44,17 @@ To use the Form Recognizer service, you need a Form Recognizer resource in your 
 
 You'll use the sample forms from the **21-custom-form/sample-forms** folder in this repo, which contain all the files you'll need to train a model without labels and another model with labels.
 
-1. In Visual Studio Code, in the **21-custom-form** folder and expand the **sample-forms** folder. Notice there are files ending in **.json** and **.jpg**.
+1. In Visual Studio Code, in the **21-custom-form** folder,  expand the **sample-forms** folder. Notice there are files ending in **.json** and **.jpg** in the folder.
 
     You will use the **.jpg** files to train your first model _without_ labels.  
 
-    Later, you will use the files ending in **.json** and **.jpg** to train your second model _with_ labels. The **.json** files contain label information. To train with labels, you need to have the label information files in your blob storage container alongside the forms.
+    Later, you will use the files ending in **.json** and **.jpg** to train your second model _with_ labels. The **.json** files have been generated for you and contain label information. To train with labels, you need to have the label information files in your blob storage container alongside the forms. 
 
 2. Return to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
 
 3. View the **Resource group** in which you created the Form Recognizer resource previously.
 
-4. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with the name of the resource group in subsequent steps.
+4. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with your **resource group name** in subsequent steps.
 
 5. In Visual Studio Code, in the **21-custom-form** folder, select **setup.cmd**. You will use this batch script to run the Azure command line interface (CLI) commands required to create the other Azure resources you need.
 
@@ -76,17 +76,23 @@ az account list-locations -o table
 
 10. In the output, find the **Name** value that corresponds with the location of your resource group (for example, for *East US* the corresponding name is *eastus*).
 
-11. In the **setup.cmd** script, modify the **subscription_id**, **resource_group**, and **location** variable declarations with the appropriate values for the subscription, resource group, and location where you deployed the Form Recognizer resource. Then save your changes.
+11. In the **setup.cmd** script, observe the command line input **rem** commands. These comments outline the program the script will run. 
 
-12. In the terminal for the **21-custom-form** folder, enter the following command to run the script:
+12. In the **setup.cmd** script, modify the **subscription_id**, **resource_group**, and **location** variable declarations with the appropriate values for the subscription, resource group, and location where you deployed the Form Recognizer resource. 
+
+Leave the **expiry_date** variable as it is for the exercise. This variable is used when generating the Shared Access Signature (SAS) URI. In practice, you will want to set an appropriate expiry date for your SAS. You can learn more about SAS [here](https://docs.microsoft.com/azure/storage/common/storage-sas-overview#how-a-shared-access-signature-works).  
+
+Then **save** your changes.
+
+13. In the terminal for the **21-custom-form** folder, enter the following command to run the script:
 
 ```
 setup
 ```
 
-13. When the script completes, review the displayed output and note your Azure resource's Shared Access Signature URI.
+14. When the script completes, review the displayed output and note your Azure resource's SAS URI.
 
-16. Paste the SAS URI somewhere you will be able to retrieve it again later (for example, in a new text file in Visual Studio Code).
+> **Important**: Before moving on, paste the SAS URI somewhere you will be able to retrieve it again later (for example, in a new text file in Visual Studio Code).
 
 15. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account just created. Open the storage account and in the pane on the left, select **Storage Explorer**. Then in Storage Explorer, expand **BLOB CONTAINERS** and select the **sampleforms** container to verify that the files have been uploaded from your local **21-custom-form/sample-forms** folder.
 
@@ -118,9 +124,9 @@ pip install azure-ai-formrecognizer==3.0.0
     - **Python**: .env
 
 4. Edit the configuration file, modifying the settings to reflect:
-    - The endpoint for your Form Recognizer resource.
-    - One of the keys for your Form Recognizer resource.
-    - The SAS URI for your blob container.
+    - The **endpoint** for your Form Recognizer resource.
+    - A **key** for your Form Recognizer resource.
+    - The **SAS URI** for your blob container.
 
 5. Note that the **train-model** folder contains a code file for the client application:
 
