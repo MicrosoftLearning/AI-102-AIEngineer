@@ -54,7 +54,7 @@ You'll use the sample forms from the **21-custom-form/sample-forms** folder in t
 
 3. View the **Resource group** in which you created the Form Recognizer resource previously.
 
-4. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with your **resource group name** in subsequent steps.
+4. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with your **resource group** name in subsequent steps.
 
 ![An example of the resource group page.](./images/resource_group_variables.png)
 
@@ -76,15 +76,16 @@ az login --output none
 az account list-locations -o table
 ```
 
-10. In the output, find the **Name** value that corresponds with the location of your resource group (for example, for *East US* the corresponding name is *eastus*).
+10. In the output, find the **Name** value that corresponds with the location of your resource group (for example, for *East US* the corresponding name is *eastus*). 
 
-11. In the **setup.cmd** script, observe the command line input **rem** commands. These comments outline the program the script will run. 
+>**Important**: Record the **Name** value and use it in Step 12. 
 
-12. In the **setup.cmd** script, modify the **subscription_id**, **resource_group**, and **location** variable declarations with the appropriate values for the subscription, resource group, and location where you deployed the Form Recognizer resource. 
+11. In the **setup.cmd** script, review the **rem** commands. These comments outline the program the script will run. 
 
-Leave the **expiry_date** variable as it is for the exercise. This variable is used when generating the Shared Access Signature (SAS) URI. In practice, you will want to set an appropriate expiry date for your SAS. You can learn more about SAS [here](https://docs.microsoft.com/azure/storage/common/storage-sas-overview#how-a-shared-access-signature-works).  
-
+12. In the **setup.cmd** script, modify the **subscription_id**, **resource_group**, and **location** variable declarations with the appropriate values for the subscription, resource group, and location name where you deployed the Form Recognizer resource. 
 Then **save** your changes.
+
+    Leave the **expiry_date** variable as it is for the exercise. This variable is used when generating the Shared Access Signature (SAS) URI. In practice, you will want to set an appropriate expiry date for your SAS. You can learn more about SAS [here](https://docs.microsoft.com/azure/storage/common/storage-sas-overview#how-a-shared-access-signature-works).  
 
 13. In the terminal for the **21-custom-form** folder, enter the following command to run the script:
 
