@@ -38,8 +38,8 @@ for /f "tokens=*" %%a in (
 set SAS_TOKEN=%%a
 set SAS_TOKEN=!SAS_TOKEN:~1,-1!
 )
+set URI=https://!STORAGE_ACCT_NAME!.blob.core.windows.net/sampleforms?!SAS_TOKEN!
 
 rem Print the generated Shared Access Signature URI, which is used by Azure Storage to authorize access to the storage resource
 echo -------------------------------------
-set URI=https://!STORAGE_ACCT_NAME!.blob.core.windows.net/sampleforms?!SAS_TOKEN!
 echo SAS URI: !URI!
