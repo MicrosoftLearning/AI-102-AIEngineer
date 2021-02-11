@@ -32,12 +32,14 @@ rem Set a variable value for future use
 set STORAGE_ACCT_NAME=ai102form!unique_id!
 
 rem Get a Shared Access Signature (a signed URI that points to one or more storage resources) for the blobs in sampleforms   
-for /f "tokens=*" %%f in (
+for /f "tokens=*" %%a in (
 'az storage container generate-sas --account-name ai102form!unique_id! --name sampleforms --expiry !expiry_date! --permissions rwl'
 ) do (
-set SAS_TOKEN=%%f     
+set SAS_TOKEN=%%a
+set SAS_TOKEN=!SAS_TOKEN:~1,-1!
 )
 
 rem Print the generated Shared Access Signature URI, which is used by Azure Storage to authorize access to the storage resource
 echo -------------------------------------
-echo URI: https://!STORAGE_ACCT_NAME!.blob.core.windows.net/sampleforms?!SAS_TOKEN!
+set URI=https://!STORAGE_ACCT_NAME!.blob.core.windows.net/sampleforms?!SAS_TOKEN!
+echo URI: !URI!

@@ -80,7 +80,10 @@ az account list-locations -o table
 
 >**Important**: Record the **Name** value and use it in Step 12. 
 
-11. In the **setup.cmd** script, review the **rem** commands. These comments outline the program the script will run. 
+11. In the **setup.cmd** script, review the **rem** commands. These comments outline the program the script will run. The program will: 
+    - Create a storage account in your Azure resource group
+    - Upload files from your local _sampleforms_ folder to a container called _sampleforms_ in the storage account
+    - Print a Shared Access Signature URI
 
 12. In the **setup.cmd** script, modify the **subscription_id**, **resource_group**, and **location** variable declarations with the appropriate values for the subscription, resource group, and location name where you deployed the Form Recognizer resource. 
 Then **save** your changes.
