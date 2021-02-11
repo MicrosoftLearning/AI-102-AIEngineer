@@ -42,4 +42,4 @@ set SAS_TOKEN=!SAS_TOKEN:~1,-1!
 rem Print the generated Shared Access Signature URI, which is used by Azure Storage to authorize access to the storage resource
 echo -------------------------------------
 set URI=https://!STORAGE_ACCT_NAME!.blob.core.windows.net/sampleforms?!SAS_TOKEN!
-echo URI: !URI!
+echo SAS URI: !URI!
