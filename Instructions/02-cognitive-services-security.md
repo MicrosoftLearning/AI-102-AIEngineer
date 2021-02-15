@@ -45,31 +45,31 @@ When you created your cognitive services resource, two authentication keys were 
     - The *location* where the resource is hosted. This is required for requests to some (but not all) APIs.
 2. In Visual Studio Code, right-click the **02-cognitive-security** folder and open an integrated terminal. Then enter the following command to sign into your Azure subscription by using the Azure CLI.
 
-```
-az login
-```
+    ```
+    az login
+    ```
 
-A web browser tab will open and prompt you to sign into Azure. Do so, and then close the browser tab and return to Visual Studio Code.
+    A web browser tab will open and prompt you to sign into Azure. Do so, and then close the browser tab and return to Visual Studio Code.
 
-> **Tip**: If you have multiple subscriptions, you'll need to ensure that you are working in the one that contains your cognitive services resource.  Use this command to determine your current subscription - its unique ID is the **id** value in the JSON that gets returned.
->
-> ```
-> az account show
-> ```
->
-> If you need to change the subscription, run this command, changing *&lt;Your_Subscription_Id&gt;* to the correct subscription ID.
->
-> ```
-> az account set --subscription <Your_Subscription_Id>
-> ```
->
-> Alternatively, you can explicitly specify the subscription ID as a *--subscription* parameter in each Azure CLI command that follows.
+    > **Tip**: If you have multiple subscriptions, you'll need to ensure that you are working in the one that contains your cognitive services resource.  Use this command to         determine your current subscription - its unique ID is the **id** value in the JSON that gets returned.
+    >
+    > ```
+    > az account show
+    > ```
+    >
+    > If you need to change the subscription, run this command, changing *&lt;Your_Subscription_Id&gt;* to the correct subscription ID.
+    >
+    > ```
+    > az account set --subscription <Your_Subscription_Id>
+    > ```
+    >
+    > Alternatively, you can explicitly specify the subscription ID as a *--subscription* parameter in each Azure CLI command that follows.
 
 3. Now you can use the following command to get the list of cognitive services keys, replacing *&lt;resourceName&gt;* with the name of your cognitive services resource, and *&lt;resourceGroup&gt;* with the name of the resource group in which you created it.
 
-```
-az cognitiveservices account keys list --name <resourceName> --resource-group <resourceGroup>
-```
+    ```
+    az cognitiveservices account keys list --name <resourceName> --resource-group <resourceGroup>
+    ```
 
 The command returns a list of the keys for your cognitive services resource - there are two keys, named **key1** and **key2**.
 
@@ -81,17 +81,17 @@ The command returns a list of the keys for your cognitive services resource - th
 
 5. Save your changes, and then in the integrated terminal for the **02-cognitive-security** folder, run the following command:
 
-```
-rest-test
-```
+    ```
+    rest-test
+    ```
 
 The command returns a JSON document containing information about the language detected in the input data (which should be English).
 
 6. If a key becomes compromised, or the developers who have it no longer require access, you can regenerate it in the portal or by using the Azure CLI. Run the following command to regenerate your **key1** key (replacing *&lt;resourceName&gt;* and *&lt;resourceGroup&gt;* for your resource).
 
-```
-az cognitiveservices account keys regenerate --name <resourceName> --resource-group <resourceGroup> --key-name key1
-```
+    ```
+    az cognitiveservices account keys regenerate --name <resourceName> --resource-group <resourceGroup> --key-name key1
+    ```
 
 The list of keys for your cognitive services resource is returned - note that **key1** has changed since you last retrieved them.
 
@@ -130,29 +130,29 @@ To access the secret in the key vault, your application must use a service princ
 
     > **Tip**: If you are unsure of your subscription ID, use the **az account show** command to retrieve your subscription information - the subscription ID is the **id** attribute in the output.
 
-```
-az ad sp create-for-rbac -n "https://<spName>" --role owner --scopes subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>
-```
+    ```
+    az ad sp create-for-rbac -n "https://<spName>" --role owner --scopes subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>
+    ```
 
 The output of this command includes information about your new service principal. It should look similar to this:
 
-```
-{
-    "appId": "abcd12345efghi67890jklmn",
-    "displayName": "ai-app",
-    "name": "https://ai-app",
-    "password": "1a2b3c4d5e6f7g8h9i0j",
-    "tenant": "1234abcd5678fghi90jklm"
-}
-```
+    ```
+    {
+        "appId": "abcd12345efghi67890jklmn",
+        "displayName": "ai-app",
+        "name": "https://ai-app",
+        "password": "1a2b3c4d5e6f7g8h9i0j",
+        "tenant": "1234abcd5678fghi90jklm"
+    }
+    ```
 
 Make a note of the **appId**, **password**, and **tenant** values - you will need them later (if you close this terminal, you won't be able to retrieve the password; so it's important to note the values now - you can paste the output into a new text file in Visual Studio Code to ensure you can find the values you need later!)
 
 2. To assign permission for your new service principal to access secrets in your Key Vault, run the following Azure CLI command, replacing *&lt;keyVaultName&gt;* with the name of your Azure Key Vault resource and *&lt;spName&gt;* with the same value you provided when creating the service principal.
 
-```
-az keyvault set-policy -n <keyVaultName> --spn "https://<spName>" --secret-permissions get list
-```
+    ```
+    az keyvault set-policy -n <keyVaultName> --spn "https://<spName>" --secret-permissions get list
+    ```
 
 ### Use the service principal in an application
 
@@ -163,21 +163,21 @@ Now you're ready to use the service principal identity in an application, so it 
 1. In Visual Studio Code, expand the **02-cognitive-security** folder and the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **keyvault-client** folder and open an integrated terminal. Then install the packages you will need to use Azure Key Vault and the Text Analytics API in your cognitive services resource by running the appropriate command for your language preference:
 
-**C#**
+    **C#**
 
-```
-dotnet add package Azure.AI.TextAnalytics --version 5.0.0
-dotnet add package Azure.Identity --version 1.3.0
-dotnet add package Azure.Security.KeyVault.Secrets --version 4.2.0-beta.3
-```
+    ```
+    dotnet add package Azure.AI.TextAnalytics --version 5.0.0
+    dotnet add package Azure.Identity --version 1.3.0
+    dotnet add package Azure.Security.KeyVault.Secrets --version 4.2.0-beta.3
+    ```
 
-**Python**
+    **Python**
 
-```
-pip install azure-ai-textanalytics==5.0.0
-pip install azure-identity==1.5.0
-pip install azure-keyvault-secrets==4.2.0
-```
+    ```
+    pip install azure-ai-textanalytics==5.0.0
+    pip install azure-identity==1.5.0
+    pip install azure-keyvault-secrets==4.2.0
+    ```
 
 3. View the contents of the **keyvault-client** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
@@ -203,17 +203,17 @@ pip install azure-keyvault-secrets==4.2.0
     - The **GetLanguage** function uses the SDK to create a client for the service, and then uses the client to detect the language of the text that was entered.
 5. Return to the integrated terminal for the **keyvault-client** folder, and enter the following command to run the program:
 
-**C#**
+    **C#**
 
-```
-dotnet run
-```
+    ```
+    dotnet run
+    ```
 
-**Python**
+    **Python**
 
-```
-python keyvault-client.py
-```
+    ```
+    python keyvault-client.py
+    ```
 
 6. When prompted, enter some text and review the language that is detected by the service. For example, try entering "Hello", "Bonjour", and "Hola".
 7. When you have finished testing the application, enter "quit" to stop the program.
