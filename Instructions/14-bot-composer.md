@@ -138,7 +138,7 @@ Now you need some way for the new dialog to be initiated from the existing welco
 
     ![Selected WeatherBot workflow](./images/select-workflow.png)
 
-2. In the properties pane for the selected **WeatherBot** workflow, in the **Language Understanding** section, set the **Recognizer type** to **Regular expression recognizer**.
+2. In the properties pane for the selected **WeatherBot** dialog, in the **Language Understanding** section, set the **Recognizer type** to **Regular expression recognizer**.
 
 3. In the **&#8285;** menu for the **WeatherBot** dialog, select **Add a Trigger**.
 
