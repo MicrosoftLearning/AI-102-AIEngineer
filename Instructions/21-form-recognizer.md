@@ -33,7 +33,7 @@ To use the Form Recognizer service, you need a Form Recognizer resource in your 
     - **Name**: *Enter a unique name*
     - **Pricing tier**: F0
 
-> **Note**: If you already have an F0 form recognizer service in your subscription, select **S0** for this one.
+    > **Note**: If you already have an F0 form recognizer service in your subscription, select **S0** for this one.
 
 3. When the resource has been deployed, go to it and view its **Keys and Endpoint** page. You will need the endpoint and one of the keys from this page to manage access from your code later on.
 
@@ -55,25 +55,25 @@ You'll use the sample forms in the **21-custom-form/sample-forms** folder in thi
 5. In Visual Studio Code, in the **21-custom-form** folder, select **setup.cmd**. You will use this batch script to run the Azure command line interface (CLI) commands required to create the Azure resources you need.
 6. Right-click the the **21-custom-form** folder and select **Open in Integrated Terminal**.
 7. In the terminal pane, enter the following command to establish an authenticated connection to your Azure subscription.
-
-```
-az login --output none
-```
+    
+    ```
+    az login --output none
+    ```
 
 8. When prompted, sign into your Azure subscription. Then return to Visual Studio Code and wait for the sign-in process to complete.
 9. Run the following command to list Azure locations.
 
-```
-az account list-locations -o table
-```
+    ```
+    az account list-locations -o table
+    ```
 
 10. In the output, find the **Name** value that corresponds with the location of your resource group (for example, for *East US* the corresponding name is *eastus*).
 11. In the **setup.cmd** script, modify the **subscription_id**, **resource_group**, and **location** variable declarations with the appropriate values for the subscription, resource group, and location where you deployed the Form Recognizer resource. Then save your changes.
 12. In the terminal for the **21-custom-form** folder, enter the following command to run the script:
 
-```
-setup
-```
+    ```
+    setup
+    ```
 
 13. When the script completes, review the displayed output and note your Azure resource's Storage account name.
 
@@ -110,17 +110,17 @@ You will use the Form Recognizer SDK to train and test a custom model.
 
 3. Install the Form Recognizer package by running the appropriate command for your language preference:
 
-**C#**
-
-```
-dotnet add package Azure.AI.FormRecognizer --version 3.0.0 
-```
-
-**Python**
-
-```
-pip install azure-ai-formrecognizer==3.0.0
-```
+    **C#**
+    
+    ```
+    dotnet add package Azure.AI.FormRecognizer --version 3.0.0 
+    ```
+    
+    **Python**
+    
+    ```
+    pip install azure-ai-formrecognizer==3.0.0
+    ```
 
 3. View the contents of the **train-model** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
@@ -144,17 +144,17 @@ pip install azure-ai-formrecognizer==3.0.0
 
 6. Return the integrated terminal for the **train-model** folder, and enter the following command to run the program:
 
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python train-model.py
-```
+    **C#**
+    
+    ```
+    dotnet run
+    ```
+    
+    **Python**
+    
+    ```
+    python train-model.py
+    ```
 
 7. Wait for the program to end. Then review the model output and locate the Model ID in the terminal. You will need this value in the next procedure, so do not close the terminal!
 
@@ -168,19 +168,19 @@ Now that you've got the model ID, you can use it from a client application. Once
 2. Right-click the **test-model** folder and open an integrated terminal. You now have (at least) two **cmd** terminals, and you can switch between them using the drop-down list in the Terminal pane.
 3. In the terminal for the **test-model** folder, install the Form Recognizer package by running the appropriate command for your language preference:
 
-**C#**
-
-```
-dotnet add package Azure.AI.FormRecognizer --version 3.0.0 
-```
-
-**Python**
-
-```
-pip install azure-ai-formrecognizer==3.0.0
-```
-
-*This isn't strictly necessary if you previously used pip to install the package into Python environment; but it does no harm to ensure it's installed!*
+    **C#**
+    
+    ```
+    dotnet add package Azure.AI.FormRecognizer --version 3.0.0 
+    ```
+    
+    **Python**
+    
+    ```
+    pip install azure-ai-formrecognizer==3.0.0
+    ```
+    
+    *This isn't strictly necessary if you previously used pip to install the package into Python environment; but it does no harm to ensure it's installed!*
 
 4. In the **test-model** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
     - Your Form Recognizer endpoint.
@@ -194,17 +194,17 @@ pip install azure-ai-formrecognizer==3.0.0
     
 6. Return the integrated terminal for the **test-model** folder, and enter the following command to run the program:
 
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python test-model.py
-```
+    **C#**
+    
+    ```
+    dotnet run
+    ```
+    
+    **Python**
+    
+    ```
+    python test-model.py
+    ```
 
 7. View the output and notice the prediction confidence scores. Notice how the output provides field names field-1, field-2 etc. 
 
@@ -225,36 +225,36 @@ Suppose after you trained a model with the invoice forms, you wanted to see how 
 
 5. In the **Main** function, find the comment **Train model**, and modify it as shown to change the training process so that labels are used:
 
-**C#**
-
-```C#
-// Train model 
-CustomFormModel model = await trainingClient
-.StartTrainingAsync(new Uri(trainingStorageUri), useTrainingLabels: true)
-.WaitForCompletionAsync();
-```
-
-**Python**
-
-```Python
-# Train model 
-poller = form_training_client.begin_training(trainingDataUrl, use_training_labels=True)
-model = poller.result()
-```
+    **C#**
+    
+    ```C#
+    // Train model 
+    CustomFormModel model = await trainingClient
+    .StartTrainingAsync(new Uri(trainingStorageUri), useTrainingLabels: true)
+    .WaitForCompletionAsync();
+    ```
+    
+    **Python**
+    
+    ```Python
+    # Train model 
+    poller = form_training_client.begin_training(trainingDataUrl, use_training_labels=True)
+    model = poller.result()
+    ```
 
 6. Return the integrated terminal for the **train-model** folder, and enter the following command to run the program:
 
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python train-model.py
-```
+    **C#**
+    
+    ```
+    dotnet run
+    ```
+    
+    **Python**
+    
+    ```
+    python train-model.py
+    ```
 
 10. Wait for the program to end, then review the model output.
 11. Note the new the Model ID in the terminal output. 
@@ -264,18 +264,18 @@ python train-model.py
 1. In the **test-model** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) and update it to reflect the new model ID. Save your changes.
 2. Return the integrated terminal for the **test-model** folder, and enter the following command to run the program:
 
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python test-model.py
-```
-
+    **C#**
+    
+    ```
+    dotnet run
+    ```
+    
+    **Python**
+    
+    ```
+    python test-model.py
+    ```
+    
 3. View the output and observe how the output for the model trained **with** labels provides field names like "CompanyPhoneNumber" and "DatedAs" unlike the output from the model trained **without** labels, which produced an output of field-1, field-2 etc.  
 
 While the program code for training a model with labels may not differ greatly from the code for training without labels, choosing one versus another can greatly change your project timeline. For example, if you use labeled forms you will need to label your documents (something we did not cover in this exercise but you can explore [here with the sample labeling tool](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool?tabs=v2-0)). The choice of model also affects the downstream processes based on what fields the model returns and how confident you are with the returned values.  
