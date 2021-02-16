@@ -220,15 +220,34 @@
           },
           {
             "name": "key_phrases",
-            "source": "/document/merged_content/keyphrases/*"
+            "source": null,
+            "sourceContext": "/document/merged_content/keyphrases/*",
+            "inputs": [
+              {
+                  "name": "KeyPhrases",
+                  "source": "/document/merged_content/keyphrases/*"
+              }
+          ]
           },
           {
             "name": "locations",
-            "source": "/document/merged_content/locations/*"
+            "source": null,
+            "sourceContext": "/document/merged_content/locations/*",
+            "inputs":[
+              {
+                "name": "location", "source": "/document/merged_content/locations/*"
+              }
+            ]
           },
           {
             "name": "image_tags",
-            "source": "/document/normalized_images/*/imageTags/*/name"
+            "source": null,
+            "sourceContext": "/document/normalized_images/*/imageTags/*",
+            "inputs":[
+              {
+                "name": "tag", "source": "/document/normalized_images/*/imageTags/*/name"
+              }
+            ]
           }
           ],
           "outputs": [
@@ -263,37 +282,31 @@
               ]
           },
           {
-              "objects": [],
-              "tables": [  
-                  {
-                      "tableName": "KeyPhrases",
-                      "generatedKeyName": "keyphrase_id",
-                      "sourceContext": "/document/knowledge_projection/key_phrases/*",
-                      "inputs":[
-                          {"name": "key_phrase", "source": "/document/knowledge_projection/key_phrases/*"}] 
-                  },
-                  {
-                      "tableName": "Locations",
-                      "generatedKeyName": "location_id",
-                      "sourceContext": "/document/knowledge_projection/locations/*",
-                      "inputs":[
-                          {"name": "location", "source": "/document/knowledge_projection/locations/*"}] 
-                  }, 
-                  {
-                      "tableName": "ImageTags",
-                      "generatedKeyName": "tag_id",
-                      "sourceContext": "/document/knowledge_projection/image_tags/*",
-                      "inputs":[
-                          {"name": "tag", "source": "/document/knowledge_projection/image_tags/*"}] 
-                  },
-                  {
-                      "tableName": "docs",
-                      "generatedKeyName": "document_id", 
-                      "source": "/document/knowledge_projection" 
-                      }
-              ],
-              "files": []
-          }
+            "objects": [],
+            "tables": [  
+                {
+                    "tableName": "KeyPhrases",
+                    "generatedKeyName": "keyphrase_id",
+                    "source": "/document/knowledge_projection/key_phrases/*"
+                },
+                {
+                    "tableName": "Locations",
+                    "generatedKeyName": "location_id",
+                    "source": "/document/knowledge_projection/locations/*"
+                }, 
+                {
+                    "tableName": "ImageTags",
+                    "generatedKeyName": "tag_id",
+                    "source": "/document/knowledge_projection/image_tags/*"
+                },
+                {
+                    "tableName": "docs",
+                    "generatedKeyName": "document_id", 
+                    "source": "/document/knowledge_projection" 
+                    }
+            ],
+            "files": []
+        }
       ]     
   } ,
     "encryptionKey": null
