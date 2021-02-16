@@ -61,7 +61,7 @@ If you don't already have one in your subscription, you'll need to provision a *
 
 ### Create a storage account
 
-1. Return to the home page of the Azure portal, and then select the **&#65291;Create a resource** button, search for *storage*, and create a **Storage account** resource with the following settings:
+1. Return to the home page of the Azure portal, and then select the **&#65291;Create a resource** button, search for *storage account*, and create a **Storage account** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: **The same resource group as your Azure Cognitive Search and Cognitive Services resources*
     - **Storage account name**: *Enter a unique name*
