@@ -58,39 +58,49 @@ You'll use the sample forms from the **21-custom-form/sample-forms** folder in t
 
 ![An example of the resource group page.](./images/resource_group_variables.png)
 
-5. In Visual Studio Code, in the **21-custom-form** folder, select **setup.cmd**. You will use this batch script to run the Azure command line interface (CLI) commands required to create the other Azure resources you need.
+5. In Visual Studio Code, in the Explorer pane, right-click the the **21-custom-form** folder and select **Open in Integrated Terminal**.
 
-6. In the **setup.cmd** script, review the **rem** commands. These comments outline the program the script will run. The program will: 
-    - Create a storage account in your Azure resource group
-    - Upload files from your local _sampleforms_ folder to a container called _sampleforms_ in the storage account
-    - Print a Shared Access Signature URI
-
-7. In the **setup.cmd** script, modify the **subscription_id**, **resource_group**, and **location** variable declarations with the appropriate values for the subscription, resource group, and location name where you deployed the Form Recognizer resource. 
-Then **save** your changes.
-
-    Leave the **expiry_date** variable as it is for the exercise. This variable is used when generating the Shared Access Signature (SAS) URI. In practice, you will want to set an appropriate expiry date for your SAS. You can learn more about SAS [here](https://docs.microsoft.com/azure/storage/common/storage-sas-overview#how-a-shared-access-signature-works).  
-
-8. Right-click the the **21-custom-form** folder and select **Open in Integrated Terminal**.
-
-9. In the terminal pane, enter the following command to establish an authenticated connection to your Azure subscription.
+6. In the terminal pane, enter the following command to establish an authenticated connection to your Azure subscription.
     
     ```
     az login --output none
     ```
 
-10. When prompted, sign into your Azure subscription. Then return to Visual Studio Code and wait for the sign-in process to complete.
+7. When prompted, sign into your Azure subscription. Then return to Visual Studio Code and wait for the sign-in process to complete.
 
-11. In the terminal for the **21-custom-form** folder, enter the following command to run the setup script:
+8. Run the following command to list Azure locations.
+
+    ```
+    az account list-locations -o table
+    ```
+
+9. In the output, find the **Name** value that corresponds with the location of your resource group (for example, for *East US* the corresponding name is *eastus*).
+
+    > **Important**: Record the **Name** value and use it in Step 12.
+
+10. In the Explorer pane, in the **21-custom-form** folder, select **setup.cmd**. You will use this batch script to run the Azure command line interface (CLI) commands required to create the other Azure resources you need.
+
+11. In the **setup.cmd** script, review the **rem** commands. These comments outline the program the script will run. The program will: 
+    - Create a storage account in your Azure resource group
+    - Upload files from your local _sampleforms_ folder to a container called _sampleforms_ in the storage account
+    - Print a Shared Access Signature URI
+
+12. Modify the **subscription_id**, **resource_group**, and **location** variable declarations with the appropriate values for the subscription, resource group, and location name where you deployed the Form Recognizer resource. 
+Then **save** your changes.
+
+    Leave the **expiry_date** variable as it is for the exercise. This variable is used when generating the Shared Access Signature (SAS) URI. In practice, you will want to set an appropriate expiry date for your SAS. You can learn more about SAS [here](https://docs.microsoft.com/azure/storage/common/storage-sas-overview#how-a-shared-access-signature-works).  
+
+13. In the terminal for the **21-custom-form** folder, enter the following command to run the script:
 
 ```
 setup
 ```
 
-12. When the script completes, review the displayed output and note your Azure resource's SAS URI.
+14. When the script completes, review the displayed output and note your Azure resource's SAS URI.
 
-    > **Important**: Before moving on, paste the SAS URI somewhere you will be able to retrieve it again later (for example, in a new text file in Visual Studio Code).
+> **Important**: Before moving on, paste the SAS URI somewhere you will be able to retrieve it again later (for example, in a new text file in Visual Studio Code).
 
-13. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account just created. Open the storage account and in the pane on the left, select **Storage Explorer**. Then in Storage Explorer, expand **BLOB CONTAINERS** and select the **sampleforms** container to verify that the files have been uploaded from your local **21-custom-form/sample-forms** folder.
+15. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account just created. Open the storage account and in the pane on the left, select **Storage Explorer**. Then in Storage Explorer, expand **BLOB CONTAINERS** and select the **sampleforms** container to verify that the files have been uploaded from your local **21-custom-form/sample-forms** folder.
 
 ## Train a model *without* labels
 
@@ -271,7 +281,7 @@ Suppose after you trained a model with the invoice forms, you wanted to see how 
     
 3. View the output and observe how the output for the model trained **with** labels provides field names like "CompanyPhoneNumber" and "DatedAs" unlike the output from the model trained **without** labels, which produced an output of field-1, field-2 etc.  
 
-While the program code for training a model with labels may not differ greatly from the code for training without labels, choosing one versus another can greatly change your project timeline. For example, if you use labeled forms you will need to label your documents (something we did not cover in this exercise but you can explore [with the sample labeling tool](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool?tabs=v2-0)). The choice of model also affects the downstream processes based on what fields the model returns and how confident you are with the returned values.  
+While the program code for training a model with labels may not differ greatly from the code for training without labels, choosing one versus another can greatly change your project timeline. For example, if you use labeled forms you will need to label your documents (something we did not cover in this exercise but you can explore [here with the sample labeling tool](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool?tabs=v2-0)). The choice of model also affects the downstream processes based on what fields the model returns and how confident you are with the returned values.  
 
 ## More information
 
