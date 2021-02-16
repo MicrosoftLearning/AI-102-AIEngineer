@@ -49,7 +49,7 @@ Many commonly used cognitive services APIs are available in container images. Fo
         - **Region**: *Choose any available region*
         - **Image source**: Docker Hub or other Registry
         - **Image type**: Public
-        - **Image**: `mcr.microsoft.com/azure-cognitive-services/textanalytics/language`
+        - **Image**: `mcr.microsoft.com/azure-cognitive-services/textanalytics/language:1.1.012840001-amd64`
         - **OS type**: Linux
         - **Size**: 1 vcpu, 4 GB memory
     - **Networking**:
@@ -89,7 +89,7 @@ Many commonly used cognitive services APIs are available in container images. Fo
 1. In Visual Studio Code, in the **04-containers** folder, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;your_ACI_IP_address_or_FQDN&gt;* with the IP address or FQDN for your container.
 
     ```
-    curl -X POST "http://<your_ACI_IP_address_or_FQDN>:5000/text/analytics/v3.0/languages?" -H "Content-Type: application/json" --data-ascii "{'documents':[{'id':1,'text':'Hello     world.'},{'id':2,'text':'Salut tout le monde.'}]}"
+    curl -X POST "http://<your_ACI_IP_address_or_FQDN>:5000/text/analytics/v3.0/languages?" -H "Content-Type: application/json" --data-ascii "{'documents':[{'id':1,'text':'Hello world.'},{'id':2,'text':'Salut tout le monde.'}]}"
     ```
 
 2. Save your changes to the script. Note that you do not need to specify the cognitive services endpoint or key - the request is processed by the containerized service. The container in turn communicates periodically with the service in Azure to report usage for billing, but does not send request data.
