@@ -61,21 +61,21 @@ In this exercise, you'll complete a partially implemented client application tha
 1. In Visual Studio Code, in the **Explorer** pane, browse to the **10-luis-client** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **clock-client** folder and open an integrated terminal. Then install the Language Understanding SDK package by running the appropriate command for your language preference:
 
-**C#**
+    **C#**
+    
+    ```
+    dotnet add package Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime --version 3.0.0
+    ```
 
-```
-dotnet add package Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime --version 3.0.0
-```
+    *In addition to the **Runtime** (prediction) package, there is an **Authoring** package that you can use to write code to create and manage Language Understanding models.*
 
-*In addition to the **Runtime** (prediction) package, there is an **Authoring** package that you can use to write code to create and manage Language Understanding models.*
-
-**Python**
-
-```
-pip install azure-cognitiveservices-language-luis==0.7.0
-```
-
-*The Python SDK package includes classes for both **prediction** and **authoring**.*
+    **Python**
+    
+    ```
+    pip install azure-cognitiveservices-language-luis==0.7.0
+    ```
+    
+    *The Python SDK package includes classes for both **prediction** and **authoring**.*
 
 3. View the contents of the **clock-client** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
@@ -90,21 +90,21 @@ pip install azure-cognitiveservices-language-luis==0.7.0
 
     Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Language Understanding prediction SDK:
 
-**C#**
-
-```C#
-// Import namespaces
-using Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime;
-using Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime.Models;
-```
-
-**Python**
-
-```Python
-# Import namespaces
-from azure.cognitiveservices.language.luis.runtime import LUISRuntimeClient
-from msrest.authentication import CognitiveServicesCredentials
-```
+    **C#**
+    
+    ```C#
+    // Import namespaces
+    using Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime;
+    using Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime.Models;
+    ```
+    
+    **Python**
+    
+    ```Python
+    # Import namespaces
+    from azure.cognitiveservices.language.luis.runtime import LUISRuntimeClient
+    from msrest.authentication import CognitiveServicesCredentials
+    ```
 
 ## Get a prediction from the Language Understanding app
 
@@ -112,185 +112,185 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
 
 1. In the **Main** function, note that code to load the App ID, prediction endpoint, and key from the configuration file has already been provided. Then find the comment **Create a client for the LU app** and add the following code to create a prediction client for your Language Understanding app:
 
-**C#**
-
-```C#
-// Create a client for the LU app
-var credentials = new Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime.ApiKeyServiceClientCredentials(predictionKey);
-var luClient = new LUISRuntimeClient(credentials) { Endpoint = predictionEndpoint };
-```
-
-**Python**
-
-```Python
-# Create a client for the LU app
-credentials = CognitiveServicesCredentials(lu_prediction_key)
-lu_client = LUISRuntimeClient(lu_prediction_endpoint, credentials)
-```
+    **C#**
+    
+    ```C#
+    // Create a client for the LU app
+    var credentials = new Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime.ApiKeyServiceClientCredentials(predictionKey);
+    var luClient = new LUISRuntimeClient(credentials) { Endpoint = predictionEndpoint };
+    ```
+    
+    **Python**
+    
+    ```Python
+    # Create a client for the LU app
+    credentials = CognitiveServicesCredentials(lu_prediction_key)
+    lu_client = LUISRuntimeClient(lu_prediction_endpoint, credentials)
+    ```
 
 2. Note that the code in the **Main** function prompts for user input until the user enters "quit". Within this loop, find the comment **Call the LU app to get intent and entities** and add the following code:
 
-**C#**
+    **C#**
+    
+    ```C#
+    // Call the LU app to get intent and entities
+    var slot = "Production";
+    var request = new PredictionRequest { Query = userText };
+    PredictionResponse predictionResponse = await luClient.Prediction.GetSlotPredictionAsync(luAppId, slot, request);
+    Console.WriteLine(JsonConvert.SerializeObject(predictionResponse, Formatting.Indented));
+    Console.WriteLine("--------------------\n");
+    Console.WriteLine(predictionResponse.Query);
+    var topIntent = predictionResponse.Prediction.TopIntent;
+    var entities = predictionResponse.Prediction.Entities;
+    ```
+    
+    **Python**
+    
+    ```Python
+    # Call the LU app to get intent and entities
+    request = { "query" : userText }
+    slot = 'Production'
+    prediction_response = lu_client.prediction.get_slot_prediction(lu_app_id, slot, request)
+    top_intent = prediction_response.prediction.top_intent
+    entities = prediction_response.prediction.entities
+    print('Top Intent: {}'.format(top_intent))
+    print('Entities: {}'.format (entities))
+    print('-----------------\n{}'.format(prediction_response.query))
+    ```
 
-```C#
-// Call the LU app to get intent and entities
-var slot = "Production";
-var request = new PredictionRequest { Query = userText };
-PredictionResponse predictionResponse = await luClient.Prediction.GetSlotPredictionAsync(luAppId, slot, request);
-Console.WriteLine(JsonConvert.SerializeObject(predictionResponse, Formatting.Indented));
-Console.WriteLine("--------------------\n");
-Console.WriteLine(predictionResponse.Query);
-var topIntent = predictionResponse.Prediction.TopIntent;
-var entities = predictionResponse.Prediction.Entities;
-```
-
-**Python**
-
-```Python
-# Call the LU app to get intent and entities
-request = { "query" : userText }
-slot = 'Production'
-prediction_response = lu_client.prediction.get_slot_prediction(lu_app_id, slot, request)
-top_intent = prediction_response.prediction.top_intent
-entities = prediction_response.prediction.entities
-print('Top Intent: {}'.format(top_intent))
-print('Entities: {}'.format (entities))
-print('-----------------\n{}'.format(prediction_response.query))
-```
-
-The call to the Language Understanding app returns a prediction, which includes the top (most likely) intent as well as any entities that were detected in the input utterance. Your client application must now use that prediction to determine and perform the appropriate action.
+    The call to the Language Understanding app returns a prediction, which includes the top (most likely) intent as well as any entities that were detected in the input utterance. Your client application must now use that prediction to determine and perform the appropriate action.
 
 3. Find the comment **Apply the appropriate action**, and add the following code, which checks for intents supported by the application (**GetTime**, **GetDate**, and **GetDay**) and determines if any relevant entities have been detected, before calling an existing function to produce an appropriate response.
 
-**C#**
-
-```C#
-// Apply the appropriate action
-switch (topIntent)
-{
-    case "GetTime":
-        var location = "local";
-        // Check for entities
-        if (entities.Count > 0)
-        {
-            // Check for a location entity
-            if (entities.ContainsKey("Location"))
+    **C#**
+    
+    ```C#
+    // Apply the appropriate action
+    switch (topIntent)
+    {
+        case "GetTime":
+            var location = "local";
+            // Check for entities
+            if (entities.Count > 0)
             {
-                //Get the JSON for the entity
-                var entityJson = JArray.Parse(entities["Location"].ToString());
-                // ML entities are strings, get the first one
-                location = entityJson[0].ToString();
+                // Check for a location entity
+                if (entities.ContainsKey("Location"))
+                {
+                    //Get the JSON for the entity
+                    var entityJson = JArray.Parse(entities["Location"].ToString());
+                    // ML entities are strings, get the first one
+                    location = entityJson[0].ToString();
+                }
             }
-        }
-
-        // Get the time for the specified location
-        var getTimeTask = Task.Run(() => GetTime(location));
-        string timeResponse = await getTimeTask;
-        Console.WriteLine(timeResponse);
-        break;
-
-    case "GetDay":
-        var date = DateTime.Today.ToShortDateString();
-        // Check for entities
-        if (entities.Count > 0)
-        {
-            // Check for a Date entity
-            if (entities.ContainsKey("Date"))
+    
+            // Get the time for the specified location
+            var getTimeTask = Task.Run(() => GetTime(location));
+            string timeResponse = await getTimeTask;
+            Console.WriteLine(timeResponse);
+            break;
+    
+        case "GetDay":
+            var date = DateTime.Today.ToShortDateString();
+            // Check for entities
+            if (entities.Count > 0)
             {
-                //Get the JSON for the entity
-                var entityJson = JArray.Parse(entities["Date"].ToString());
-                // Regex entities are strings, get the first one
-                date = entityJson[0].ToString();
+                // Check for a Date entity
+                if (entities.ContainsKey("Date"))
+                {
+                    //Get the JSON for the entity
+                    var entityJson = JArray.Parse(entities["Date"].ToString());
+                    // Regex entities are strings, get the first one
+                    date = entityJson[0].ToString();
+                }
             }
-        }
-        // Get the day for the specified date
-        var getDayTask = Task.Run(() => GetDay(date));
-        string dayResponse = await getDayTask;
-        Console.WriteLine(dayResponse);
-        break;
-
-    case "GetDate":
-        var day = DateTime.Today.DayOfWeek.ToString();
-        // Check for entities
-        if (entities.Count > 0)
-        {
-            // Check for a Weekday entity
-            if (entities.ContainsKey("Weekday"))
+            // Get the day for the specified date
+            var getDayTask = Task.Run(() => GetDay(date));
+            string dayResponse = await getDayTask;
+            Console.WriteLine(dayResponse);
+            break;
+    
+        case "GetDate":
+            var day = DateTime.Today.DayOfWeek.ToString();
+            // Check for entities
+            if (entities.Count > 0)
             {
-                //Get the JSON for the entity
-                var entityJson = JArray.Parse(entities["Weekday"].ToString());
-                // List entities are lists
-                day = entityJson[0][0].ToString();
+                // Check for a Weekday entity
+                if (entities.ContainsKey("Weekday"))
+                {
+                    //Get the JSON for the entity
+                    var entityJson = JArray.Parse(entities["Weekday"].ToString());
+                    // List entities are lists
+                    day = entityJson[0][0].ToString();
+                }
             }
-        }
-        // Get the date for the specified day
-        var getDateTask = Task.Run(() => GetDate(day));
-        string dateResponse = await getDateTask;
-        Console.WriteLine(dateResponse);
-        break;
+            // Get the date for the specified day
+            var getDateTask = Task.Run(() => GetDate(day));
+            string dateResponse = await getDateTask;
+            Console.WriteLine(dateResponse);
+            break;
+    
+        default:
+            // Some other intent (for example, "None") was predicted
+            Console.WriteLine("Try asking me for the time, the day, or the date.");
+            break;
+    }
+    ```
 
-    default:
-        // Some other intent (for example, "None") was predicted
-        Console.WriteLine("Try asking me for the time, the day, or the date.");
-        break;
-}
-```
-
-**Python**
-
-```Python
-# Apply the appropriate action
-if top_intent == 'GetTime':
-    location = 'local'
-    # Check for entities
-    if len(entities) > 0:
-        # Check for a location entity
-        if 'Location' in entities:
-            # ML entities are strings, get the first one
-            location = entities['Location'][0]
-    # Get the time for the specified location
-    print(GetTime(location))
-
-elif top_intent == 'GetDay':
-    date_string = date.today().strftime("%m/%d/%Y")
-    # Check for entities
-    if len(entities) > 0:
-        # Check for a Date entity
-        if 'Date' in entities:
-            # Regex entities are strings, get the first one
-            date_string = entities['Date'][0]
-    # Get the day for the specified date
-    print(GetDay(date_string))
-
-elif top_intent == 'GetDate':
-    day = 'today'
-    # Check for entities
-    if len(entities) > 0:
-        # Check for a Weekday entity
-        if 'Weekday' in entities:
-            # List entities are lists
-            day = entities['Weekday'][0][0]
-    # Get the date for the specified day
-    print(GetDate(day))
-
-else:
-    # Some other intent (for example, "None") was predicted
-    print('Try asking me for the time, the day, or the date.')
-```
-
+    **Python**
+    
+    ```Python
+    # Apply the appropriate action
+    if top_intent == 'GetTime':
+        location = 'local'
+        # Check for entities
+        if len(entities) > 0:
+            # Check for a location entity
+            if 'Location' in entities:
+                # ML entities are strings, get the first one
+                location = entities['Location'][0]
+        # Get the time for the specified location
+        print(GetTime(location))
+    
+    elif top_intent == 'GetDay':
+        date_string = date.today().strftime("%m/%d/%Y")
+        # Check for entities
+        if len(entities) > 0:
+            # Check for a Date entity
+            if 'Date' in entities:
+                # Regex entities are strings, get the first one
+                date_string = entities['Date'][0]
+        # Get the day for the specified date
+        print(GetDay(date_string))
+    
+    elif top_intent == 'GetDate':
+        day = 'today'
+        # Check for entities
+        if len(entities) > 0:
+            # Check for a Weekday entity
+            if 'Weekday' in entities:
+                # List entities are lists
+                day = entities['Weekday'][0][0]
+        # Get the date for the specified day
+        print(GetDate(day))
+    
+    else:
+        # Some other intent (for example, "None") was predicted
+        print('Try asking me for the time, the day, or the date.')
+    ```
+    
 4. Save your changes and return to the integrated terminal for the **clock-client** folder, and enter the following command to run the program:
 
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python clock-client.py
-```
+    **C#**
+    
+    ```
+    dotnet run
+    ```
+    
+    **Python**
+    
+    ```
+    python clock-client.py
+    ```
 
 5. When prompted, enter utterances to test the application. For example, try:
 
