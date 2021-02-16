@@ -64,17 +64,18 @@ In this exercise, you'll complete a partially implemented client application tha
 1. In Visual Studio Code, in the **Explorer** pane, browse to the **11-luis-speech** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **speaking-clock-client** folder and open an integrated terminal. Then install the Language Understanding SDK package by running the appropriate command for your language preference:
 
-        **C#**
-        
-        ```
-        dotnet add package Microsoft.CognitiveServices.Speech --version 1.14.0
-        ```
-        
-        **Python**
-        
-        ```
-        pip install azure-cognitiveservices-speech==1.14.0
-        ```
+    **C#**
+    
+    ```
+    dotnet add package Microsoft.CognitiveServices.Speech --version 1.14.0
+    ```
+    
+    
+    **Python**
+    
+    ```
+    pip install azure-cognitiveservices-speech==1.14.0
+    ```
 
 3. View the contents of the **speaking-clock-client** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
