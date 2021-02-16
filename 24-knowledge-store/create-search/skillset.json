@@ -224,7 +224,7 @@
             "sourceContext": "/document/merged_content/keyphrases/*",
             "inputs": [
               {
-                  "name": "KeyPhrases",
+                  "name": "phrase",
                   "source": "/document/merged_content/keyphrases/*"
               }
           ]
