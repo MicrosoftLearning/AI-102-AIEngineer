@@ -63,17 +63,17 @@ The cognitive services APIs are REST-based, so you can consume them by submittin
     - The response from the service is a JSON object, which the client application can parse.
 5. Right-click the **rest-client** folder and open an integrated terminal. Then enter the following language-specific command to run the program:
 
-**C#**
+    **C#**
 
-```
-dotnet run
-```
+    ```
+    dotnet run
+    ```
 
-**Python**
+    **Python**
 
-```
-python rest-client.py
-```
+    ```
+    python rest-client.py
+    ```
 
 6. When prompted, enter some text and review the language that is detected by the service, which is returned in the JSON response. For example, try entering "Hello", "Bonjour", and "Hola".
 7. When you have finished testing the application, enter "quit" to stop the program.
@@ -85,17 +85,17 @@ You can write code that consumes cognitive services REST APIs directly, but ther
 1. In Visual Studio Code, in the **Explorer** pane, in the **01-getting-started** folder, expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **sdk-client** folder and open an integrated terminal. Then install the Text Analytics SDK package by running the appropriate command for your language preference:
 
-**C#**
+    **C#**
 
-```
-dotnet add package Azure.AI.TextAnalytics --version 5.0.0
-```
+    ```
+    dotnet add package Azure.AI.TextAnalytics --version 5.0.0
+    ```
 
-**Python**
+    **Python**
 
-```
-pip install azure-ai-textanalytics==5.0.0
-```
+    ```
+    pip install azure-ai-textanalytics==5.0.0
+    ```
 
 3. View the contents of the **sdk-client** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
@@ -114,17 +114,17 @@ pip install azure-ai-textanalytics==5.0.0
     - The **GetLanguage** function uses the SDK to create a client for the service, and then uses the client to detect the language of the text that was entered.
 5. Return to the integrated terminal for the **sdk-client** folder, and enter the following command to run the program:
 
-**C#**
+    **C#**
 
-```
-dotnet run
-```
+    ```
+    dotnet run
+    ```
 
-**Python**
+    **Python**
 
-```
-python sdk-client.py
-```
+    ```
+    python sdk-client.py
+    ```
 
 6. When prompted, enter some text and review the language that is detected by the service. For example, try entering "Goodbye", "Au revoir", and "Hasta la vista".
 7. When you have finished testing the application, enter "quit" to stop the program.
