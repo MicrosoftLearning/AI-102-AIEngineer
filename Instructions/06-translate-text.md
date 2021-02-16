@@ -58,17 +58,17 @@ In this exercise, you'll complete a partially implemented client application tha
 4. In the **Main** function, note that code to load the cognitive services key and region from the configuration file has already been provided. The endpoint for the translation service is also specified in your code.
 5. Right-click the **text-translation** folder, open an integrated terminal, and enter the following command to run the program:
 
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python text-translation.py
-```
+    **C#**
+    
+    ```
+    dotnet run
+    ```
+    
+    **Python**
+    
+    ```
+    python text-translation.py
+    ```
 
 6. Observe the output as the code should run without error, displaying the contents of each review text file in the **reviews** folder. The application currently doesn't make use of the Translator service. We'll fix that in the next procedure.
 
@@ -79,79 +79,79 @@ The Translator service can automatically detect the source language of text to b
 1. In your code file, find the **GetLanguage** function, which currently returns "en" for all text values.
 2. In the **GetLanguage** function, under the comment **Use the Translator detect function**, add the following code to use the Translator's REST API to detect the language of the specified text, being careful not to replace the code at the end of the function that returns the language:
 
-**C#**
-
-```C
-// Use the Translator detect function
-object[] body = new object[] { new { Text = text } };
-var requestBody = JsonConvert.SerializeObject(body);
-using (var client = new HttpClient())
-{
-    using (var request = new HttpRequestMessage())
+    **C#**
+    
+    ```C
+    // Use the Translator detect function
+    object[] body = new object[] { new { Text = text } };
+    var requestBody = JsonConvert.SerializeObject(body);
+    using (var client = new HttpClient())
     {
-        // Build the request
-        string path = "/detect?api-version=3.0";
-        request.Method = HttpMethod.Post;
-        request.RequestUri = new Uri(translatorEndpoint + path);
-        request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
-        request.Headers.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
-        request.Headers.Add("Ocp-Apim-Subscription-Region", cogSvcRegion);
-
-        // Send the request and get response
-        HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
-        // Read response as a string
-        string responseContent = await response.Content.ReadAsStringAsync();
-
-        // Parse JSON array and get language
-        JArray jsonResponse = JArray.Parse(responseContent);
-        language = (string)jsonResponse[0]["language"]; 
+        using (var request = new HttpRequestMessage())
+        {
+            // Build the request
+            string path = "/detect?api-version=3.0";
+            request.Method = HttpMethod.Post;
+            request.RequestUri = new Uri(translatorEndpoint + path);
+            request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
+            request.Headers.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
+            request.Headers.Add("Ocp-Apim-Subscription-Region", cogSvcRegion);
+    
+            // Send the request and get response
+            HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
+            // Read response as a string
+            string responseContent = await response.Content.ReadAsStringAsync();
+    
+            // Parse JSON array and get language
+            JArray jsonResponse = JArray.Parse(responseContent);
+            language = (string)jsonResponse[0]["language"]; 
+        }
     }
-}
-```
+    ```
+    
+    **Python**
 
-**Python**
-
-```Python
-# Use the Translator detect function
-path = '/detect'
-url = translator_endpoint + path
-
-# Build the request
-params = {
-    'api-version': '3.0'
-}
-
-headers = {
-'Ocp-Apim-Subscription-Key': cog_key,
-'Ocp-Apim-Subscription-Region': cog_region,
-'Content-type': 'application/json'
-}
-
-body = [{
-    'text': text
-}]
-
-# Send the request and get response
-request = requests.post(url, params=params, headers=headers, json=body)
-response = request.json()
-
-# Parse JSON array and get language
-language = response[0]["language"]
-```
+    ```Python
+    # Use the Translator detect function
+    path = '/detect'
+    url = translator_endpoint + path
+    
+    # Build the request
+    params = {
+        'api-version': '3.0'
+    }
+    
+    headers = {
+    'Ocp-Apim-Subscription-Key': cog_key,
+    'Ocp-Apim-Subscription-Region': cog_region,
+    'Content-type': 'application/json'
+    }
+    
+    body = [{
+        'text': text
+    }]
+    
+    # Send the request and get response
+    request = requests.post(url, params=params, headers=headers, json=body)
+    response = request.json()
+    
+    # Parse JSON array and get language
+    language = response[0]["language"]
+    ```
 
 3. Save your changes and return to the integrated terminal for the **text-translation** folder, and enter the following command to run the program:
 
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python text-translation.py
-```
+    **C#**
+    
+    ```
+    dotnet run
+    ```
+    
+    **Python**
+    
+    ```
+    python text-translation.py
+    ```
 
 4. Observe the output, noting that this time the language for each review is identified.
 
@@ -162,81 +162,81 @@ Now that your application can determine the language in which reviews are writte
 1. In your code file, find the **Translate** function, which currently returns and empty string for all text values.
 2. In the **Translate** function, under the comment **Use the Translator translate function**, add the following code to use the Translator's REST API to translate the specified text from its source language into English, being careful not to replace the code at the end of the function that returns the translation:
 
-**C#**
+    **C#**
 
-```C
-// Use the Translator translate function
-object[] body = new object[] { new { Text = text } };
-var requestBody = JsonConvert.SerializeObject(body);
-using (var client = new HttpClient())
-{
-    using (var request = new HttpRequestMessage())
+    ```C
+    // Use the Translator translate function
+    object[] body = new object[] { new { Text = text } };
+    var requestBody = JsonConvert.SerializeObject(body);
+    using (var client = new HttpClient())
     {
-        // Build the request
-        string path = "/translate?api-version=3.0&from=" + sourceLanguage + "&to=en" ;
-        request.Method = HttpMethod.Post;
-        request.RequestUri = new Uri(translatorEndpoint + path);
-        request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
-        request.Headers.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
-        request.Headers.Add("Ocp-Apim-Subscription-Region", cogSvcRegion);
-
-        // Send the request and get response
-        HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
-        // Read response as a string
-        string responseContent = await response.Content.ReadAsStringAsync();
-
-        // Parse JSON array and get translation
-        JArray jsonResponse = JArray.Parse(responseContent);
-        translation = (string)jsonResponse[0]["translations"][0]["text"];  
+        using (var request = new HttpRequestMessage())
+        {
+            // Build the request
+            string path = "/translate?api-version=3.0&from=" + sourceLanguage + "&to=en" ;
+            request.Method = HttpMethod.Post;
+            request.RequestUri = new Uri(translatorEndpoint + path);
+            request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
+            request.Headers.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
+            request.Headers.Add("Ocp-Apim-Subscription-Region", cogSvcRegion);
+    
+            // Send the request and get response
+            HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
+            // Read response as a string
+            string responseContent = await response.Content.ReadAsStringAsync();
+    
+            // Parse JSON array and get translation
+            JArray jsonResponse = JArray.Parse(responseContent);
+            translation = (string)jsonResponse[0]["translations"][0]["text"];  
+        }
     }
-}
-```
+    ```
 
-**Python**
-
-```Python
-# Use the Translator translate function
-path = '/translate'
-url = translator_endpoint + path
-
-# Build the request
-params = {
-    'api-version': '3.0',
-    'from': source_language,
-    'to': ['en']
-}
-
-headers = {
-    'Ocp-Apim-Subscription-Key': cog_key,
-    'Ocp-Apim-Subscription-Region': cog_region,
-    'Content-type': 'application/json'
-}
-
-body = [{
-    'text': text
-}]
-
-# Send the request and get response
-request = requests.post(url, params=params, headers=headers, json=body)
-response = request.json()
-
-# Parse JSON array and get translation
-translation = response[0]["translations"][0]["text"]
-```
+    **Python**
+    
+    ```Python
+    # Use the Translator translate function
+    path = '/translate'
+    url = translator_endpoint + path
+    
+    # Build the request
+    params = {
+        'api-version': '3.0',
+        'from': source_language,
+        'to': ['en']
+    }
+    
+    headers = {
+        'Ocp-Apim-Subscription-Key': cog_key,
+        'Ocp-Apim-Subscription-Region': cog_region,
+        'Content-type': 'application/json'
+    }
+    
+    body = [{
+        'text': text
+    }]
+    
+    # Send the request and get response
+    request = requests.post(url, params=params, headers=headers, json=body)
+    response = request.json()
+    
+    # Parse JSON array and get translation
+    translation = response[0]["translations"][0]["text"]
+    ```
 
 3. Save your changes and return to the integrated terminal for the **text-translation** folder, and enter the following command to run the program:
 
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python text-translation.py
-```
+    **C#**
+    
+    ```
+    dotnet run
+    ```
+    
+    **Python**
+    
+    ```
+    python text-translation.py
+    ```
 
 4. Observe the output, noting that non-English reviews are translated into English.
 

@@ -61,7 +61,7 @@ If you don't already have one in your subscription, you'll need to provision a *
 
 ### Create a storage account
 
-1. Return to the home page of the Azure portal, and then select the **&#65291;Create a resource** button, search for *storage*, and create a **Storage account** resource with the following settings:
+1. Return to the home page of the Azure portal, and then select the **&#65291;Create a resource** button, search for *storage account*, and create a **Storage account** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: **The same resource group as your Azure Cognitive Search and Cognitive Services resources*
     - **Storage account name**: *Enter a unique name*
@@ -84,17 +84,17 @@ Now that you have the required resources, you can upload some documents to your 
 3. Save your changes, and then right-click the **22-create-a-search-solution** folder and open an interactive terminal.
 4. Enter the following command to sign into your Azure subscription by using the Azure CLI.
 
-```
-az login
-```
+    ```
+    az login
+    ```
 
 A web browser tab will open and prompt you to sign into Azure. Do so, and then close the browser tab and return to Visual Studio Code.
 
 5. Enter the following command to run the batch file. This will create a blob container in your storage account and upload the documents in the **data** folder to it.
 
-```
-UploadDocs
-```
+    ```
+    UploadDocs
+    ```
 
 ## Index the documents
 
@@ -238,31 +238,31 @@ The components of the search solution are based on JSON definitions, which you c
 6. Add a comma immediately after the newly inserted skill to separate it from the next skill (which was previously the first skill in the list).
 7. Update the new skill definition like this:
 
-```
-    {
-        "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
-        "defaultLanguageCode": "en",
-        "name": "get-sentiment",
-        "description": "Evaluate sentiment",
-        "context": "/document",
-        "inputs": [
-            {
-                "name": "text",
-                "source": "/document/merged_content"
-            },
-            {
-                "name": "languageCode",
-                "source": "/document/language"
-            }
-        ],
-        "outputs": [
-            {
-                "name": "score",
-                "targetName": "sentimentScore"
-            }
-        ]
-    },
-```
+    ```
+        {
+            "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
+            "defaultLanguageCode": "en",
+            "name": "get-sentiment",
+            "description": "Evaluate sentiment",
+            "context": "/document",
+            "inputs": [
+                {
+                    "name": "text",
+                    "source": "/document/merged_content"
+                },
+                {
+                    "name": "languageCode",
+                    "source": "/document/language"
+                }
+            ],
+            "outputs": [
+                {
+                    "name": "score",
+                    "targetName": "sentimentScore"
+                }
+            ]
+        },
+    ```
 
 The new skill is named **get-sentiment**, and will evaluate the text found in the **merged_content** field of the document being indexed (which includes the source content as well as any text extracted from images in the content). It uses the extracted **language** of the document (with a default of English), and evaluates a score for the sentiment of the content. This score is then  output as a new field named **sentimentScore** at the **document** level of the object that represents the indexed document.
 
@@ -275,45 +275,45 @@ The new skill is named **get-sentiment**, and will evaluate the text found in th
 2. Select **margies-index** and view the **Index Definition (JSON)** page. This shows a JSON definition for your index, including definitions for each field. Some fields are based on metadata and content in the source document, and others are the results of skills in the skillset.
 3. You added a skill to the skillset to extract a sentiment score for the document. Now you must add a corresponding field in the index to which this value can be mapped. At the bottom of the **fields** list (before the **]** that denotes the end of the list, which is followed by index properties such as **suggesters**), add the following field (being sure to include the comma at the beginning, to separate the new field from the previous field):
 
-```
-,
-{
-    "name": "sentiment",
-    "type": "Edm.Double",
-    "facetable": false,
-    "filterable": true,
-    "key": false,
-    "retrievable": true,
-    "searchable": false,
-    "sortable": true,
-    "analyzer": null,
-    "indexAnalyzer": null,
-    "searchAnalyzer": null,
-    "synonymMaps": [],
-    "fields": []
-}
-```
+    ```
+    ,
+    {
+        "name": "sentiment",
+        "type": "Edm.Double",
+        "facetable": false,
+        "filterable": true,
+        "key": false,
+        "retrievable": true,
+        "searchable": false,
+        "sortable": true,
+        "analyzer": null,
+        "indexAnalyzer": null,
+        "searchAnalyzer": null,
+        "synonymMaps": [],
+        "fields": []
+    }
+    ```
 
 4. The index includes the **metadata_storage_path** field (the URL of the document), which is currently used as the index key. The key is Base-64 encoded, making it efficient as a key but requiring client applications to decode it if they want to use the actual URL value as a field. We'll resolve this by adding another field that will be mapped to the unencoded value. Add the following field definition immediately after the **sentiment** field you just added:
 
-```
-,
-{
-    "name": "url",
-    "type": "Edm.String",
-    "facetable": false,
-    "filterable": true,
-    "key": false,
-    "retrievable": true,
-    "searchable": false,
-    "sortable": false,
-    "analyzer": null,
-    "indexAnalyzer": null,
-    "searchAnalyzer": null,
-    "synonymMaps": [],
-    "fields": []
-}
-```
+    ```
+    ,
+    {
+        "name": "url",
+        "type": "Edm.String",
+        "facetable": false,
+        "filterable": true,
+        "key": false,
+        "retrievable": true,
+        "searchable": false,
+        "sortable": false,
+        "analyzer": null,
+        "indexAnalyzer": null,
+        "searchAnalyzer": null,
+        "synonymMaps": [],
+        "fields": []
+    }
+    ```
 
 5. Select **Save** to save the index with the new fields.
 6. Close the **margies-index** page to return to the blade for your Azure Cognitive Search resource.
@@ -324,24 +324,24 @@ The new skill is named **get-sentiment**, and will evaluate the text found in th
 2. Select **margies-indexer** and view the **Indexer Definition (JSON)** page. This shows a JSON definition for your indexer, which maps fields extracted from document content and metadata (in the **fieldMappings** section), and values extracted by skills in the skillset (in the **outputFieldMappings** section), to fields in the index.
 3. In the **fieldMappings** list, add a comma after the existing mapping for the **metadata_storage_path** value to the base-64 encoded key field; and then add the following JSON to map the same value to the **url** field, but without the Base-64 encoding:
 
-```
-{
-    "sourceFieldName" : "metadata_storage_path",
-    "targetFieldName" : "url"
-}
-
-```
+    ```
+    {
+        "sourceFieldName" : "metadata_storage_path",
+        "targetFieldName" : "url"
+    }
+    
+    ```
 
 All of the other metadata and content field in the source document are implicitly mapped to fields of the same name in the index.
 
 4. At the end of the **ouputFieldMappings** section, add the following mapping to map the **sentimentScore** value extracted by your sentiment skill to the **sentiment** field you added to the index (remember to separate it from the previous mapping with a comma!):
 
-```
-{
-    "sourceFieldName": "/document/sentimentScore",
-    "targetFieldName": "sentiment"
-}
-```
+    ```
+    {
+        "sourceFieldName": "/document/sentimentScore",
+        "targetFieldName": "sentiment"
+    }
+    ```
 
 5. Select **Save** to save the indexer with the new mappings.
 6. Select **Reset** to reset the index, and confirm that you want to do this when prompted. You've added new fields to an already-populated index, so you'll need to reset and reindex to update the existing index records with the new field values.
@@ -381,18 +381,18 @@ Now that you have a useful index, you can use it from a client application. You 
 1. In Visual Studio Code, in the **Explorer** pane, browse to the **22-create-a-search-solution** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **margies-travel** folder and open an integrated terminal. Then install the Azure Cognitive Search SDK package by running the appropriate command for your language preference:
 
-**C#**
-
-```
-dotnet add package Azure.Search.Documents --version 11.1.1
-```
-
-**Python**
-
-```
-pip install azure-search-documents==11.0.0
-```
-
+    **C#**
+    
+    ```
+    dotnet add package Azure.Search.Documents --version 11.1.1
+    ```
+    
+    **Python**
+    
+    ```
+    pip install azure-search-documents==11.0.0
+    ```
+    
 3. View the contents of the **margies-travel** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
     - **Python**: .env
@@ -443,17 +443,17 @@ The web app already includes code to process and render the search results.
 
  1. return to the integrated terminal for the **margies-travel** folder, and enter the following command to run the program:
 
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-flask run
-```
+    **C#**
+    
+    ```
+    dotnet run
+    ```
+    
+    **Python**
+    
+    ```
+    flask run
+    ```
 
 2. In the message that is displayed when the app starts successfully, follow the link to the running web application (*http://localhost:5000/* or *http://127.0.0.1:5000/*) to open the Margies Travel site in a web browser.
 3. In the Margie's Travel website, enter **London hotel** into the search box and click **Search**.
