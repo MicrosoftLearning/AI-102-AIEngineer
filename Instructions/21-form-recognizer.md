@@ -62,17 +62,17 @@ You'll use the sample forms from the **21-custom-form/sample-forms** folder in t
 
 6. In the terminal pane, enter the following command to establish an authenticated connection to your Azure subscription.
     
-    ```
-    az login --output none
-    ```
+```
+az login --output none
+```
 
 7. When prompted, sign into your Azure subscription. Then return to Visual Studio Code and wait for the sign-in process to complete.
 
 8. Run the following command to list Azure locations.
 
-    ```
-    az account list-locations -o table
-    ```
+```
+az account list-locations -o table
+```
 
 9. In the output, find the **Name** value that corresponds with the location of your resource group (for example, for *East US* the corresponding name is *eastus*).
 
@@ -113,17 +113,17 @@ You will use the Form Recognizer SDK to train and test a custom model.
 
 3. Install the Form Recognizer package by running the appropriate command for your language preference:
 
-    **C#**
-    
-    ```
-    dotnet add package Azure.AI.FormRecognizer --version 3.0.0 
-    ```
-    
-    **Python**
-    
-    ```
-    pip install azure-ai-formrecognizer==3.0.0
-    ```
+**C#**
+
+```
+dotnet add package Azure.AI.FormRecognizer --version 3.0.0 
+```
+
+**Python**
+
+```
+pip install azure-ai-formrecognizer==3.0.0
+```
 
 3. View the contents of the **train-model** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
@@ -147,17 +147,17 @@ You will use the Form Recognizer SDK to train and test a custom model.
 
 6. Return the integrated terminal for the **train-model** folder, and enter the following command to run the program:
 
-    **C#**
-    
-    ```
-    dotnet run
-    ```
-    
-    **Python**
-    
-    ```
-    python train-model.py
-    ```
+**C#**
+
+```
+dotnet run
+```
+
+**Python**
+
+```
+python train-model.py
+```
 
 7. Wait for the program to end. Then review the model output and locate the Model ID in the terminal. You will need this value in the next procedure, so do not close the terminal!
 
@@ -171,19 +171,19 @@ Now that you've got the model ID, you can use it from a client application. Once
 2. Right-click the **test-model** folder and open an integrated terminal. You now have (at least) two **cmd** terminals, and you can switch between them using the drop-down list in the Terminal pane.
 3. In the terminal for the **test-model** folder, install the Form Recognizer package by running the appropriate command for your language preference:
 
-    **C#**
-    
-    ```
-    dotnet add package Azure.AI.FormRecognizer --version 3.0.0 
-    ```
-    
-    **Python**
-    
-    ```
-    pip install azure-ai-formrecognizer==3.0.0
-    ```
-    
-    *This isn't strictly necessary if you previously used pip to install the package into Python environment; but it does no harm to ensure it's installed!*
+**C#**
+
+```
+dotnet add package Azure.AI.FormRecognizer --version 3.0.0 
+```
+
+**Python**
+
+```
+pip install azure-ai-formrecognizer==3.0.0
+```
+
+*This isn't strictly necessary if you previously used pip to install the package into Python environment; but it does no harm to ensure it's installed!*
 
 4. In the **test-model** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
     - Your Form Recognizer endpoint.
@@ -197,17 +197,17 @@ Now that you've got the model ID, you can use it from a client application. Once
     
 6. Return the integrated terminal for the **test-model** folder, and enter the following command to run the program:
 
-    **C#**
-    
-    ```
-    dotnet run
-    ```
-    
-    **Python**
-    
-    ```
-    python test-model.py
-    ```
+**C#**
+
+```
+dotnet run
+```
+
+**Python**
+
+```
+python test-model.py
+```
 
 7. View the output and notice the prediction confidence scores. Notice how the output provides field names field-1, field-2 etc. 
 
@@ -228,36 +228,36 @@ Suppose after you trained a model with the invoice forms, you wanted to see how 
 
 5. In the **Main** function, find the comment **Train model**, and modify it as shown to change the training process so that labels are used:
 
-    **C#**
-    
-    ```C#
-    // Train model 
-    CustomFormModel model = await trainingClient
-    .StartTrainingAsync(new Uri(trainingStorageUri), useTrainingLabels: true)
-    .WaitForCompletionAsync();
-    ```
-    
-    **Python**
-    
-    ```Python
-    # Train model 
-    poller = form_training_client.begin_training(trainingDataUrl, use_training_labels=True)
-    model = poller.result()
-    ```
+**C#**
+
+```C#
+// Train model 
+CustomFormModel model = await trainingClient
+.StartTrainingAsync(new Uri(trainingStorageUri), useTrainingLabels: true)
+.WaitForCompletionAsync();
+```
+
+**Python**
+
+```Python
+# Train model 
+poller = form_training_client.begin_training(trainingDataUrl, use_training_labels=True)
+model = poller.result()
+```
 
 6. Return the integrated terminal for the **train-model** folder, and enter the following command to run the program:
 
-    **C#**
-    
-    ```
-    dotnet run
-    ```
-    
-    **Python**
-    
-    ```
-    python train-model.py
-    ```
+**C#**
+
+```
+dotnet run
+```
+
+**Python**
+
+```
+python train-model.py
+```
 
 10. Wait for the program to end, then review the model output.
 11. Note the new the Model ID in the terminal output. 
@@ -267,17 +267,17 @@ Suppose after you trained a model with the invoice forms, you wanted to see how 
 1. In the **test-model** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) and update it to reflect the new model ID. Save your changes.
 2. Return the integrated terminal for the **test-model** folder, and enter the following command to run the program:
 
-    **C#**
-    
-    ```
-    dotnet run
-    ```
-    
-    **Python**
-    
-    ```
-    python test-model.py
-    ```
+**C#**
+
+```
+dotnet run
+```
+
+**Python**
+
+```
+python test-model.py
+```
     
 3. View the output and observe how the output for the model trained **with** labels provides field names like "CompanyPhoneNumber" and "DatedAs" unlike the output from the model trained **without** labels, which produced an output of field-1, field-2 etc.  
 

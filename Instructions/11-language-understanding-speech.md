@@ -263,7 +263,7 @@ if len(json_response["entities"]) > 0:
     print(entity_type + ': ' + entity_value)
 ```
         
-    Your code now uses the Language Understanding app to predict an intent as well as any entities that were detected in the input utterance. Your client application must now     use that prediction to determine and perform the appropriate action.
+Your code now uses the Language Understanding app to predict an intent as well as any entities that were detected in the input utterance. Your client application must now     use that prediction to determine and perform the appropriate action.
 
 5. Beneath the code you just added, find the comment **Apply the appropriate action**, and add the following code, which checks for intents supported by the application (**GetTime**, **GetDate**, and **GetDay**) and determines if any relevant entities have been detected, before calling an existing function to produce an appropriate response.
 
