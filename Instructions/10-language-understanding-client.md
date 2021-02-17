@@ -75,7 +75,7 @@ dotnet add package Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime --ver
 pip install azure-cognitiveservices-language-luis==0.7.0
 ```
     
-    *The Python SDK package includes classes for both **prediction** and **authoring**.*
+*The Python SDK package includes classes for both **prediction** and **authoring**.*
 
 3. View the contents of the **clock-client** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
