@@ -284,15 +284,20 @@ In a real project, you'd iteratively refine intents and entities, retrain, and r
 
 13. Examine the response and verify that it includes a **Location** entity.
 
-14. Try this command:
+14. Try the following commands and examine the responses:
+
+    ```
+    GetIntent "What time is it in Glasgow?"
+    ```
 
     ```
     GetIntent "What's the time in Nairobi?"
     ```
 
-15. Again, examine the response. This time the **Location** entity may not have been detected.
-
-16. Try a few more variations - the goal is to generate some responses that correctly predict the **GetTime** intent, but fail to detect a **Location** entity.
+    ```
+    GetIntent "What's the UK time?"
+    ```
+15. Try a few more variations - the goal is to generate at least some responses that correctly predict the **GetTime** intent, but fail to detect a **Location** entity.
 
     Keep the terminal open. You will return to it later.
 
@@ -303,9 +308,9 @@ You can improve a Language Understanding app based on historical utterances subm
 In the previous procedure, you used cURL to submit requests to your app's endpoint. These requests included the option to log the queries, which enables the app to track them for use in active learning.
 
 1. In the Language Understanding portal, Select **Build** and view the **Review endpoint utterances** page. This page lists logged utterances that the service has flagged for review.
-2. For any utterances for which the intent and entity (if any) are correctly predicted, select **&#10003;** to add the utterance to the intent as a training example.
-3. Find an example of an utterance in which the **GetTime** intent was correctly identified, but a **Location** entity was <u>not</u> identified; and select **&#10003;** to add the utterance to the intent - you will edit the intent to map the **Location** entity correctly before retraining.
-4. Go to the **Intents** page and open the **GetTime** intent. Then find the utterance with the undetected **Location** entity that you added in the previous step, select the location in the utterance, and map it to the **Location** entity.
+2. For any utterances for which the intent and a new location entity (that wasn't included in the original training utterances) are correctly predicted, select **&#10003;** to confirm the entity, and then use the **&#10514;** icon to add the utterance to the intent as a training example.
+3. Find an example of an utterance in which the **GetTime** intent was correctly identified, but a **Location** entity was <u>not</u> identified; and select the location name and map it to the **location** entity. Then use the **&#10514;** icon to add the utterance to the intent as a training example.
+4. Go to the **Intents** page and open the **GetTime** intent to confirm that the suggested utterances have been added.
 5. At the top of the Language Understanding portal, select **Train** to retrain the app.
 6. At the top right of the Language Understanding portal, select **Publish** and republish the app to the **Production slot**.
 7. Return to the terminal for the **09-luis-app** folder, and use the **GetIntent** command to submit the utterance you added and corrected during active learning.
