@@ -61,19 +61,19 @@ In this exercise, you'll complete a partially implemented client application tha
 1. In Visual Studio Code, in the **Explorer** pane, browse to the **10-luis-client** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **clock-client** folder and open an integrated terminal. Then install the Language Understanding SDK package by running the appropriate command for your language preference:
 
-    **C#**
-    
-    ```
-    dotnet add package Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime --version 3.0.0
-    ```
+**C#**
 
-    *In addition to the **Runtime** (prediction) package, there is an **Authoring** package that you can use to write code to create and manage Language Understanding models.*
+```
+dotnet add package Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime --version 3.0.0
+```
 
-    **Python**
-    
-    ```
-    pip install azure-cognitiveservices-language-luis==0.7.0
-    ```
+*In addition to the **Runtime** (prediction) package, there is an **Authoring** package that you can use to write code to create and manage Language Understanding models.*
+
+**Python**
+
+```
+pip install azure-cognitiveservices-language-luis==0.7.0
+```
     
     *The Python SDK package includes classes for both **prediction** and **authoring**.*
 
