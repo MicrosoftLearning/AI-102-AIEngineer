@@ -158,7 +158,7 @@ print('Entities: {}'.format (entities))
 print('-----------------\n{}'.format(prediction_response.query))
 ```
 
-    The call to the Language Understanding app returns a prediction, which includes the top (most likely) intent as well as any entities that were detected in the input utterance. Your client application must now use that prediction to determine and perform the appropriate action.
+The call to the Language Understanding app returns a prediction, which includes the top (most likely) intent as well as any entities that were detected in the input utterance. Your client application must now use that prediction to determine and perform the appropriate action.
 
 3. Find the comment **Apply the appropriate action**, and add the following code, which checks for intents supported by the application (**GetTime**, **GetDate**, and **GetDay**) and determines if any relevant entities have been detected, before calling an existing function to produce an appropriate response.
 
@@ -280,17 +280,17 @@ else:
     
 4. Save your changes and return to the integrated terminal for the **clock-client** folder, and enter the following command to run the program:
 
-    **C#**
-    
-    ```
-    dotnet run
-    ```
-    
-    **Python**
-    
-    ```
-    python clock-client.py
-    ```
+**C#**
+
+```
+dotnet run
+```
+
+**Python**
+
+```
+python clock-client.py
+```
 
 5. When prompted, enter utterances to test the application. For example, try:
 
@@ -308,11 +308,11 @@ else:
 
     *What day is 01/01/2025?*
 
-    > **Note**: The logic in the application is deliberately simple, and has a number of limitations. For example, when getting the time, only a restricted set of cities is supported and daylight savings time is ignored. The goal is to see an example of a typical pattern for using Language Understanding in which your application must:
-    >
-    >   1. Connect to a prediction endpoint.
-    >   2. Submit an utterance to get a prediction.
-    >   3. Implement logic to respond appropriately to the predicted intent and entities.
+> **Note**: The logic in the application is deliberately simple, and has a number of limitations. For example, when getting the time, only a restricted set of cities is supported and daylight savings time is ignored. The goal is to see an example of a typical pattern for using Language Understanding in which your application must:
+>
+>   1. Connect to a prediction endpoint.
+>   2. Submit an utterance to get a prediction.
+>   3. Implement logic to respond appropriately to the predicted intent and entities.
 
 6. When you have finished testing, enter *quit*.
 
