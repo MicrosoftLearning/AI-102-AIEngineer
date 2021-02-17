@@ -231,7 +231,7 @@ elif result.reason == speech_sdk.ResultReason.Canceled:
         print("Error details: {}".format(result.cancellation_details.error_details))
 ```
     
-    The code you've added so far identifies the *intent*, but some intents can reference *entities*, so you must add code to extract the entity information from the JSON     returned by the service.
+The code you've added so far identifies the *intent*, but some intents can reference *entities*, so you must add code to extract the entity information from the JSON     returned by the service.
 
 4. In the code you just added, find the comment **Get the first entity (if any)** and add the following code beneath it:
 
