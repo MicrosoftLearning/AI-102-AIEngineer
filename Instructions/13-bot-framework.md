@@ -227,7 +227,7 @@ When you use the Bot Framework SDK to create a bot from a template, the Azure Re
     - **YOUR_RESOURCE_GROUP**: The name of your existing resource group.
     - **YOUR_APP_ID**: The **appId** value you noted in the previous procedure.
     - **REGION**: An Azure region code (such as *eastus*).
-    - **All other placeholders**: Unique values that will be used to name the new resources. In particular, make a note of the value you use for the **BotId** and **newWebAppName** parameters - you will need them later.
+    - **All other placeholders**: Unique values that will be used to name the new resources. The resource IDs you specify must be globally unique strings netween 4 and 42 characters long. Make a note of the value you use for the **BotId** and **newWebAppName** parameters - you will need them later.
 
 ```
 az deployment group create --resource-group "YOUR_RESOURCE_GROUP" --template-file "deploymenttemplates/template-with-preexisting-rg.json" --parameters appId="YOUR_APP_ID" appSecret="Super$ecretPassw0rd" botId="A_UNIQUE_BOT_ID" newWebAppName="A_UNIQUE_WEB_APP_NAME" newAppServicePlanName="A_UNIQUE_PLAN_NAME" appServicePlanLocation="REGION" --name "A_UNIQUE_SERVICE_NAME"
@@ -258,7 +258,7 @@ rmdir /S /Q  __pycache__
 notepad requirements.txt
 ```
 
-*In notepad, edit the **requirements.txt** file for your bot to match the following, and then save the changes and close Notepad.*
+    (The second command will open the requirements.txt file for your Python environment in Notepad - modify it to match the following, save the changes, and close Notepad.)
 
 ```
 botbuilder-core==4.11.0
