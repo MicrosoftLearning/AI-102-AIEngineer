@@ -134,7 +134,7 @@ protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivi
 {
     string inputMessage = turnContext.Activity.Text;
     string responseMessage = "Ask me what the time is.";
-    if (inputMessage.ToLower()=="what is the time?")
+    if (inputMessage.ToLower().StartsWith("what") && inputMessage.ToLower().Contains("time"))
     {
         var now = DateTime.Now;
         responseMessage = "The time is " + now.Hour.ToString() + ":" + now.Minute.ToString("D2");
@@ -149,7 +149,7 @@ protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivi
 async def on_message_activity(self, turn_context: TurnContext):
     input_message = turn_context.activity.text
     response_message = 'Ask me what the time is.'
-    if input_message.lower() == 'what is the time?':
+    if (input_message.lower().startswith('what') and 'time' in input_message.lower()):
         now = datetime.now()
         response_message = 'The time is {}:{:02d}.'.format(now.hour,now.minute)
     await turn_context.send_activity(response_message)
@@ -177,13 +177,13 @@ As before, when the bot starts, note the endpoint at which it is running is show
 
 6. After the conversation is opened in a **Live chat** pane, wait for the message *Hello and welcome!*.
 7. Enter a message such as *Hello* and view the response from the bot, which should be *Ask me what the time is*.
-8. Enter *What is the time?* (including the question mark) and view the response.
+8. Enter *What is the time?* and view the response.
 
     The bot now responds to the query "What is the time?" by displaying the local time where the bot is running. For any other query, it prompts the user to ask it what the time is. This is a very limited bot, which could be improved through integration with the Language Understanding service and additional custom code, but it serves as a working example of how you can build a solution with the Bot Framework SDK by extending a bot created from a template.
 
 9. Close the Bot Framework Emulator and return to Visual Studio Code, then in the terminal window, enter **CTRL+C** to stop the bot.
 
-## Deploy the bot to Azure
+## If time permits: Deploy the bot to Azure
 
 Now you're ready to deploy your bot to Azure. Deployment involves multiple steps to prepare the code for deployment and create the necessary Azure resources.
 
@@ -193,7 +193,7 @@ A bot relies on multiple Azure resources, which can be created in a single resou
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 2. View the **Resource Groups** page to see the resource groups that exist in your subscription.
-3. If you are using a "sandbox" subscription that restricts you to an existing resource group, note the resource group name. Otherwise use the **&#65291;Add** button to create a new resource group with a unique name in any available region.
+3. Use the **&#65291;Add** button to create a new resource group with a unique name in any available region. (If you are using a "sandbox" subscription that restricts you to an existing resource group, note the resource group name).
 
 ### Create an Azure application registration
 
@@ -254,14 +254,24 @@ az bot prepare-deploy --lang Csharp --code-dir "." --proj-file-path "TimeBot.csp
 **Python**
 
 ```
-type requirements.txt
+rmdir /S /Q  __pycache__
+notepad requirements.txt
 ```
 
-*Python dependencies are managed on the deployment target through the inclusion of a **requirements.txt** file in the folder containing the code files. Bt default, this contains the packages required by the template. If your bot code requires additional packages, you would add them to the file.*
+*In notepad, edit the **requirements.txt** file for your bot to match the following, and then save the changes and close Notepad.*
 
-2. In Visual Studio Code, in the **Explorer** pane, right-click any of the files or folders in your **TimeBot** folder, and select **Reveal in File Explorer**.
-3. In the File Explorer window, select <u>all</u> of the files in the **TimeBot** folder. Then right-click any of the selected files and select **Send to** > **Compressed (zipped) folder**.
-4. Rename the resulting zipped file in your **TimeBot** folder to **TimeBot.zip**.
+```
+botbuilder-core==4.11.0
+aiohttp
+```
+
+### Create a zip archive for deployment
+
+To deploy the bot files, you will package them in a .zip archive. This must> be created from the files and folders in the root folder for your bot (do <u>not</u> zip the root folder itself - zip its contents!).
+
+1. In Visual Studio Code, in the **Explorer** pane, right-click any of the files or folders in your **TimeBot** folder, and select **Reveal in File Explorer**.
+2. In the File Explorer window, select <u>all</u> of the files in the **TimeBot** folder. Then right-click any of the selected files and select **Send to** > **Compressed (zipped) folder**.
+3. Rename the resulting zipped file in your **TimeBot** folder to **TimeBot.zip**.
 
 ### Deploy and test the bot
 
