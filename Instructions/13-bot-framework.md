@@ -258,7 +258,7 @@ rmdir /S /Q  __pycache__
 notepad requirements.txt
 ```
 
-*The second command will open the requirements.txt file for your Python environment in Notepad - modify it to match the following, save the changes, and close Notepad.*
+- The second command will open the requirements.txt file for your Python environment in Notepad - modify it to match the following, save the changes, and close Notepad.
 
 ```
 botbuilder-core==4.11.0
