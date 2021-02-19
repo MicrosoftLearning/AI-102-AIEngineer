@@ -432,6 +432,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     - **OS**: Linux
     - **Hosting plan**: Consumption
     - **Resource group**: The resource group containing your Azure Cognitive Search resource.
+        - Note: If this resource group already contains a Windows-based web app, you will not be able to deploy a Linux-based function there. Either delete the existing web app or deploy the function to a different resource group.
     - **Storage account**: The storage count where the Margie's Travel docs are stored.
     - **Application Insights**: Skip for now
 
@@ -445,6 +446,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     - **Runtime**: Python 3.8
     - **Hosting plan**: Consumption
     - **Resource group**: The resource group containing your Azure Cognitive Search resource.
+        - Note: If this resource group already contains a Windows-based web app, you will not be able to deploy a Linux-based function there. Either delete the existing web app or deploy the function to a different resource group.
     - **Storage account**: The storage count where the Margie's Travel docs are stored.
     - **Application Insights**: Skip for now
 
