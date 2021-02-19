@@ -79,7 +79,7 @@ If you don't already have one in your subscription, you'll need to provision a *
 
 Now that you have the required resources, you can upload some documents to your Azure Storage account.
 
-1. In Visual Studio Code, in the **Explorer** pane, expand the ****22-create-a-search-solution** folder and select **UploadFiles.cmd**.
+1. In Visual Studio Code, in the **Explorer** pane, expand the **22-create-a-search-solution** folder and select **UploadFiles.cmd**.
 2. Edit the batch file to replace the **YOUR_SUBSCRIPTION_ID**, **YOUR_AZURE_STORAGE_ACCOUNT_NAME**, and **YOUR_AZURE_STORAGE_KEY** placeholders with the appropriate subscription ID, Azure storage account name, and Azure storage account key values for the storage account you created previously.
 3. Save your changes, and then right-click the **22-create-a-search-solution** folder and open an integrated terminal.
 4. Enter the following command to sign into your Azure subscription by using the Azure CLI.
