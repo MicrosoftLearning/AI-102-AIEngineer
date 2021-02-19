@@ -41,7 +41,7 @@ The solution you will create for Margie's Travel requires the following resource
     - **Resource group**: *Create a new resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Service name**: *Enter a unique name*
     - **Location**: *Select a location - note that your Azure Cognitive Search and Cognitive Services resources must be in the same location*
-    - **Pricing tier**: Free (if this is not available, choose Basic)
+    - **Pricing tier**: Basic
 
 3. Wait for deployment to complete, and then go to the deployed resource.
 4. Review the **Overview** page on the blade for your Azure Cognitive Search resource in the Azure portal. Here, you can use a visual interface to create, test, manage, and monitor the various components of a search solution; including data sources, indexes, indexers, and skillsets.
