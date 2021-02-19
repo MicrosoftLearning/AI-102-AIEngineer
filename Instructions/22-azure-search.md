@@ -39,7 +39,7 @@ The solution you will create for Margie's Travel requires the following resource
 2. Select the **&#65291;Create a resource** button, search for *search*, and create a **Azure Cognitive Search** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Create a new resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
-    - **URL**: *Enter a unique name*
+    - **Service name**: *Enter a unique name*
     - **Location**: *Select a location - note that your Azure Cognitive Search and Cognitive Services resources must be in the same location*
     - **Pricing tier**: Basic
 
@@ -71,7 +71,7 @@ If you don't already have one in your subscription, you'll need to provision a *
     - **Replication**: Locally-redundant storage (LRS)
 2. Wait for deployment to complete, and then go to the deployed resource.
 3. On the **Overview** page, note the **Subscription ID** -this identifies the subscription in which the storage account is provisioned.
-4. On the **Access keys** page, note that two keys have been generated for your storage account. Then select **Show keys** to veiw the keys.
+4. On the **Access keys** page, note that two keys have been generated for your storage account. Then select **Show keys** to view the keys.
 
     > **Tip**: Keep the **Storage Account** blade open - you will need the subscription ID and one of the keys in the next procedure.
 
@@ -81,7 +81,7 @@ Now that you have the required resources, you can upload some documents to your 
 
 1. In Visual Studio Code, in the **Explorer** pane, expand the ****22-create-a-search-solution** folder and select **UploadFiles.cmd**.
 2. Edit the batch file to replace the **YOUR_SUBSCRIPTION_ID**, **YOUR_AZURE_STORAGE_ACCOUNT_NAME**, and **YOUR_AZURE_STORAGE_KEY** placeholders with the appropriate subscription ID, Azure storage account name, and Azure storage account key values for the storage account you created previously.
-3. Save your changes, and then right-click the **22-create-a-search-solution** folder and open an interactive terminal.
+3. Save your changes, and then right-click the **22-create-a-search-solution** folder and open an integrated terminal.
 4. Enter the following command to sign into your Azure subscription by using the Azure CLI.
 
     ```
