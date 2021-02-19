@@ -401,7 +401,7 @@ Now that you have a useful index, you can use it from a client application. You 
 
 ### Explore code to search an index
 
-The **margies-travel** folder contains code files for a web application (a Microsoft C# *ASP&period;NET Razor* web application or a Python *Flask* application), which you will update to include search functionality.
+The **margies-travel** folder contains code files for a web application (a Microsoft C# *ASP&period;NET Razor* web application or a Python *Flask* application), which includes search functionality.
 
 1. Open the following code file in the web application, depending on your choice of programming language:
     - **C#**:Pages/Index.cshtml.cs
