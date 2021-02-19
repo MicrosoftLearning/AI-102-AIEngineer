@@ -267,11 +267,11 @@ The components of the search solution are based on JSON definitions, which you c
 The new skill is named **get-sentiment**, and will evaluate the text found in the **merged_content** field of the document being indexed (which includes the source content as well as any text extracted from images in the content). It uses the extracted **language** of the document (with a default of English), and evaluates a score for the sentiment of the content. This score is then output as a new field named **sentimentScore** at the **document** level of the object that represents the indexed document.
 
 8. Select **Save** to save the skillset with the new skill.
-9. Close the **margies-skillset** page to return to the **Overview** page** for your Azure Cognitive Search resource.
+9. Close the **margies-skillset** page to return to the **Overview** page for your Azure Cognitive Search resource.
 
 ### Review and modify the index
 
-1. On the **Overview** page** for your Azure Cognitive Search resource, select the **Indexes** tab (<u>not</u> *Indexers*), where **margies-index** should be listed.
+1. On the **Overview** page for your Azure Cognitive Search resource, select the **Indexes** tab (<u>not</u> *Indexers*), where **margies-index** should be listed.
 2. Select **margies-index** and view the **Index Definition (JSON)** page. This shows a JSON definition for your index, including definitions for each field. Some fields are based on metadata and content in the source document, and others are the results of skills in the skillset.
 3. You added a skill to the skillset to extract a sentiment score for the document. Now you must add a corresponding field in the index to which this value can be mapped. At the bottom of the **fields** list (before the **]** that denotes the end of the list, which is followed by index properties such as **suggesters**), add the following field (being sure to include the comma at the beginning, to separate the new field from the previous field):
 
