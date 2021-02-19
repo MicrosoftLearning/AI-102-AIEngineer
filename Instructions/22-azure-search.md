@@ -332,7 +332,7 @@ The new skill is named **get-sentiment**, and will evaluate the text found in th
     
     ```
 
-All of the other metadata and content field in the source document are implicitly mapped to fields of the same name in the index.
+All of the other metadata and content fields in the source document are implicitly mapped to fields of the same name in the index.
 
 4. At the end of the **ouputFieldMappings** section, add the following mapping to map the **sentimentScore** value extracted by your sentiment skill to the **sentiment** field you added to the index (remember to separate it from the previous mapping with a comma!):
 
