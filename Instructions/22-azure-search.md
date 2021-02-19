@@ -264,7 +264,7 @@ The components of the search solution are based on JSON definitions, which you c
         },
     ```
 
-The new skill is named **get-sentiment**, and will evaluate the text found in the **merged_content** field of the document being indexed (which includes the source content as well as any text extracted from images in the content). It uses the extracted **language** of the document (with a default of English), and evaluates a score for the sentiment of the content. This score is then  output as a new field named **sentimentScore** at the **document** level of the object that represents the indexed document.
+The new skill is named **get-sentiment**, and will evaluate the text found in the **merged_content** field of the document being indexed (which includes the source content as well as any text extracted from images in the content). It uses the extracted **language** of the document (with a default of English), and evaluates a score for the sentiment of the content. This score is then output as a new field named **sentimentScore** at the **document** level of the object that represents the indexed document.
 
 8. Select **Save** to save the skillset with the new skill.
 9. Close the **margies-skillset** page to return to the **Overview** page** for your Azure Cognitive Search resource.
