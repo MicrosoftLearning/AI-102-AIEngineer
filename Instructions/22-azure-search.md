@@ -198,7 +198,7 @@ While you can use the portal to create and modify search solutions, it's often d
 
 ### Get the endpoint and key for your Azure Cognitive Search resource
 
-1. In the Azure portal, return to the **Overview** page for your Azure Cognitive Search resource; and in the top section of the page, find the **Url** for your resource (which looks like `https://<resource_name>.search.windows.net`) and copy it to the clipboard.
+1. In the Azure portal, return to the **Overview** page for your Azure Cognitive Search resource; and in the top section of the page, find the **Url** for your resource (which looks like **https://resource_name.search.windows.net**) and copy it to the clipboard.
 2. In Visual Studio Code, in the Explorer pane, expand the **22-create-a-search-solution** folder and its **modify-search** subfolder, and select **modify-search.cmd** to open it. You will use this script file to run *cURL* commands that submit JSON to the Azure Cognitive Service REST interface.
 3. In **modify-search.cmd**, replace the **YOUR_SEARCH_URL** placeholder with the URL you copied to the clipboard.
 4. In the Azure portal, view the **Keys** page for your Azure Cognitive Search resource, and copy the **Primary admin key** to the clipboard.
