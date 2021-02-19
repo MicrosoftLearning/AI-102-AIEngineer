@@ -41,7 +41,7 @@ The solution you will create for Margie's Travel requires the following resource
     - **Resource group**: *Create a new resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Service name**: *Enter a unique name*
     - **Location**: *Select a location - note that your Azure Cognitive Search and Cognitive Services resources must be in the same location*
-    - **Pricing tier**: Basic
+    - **Pricing tier**: Free (if this is not available, choose Basic)
 
 3. Wait for deployment to complete, and then go to the deployed resource.
 4. Review the **Overview** page on the blade for your Azure Cognitive Search resource in the Azure portal. Here, you can use a visual interface to create, test, manage, and monitor the various components of a search solution; including data sources, indexes, indexers, and skillsets.
@@ -100,7 +100,7 @@ A web browser tab will open and prompt you to sign into Azure. Do so, and then c
 
 Now that you have the documents in place, you can create a search solution by indexing them.
 
-1. In the Azure portal, browse to your Azure Cognitive Search resource. Then, on its **Overview** page, select **import data**.
+1. In the Azure portal, browse to your Azure Cognitive Search resource. Then, on its **Overview** page, select **Import data**.
 2. On the **Connect to your data** page, in the **Data Source** list, select **Azure Blob Storage**. Then complete the data store details with the following values:
     - **Data Source**: Azure Blob Storage
     - **Data source name**: margies-data
@@ -116,7 +116,7 @@ Now that you have the documents in place, you can create a search solution by in
 5. In the **Add enrichments** section:
     - Change the **Skillset name** to **margies-skillset**.
     - Select the option **Enable OCR and merge all text into merged_content field**.
-    - Set the **Source data field** to **merged_content**.
+    - Ensure that the **Source data field** is set to **merged_content**.
     - Leave the **Enrichment granularity level** as **Source field**, which is set the entire contents of the document being indexed; but note that you can change this to extract information at more granular levels, like pages or sentences.
     - Select the following enriched fields:
 
@@ -128,10 +128,10 @@ Now that you have the documents in place, you can create a search solution by in
         | Generate tags from images | | imageTags |
         | Generate captions from images | | imageCaptions |
 
-6. Proceed to the next step (*Customize target index*).
+6. Double-check your selections (it can be difficult to change them later). Then proceed to the next step (*Customize target index*).
 7. Change the **Index name** to **margies-index**.
-8. Set the **Key** set to **metadata_storage_path** and leave the **Suggester name** and **Search mode** blank.
-9. Make the following changes to the index fields, leaving all other fields with their default settings (you may need to scroll to the right to see the entire table):
+8. Ensure that the **Key** is set to **metadata_storage_path** and leave the **Suggester name** and **Search mode** blank.
+9. Make the following changes to the index fields, leaving all other fields with their default settings (**IMPORTANT**: you may need to scroll to the right to see the entire table):
 
     | Field name | Retrievable | Filterable | Sortable | Facetable | Searchable |
     | ---------- | ----------- | ---------- | -------- | --------- | ---------- |
@@ -143,7 +143,7 @@ Now that you have the documents in place, you can create a search solution by in
     | keyphrases | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | | | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; |
     | language | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#10004; | | | |
 
-11. Proceed to the next step (*Create an indexer*).
+11. Double-check your selections, paying particular attention to ensure that the correct **Retrievable**, **Filterable**, **Sortable**, **Facetable**, and **Searchable** options are selected for each field  (it can be difficult to change them later). Then proceed to the next step (*Create an indexer*).
 12. Change the **Indexer name** to **margies-indexer**.
 13. Leave the **Schedule** set to **Once**.
 14. Expand the **Advanced** options, and ensure that the **Base-64 encode keys** option is selected (generally encoding keys make the index more efficient).
@@ -194,135 +194,87 @@ Now that you have an index, you can search it.
 
 The components of the search solution are based on JSON definitions, which you can view and edit in the Azure portal.
 
-### Review the data source
+While you can use the portal to create and modify search solutions, it's often desirable to define the search objects in JSON and use the Azure Cognitive Service REST interface to create and modify them.
 
-1. In the Azure portal, return to the **Overview** page for your Azure Cognitive Search resource; and in the bottom half of the page, select the **Data sources** tab. The **margies-data** data source should be listed.
-2. Select the **margies-data** data source to view its settings. Then select the **Data Source Definition (JSON)** tab to view the JSON definition of the data source. This includes the information it uses to connect to the blob container in your storage account.
-3. Close the **margies-data** page to return to the **Overview** page.
+### Get the endpoint and key for your Azure Cognitive Search resource
+
+1. In the Azure portal, return to the **Overview** page for your Azure Cognitive Search resource; and in the top section of the page, find the **Url** for your resource (which looks like `https://<resource_name>.search.windows.net`) and copy it to the clipboard.
+2. In Visual Studio Code, in the Explorer pane, expand the **22-create-a-search-solution** folder and its **modify-search** subfolder, and select **modify-search.cmd** to open it. You will use this script file to run *cURL* commands that submit JSON to the Azure Cognitive Service REST interface.
+3. In **modify-search.cmd**, replace the **YOUR_SEARCH_URL** placeholder with the URL you copied to the clipboard.
+4. In the Azure portal, view the **Keys** page for your Azure Cognitive Search resource, and copy the **Primary admin key** to the clipboard.
+5. In Visual Studio Code, replace the **YOUR_ADMIN_KEY** placeholder with the key you copied to the clipboard.
+6. Save the changes to **modify-search.cmd** (but don't run it yet!)
 
 ### Review and modify the skillset
 
-1. In the bottom half of the **Overview** page,  select the **Skillsets** tab, where **margies-skillset** should be listed.
-2. Select **margies-skillset** and view the **Skillset Definition (JSON)** page. This shows a JSON definition that includes the six skills you specified in the user interface previously.
-
-    The JSON structure can be difficult to understand at first, but the important thing to understand is that the **"skills"** element is a list (enclosed by **[...]** brackets) that contains all of the skills in your enrichment pipeline. Each skill is enclosed in **{...}** braces, and they are separated by commas - like this:
-
-    ```
-    "skills": [
-        {
-            "@odata.type": "skill_1_type",
-            "name" : "#1",
-            ...
-        },
-        {
-            "@odata.type": "skill_2_type",
-            "name" : "#2",
-            ...
-        },
-        {
-            "@odata.type": "skill_3_type",
-            "name" : "#3",
-            ...
-        }
-    ]
-    ```
-
-3. On the right side of the page, note that there are templates for additional skills you might want to add to the skillset. For example, it would be good to identify the *sentiment* of the documents being indexed - particularly the hotel reviews, so we can easily find reviews that are positive or negative.
-4. In the **Skills** list, select **Sentiment Skill** to show a JSON template for this skill.
-5. Copy the template to the clipboard, and then on the left side, in the JSON for your skillset definition, paste the copied skill in a newly inserted line immediately after the following line (which should be line 6) - be careful not to overwrite the **{** marking the beginning of the first existing skill:
-
-
-    "skills": [
-
-
-6. Add a comma immediately after the newly inserted skill to separate it from the next skill (which was previously the first skill in the list).
-7. Update the new skill definition like this:
+1. In Visual studio Code, in the **modify-search** folder, open **skillset.json**. This shows a JSON definition for **margies-skillset**.
+2. At the top of the skillset definition, note the **cognitiveServices** object, which is used to connect your Cognitive Services resource to the skillset.
+3. In the Azure portal, open your Cognitive Services resource (<u>not</u> your Azure Cognitive Search resource!) and view its **Keys** page. Then copy **Key 1** to the clipboard.
+4. In Visual Studio Code, in **skillset.json**, replace the **YOUR_COGNITIVE_SERVICES_KEY** placeholder with the Cognitive Services key you copied to the clipboard.
+5. Scroll through the JSON file, noting that it includes definitions for the skills you created using the Azure Cognitive Search user interface in the Azure portal. At the bottom of the list of skills, an additional skill has been added with the following definition:
 
     ```
-        {
-            "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
-            "defaultLanguageCode": "en",
-            "name": "get-sentiment",
-            "description": "Evaluate sentiment",
-            "context": "/document",
-            "inputs": [
-                {
-                    "name": "text",
-                    "source": "/document/merged_content"
-                },
-                {
-                    "name": "languageCode",
-                    "source": "/document/language"
-                }
-            ],
-            "outputs": [
-                {
-                    "name": "score",
-                    "targetName": "sentimentScore"
-                }
-            ]
-        },
+    {
+        "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
+        "defaultLanguageCode": "en",
+        "name": "get-sentiment",
+        "description": "New skill to evaluate sentiment",
+        "context": "/document",
+        "inputs": [
+            {
+                "name": "text",
+                "source": "/document/merged_content"
+            },
+            {
+                "name": "languageCode",
+                "source": "/document/language"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "score",
+                "targetName": "sentimentScore"
+            }
+        ]
+    }
     ```
 
-The new skill is named **get-sentiment**, and will evaluate the text found in the **merged_content** field of the document being indexed (which includes the source content as well as any text extracted from images in the content). It uses the extracted **language** of the document (with a default of English), and evaluates a score for the sentiment of the content. This score is then output as a new field named **sentimentScore** at the **document** level of the object that represents the indexed document.
+The new skill is named **get-sentiment**, and for each **document** level in a document, it, will evaluate the text found in the **merged_content** field of the document being indexed (which includes the source content as well as any text extracted from images in the content). It uses the extracted **language** of the document (with a default of English), and evaluates a score for the sentiment of the content. This score is then output as a new field named **sentimentScore**.
 
-8. Select **Save** to save the skillset with the new skill.
-9. Close the **margies-skillset** page to return to the **Overview** page for your Azure Cognitive Search resource.
+6. Save the changes you've made to **skillset.json**.
 
 ### Review and modify the index
 
-1. On the **Overview** page for your Azure Cognitive Search resource, select the **Indexes** tab (<u>not</u> *Indexers*), where **margies-index** should be listed.
-2. Select **margies-index** and view the **Index Definition (JSON)** page. This shows a JSON definition for your index, including definitions for each field. Some fields are based on metadata and content in the source document, and others are the results of skills in the skillset.
-3. You added a skill to the skillset to extract a sentiment score for the document. Now you must add a corresponding field in the index to which this value can be mapped. At the bottom of the **fields** list (before the **]** that denotes the end of the list, which is followed by index properties such as **suggesters**), add the following field (being sure to include the comma at the beginning, to separate the new field from the previous field):
+1. In Visual studio Code, in the **modify-search** folder, open **index.json**. This shows a JSON definition for **margies-index**.
+2. Scroll through the index and view the field definitions. Some fields are based on metadata and content in the source document, and others are the results of skills in the skillset.
+3. At the end of the list of fields that you defined in the Azure portal, note that two additional fields have been added:
 
     ```
-    ,
     {
         "name": "sentiment",
         "type": "Edm.Double",
         "facetable": false,
         "filterable": true,
-        "key": false,
         "retrievable": true,
-        "searchable": false,
-        "sortable": true,
-        "analyzer": null,
-        "indexAnalyzer": null,
-        "searchAnalyzer": null,
-        "synonymMaps": [],
-        "fields": []
-    }
-    ```
-
-4. The index includes the **metadata_storage_path** field (the URL of the document), which is currently used as the index key. The key is Base-64 encoded, making it efficient as a key but requiring client applications to decode it if they want to use the actual URL value as a field. We'll resolve this by adding another field that will be mapped to the unencoded value. Add the following field definition immediately after the **sentiment** field you just added:
-
-    ```
-    ,
+        "sortable": true
+    },
     {
         "name": "url",
         "type": "Edm.String",
         "facetable": false,
         "filterable": true,
-        "key": false,
         "retrievable": true,
         "searchable": false,
-        "sortable": false,
-        "analyzer": null,
-        "indexAnalyzer": null,
-        "searchAnalyzer": null,
-        "synonymMaps": [],
-        "fields": []
+        "sortable": false
     }
     ```
 
-5. Select **Save** to save the index with the new fields.
-6. Close the **margies-index** page to return to the blade for your Azure Cognitive Search resource.
+4. The **sentiment** field will be used to add the output from the **get-sentiment** skill that was added the skillset. The **url** field will be used to add the URL for each indexed document to the index, based on the **metadata_storage_path** value extracted from the data source. Note that index already includes the **metadata_storage_path** field, but it's used as the index key and Base-64 encoded, making it efficient as a key but requiring client applications to decode it if they want to use the actual URL value as a field. Adding a second field for the unencoded value resolves this problem.
 
 ### Review and modify the indexer
 
-1. On the blade for your Azure Cognitive Search resource, select the **Indexers** tab (<u>not</u> *Indexes*), where **margies-indexer** should be listed.
-2. Select **margies-indexer** and view the **Indexer Definition (JSON)** page. This shows a JSON definition for your indexer, which maps fields extracted from document content and metadata (in the **fieldMappings** section), and values extracted by skills in the skillset (in the **outputFieldMappings** section), to fields in the index.
-3. In the **fieldMappings** list, add a comma after the existing mapping for the **metadata_storage_path** value to the base-64 encoded key field; and then add the following JSON to map the same value to the **url** field, but without the Base-64 encoding:
+1. In Visual studio Code, in the **modify-search** folder, open **indexer.json**. This shows a JSON definition for **margies-indexer**, which maps fields extracted from document content and metadata (in the **fieldMappings** section), and values extracted by skills in the skillset (in the **outputFieldMappings** section), to fields in the index.
+3. In the **fieldMappings** list, note the mapping for the **metadata_storage_path** value to the base-64 encoded key field. This was created when you assigned the **metadata_storage_path** as the key and selected the option to encode the key in the Azure portal. Additionally, a new mapping explicitly maps the same value to the **url** field, but without the Base-64 encoding:
 
     ```
     {
@@ -334,7 +286,7 @@ The new skill is named **get-sentiment**, and will evaluate the text found in th
 
 All of the other metadata and content fields in the source document are implicitly mapped to fields of the same name in the index.
 
-4. At the end of the **ouputFieldMappings** section, add the following mapping to map the **sentimentScore** value extracted by your sentiment skill to the **sentiment** field you added to the index (remember to separate it from the previous mapping with a comma!):
+4. Review the **ouputFieldMappings** section, which maps outputs from the skills in the skillset to index fields. Most of these reflect the choices you made in the user interface, but the following mapping has been added to map the **sentimentScore** value extracted by your sentiment skill to the **sentiment** field you added to the index:
 
     ```
     {
@@ -343,10 +295,16 @@ All of the other metadata and content fields in the source document are implicit
     }
     ```
 
-5. Select **Save** to save the indexer with the new mappings.
-6. Select **Reset** to reset the index, and confirm that you want to do this when prompted. You've added new fields to an already-populated index, so you'll need to reset and reindex to update the existing index records with the new field values.
-7. Select **Run** to run the updated indexer, confirming that you want to run it now when prompted.
-8. Close the **margies-indexer** page to return to the **Overview** page** for your Azure Cognitive Search resource, and select **Refresh** to track the progress of the indexing operation. It may take a minute or so to complete.
+### Use the REST API to update the search solution
+
+1. Right-click the **modify-search** folder and open an integrated terminal.
+2. In the terminal pane for the **modify-search** folder, enter the following command to run the **modify-search.cmd** script, which submits the JSON definitions to the REST interface and initiates the indexing.
+
+    ```
+    modify-search
+    ```
+
+3. When the script has finished, return to the **Overview** page** for your Azure Cognitive Search resource in the Azure portal and view the **Indexers** page. The periodically select **Refresh** to track the progress of the indexing operation. It may take a minute or so to complete.
 
     *There may be some warnings for a few documents that are too large to evaluate sentiment. Often sentiment analysis is performed at the page or sentence level rather than the full document; but in this case scenario, most of the documents - particularly the hotel reviews, are short enough for useful document-level sentiment scores to be evaluated.*
 
