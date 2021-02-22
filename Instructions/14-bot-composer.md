@@ -23,6 +23,9 @@ Now you're ready to use Composer to create a bot.
 ### Create a bot and customize the "welcome" dialog flow
 
 1. Start the Bot Framework Composer.
+
+    **Note**: The Bot Framework Composer is regularly updated. If you are prompted to install an update, do so for the currently logged in user. Updates may include changes to the user interface that affect the instructions in this exercise.
+
 2. On the **Home** screen, select **New**. Then create a new bot from scratch; naming it **WeatherBot** and saving it in a local folder.
 3. In the navigation pane on the left, select **Greeting** to open the authoring canvas and show the *ConversationUpdate* activity that is called when a user initially joins a conversation with the bot. The activity consists of a flow of actions.
 4. In the properties pane on the right, edit the title of **Greeting** by selecting the word **Greeting** at the top of the properties pane on the right and changing it to **WelcomeUsers**.
@@ -71,7 +74,7 @@ First, you need to define a dialog flow that will be used to handle questions ab
 4. On the **User Input** tab, set the **Property** field to `user.zipcode`, and set the **Output format** field to the expression `=trim(this.value)` to remove any superfluous spaces around the user-provided value.
 5. On the **Other** tab, set the following values to define validation rules for the zipcode input:
     - In the **Recognizers** areas, set the **Unrecognized Prompt** field, to `- Sorry the value '${this.value}' doesn't appear to be a valid entry.  Please enter a zip code in the form of 12345.`.
-    - In the **Validation** section, enter the validation rule `length(this.value) == 5` to will check that the length of the zipcode entry is only five characters. Then set the **Invalid Prompt** field to `- Sorry, '${this.value}' is not valid. I'm looking for a 5-digit number as zip code. Please specify a zip code in the form 12345.`.
+    - In the **Validation** section, add the validation rule `length(this.value) == 5` to will check that the length of the zipcode entry is only five characters. Then set the **Invalid Prompt** field to `- Sorry, '${this.value}' is not valid. I'm looking for a 5-digit number as zip code. Please specify a zip code in the form 12345.`.
     - In the **Prompt configurations** section, set the **Default value** property to `98052`.
 
         By default, prompts are configured to ask the user for information *Max turn count* times (with a default of 3). When the max turn count is reached, the prompt will stop and the property will be set to the value defined in the **Default value** field before moving forward with the conversation.
@@ -82,9 +85,9 @@ First, you need to define a dialog flow that will be used to handle questions ab
 
     So far, the dialog asks the user to enter a zip code, and validates the user input. Now you must implement the logic to retrieve the weather information for the zip code that was entered.
 
-6. On the authoring canvas, directly under the **user Input** action for the user zipcode entry, select the **+** symbol to add a new action.
+6. On the authoring canvas, directly under the **user Input** action for the user zip code entry, select the **+** symbol to add a new action.
 7. From the list of actions, select **Access external resources** and then **Send an HTTP request**.
-8. Set the properties for the **HTTP request** as follows, specifying your [OpenWeather](https://openweathermap.org/price) API key:
+8. Set the properties for the **HTTP request** as follows, replacing **YOUR_API_KEY** with your [OpenWeather](https://openweathermap.org/price) API key:
     - **HTTP method**: GET
     - **Url**: `http://weatherbot-ignite-2019.azurewebsites.net/api/getWeather?zipcode=${user.zipcode}&api_token=YOUR_API_KEY`
     - **Result property**: `dialog.api_response`
@@ -98,7 +101,7 @@ First, you need to define a dialog flow that will be used to handle questions ab
 
     Additionally, if the response type is JSON, it will be a deserialized object available via **dialog.api_response.content** property.
 
-    Now you need to add logic to the dialog flow that handles the response, which might indicate success or failure of the HTTP request. 
+    Now you need to add logic to the dialog flow that handles the response, which might indicate success or failure of the HTTP request.
 
 9. On the authoring canvas, under the **Send HTTP Request** action you created, add a **Create a condition** > **Branch: if/else** action. This action defines a branch in the dialog flow with **True** and **False** paths.
 10. In the **Properties** of the branch action, set the **Condition** field to write the following expression:
@@ -140,6 +143,8 @@ Now you need some way for the new dialog to be initiated from the existing welco
 
 2. In the properties pane for the selected **WeatherBot** dialog, in the **Language Understanding** section, set the **Recognizer type** to **Regular expression recognizer**.
 
+    > The default recognizer type uses the Language Understanding service to product the user's intent using a natural language understanding model. We're using a regular expression recognizer to simplify this exercise. In a real, application, you should consider using Language Understanding to allow for more sophisticated intent recognition.
+
 3. In the **&#8285;** menu for the **WeatherBot** dialog, select **Add a Trigger**.
 
     ![Add Trigger menu](./images/add-trigger.png)
@@ -150,24 +155,68 @@ Now you need some way for the new dialog to be initiated from the existing welco
     - **What is the name of this trigger (RegEx)**:  `WeatherRequested`
     - **Please input regex pattern**: `weather`
 
-    > The text entered in the regex pattern text box is a simple regular expression pattern that will cause the bot to look for the word *weather* in any incoming message.  If weather is present, the message becomes a **recognized intent**.
+    > The text entered in the regex pattern text box is a simple regular expression pattern that will cause the bot to look for the word *weather* in any incoming message.  If "weather" is present, the message becomes a **recognized intent** and the trigger is initiated. 
 
-4. Now that the trigger is created, you need to configure an action for it. In the authoring canvas for the trigger, elect the **+** symbol under your new **WeatherRequested** trigger node. Then in the list of actions, select **Dialog Management** and select **Begin a new dialog**.
+4. Now that the trigger is created, you need to configure an action for it. In the authoring canvas for the trigger, select the **+** symbol under your new **WeatherRequested** trigger node. Then in the list of actions, select **Dialog Management** and select **Begin a new dialog**.
 5. With the **Begin a new dialog** action selected, in the properties pane, select the **getWeather** dialog from the **Dialog name** drop-down list to start the **getWeather** dialog you defined earlier when the **WeatherRequested** trigger is recognized.
 
     The **WeatherRequested** activity flow should look like this:
 
     ![A regex trigger begins the getWeather dialog](./images/weather-regex.png)
 
-6. Restart the bot and test it in the Bot Framework Emulator. Wait for the greeting from the bot and after entering your name, enter "What is the weather like?". Then, when prompted, enter a valid U.S. zip code, such as 98004. The bot will contact the service and should respond with a small weather report statement.
+6. Restart the bot and test it in the Bot Framework Emulator. Wait for the greeting from the bot and after entering your name, enter `What is the weather like?`. Then, when prompted, enter a valid U.S. zip code, such as `98004`. The bot will contact the service and should respond with a small weather report statement.
 7. When you have finished testing, close the emulator and stop the bot.
 
-## Add a card
+## Handle interruptions
 
-The interactions with the weather bot so far has been through text.  Users enter text for their intentions and the bot responds with text. While text is often a suitable way to communicate, you can enhance the experience through other forms of user interface element.  For example, you can use a *card* to present information visually.
+A well designed bot should allow users to change the flow of the conversation, for example by canceling a request.
 
-1. In the Bot Composer, in the navigation pane, select **BeginDialog** under the **getWeather** dialog.
-2. In the **True** path after checking the response from the HTTP weather service, select the **Send a response** action that displays the weather report, and replace the existing **Language Generation** template with this code.
+1. In the Bot Composer, in the navigation pane, use the **&#8285;** menu for the **WeatherBot** dialog to add a new trigger (in addition to the existing **WelcomeUsers** and **WeatherRequested** triggers). The new trigger should have the following settings:
+
+    - **What is the type of this trigger?**: Intent recognized
+    - **What is the name of this trigger (RegEx)**:  `CancelRequest`
+    - **Please input regex pattern**: `cancel`
+
+    > The text entered in the regex pattern text box is a simple regular expression pattern that will cause the bot to look for the word *cancel* in any incoming message.
+
+2. In the authoring canvas for the trigger, add a **Send a response** action, and set its **Language Generation** property to `- OK. Whenever you're ready, you can ask me about the weather.`
+3. Under the **Send a response** action, add a new action to and the dialog by selecting **Dialog management** and **End this dialog**.
+
+    The **CancelRequest** dialog flow should look like this:
+
+    ![A CancelRequest trigger with Send a reponse and End this dialog actions](./images/cancel-dialog.png)
+
+    Now that you have a trigger to respond to a user's request to cancel, you must allow interruptions to dialog flows where the user might want to make such a request - such as when prompted for a zip code after asking for weather information.
+
+4. In the navigation pane, select **BeginDialog** under the **getWeather** dialog.
+5. Select the **Prompt for text** action that asks the user to enter their zip code.
+6. In the properties for the action, on the **Other** tab, expand **Prompt Configurations** and set the **Allow Interruptions** property to **True**.
+7. Restart the bot and test it in the Bot Framework Emulator. Wait for the greeting from the bot and after entering your name, enter "What is the weather like?". Then, when prompted, enter `cancel`, and confirm that the request is canceled.
+8. After canceling the request, enter `What's the weather like?` and note that the appropriate trigger starts a new instance of the **getWeather** dialog, prompting you once again to enter a zip code.
+9. When you have finished testing, close the emulator and stop the bot.
+
+## Enhance the user experience
+
+The interactions with the weather bot so far has been through text.  Users enter text for their intentions and the bot responds with text. While text is often a suitable way to communicate, you can enhance the experience through other forms of user interface element.  For example, you can use buttons to initiate recommended actions, or display a *card* to present information visually.
+
+### Add a button
+
+1. In the Bot Framework Composer, in the navigation pane, under the **getWeather** action, select **BeginDialog**.
+2. In the authoring canvas, select the **Prompt for text** action that contains the prompt for the zip code.
+3. In the properties pane, update **Prompt for text** with the following value (Ensure that you remove the **-** dash along with the existing text).
+
+```
+[Activity
+    Text = What is your zip code?
+    SuggestedActions = Cancel
+]
+```
+
+This activity will prompt the user for their zip code as before, but also display a **Cancel** button.
+
+### Add a card
+
+1. In the **getWeather** dialog, in the **True** path after checking the response from the HTTP weather service, select the **Send a response** action that displays the weather report, and replace the existing **Language Generation** template with this code.
 
 ```
 [ThumbnailCard
@@ -179,61 +228,10 @@ The interactions with the weather bot so far has been through text.  Users enter
 
 This template will use the same variables as before for the weather condition but also adds a title to the card that will be displayed, along with an image for the weather condition.
 
-3. Restart the bot and test it in the Bot Framework Emulator. Wait for the greeting from the bot and after entering your name, enter "What is the weather like?". Then, when prompted, enter a valid U.S. zip code, such as 98004. The bot will contact the service and should respond with a card indicating the weather conditions.
-4. When you have finished testing, close the emulator and stop the bot.
+### Test the new user interface
 
-## If time permits: add Language Understanding support
-
-Your bot currently relies on detecting regular expressions that identify specific words like "weather". It could be improved by the ability to understand more complex natural language input. You can implement this by using a *Language Understanding* recognizer to determine intents from a Language Understanding model.
-
-The use of the Language Understanding recognizer requires a bit more work than the regular expression approach you have been using. You will need to have a Language Understanding service Azure resource with an authoring key, and you will need to provide some sample utterances to train a model to recognize the user's intent in the messages they submit.
-
-### Create a Language Understanding trigger
-
-1. In the navigation pane, select the **WeatherBot** dialog that contains **WelcomeUsers** and **WeatherRequested** (this is under the top-level bot node of the same name).
-2. In the properties pane for the selected **WeatherBot** workflow, in the **Language Understanding** section, change the **Recognizer type** to **Default recognizer**.
-3. In the navigation pane, select the **WeatherRequested** trigger, and note that the regular expression you specified previously has been replaced by **Trigger phrases**.
-4. In the **Trigger phrases** box, enter the following trigger phrases:
-
-    ```
-    - What's the weather like?
-    - Tell me the weather conditions.
-    - Give me a meteorological report.
-    ```
-
-    You may see a warning icon for your bot. By using the Language Understanding recognizer, you have added a dependency on a Language Understanding Azure resource.
-
-### Create a Language Understanding resource in Azure
-
-You require a Language Understanding authoring resource before you can train a model with your phrases.
-
-If you don't already have a Language Understanding authoring resource in your Azure subscription, follow these steps to create one:
-
-1. Open the Azure portal at [https://portal.azure.com](https://portal.azure.com?portal=true), and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *language understanding*, and create a **Language Understanding** resource with the following settings:
-    - **Create option**: Authoring
-    - **Subscription**: *Your Azure subscription*
-    - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
-    - **Name**: *Enter a unique name*
-    - **Authoring location**: *Select your preferred location*
-    - **Authoring pricing tier**: F0
-
-### Add your authoring key to the project
-
-You need to add your Language Understanding authoring key to your Bot Framewoork Composer project.
-
-1. In the Azure portal, go the resource page for your Language Understanding ***authoring*** resource and view the **Keys and Endpoint** page. Then copy one of the keys to the clipboard.
-2. Back in the Bot Framework Composer, in the **&#8285;** menu for the top-level **WeatherBot** bot, select **Project settings**.
-3. Paste your Language Understanding authoring key into the **LUIS *authoring* key** property (<u>not</u> the LUIS *endpoint* key!).
-4. Select the **LUIS region** where you created your Language Understanding service.
-5. Return to the **Design** page.
-
-### Test the natural language trigger
-
-Now you can test your bot using natural language.
-
-1. Restart your bot and test it in the emulator.
-2. Enter your name, and then *what are conditions like?* Then, when prompted, enter a valid U.S. zip code, such as 98004. The bot will contact the service and should respond with a card indicating the weather conditions.
+1. Restart the bot and test it in the Bot Framework Emulator. Wait for the greeting from the bot and after entering your name, enter "What is the weather like?". Then, when prompted, click the **Cancel** button to cancel the request.
+2. After canceling, enter enter `Tell me about the weather` and when prompted, enter a valid U.S. zip code, such as `98004`. The bot will contact the service and should respond with a card indicating the weather conditions.
 3. When you have finished testing, close the emulator and stop the bot.
 
 ## More information
