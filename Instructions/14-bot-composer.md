@@ -231,7 +231,7 @@ This template will use the same variables as before for the weather condition bu
 ### Test the new user interface
 
 1. Restart the bot and test it in the Bot Framework Emulator. Wait for the greeting from the bot and after entering your name, enter "What is the weather like?". Then, when prompted, click the **Cancel** button to cancel the request.
-2. After canceling, enter enter `Tell me about the weather` and when prompted, enter a valid U.S. zip code, such as `98004`. The bot will contact the service and should respond with a card indicating the weather conditions.
+2. After canceling, enter `Tell me about the weather` and when prompted, enter a valid U.S. zip code, such as `98004`. The bot will contact the service and should respond with a card indicating the weather conditions.
 3. When you have finished testing, close the emulator and stop the bot.
 
 ## More information
