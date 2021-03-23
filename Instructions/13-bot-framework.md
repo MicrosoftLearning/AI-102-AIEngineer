@@ -193,7 +193,7 @@ A bot relies on multiple Azure resources, which can be created in a single resou
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 2. View the **Resource Groups** page to see the resource groups that exist in your subscription.
-3. Use the **&#65291;Add** button to create a new resource group with a unique name in any available region. (If you are using a "sandbox" subscription that restricts you to an existing resource group, note the resource group name).
+3. Use the **&#65291;Create** button to create a new resource group with a unique name in any available region. (If you are using a "sandbox" subscription that restricts you to an existing resource group, note the resource group name).
 
 ### Create an Azure application registration
 
@@ -294,7 +294,7 @@ az webapp deployment source config-zip --resource-group "YOUR_RESOURCE_GROUP" --
 
 One of the key benefits of the Azure Bot Service is the ability to deliver your bot through multiple *channels*.
 
-1. In the Azure portal, on the page where you were previously testing your Bot, select **Channels**.
+1. In the Azure portal, on the page where you were previously testing your Bot, select **Connect to Channels**.
 2. Note that the **Web Chat** channel has been added automatically, and that other channels for common communication platforms are available.
 3. Next to the **Web Chat** channel, click **Edit**. This opens a page with the settings you need to embed your bot in a web page. To embed your bot, you need the HTML embed code provided as well as one of the secret keys generated for your bot.
 4. Copy the **Embed code**.
