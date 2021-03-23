@@ -219,7 +219,7 @@ Suppose after you trained a model with the invoice forms, you wanted to see how 
 2. Open **Form_1.jpg.labels.json** and review the JSON it contains. This file identifies the location and values for named fields in the **Form_1.jpg** training document.
 3. Open **Form_1.jpg.ocr.json** and review the JSON it contains. This file contains a JSOn representation of the text layout of **Form_1.jpg**, including the location of all text areas found in the form.
 
-    *The field information files have been provided for you in this exercise. For your own projects, you can create these files manually or use the [sample labeling tool](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool).*
+    *The field information files have been provided for you in this exercise. For your own projects, you can create these files using the [sample labeling tool](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/quickstarts/label-tool). As you use the tool, your field information files are automatically created and stored in your connected storage account.*
 
 4. In the **train-model** folder, open the code file for the training application:
 
