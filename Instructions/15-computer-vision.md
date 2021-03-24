@@ -364,7 +364,7 @@ if (len(analysis.categories) > 0):
 
 ## Get brands in an image
 
-Some brands are visually recognizable from logo's, even when the name of the brand is not displayed. The Computer Vision service is rained to identify thousands of well-known brands.
+Some brands are visually recognizable from logo's, even when the name of the brand is not displayed. The Computer Vision service is trained to identify thousands of well-known brands.
 
 1. In the **AnalyzeImage** function, under the comment **Get brands in the image**, add the following code:
 
