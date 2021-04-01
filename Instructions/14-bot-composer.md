@@ -8,21 +8,34 @@ lab:
 
 Bot Framework Composer is a graphical designer that lets you quickly and easily build sophisticated conversational bots without writing code. The composer is an open-source tool that presents a visual canvas for building bots.
 
-## Get an OpenWeather API key
+## Before you start
 
-In this exercise, you will create a bot that retrieves the weather conditions for the zipcode entered by the user. You will require an API key for the service to work.
+Let's start by preparing the services and tools you need to develop a bot.
+
+### Get an OpenWeather API key
+
+In this exercise, you will create a bot that retrieves the weather conditions for the US zip code entered by the user. You will require an API key for the service to work.
 
 1. In a web browser, go to the OpenWeather site at `https://openweathermap.org/price`.
 2. Request a free API key, and create an OpenWeather account (if you do not already have one).
 3. After signing up, view the **API keys** page to see your API key.
 
+### Update bot development tools
+
+You're going to use the Bot Framework Composer to create your bot, and the Bot Framework Emulator to test it. Both of these tools are updated regularly, so let's make sure you have the latest versions installed.
+
+> **Note**: Updates may include changes to the user interface that affect the instructions in this exercise.
+
+1. Start the **Bot Framework Composer**, and if you are prompted to install an update, do so for the currently logged in user. If you are not prompted automatically, use the **Check for updates** option on the **Help** menu to check for updates.
+2. Repeat the previous step for the **Bot Framework Emulator**. After installing any available update, close the Bot Framework Emulator until you need it again later.
+
 ## Create a bot
 
-Now you're ready to use Composer to create a bot.
+Now you're ready to use the Bot Framework Composer to create a bot.
 
 ### Create a bot and customize the "welcome" dialog flow
 
-1. Start the Bot Framework Composer.
+1. Start the Bot Framework Composer if it's not already open.
 
     **Note**: The Bot Framework Composer is regularly updated. If you are prompted to install an update, do so for the currently logged in user. Updates may include changes to the user interface that affect the instructions in this exercise.
 
@@ -222,7 +235,8 @@ This activity will prompt the user for their zip code as before, but also displa
 [ThumbnailCard
     title = Weather for ${dialog.weatherdata.name}
     text = ${dialog.weatherdata.weather[0].description} (${dialog.weatherdata.main.temp}&deg;)
-    image = http://openweathermap.org/img/w/${dialog.weatherdata.weather[0].icon}.png]
+    image = http://openweathermap.org/img/w/${dialog.weatherdata.weather[0].icon}.png
+]
 ```
 
 This template will use the same variables as before for the weather condition but also adds a title to the card that will be displayed, along with an image for the weather condition.

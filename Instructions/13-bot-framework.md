@@ -10,7 +10,20 @@ lab:
 
 In this exercise, you'll use the Microsoft Bot Framework SDK to create and deploy a bot.
 
-## Clone the repository for this course
+## Before you start
+
+Let's start by preparing the environment for bot development.
+
+### Update the Bot Framework Emulator
+
+You're going to use the Bot Framework SDK to create your bot, and the Bot Framework Emulator to test it. The Bot Framework Emulator is updated regularly, so let's make sure you have the latest versions installed.
+
+> **Note**: Updates may include changes to the user interface that affect the instructions in this exercise.
+
+1. Start the **Bot Framework Emulator**, and if you are prompted to install an update, do so for the currently logged in user. If you are not prompted automatically, use the **Check for update** option on the **Help** menu to check for updates.
+2. After installing any available update, close the Bot Framework Emulator until you need it again later.
+
+### Clone the repository for this course
 
 If you have not already cloned **AI-102-AIEngineer** code repository to the environment where you're working on this lab, follow these steps to do so. Otherwise, open the cloned folder in Visual Studio Code.
 
