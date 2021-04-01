@@ -89,7 +89,7 @@ First, you need to define a dialog flow that will be used to handle questions ab
 7. From the list of actions, select **Access external resources** and then **Send an HTTP request**.
 8. Set the properties for the **HTTP request** as follows, replacing **YOUR_API_KEY** with your [OpenWeather](https://openweathermap.org/price) API key:
     - **HTTP method**: GET
-    - **Url**: `http://weatherbot-ignite-2019.azurewebsites.net/api/getWeather?zipcode=${user.zipcode}&api_token=YOUR_API_KEY`
+    - **Url**: `http://api.openweathermap.org/data/2.5/weather?units=metric&zip=${user.zipcode},us&appid=YOUR_API_KEY`
     - **Result property**: `dialog.api_response`
 
     The result can include any of the following four properties from the HTTP response:
@@ -99,7 +99,7 @@ First, you need to define a dialog flow that will be used to handle questions ab
     - **content**. Accessed via **dialog.api_response**.content.
     - **headers**. Accessed via **dialog.api_response.headers**.
 
-    Additionally, if the response type is JSON, it will be a deserialized object available via **dialog.api_response.content** property.
+    Additionally, if the response type is JSON, it will be a deserialized object available via **dialog.api_response.content** property. For detailed information about the OpenWeather API and the response it returns, see the [OpenWeather API documentation](https://openweathermap.org/current).
 
     Now you need to add logic to the dialog flow that handles the response, which might indicate success or failure of the HTTP request.
 
@@ -111,13 +111,13 @@ First, you need to define a dialog flow that will be used to handle questions ab
     ```
 
 11. If the call was successful, you need to store the response in a variable. On the authoring canvas, in the **True** branch, add a **Manage properties** > **Set a Property** action. Then in the properties pane, set the properties of the **Set a Property** action as follows:
-    - **Property**: `dialog.weather`
+    - **Property**: `dialog.weatherdata`
     - **Value**: `=dialog.api_response.content`
 
 12. Still in the **True** branch, add a **Send a response** action under the **Set a property** action and set its **Language generation** text to:
 
     ```
-    - The weather in ${dialog.weather.city} is ${dialog.weather.weather} and the temp is ${dialog.weather.temp}&deg;.
+    - The weather in ${dialog.weatherdata.name} is ${dialog.weatherdata.weather[0].description} and the temp is ${dialog.weatherdata.main.temp}&deg;.
     ```
 
 13. You also need to account for a response from the weather service that is not 200, so in the **False** branch, add a **Send a response** action and set its **Language generation** text to `- I got an error: ${dialog.api_response.content.message}.`
@@ -190,7 +190,7 @@ A well designed bot should allow users to change the flow of the conversation, f
 
 4. In the navigation pane, select **BeginDialog** under the **getWeather** dialog.
 5. Select the **Prompt for text** action that asks the user to enter their zip code.
-6. In the properties for the action, on the **Other** tab, expand **Prompt Configurations** and set the **Allow Interruptions** property to **True**.
+6. In the properties for the action, on the **Other** tab, expand **Prompt Configurations** and set the **Allow Interruptions** property to **true**.
 7. Restart the bot and test it in the Bot Framework Emulator. Wait for the greeting from the bot and after entering your name, enter "What is the weather like?". Then, when prompted, enter `cancel`, and confirm that the request is canceled.
 8. After canceling the request, enter `What's the weather like?` and note that the appropriate trigger starts a new instance of the **getWeather** dialog, prompting you once again to enter a zip code.
 9. When you have finished testing, close the emulator and stop the bot.
@@ -220,10 +220,9 @@ This activity will prompt the user for their zip code as before, but also displa
 
 ```
 [ThumbnailCard
-    title = Weather for ${dialog.weather.city}
-    text = ${dialog.weather.weather} (${dialog.weather.temp}&deg;)
-    image = ${dialog.weather.icon}
-]
+    title = Weather for ${dialog.weatherdata.name}
+    text = ${dialog.weatherdata.weather[0].description} (${dialog.weatherdata.main.temp}&deg;)
+    image = http://openweathermap.org/img/w/${dialog.weatherdata.weather[0].icon}.png]
 ```
 
 This template will use the same variables as before for the weather condition but also adds a title to the card that will be displayed, along with an image for the weather condition.
