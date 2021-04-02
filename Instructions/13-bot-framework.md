@@ -16,7 +16,7 @@ Let's start by preparing the environment for bot development.
 
 ### Update the Bot Framework Emulator
 
-You're going to use the Bot Framework SDK to create your bot, and the Bot Framework Emulator to test it. The Bot Framework Emulator is updated regularly, so let's make sure you have the latest versions installed.
+You're going to use the Bot Framework SDK to create your bot, and the Bot Framework Emulator to test it. The Bot Framework Emulator is updated regularly, so let's make sure you have the latest version installed.
 
 > **Note**: Updates may include changes to the user interface that affect the instructions in this exercise.
 
