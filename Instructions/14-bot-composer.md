@@ -36,9 +36,6 @@ Now you're ready to use the Bot Framework Composer to create a bot.
 ### Create a bot and customize the "welcome" dialog flow
 
 1. Start the Bot Framework Composer if it's not already open.
-
-    **Note**: The Bot Framework Composer is regularly updated. If you are prompted to install an update, do so for the currently logged in user. Updates may include changes to the user interface that affect the instructions in this exercise.
-
 2. On the **Home** screen, select **New**. Then create a new bot from scratch; naming it **WeatherBot** and saving it in a local folder.
 3. In the navigation pane on the left, select **Greeting** to open the authoring canvas and show the *ConversationUpdate* activity that is called when a user initially joins a conversation with the bot. The activity consists of a flow of actions.
 4. In the properties pane on the right, edit the title of **Greeting** by selecting the word **Greeting** at the top of the properties pane on the right and changing it to **WelcomeUsers**.
