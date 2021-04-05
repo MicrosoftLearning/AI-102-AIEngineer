@@ -120,7 +120,7 @@ pip install azure-cognitiveservices-vision-customvision==3.1.0
 9. Note that the **train-detector** folder contains a code file for the client application:
 
     - **C#**: Program.cs
-    - **Python**: train-detector&period;py
+    - **Python**: train-detector.py
 
     Open the code file and review the code it contains, noting the following details:
     - Namespaces from the package you installed are imported
@@ -183,7 +183,7 @@ pip install azure-cognitiveservices-vision-customvision==3.1.0
 > **Note**: The Python SDK package includes both training and prediction packages, and may already be installed.
 
 3. Open the configuration file for your client application (*appsettings.json* for C# or *.env* for Python) and update the configuration values it contains to reflect the endpoint and key for your Custom Vision *prediction* resource, the project ID for the object detection project, and the name of your published model (which should be *fruit-detector*). Save your changes.
-4. Open the code file for your client application (*Program.cs* for C#, *test-detector&period;py* for Python) and review the code it contains, noting the following details:
+4. Open the code file for your client application (*Program.cs* for C#, *test-detector.py* for Python) and review the code it contains, noting the following details:
     - Namespaces from the package you installed are imported
     - The **Main** function retrieves the configuration settings, and uses the key and endpoint to create an authenticated **CustomVisionPredictionClient**.
     - The prediction client object is used to get object detection predictions for the **produce.jpg** image, specifying the project ID and model name in the request. The predicted tagged regions are then drawn on the image, and the result is saved as **output.jpg**.

@@ -120,7 +120,7 @@ pip install azure-cognitiveservices-vision-customvision==3.1.0
 4. Note that the **train-classifier** folder contains a code file for the client application:
 
     - **C#**: Program.cs
-    - **Python**: train-classifier&period;py
+    - **Python**: train-classifier.py
 
     Open the code file and review the code it contains, noting the following details:
     - Namespaces from the package you installed are imported
@@ -176,7 +176,7 @@ pip install azure-cognitiveservices-vision-customvision==3.1.0
 
 2. Expand the **test-classifier** folder to view the files it contains, which are used to implement a test client application for your image classification model.
 3. Open the configuration file for your client application (*appsettings.json* for C# or *.env* for Python) and update the configuration values it contains to reflect the endpoint and key for your Custom Vision *prediction* resource, the project ID for the classification project, and the name of your published model (which should be *fruit-classifier*). Save your changes.
-4. Open the code file for your client application (*Program.cs* for C#, *test-classification&period;py* for Python) and review the code it contains, noting the following details:
+4. Open the code file for your client application (*Program.cs* for C#, *test-classification.py* for Python) and review the code it contains, noting the following details:
     - Namespaces from the package you installed are imported
     - The **Main** function retrieves the configuration settings, and uses the key and endpoint to create an authenticated **CustomVisionPredictionClient**.
     - The prediction client object is used to predict a class for each image in the **test-images** folder, specifying the project ID and model name for each request. Each prediction includes a probability for each possible class, and only predicted tags with a probability greater than 50% are displayed.

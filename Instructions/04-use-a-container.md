@@ -82,7 +82,7 @@ Many commonly used cognitive services APIs are available in container images. Fo
     > docker run --rm -it -p 5000:5000 --memory 4g --cpus 1 mcr.microsoft.com/azure-cognitive-services/textanalytics/language Eula=accept Billing=<yourEndpoint> ApiKey=<yourKey>
     > ```
     >
-    > The command will look for the image on your local machine, and if it doesn't find it there it will pull it from the *mcr&period;microsoft&period;com* image registry and deploy it to your Docker instance. When deployment is complete, the container will start and listen for incoming requests on port 5000.
+    > The command will look for the image on your local machine, and if it doesn't find it there it will pull it from the *mcr.microsoft.com* image registry and deploy it to your Docker instance. When deployment is complete, the container will start and listen for incoming requests on port 5000.
 
 ## Use the container
 

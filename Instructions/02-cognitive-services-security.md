@@ -195,7 +195,7 @@ Now you're ready to use the service principal identity in an application, so it 
 4. Note that the **keyvault-client** folder contains a code file for the client application:
 
     - **C#**: Program.cs
-    - **Python**: keyvault-client&period;py
+    - **Python**: keyvault-client.py
 
     Open the code file and review the code it contains, noting the following details:
     - The namespace for the SDK you installed is imported

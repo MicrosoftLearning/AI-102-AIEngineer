@@ -63,7 +63,7 @@ pip install azure-cognitiveservices-vision-computervision==0.7.0
 4. Note that the **read-text** folder contains a code file for the client application:
 
     - **C#**: Program.cs
-    - **Python**: read-text&period;py
+    - **Python**: read-text.py
 
     Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Computer Vision SDK:
 

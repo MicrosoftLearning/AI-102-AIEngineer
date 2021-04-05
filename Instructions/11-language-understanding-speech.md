@@ -43,7 +43,7 @@ If you already have a **Clock** app from a previous exercise, open it in the Lan
 1. In a new browser tab, open the Language Understanding portal at `https://www.luis.ai`.
 2. Sign in using the Microsoft account associated with your Azure subscription. If this is the first time you have signed into the Language Understanding portal, you may need to grant the app some permissions to access your account details. Then complete the *Welcome* steps by selecting your Azure subscription and the authoring resource you just created.
 3. Open the **Conversation Apps** page, next to **&#65291;New app**, view the drop-down list and select **Import As LU**.
-Browse to the **11-luis-speech** subfolder in the project folder containing the lab files for this exercise, and select **Clock&period;lu**. Then specify a unique name for the clock app.
+Browse to the **11-luis-speech** subfolder in the project folder containing the lab files for this exercise, and select **Clock.lu**. Then specify a unique name for the clock app.
 4. If a panel with tips for creating an effective Language Understanding app is displayed, close it.
 
 ## Train and publish the app with *Speech Priming*
@@ -85,7 +85,7 @@ pip install azure-cognitiveservices-speech==1.14.0
 4. Note that the **speaking-clock-client** folder contains a code file for the client application:
 
     - **C#**: Program.cs
-    - **Python**: speaking-clock-client&period;py
+    - **Python**: speaking-clock-client.py
 
     Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Speech SDK:
 

@@ -65,7 +65,7 @@ In this exercise, you'll complete a partially implemented client application tha
 4. Note that the **translator** folder contains a code file for the client application:
 
     - **C#**: Program.cs
-    - **Python**: translator&period;py
+    - **Python**: translator.py
 
     Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Speech SDK:
 

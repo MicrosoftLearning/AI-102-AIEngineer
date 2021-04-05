@@ -106,7 +106,7 @@ You can write code that consumes cognitive services REST APIs directly, but ther
 4. Note that the **sdk-client** folder contains a code file for the client application:
 
     - **C#**: Program.cs
-    - **Python**: sdk-client&period;py
+    - **Python**: sdk-client.py
 
     Open the code file and review the code it contains, noting the following details:
     - The namespace for the SDK you installed is imported

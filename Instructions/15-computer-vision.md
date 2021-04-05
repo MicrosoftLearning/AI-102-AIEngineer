@@ -63,7 +63,7 @@ pip install azure-cognitiveservices-vision-computervision==0.7.0
 4. Note that the **image-analysis** folder contains a code file for the client application:
 
     - **C#**: Program.cs
-    - **Python**: image-analysis&period;py
+    - **Python**: image-analysis.py
 
     Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Computer Vision SDK:
 
@@ -95,7 +95,7 @@ In this exercise, you will use the Computer Vision service to analyze multiple i
 
 Now you're ready to use the SDK to call the Computer Vision service and analyze an image.
 
-1. In the code file for your client application (**Program.cs** or **image-analysis&period;py**), in the **Main** function, note that the code to load the configuration settings has been provided. Then find the comment **Authenticate Computer Vision client**. Then, under this comment, add the following language-specific code to create and authenticate a Computer Vision client object:
+1. In the code file for your client application (**Program.cs** or **image-analysis.py**), in the **Main** function, note that the code to load the configuration settings has been provided. Then find the comment **Authenticate Computer Vision client**. Then, under this comment, add the following language-specific code to create and authenticate a Computer Vision client object:
 
 **C#**
 

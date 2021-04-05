@@ -359,11 +359,11 @@ Now that you have a useful index, you can use it from a client application. You 
 
 ### Explore code to search an index
 
-The **margies-travel** folder contains code files for a web application (a Microsoft C# *ASP&period;NET Razor* web application or a Python *Flask* application), which includes search functionality.
+The **margies-travel** folder contains code files for a web application (a Microsoft C# *ASP.NET Razor* web application or a Python *Flask* application), which includes search functionality.
 
 1. Open the following code file in the web application, depending on your choice of programming language:
     - **C#**:Pages/Index.cshtml.cs
-    - **Python**: app&period;py
+    - **Python**: app.py
 2. Near the top of the code file, find the comment **Import search namespaces**, and note the namespaces that have been imported to work with the Azure Cognitive Search SDK:
 3. In the **search_query** function, find the comment **Create a search client**, and note that the code creates a **SearchClient** object using the endpoint and query key for your Azure Cognitive Search resource:
 4. In the **search_query** function, find the comment **Submit search query**, and review the code to submit a search for the specified text with the following options:
@@ -381,9 +381,9 @@ The web app already includes code to process and render the search results.
 
 1. Open the following code file in the web application, depending on your choice of programming language:
     - **C#**:Pages/Index.cshtml
-    - **Python**: templates/search&period;html
+    - **Python**: templates/search.html
 2. Examine the code, which renders the page on which the search results are displayed. Observe that:
-    - The page begins with a search form that the user can use to submit a new search (in the Python version of the application, this form is defined in the **base&period;html** template), which is referenced at the beginning of the page.
+    - The page begins with a search form that the user can use to submit a new search (in the Python version of the application, this form is defined in the **base.html** template), which is referenced at the beginning of the page.
     - A second form is then rendered, enabling the user to refine the search results. The code for this form:
         - Retrieves and displays the count of documents from the search results.
         - Retrieves the facet values for the **metadata_author** field and displays them as an option list for filtering.

@@ -63,7 +63,7 @@ pip install azure-cognitiveservices-vision-computervision==0.7.0
 4. Note that the **computer-vision** folder contains a code file for the client application:
 
     - **C#**: Program.cs
-    - **Python**: detect-faces&period;py
+    - **Python**: detect-faces.py
 
     Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Computer Vision SDK:
 
@@ -95,7 +95,7 @@ In this exercise, you will use the Computer Vision service to analyze an image o
 
 Now you're ready to use the SDK to call the Computer Vision service and detect faces in an image.
 
-1. In the code file for your client application (**Program.cs** or **detect-faces&period;py**), in the **Main** function, note that the code to load the configuration settings has been provided. Then find the comment **Authenticate Computer Vision client**. Then, under this comment, add the following language-specific code to create and authenticate a Computer Vision client object:
+1. In the code file for your client application (**Program.cs** or **detect-faces.py**), in the **Main** function, note that the code to load the configuration settings has been provided. Then find the comment **Authenticate Computer Vision client**. Then, under this comment, add the following language-specific code to create and authenticate a Computer Vision client object:
 
 **C#**
 
@@ -256,7 +256,7 @@ pip install azure-cognitiveservices-vision-face==0.4.1
 4. Note that the **face-api** folder contains a code file for the client application:
 
     - **C#**: Program.cs
-    - **Python**: analyze-faces&period;py
+    - **Python**: analyze-faces.py
 
     Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Computer Vision SDK:
 

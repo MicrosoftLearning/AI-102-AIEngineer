@@ -51,7 +51,7 @@ In this exercise, you'll complete a partially implemented client application tha
 3. Note that the **text-translation** folder contains a code file for the client application:
 
     - **C#**: Program.cs
-    - **Python**: text-translation&period;py
+    - **Python**: text-translation.py
 
     Open the code file and examine the code it contains.
 

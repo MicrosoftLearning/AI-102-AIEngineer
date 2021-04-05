@@ -137,7 +137,7 @@ pip install azure-ai-formrecognizer==3.0.0
 5. Note that the **train-model** folder contains a code file for the client application:
 
     - **C#**: Program.cs
-    - **Python**: train-model&period;py
+    - **Python**: train-model.py
 
     Open the code file and review the code it contains, noting the following details:
     - Namespaces from the package you installed are imported
@@ -190,7 +190,7 @@ pip install azure-ai-formrecognizer==3.0.0
     - Your Form Recognizer key.
     - The Model ID generated when you trained the model (you can find this by switching the terminal back to the **cmd** console for the **train-model** folder).
 
-5. In the **test-model** folder, open the code file for your client application (*Program.cs* for C#, *test-model&period;py* for Python) and review the code it contains, noting the following details:
+5. In the **test-model** folder, open the code file for your client application (*Program.cs* for C#, *test-model.py* for Python) and review the code it contains, noting the following details:
     - Namespaces from the package you installed are imported
     - The **Main** function retrieves the configuration settings, and uses the key and endpoint to create an authenticated **Client**.
     - The client is then used to extract form fields and values from the **test1.jpg** image.
@@ -224,7 +224,7 @@ Suppose after you trained a model with the invoice forms, you wanted to see how 
 4. In the **train-model** folder, open the code file for the training application:
 
     - **C#**: Program.cs
-    - **Python**: train-model&period;py
+    - **Python**: train-model.py
 
 5. In the **Main** function, find the comment **Train model**, and modify it as shown to change the training process so that labels are used:
 

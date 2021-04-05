@@ -43,7 +43,7 @@ If you already have a **Clock** app from a previous exercise, you can use it in 
 1. In a new browser tab, open the Language Understanding portal at `https://www.luis.ai`.
 2. Sign in using the Microsoft account associated with your Azure subscription. If this is the first time you have signed into the Language Understanding portal, you may need to grant the app some permissions to access your account details. Then complete the *Welcome* steps by selecting your Azure subscription and the authoring resource you just created.
 3. Open the **Conversation Apps** page, next to **&#65291;New app**, view the drop-down list and select **Import As LU**.
-Browse to the **10-luis-client** subfolder in the project folder containing the lab files for this exercise, and select **Clock&period;lu**. Then specify a unique name for the clock app.
+Browse to the **10-luis-client** subfolder in the project folder containing the lab files for this exercise, and select **Clock.lu**. Then specify a unique name for the clock app.
 4. If a panel with tips for creating an effective Language Understanding app is displayed, close it.
 5. At the top of the Language Understanding portal, select **Train** to train the app.
 6. At the top right of the Language Understanding portal, select **Publish** and publish the app to the **Production slot**.
@@ -86,7 +86,7 @@ pip install azure-cognitiveservices-language-luis==0.7.0
 4. Note that the **clock-client** folder contains a code file for the client application:
 
     - **C#**: Program.cs
-    - **Python**: clock-client&period;py
+    - **Python**: clock-client.py
 
     Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Language Understanding prediction SDK:
 
