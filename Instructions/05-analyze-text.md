@@ -301,7 +301,7 @@ In addition to categorized entities, the Text Analytics API can detect entities 
 
 1. In the **Main** function for your program, find the comment **Get linked entities**. Then, under this comment, add the code necessary to identify linked entities that are mentioned in each review:
 
-       **C#**
+    **C#**
     
     ```C
     // Get linked entities
