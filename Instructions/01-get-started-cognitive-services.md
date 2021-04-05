@@ -52,7 +52,7 @@ The cognitive services APIs are REST-based, so you can consume them by submittin
 4. Note that the **rest-client** folder contains a code file for the client application:
 
     - **C#**: Program.cs
-    - **Python**: rest-client&period;py
+    - **Python**: rest-client.py
 
     Open the code file and review the code it contains, noting the following details:
     - Various namespaces are imported to enable HTTP communication
