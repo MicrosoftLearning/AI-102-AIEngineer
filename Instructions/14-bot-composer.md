@@ -14,7 +14,7 @@ Let's start by preparing the services and tools you need to develop a bot.
 
 ### Get an OpenWeather API key
 
-In this exercise, you will create a bot that retrieves the weather conditions for the city entered by the user. You will require an API key for the service to work.
+In this exercise, you will create a bot that uses the OpenWeather service to retrieve weather conditions for the city entered by the user. You will require an API key for the service to work.
 
 1. In a web browser, go to the OpenWeather site at `https://openweathermap.org/price`.
 2. Request a free API key, and create an OpenWeather account (if you do not already have one).
@@ -22,7 +22,7 @@ In this exercise, you will create a bot that retrieves the weather conditions fo
 
 ### Update Bot Framework Composer
 
-You're going to use the Bot Framework Composer to create your bot. This tools is updated regularly, so let's make sure you have the latest versions installed.
+You're going to use the Bot Framework Composer to create your bot. This tools is updated regularly, so let's make sure you have the latest version installed.
 
 > **Note**: Updates may include changes to the user interface that affect the instructions in this exercise.
 
