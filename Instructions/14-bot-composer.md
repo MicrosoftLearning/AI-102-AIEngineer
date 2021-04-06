@@ -27,7 +27,7 @@ You're going to use the Bot Framework Composer to create your bot. This tools is
 > **Note**: Updates may include changes to the user interface that affect the instructions in this exercise.
 
 1. Start the **Bot Framework Composer**, and if you are not automatically prompted to install an update, use the **Check for updates** option on the **Help** menu to check for updates.
-2. If an update is available, choose the option to install it when the application is closed. Then close the Bot Framework Composer and install the update for the currently logged in user, restarting the Bot Framework Composer after the installation is complete.
+2. If an update is available, choose the option to install it when the application is closed. Then close the Bot Framework Composer and install the update for the currently logged in user, restarting the Bot Framework Composer after the installation is complete. Installation may take a few minutes.
 3. Ensure that the version of Bot Framework Composer is **1.4.0** or later.
 
 ## Create a bot
