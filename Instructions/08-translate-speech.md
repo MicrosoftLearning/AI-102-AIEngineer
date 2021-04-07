@@ -179,7 +179,7 @@ Now that you have a **SpeechTranslationConfig** for the speech service in your c
     print(translation)
     ```
 
-    > **Note**: The code in your application translates the input to all three languages in a single call. Only the translation for the specific language is displayed, but you     could retrieve any of the translations by specifying the target language code in the **translations** collection of the result.
+    > **Note**: The code in your application translates the input to all three languages in a single call. Only the translation for the specific language is displayed, but you could retrieve any of the translations by specifying the target language code in the **translations** collection of the result.
 
 3. Save your changes and return to the integrated terminal for the **translator** folder, and enter the following command to run the program:
 
