@@ -13,7 +13,7 @@ The **Speech** service is an Azure cognitive service that provides speech-relate
 
 In this exercise, you'll use both of these APIs to implement a speaking clock application.
 
-> **Note**: This exercise requires that you are using a computer with a microphone and speakers/headphones.
+**Note**: This exercise requires that you are using a computer with a microphone and speakers/headphones.
 
 ## Clone the repository for this course
 
@@ -24,7 +24,7 @@ If you have not already cloned **AI-102-AIEngineer** code repository to the envi
 3. When the repository has been cloned, open the folder in Visual Studio Code.
 4. Wait while additional files are installed to support the C# code projects in the repo.
 
-    > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
+    **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
 
 ## Provision a Cognitive Services resource
 
@@ -45,7 +45,7 @@ If you don't already have one in your subscription, you'll need to provision a *
 
 In this exercise, you'll complete a partially implemented client application that uses the Speech SDK to recognize and synthesize speech.
 
-    > **Note**: You can choose to use the SDK for either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
+**Note**: You can choose to use the SDK for either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
 1. In Visual Studio Code, in the **Explorer** pane, browse to the **07-speech** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **speaking-clock** folder and open an integrated terminal. Then install the Speech SDK package by running the appropriate command for your language preference:
