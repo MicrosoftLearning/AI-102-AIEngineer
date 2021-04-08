@@ -8,6 +8,8 @@ lab:
 
 You can integrate the Speech service with the Language Understanding service to create applications that can intelligently determine user intents from spoken input.
 
+> **Note**: This exercise works best if you have a microphone. Some hosted virtual environments may be able to capture audio from your local microphone, but if this doesn't work (or you don't have a microphone at all), you can use a provided audio file for speech input. Follow the instructions carefully, as you'll need to choose different options depending on whether you are using a microphone or the audio file.
+
 ## Clone the repository for this course
 
 If you have already cloned **AI-102-AIEngineer** code repository to the environment where you're working on this lab, open it in Visual Studio Code; otherwise, follow these steps to clone it now.

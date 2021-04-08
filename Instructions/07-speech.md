@@ -13,7 +13,7 @@ The **Speech** service is an Azure cognitive service that provides speech-relate
 
 In this exercise, you'll use both of these APIs to implement a speaking clock application.
 
-**Note**: This exercise requires that you are using a computer with speakers/headphones. For the best experience, a microphone is also required.
+**Note**: This exercise requires that you are using a computer with speakers/headphones. For the best experience, a microphone is also required. Some hosted virtual environments may be able to capture audio from your local microphone, but if this doesn't work (or you don't have a microphone at all), you can use a provided audio file for speech input. Follow the instructions carefully, as you'll need to choose different options depending on whether you are using a microphone or the audio file.
 
 ## Clone the repository for this course
 
