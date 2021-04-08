@@ -223,213 +223,212 @@ Now you're ready to implement code that uses the Speech SDK to get a predicted i
     ```
 
 2. Under the comment **Process speech input**, add the following code, which uses the recognizer to asynchronously call the Language Understanding service with spoken input, and retrieve response. If the response includes a predicted intent, the spoken query, predicted intent, and full JSON response are displayed. Otherwise the code handles the response based on the reason returned.
+
+**C#**
+
+```C
+// Process speech input
+string intent = "";
+var result = await recognizer.RecognizeOnceAsync().ConfigureAwait(false);
+if (result.Reason == ResultReason.RecognizedIntent)
+{
+    // Intent was identified
+    intent = result.IntentId;
+    Console.WriteLine($"Query: {result.Text}");
+    Console.WriteLine($"Intent Id: {intent}.");
+    string jsonResponse = result.Properties.GetProperty(PropertyId.LanguageUnderstandingServiceResponse_JsonResult);
+    Console.WriteLine($"JSON Response:\n{jsonResponse}\n");
     
-    **C#**
+    // Get the first entity (if any)
 
-    ```C
-    // Process speech input
-    string intent = "";
-    var result = await recognizer.RecognizeOnceAsync().ConfigureAwait(false);
-    if (result.Reason == ResultReason.RecognizedIntent)
-    {
-        // Intent was identified
-        intent = result.IntentId;
-        Console.WriteLine($"Query: {result.Text}");
-        Console.WriteLine($"Intent Id: {intent}.");
-        string jsonResponse = result.Properties.GetProperty(PropertyId.LanguageUnderstandingServiceResponse_JsonResult);
-        Console.WriteLine($"JSON Response:\n{jsonResponse}\n");
-        
-        // Get the first entity (if any)
-
-        // Apply the appropriate action
-        
-    }
-    else if (result.Reason == ResultReason.RecognizedSpeech)
-    {
-        // Speech was recognized, but no intent was identified.
-        intent = result.Text;
-        Console.Write($"I don't know what {intent} means.");
-    }
-    else if (result.Reason == ResultReason.NoMatch)
-    {
-        // Speech wasn't recognized
-        Console.WriteLine($"Sorry. I didn't understand that.");
-    }
-    else if (result.Reason == ResultReason.Canceled)
-    {
-        // Something went wrong
-        var cancellation = CancellationDetails.FromResult(result);
-        Console.WriteLine($"CANCELED: Reason={cancellation.Reason}");
-
-        if (cancellation.Reason == CancellationReason.Error)
-        {
-            Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
-            Console.WriteLine($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
-        }
-    }
-    ```
-
-    **Python**
-
-    ```Python
-    # Process speech input
-    intent = ''
-    result = recognizer.recognize_once_async().get()
-    if result.reason == speech_sdk.ResultReason.RecognizedIntent:
-        intent = result.intent_id
-        print("Query: {}".format(result.text))
-        print("Intent: {}".format(intent))
-        json_response = json.loads(result.intent_json)
-        print("JSON Response:\n{}\n".format(json.dumps(json_response, indent=2)))
-        
-        # Get the first entity (if any)
-        
-        # Apply the appropriate action
-        
-    elif result.reason == speech_sdk.ResultReason.RecognizedSpeech:
-        # Speech was recognized, but no intent was identified.
-        intent = result.text
-        print("I don't know what {} means.".format(intent))
-    elif result.reason == speech_sdk.ResultReason.NoMatch:
-        # Speech wasn't recognized
-        print("Sorry. I didn't understand that.")
-    elif result.reason == speech_sdk.ResultReason.Canceled:
-        # Something went wrong
-        print("Intent recognition canceled: {}".format(result.cancellation_details.reason))
-        if result.cancellation_details.reason == speech_sdk.CancellationReason.Error:
-            print("Error details: {}".format(result.cancellation_details.error_details))
-    ```
+    // Apply the appropriate action
     
-    The code you've added so far identifies the *intent*, but some intents can reference *entities*, so you must add code to extract the entity information from the JSON returned by the service.
+}
+else if (result.Reason == ResultReason.RecognizedSpeech)
+{
+    // Speech was recognized, but no intent was identified.
+    intent = result.Text;
+    Console.Write($"I don't know what {intent} means.");
+}
+else if (result.Reason == ResultReason.NoMatch)
+{
+    // Speech wasn't recognized
+    Console.WriteLine($"Sorry. I didn't understand that.");
+}
+else if (result.Reason == ResultReason.Canceled)
+{
+    // Something went wrong
+    var cancellation = CancellationDetails.FromResult(result);
+    Console.WriteLine($"CANCELED: Reason={cancellation.Reason}");
+    if (cancellation.Reason == CancellationReason.Error)
+    {
+        Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
+        Console.WriteLine($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
+    }
+}
+```
+
+**Python**
+
+```Python
+# Process speech input
+intent = ''
+result = recognizer.recognize_once_async().get()
+if result.reason == speech_sdk.ResultReason.RecognizedIntent:
+    intent = result.intent_id
+    print("Query: {}".format(result.text))
+    print("Intent: {}".format(intent))
+    json_response = json.loads(result.intent_json)
+    print("JSON Response:\n{}\n".format(json.dumps(json_response, indent=2)))
+    
+    # Get the first entity (if any)
+    
+    # Apply the appropriate action
+    
+elif result.reason == speech_sdk.ResultReason.RecognizedSpeech:
+    # Speech was recognized, but no intent was identified.
+    intent = result.text
+    print("I don't know what {} means.".format(intent))
+elif result.reason == speech_sdk.ResultReason.NoMatch:
+    # Speech wasn't recognized
+    print("Sorry. I didn't understand that.")
+elif result.reason == speech_sdk.ResultReason.Canceled:
+    # Something went wrong
+    print("Intent recognition canceled: {}".format(result.cancellation_details.reason))
+    if result.cancellation_details.reason == speech_sdk.CancellationReason.Error:
+        print("Error details: {}".format(result.cancellation_details.error_details))
+```
+
+The code you've added so far identifies the *intent*, but some intents can reference *entities*, so you must add code to extract the entity information from the JSON returned by the service.
 
 3. In the code you just added, find the comment **Get the first entity (if any)** and add the following code beneath it:
 
-    **C#**
+**C#**
 
-    ```C
-    // Get the first entity (if any)
-    JObject jsonResults = JObject.Parse(jsonResponse);
-    string entityType = "";
-    string entityValue = "";
-    if (jsonResults["entities"].HasValues)
-    {
-        JArray entities = new JArray(jsonResults["entities"][0]);
-        entityType = entities[0]["type"].ToString();
-        entityValue = entities[0]["entity"].ToString();
-        Console.WriteLine(entityType + ": " + entityValue);
-    }
-    ```
+```C
+// Get the first entity (if any)
+JObject jsonResults = JObject.Parse(jsonResponse);
+string entityType = "";
+string entityValue = "";
+if (jsonResults["entities"].HasValues)
+{
+    JArray entities = new JArray(jsonResults["entities"][0]);
+    entityType = entities[0]["type"].ToString();
+    entityValue = entities[0]["entity"].ToString();
+    Console.WriteLine(entityType + ": " + entityValue);
+}
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Get the first entity (if any)
-    entity_type = ''
-    entity_value = ''
-    if len(json_response["entities"]) > 0:
-        entity_type = json_response["entities"][0]["type"]
-        entity_value = json_response["entities"][0]["entity"]
-        print(entity_type + ': ' + entity_value)
-    ```
-        
-    Your code now uses the Language Understanding app to predict an intent as well as any entities that were detected in the input utterance. Your client application must now     use that prediction to determine and perform the appropriate action.
+```Python
+# Get the first entity (if any)
+entity_type = ''
+entity_value = ''
+if len(json_response["entities"]) > 0:
+    entity_type = json_response["entities"][0]["type"]
+    entity_value = json_response["entities"][0]["entity"]
+    print(entity_type + ': ' + entity_value)
+```
+    
+Your code now uses the Language Understanding app to predict an intent as well as any entities that were detected in the input utterance. Your client application must now use that prediction to determine and perform the appropriate action.
 
 4. Beneath the code you just added, find the comment **Apply the appropriate action**, and add the following code, which checks for intents supported by the application (**GetTime**, **GetDate**, and **GetDay**) and determines if any relevant entities have been detected, before calling an existing function to produce an appropriate response.
 
-    **C#**
+**C#**
 
-    ```C#
-    // Apply the appropriate action
-    switch (intent)
-    {
-        case "time":
-            var location = "local";
-            // Check for entities
-            if (entityType == "Location")
-            {
-                location = entityValue;
-            }
-            // Get the time for the specified location
-            var getTimeTask = Task.Run(() => GetTime(location));
-            string timeResponse = await getTimeTask;
-            Console.WriteLine(timeResponse);
-            break;
-        case "day":
-            var date = DateTime.Today.ToShortDateString();
-            // Check for entities
-            if (entityType == "Date")
-            {
-                date = entityValue;
-            }
-            // Get the day for the specified date
-            var getDayTask = Task.Run(() => GetDay(date));
-            string dayResponse = await getDayTask;
-            Console.WriteLine(dayResponse);
-            break;
-        case "date":
-            var day = DateTime.Today.DayOfWeek.ToString();
-            // Check for entities
-            if (entityType == "Weekday")
-            {
-                day = entityValue;
-            }
+```C#
+// Apply the appropriate action
+switch (intent)
+{
+    case "time":
+        var location = "local";
+        // Check for entities
+        if (entityType == "Location")
+        {
+            location = entityValue;
+        }
+        // Get the time for the specified location
+        var getTimeTask = Task.Run(() => GetTime(location));
+        string timeResponse = await getTimeTask;
+        Console.WriteLine(timeResponse);
+        break;
+    case "day":
+        var date = DateTime.Today.ToShortDateString();
+        // Check for entities
+        if (entityType == "Date")
+        {
+            date = entityValue;
+        }
+        // Get the day for the specified date
+        var getDayTask = Task.Run(() => GetDay(date));
+        string dayResponse = await getDayTask;
+        Console.WriteLine(dayResponse);
+        break;
+    case "date":
+        var day = DateTime.Today.DayOfWeek.ToString();
+        // Check for entities
+        if (entityType == "Weekday")
+        {
+            day = entityValue;
+        }
 
-            var getDateTask = Task.Run(() => GetDate(day));
-            string dateResponse = await getDateTask;
-            Console.WriteLine(dateResponse);
-            break;
-        default:
-            // Some other intent (for example, "None") was predicted
-            Console.WriteLine("You said " + result.Text.ToLower());
-            if (result.Text.ToLower().Replace(".", "") == "stop")
-            {
-                intent = result.Text;
-            }
-            else
-            {
-                Console.WriteLine("Try asking me for the time, the day, or the date.");
-            }
-            break;
-    }
-    ```
+        var getDateTask = Task.Run(() => GetDate(day));
+        string dateResponse = await getDateTask;
+        Console.WriteLine(dateResponse);
+        break;
+    default:
+        // Some other intent (for example, "None") was predicted
+        Console.WriteLine("You said " + result.Text.ToLower());
+        if (result.Text.ToLower().Replace(".", "") == "stop")
+        {
+            intent = result.Text;
+        }
+        else
+        {
+            Console.WriteLine("Try asking me for the time, the day, or the date.");
+        }
+        break;
+}
+```
 
-    **Python**
+**Python**
 
-    ```Python
-    # Apply the appropriate action
-    if intent == 'GetTime':
-        location = 'local'
-        # Check for entities
-        if entity_type == 'Location':
-            location = entity_value
-        # Get the time for the specified location
-        print(GetTime(location))
+```Python
+# Apply the appropriate action
+if intent == 'GetTime':
+    location = 'local'
+    # Check for entities
+    if entity_type == 'Location':
+        location = entity_value
+    # Get the time for the specified location
+    print(GetTime(location))
 
-    elif intent == 'GetDay':
-        date_string = date.today().strftime("%m/%d/%Y")
-        # Check for entities
-        if entity_type == 'Date':
-            date_string = entity_value
-        # Get the day for the specified date
-        print(GetDay(date_string))
+elif intent == 'GetDay':
+    date_string = date.today().strftime("%m/%d/%Y")
+    # Check for entities
+    if entity_type == 'Date':
+        date_string = entity_value
+    # Get the day for the specified date
+    print(GetDay(date_string))
 
-    elif intent == 'GetDate':
-        day = 'today'
-        # Check for entities
-        if entity_type == 'Weekday':
-            # List entities are lists
-            day = entity_value
-        # Get the date for the specified day
-        print(GetDate(day))
+elif intent == 'GetDate':
+    day = 'today'
+    # Check for entities
+    if entity_type == 'Weekday':
+        # List entities are lists
+        day = entity_value
+    # Get the date for the specified day
+    print(GetDate(day))
 
+else:
+    # Some other intent (for example, "None") was predicted
+    print('You said {}'.format(result.text))
+    if result.text.lower().replace('.', '') == 'stop':
+        intent = result.text
     else:
-        # Some other intent (for example, "None") was predicted
-        print('You said {}'.format(result.text))
-        if result.text.lower().replace('.', '') == 'stop':
-            intent = result.text
-        else:
-            print('Try asking me for the time, the day, or the date.')
-    ```
+        print('Try asking me for the time, the day, or the date.')
+```
 
 ## Run the client application
 
