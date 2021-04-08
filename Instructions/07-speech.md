@@ -263,7 +263,7 @@ Now that you have a **SpeechConfig** for the speech service in your cognitive se
 
 3. If using a microphone, speak clearly and say "what time is it?". The program should transcribe your spoken input and display the time (based on the local time of the computer where the code is running, which may not be the correct time where you are).
 
-    The SpeechRecognizer gives you around 5 seconds to speak. If it detects no spoken input, it produces a "No match" result. Since the code in the application uses a default command of "stop.", the program will then end.
+    The SpeechRecognizer gives you around 5 seconds to speak. If it detects no spoken input, it produces a "No match" result.
 
     If the SpeechRecognizer encounters an error, it produces a result of "Cancelled". The code in the application will then display the error message. The most likely cause is an incorrect key or region in the configuration file.
 
