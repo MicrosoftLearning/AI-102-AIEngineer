@@ -26,8 +26,7 @@ def main():
         print(ex)
 
 def TranscribeCommand():
-    command = 'stop.'
-    print('Speak now...')
+    command = ''
 
     # Configure speech recognition
 

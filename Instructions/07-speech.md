@@ -326,13 +326,13 @@ Your speaking clock application accepts spoken input, but it doesn't actually sp
     python speaking-clock.py
     ```
 
-5. When prompted, speak clearly into the microphone and say "what time is it?". The program should speak, telling you the time. When prompted again, say "stop" to end the program.
+5. When prompted, speak clearly into the microphone and say "what time is it?". The program should speak, telling you the time.
 
 ## Use a different voice
 
 Your speaking clock application uses a default voice, which you can change. The Speech service supports a range of *standard* voices as well as more human-like *neural* voices. You can also create *custom* voices.
 
-    > **Note**: For a list of neural and standard voices, see [Language and voice support](https://docs.microsoft.com/azure/cognitive-services/speech-service/language-support#text-    to-speech) in the Speech service documentation.  Availability of standard, neural, and custom voices varies by region. See [Speech service supported regions]    (https://docs.microsoft.com/azure/cognitive-services/speech-service/regions#standard-and-neural-voices) for more details.
+> **Note**: For a list of neural and standard voices, see [Language and voice support](https://docs.microsoft.com/azure/cognitive-services/speech-service/language-support#text-    to-speech) in the Speech service documentation.  Availability of standard, neural, and custom voices varies by region. See [Speech service supported regions]    (https://docs.microsoft.com/azure/cognitive-services/speech-service/regions#standard-and-neural-voices) for more details.
 
 1. In the **TellTime** function, under the comment **Configure speech synthesis**, modify the code as follows to specify an alternative voice before creating the **SpeechSynthesizer** client:
 
@@ -366,7 +366,7 @@ Your speaking clock application uses a default voice, which you can change. The 
     python speaking-clock.py
     ```
 
-3. When prompted, speak clearly into the microphone and say "what time is it?". The program should speak in the specified voice, telling you the time. When prompted again, say "stop" to end the program.
+3. When prompted, speak clearly into the microphone and say "what time is it?". The program should speak in the specified voice, telling you the time.
 
 ## Use Speech Synthesis Markup Language
 
@@ -383,7 +383,7 @@ Speech Synthesis Markup Language (SSML) enables you to customize the way your sp
             <voice name='en-GB-Susan'>
                 {responseText}
                 <break strength='weak'/>
-                Say stop to end!
+                Time to end this lab!
             </voice>
         </speak>";
     SpeechSynthesisResult speak = await speechSynthesizer.SpeakSsmlAsync(responseSsml);
@@ -402,7 +402,7 @@ Speech Synthesis Markup Language (SSML) enables you to customize the way your sp
             <voice name='en-GB-Susan'> \
                 {} \
                 <break strength='weak'/> \
-                Say stop to end! \
+                Time to end this lab! \
             </voice> \
         </speak>".format(response_text)
     speak = speech_synthesizer.speak_ssml_async(responseSsml).get()
@@ -424,8 +424,7 @@ Speech Synthesis Markup Language (SSML) enables you to customize the way your sp
     python speaking-clock.py
     ```
 
-3. When prompted, speak clearly into the microphone and say "what time is it?". The program should speak in the voice that is specified in the SSML (overriding the voice specified in the SpeechConfig), telling you the time, and then after a pause telling you to say "stop" to end.
-4. When prompted again, say "stop" to end the program.
+3. When prompted, speak clearly into the microphone and say "what time is it?". The program should speak in the voice that is specified in the SSML (overriding the voice specified in the SpeechConfig), telling you the time, and then after a pause telling you it's time to end this lab - which it is!
 
 ## More information
 
