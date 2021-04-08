@@ -8,7 +8,7 @@ lab:
 
 The **Speech** service includes a **Speech translation** API that you can use to translate spoken language. For example, suppose you want to develop a translator application that people can use when traveling in places where they don't speak the local language. They would be able to say phrases such as "Where is the station?" or "I need to find a pharmacy" in their own language, and have it translate them to the local language.
 
-> **Note**: This exercise requires that you are using a computer with a microphone and speakers/headphones.
+**Note**: This exercise requires that you are using a computer with speakers/headphones. For the best experience, a microphone is also required.
 
 ## Clone the repository for this course
 
@@ -147,10 +147,10 @@ In this exercise, you'll complete a partially implemented client application tha
 
 Now that you have a **SpeechTranslationConfig** for the speech service in your cognitive services resource, you can use the **Speech translation** API to recognize and translate speech.
 
+### If you have a working microphone
+
 1. In the **Main** function for your program, note that the code uses the **Translate** function to translate spoken input.
 2. In the **Translate** function, under the comment **Translate speech**, add the following code to create a **TranslationRecognizer** client that can be used to recognize and translate speech using the default system microphone for input.
-
-    > **Note**: *You can also translate speech input from an audio file by modifying the **AudioConfig** object to reference an file path.*
 
     **C#**
     
@@ -181,7 +181,77 @@ Now that you have a **SpeechTranslationConfig** for the speech service in your c
 
     > **Note**: The code in your application translates the input to all three languages in a single call. Only the translation for the specific language is displayed, but you could retrieve any of the translations by specifying the target language code in the **translations** collection of the result.
 
-3. Save your changes and return to the integrated terminal for the **translator** folder, and enter the following command to run the program:
+3. Now skip ahead to the **Run the program** section below.
+
+### Alternatively, use audio input from a file
+
+1. In the terminal window, enter the following command to install a library that you can use to play the audio file:
+
+    **C#**
+
+    ```
+    dotnet add package System.Windows.Extensions --version 4.6.0 
+    ```
+
+    **Python**
+
+    ```
+    pip install playsound==1.2.2
+    ```
+
+2. In the code file for your program, under the existing namespace imports, add the following code to import the library you just installed:
+
+    **C#**
+
+    ```C#
+    using System.Media;
+    ```
+
+    **Python**
+
+    ```Python
+    from playsound import playsound
+    ```
+
+3. In the **Main** function for your program, note that the code uses the **Translate** function to translate spoken input. Then in the **Translate** function, under the comment **Translate speech**, add the following code to create a **TranslationRecognizer** client that can be used to recognize and translate speech from a file.
+
+    **C#**
+    
+    ```C#
+    // Translate speech
+    string audioFile = "station.wav";
+    SoundPlayer wavPlayer = new SoundPlayer(audioFile);
+    wavPlayer.Play();
+    using AudioConfig audioConfig = AudioConfig.FromWavFileInput(audioFile);
+    using TranslationRecognizer translator = new TranslationRecognizer(translationConfig, audioConfig);
+    Console.WriteLine("Getting speech from file...");
+    TranslationRecognitionResult result = await translator.RecognizeOnceAsync();
+    Console.WriteLine($"Translating '{result.Text}'");
+    translation = result.Translations[targetLanguage];
+    Console.OutputEncoding = Encoding.UTF8;
+    Console.WriteLine(translation);
+    ```
+    
+    **Python**
+    
+    ```Python
+    # Translate speech
+    audioFile = 'station.wav'
+    playsound(audioFile)
+    audio_config = speech_sdk.AudioConfig(filename=audioFile)
+    translator = speech_sdk.translation.TranslationRecognizer(translation_config, audio_config)
+    print("Getting speech from file...")
+    result = translator.recognize_once_async().get()
+    print('Translating "{}"'.format(result.text))
+    translation = result.translations[targetLanguage]
+    print(translation)
+    ```
+
+    > **Note**: The code in your application translates the input to all three languages in a single call. Only the translation for the specific language is displayed, but you could retrieve any of the translations by specifying the target language code in the **translations** collection of the result.
+
+### Run the program
+
+1. Save your changes and return to the integrated terminal for the **translator** folder, and enter the following command to run the program:
 
     **C#**
     
@@ -195,7 +265,7 @@ Now that you have a **SpeechTranslationConfig** for the speech service in your c
     python translator.py
     ```
 
-4. When prompted, enter a valid language code (*fr*, *es*, or *hi*), and then speak clearly into the microphone and say "where is the station?" or some other phrase you might use when traveling abroad. The program should transcribe your spoken input and translate it to the language you specified (French, Spanish, or Hindi). Repeat this process, trying each language supported by the application. When you're finished, press ENTER to end the program.
+2. When prompted, enter a valid language code (*fr*, *es*, or *hi*), and then, if using a microphone, speak clearly and say "where is the station?" or some other phrase you might use when traveling abroad. The program should transcribe your spoken input and translate it to the language you specified (French, Spanish, or Hindi). Repeat this process, trying each language supported by the application. When you're finished, press ENTER to end the program.
 
     > **Note**: The TranslationRecognizer gives you around 5 seconds to speak. If it detects no spoken input, it produces a "No match" result.
     >

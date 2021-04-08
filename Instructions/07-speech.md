@@ -13,7 +13,7 @@ The **Speech** service is an Azure cognitive service that provides speech-relate
 
 In this exercise, you'll use both of these APIs to implement a speaking clock application.
 
-**Note**: This exercise requires that you are using a computer with a microphone and speakers/headphones.
+**Note**: This exercise requires that you are using a computer with speakers/headphones. For the best experience, a microphone is also required.
 
 ## Clone the repository for this course
 
@@ -127,8 +127,10 @@ In this exercise, you'll complete a partially implemented client application tha
 
 Now that you have a **SpeechConfig** for the speech service in your cognitive services resource, you can use the **Speech-to-text** API to recognize speech and transcribe it to text.
 
+### If you have a working microphone
+
 1. In the **Main** function for your program, note that the code uses the **TranscribeCommand** function to accept spoken input.
-2. In the **TranscribeCommand** function, under the comment **Configure speech recognition**, add the following code to create a **SpeechRecognizer** client that can be used to recognize and transcribe speech using the default system microphone for input:
+2. In the **TranscribeCommand** function, under the comment **Configure speech recognition**, add the appropriate code below to create a **SpeechRecognizer** client that can be used to recognize and transcribe speech using the default system microphone:
 
     **C#**
     
@@ -136,6 +138,7 @@ Now that you have a **SpeechConfig** for the speech service in your cognitive se
     // Configure speech recognition
     using AudioConfig audioConfig = AudioConfig.FromDefaultMicrophoneInput();
     using SpeechRecognizer speechRecognizer = new SpeechRecognizer(speechConfig, audioConfig);
+    Console.WriteLine("Speak now...");
     ```
     
     **Python**
@@ -144,17 +147,72 @@ Now that you have a **SpeechConfig** for the speech service in your cognitive se
     # Configure speech recognition
     audio_config = speech_sdk.AudioConfig(use_default_microphone=True)
     speech_recognizer = speech_sdk.SpeechRecognizer(speech_config, audio_config)
+    print('Speak now...)
     ```
-    
-    > **Note**: *You can also recognize speech input from an audio file by modifying the **AudioConfig** object to reference an file path.*
 
-3. In the **TranscribeCommand** function, under the comment **Process speech input**, add the following code to listen for spoken input, being careful not to replace the code at the end of the function that returns the command:
+3. Now skip ahead to the **Add code to process the transcribed command** section below.
+
+### Alternatively, use audio input from a file
+
+1. In the terminal window, enter the following command to install a library that you can use to play the audio file:
+
+    **C#**
+
+    ```
+    dotnet add package System.Windows.Extensions --version 4.6.0 
+    ```
+
+    **Python**
+
+    ```
+    pip install playsound==1.2.2
+    ```
+
+2. In the code file for your program, under the existing namespace imports, add the following code to import the library you just installed:
+
+    **C#**
+
+    ```C#
+    using System.Media;
+    ```
+
+    **Python**
+
+    ```Python
+    from playsound import playsound
+    ```
+
+3. In the **Main** function, note that the code uses the **TranscribeCommand** function to accept spoken input. Then in the **TranscribeCommand** function, under the comment **Configure speech recognition**, add the appropriate code below to create a **SpeechRecognizer** client that can be used to recognize and transcribe speech from an audio file:
+
+    **C#**
+
+    ```C#
+    // Configure speech recognition
+    string audioFile = "time.wav";
+    SoundPlayer wavPlayer = new SoundPlayer(audioFile);
+    wavPlayer.Play();
+    using AudioConfig audioConfig = AudioConfig.FromWavFileInput(audioFile);
+    using SpeechRecognizer speechRecognizer = new SpeechRecognizer(speechConfig, audioConfig);
+    ```
+
+    **Python**
+
+    ```Python
+    # Configure speech recognition
+    audioFile = 'time.wav'
+    playsound(audioFile)
+    audio_config = speech_sdk.AudioConfig(filename=audioFile)
+    speech_recognizer = speech_sdk.SpeechRecognizer(speech_config, audio_config)
+    ```
+
+### Add code to process the transcribed command
+
+1. In the **TranscribeCommand** function, under the comment **Process speech input**, add the following code to listen for spoken input, being careful not to replace the code at the end of the function that returns the command:
 
     **C#**
     
     ```C#
     // Process speech input
-    Console.WriteLine("Say 'stop' to end...");
     SpeechRecognitionResult speech = await speechRecognizer.RecognizeOnceAsync();
     if (speech.Reason == ResultReason.RecognizedSpeech)
     {
@@ -177,7 +235,6 @@ Now that you have a **SpeechConfig** for the speech service in your cognitive se
     
     ```Python
     # Process speech input
-    print('Say "stop" to end...')
     speech = speech_recognizer.recognize_once_async().get()
     if speech.reason == speech_sdk.ResultReason.RecognizedSpeech:
         command = speech.text
@@ -190,7 +247,7 @@ Now that you have a **SpeechConfig** for the speech service in your cognitive se
             print(cancellation.error_details)
     ```
 
-4. Save your changes and return to the integrated terminal for the **speaking-clock** folder, and enter the following command to run the program:
+2. Save your changes and return to the integrated terminal for the **speaking-clock** folder, and enter the following command to run the program:
 
     **C#**
     
@@ -204,11 +261,11 @@ Now that you have a **SpeechConfig** for the speech service in your cognitive se
     python speaking-clock.py
     ```
 
-5. When prompted, speak clearly into the microphone and say "what time is it?". The program should transcribe your spoken input and display the time (based on the local time of the computer where the code is running, which may not be the correct time where you are). When prompted again, say "stop" to end the program.
+3. If using a microphone, speak clearly and say "what time is it?". The program should transcribe your spoken input and display the time (based on the local time of the computer where the code is running, which may not be the correct time where you are).
 
-    > **Note** *The SpeechRecognizer gives you around 5 seconds to speak. If it detects no spoken input, it produces a "No match" result. Since the code in the application uses a default command of "stop.", the program will then end.*
-    > 
-    > *If the SpeechRecognizer encounters an error, it produces a result of "Cancelled". The code in the application will then display the error message. The most likely cause is an incorrect key or region in the configuration file.*
+    The SpeechRecognizer gives you around 5 seconds to speak. If it detects no spoken input, it produces a "No match" result. Since the code in the application uses a default command of "stop.", the program will then end.
+
+    If the SpeechRecognizer encounters an error, it produces a result of "Cancelled". The code in the application will then display the error message. The most likely cause is an incorrect key or region in the configuration file.
 
 ## Synthesize speech
 

@@ -6,7 +6,7 @@
     <RootNamespace>speaking_clock</RootNamespace>
   </PropertyGroup>
 
-    <ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.3" />
   </ItemGroup>
 

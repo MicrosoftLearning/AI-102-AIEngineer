@@ -17,18 +17,17 @@ def main():
         # Configure speech service
         
 
-        # Get user input (until they say "stop")
-        command =''
-        while command.lower() != 'stop.':
-            command = TranscribeCommand()
-            if command.lower() == 'what time is it?':
-                TellTime()
+        # Get spoken input
+        command = TranscribeCommand()
+        if command.lower() == 'what time is it?':
+            TellTime()
 
     except Exception as ex:
         print(ex)
 
 def TranscribeCommand():
     command = 'stop.'
+    print('Speak now...')
 
     # Configure speech recognition
 
