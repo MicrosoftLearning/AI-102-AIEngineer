@@ -32,7 +32,7 @@ def search_query(search_text, filter_by=None, sort_order=None):
                                         order_by=sort_order,
                                         facets=['metadata_author'],
                                         highlight_fields='merged_content-3,imageCaption-3',
-                                        select = "url,metadata_storage_name,metadata_author,metadata_storage_last_modified,language,sentiment,merged_content,keyphrases,locations,imageTags,imageCaption")
+                                        select = "url,metadata_storage_name,metadata_author,metadata_storage_size,metadata_storage_last_modified,language,sentiment,merged_content,keyphrases,locations,imageTags,imageCaption")
         return results
         
 

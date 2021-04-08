@@ -34,7 +34,7 @@
     <ul class="resultAttributes">
         <li>Author: {{ search_result['metadata_author'] }}</li>
         <li>Size: {{ search_result['metadata_storage_size'] }} bytes</li>
-        <li>Modified: {{ search_result['metadata_last_modified'] }}</li>
+        <li>Modified: {{ search_result['metadata_storage_last_modified'] }}</li>
         <li>Language: {{ search_result['language'] }}</li>
         <li>Sentiment: {% if search_result['sentiment'] >= 0.5 %} &#128578; {% else %} &#128577; {% endif %} {{ search_result['sentiment'] }}</li>
         <li>Key Phrases:</li>
