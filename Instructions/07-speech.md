@@ -147,7 +147,7 @@ Now that you have a **SpeechConfig** for the speech service in your cognitive se
     # Configure speech recognition
     audio_config = speech_sdk.AudioConfig(use_default_microphone=True)
     speech_recognizer = speech_sdk.SpeechRecognizer(speech_config, audio_config)
-    print('Speak now...)
+    print('Speak now...')
     ```
 
 3. Now skip ahead to the **Add code to process the transcribed command** section below.
