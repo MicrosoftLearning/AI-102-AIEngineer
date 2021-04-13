@@ -47,7 +47,7 @@ In this exercise, you'll complete a partially implemented client application tha
     - **C#**: appsettings.json
     - **Python**: .env
 
-    Open the configuration file and update the configuration values it contains to include an authentication **key** for your cognitive services resource, and the **location** where it is deployed (<u>not</u> the endpoint). Save your changes.
+    Open the configuration file and update the configuration values it contains to include an authentication **key** for your cognitive services resource, and the **location** where it is deployed (<u>not</u> the endpoint) - you should copy both of these from the **keys and Endpoint** page for your cognitive services resource. Save your changes.
 3. Note that the **text-translation** folder contains a code file for the client application:
 
     - **C#**: Program.cs
