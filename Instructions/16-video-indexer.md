@@ -128,9 +128,8 @@ To use the Video Indexer API, you need some information to authenticate requests
 1. In the Video Indexer portal, expand the menu (≡) and select the **Account settings** page.
 2. Note the **Account ID** on this page - you will need it later.
 3. Open a new browser tab and go to the Video Indexer developer portal at `https://api-portal.videoindexer.ai`, signing in using the credentials for your Video Indexer account.
-4. On the **Products** page, select **Authorization**.
-5. If you already have a subscription for the Authorization API, select it. Otherwise, create a new subscription.
-6. On the page with your subscription(s), observe that you have been assigned two keys (primary and secondary) for each subscription. Then select **Show** for any of the keys to see it. You will need this key shortly.
+4. On the **Profile** page, view the **Subscriptions** associated with your profile.
+5. On the page with your subscription(s), observe that you have been assigned two keys (primary and secondary) for each subscription. Then select **Show** for any of the keys to see it. You will need this key shortly.
 
 ### Use the REST API
 
