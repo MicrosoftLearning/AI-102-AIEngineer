@@ -126,10 +126,10 @@ First, you need to define a dialog flow that will be used to handle questions ab
 12. Still in the **True** branch, add a **Send a response** action under the **Set a property** action and set its text to:
 
     ```
-    The weather in ${dialog.city} is ${dialog.description} and the temperature is ${dialog.temp}&deg;.
+    The weather in ${dialog.city} is ${dialog.weather} and the temperature is ${dialog.temp}&deg;.
     ```
 
-    ***Note**: This message uses the **dialog.city**, **dialog.description**, and **dialog.temp** properties you set in the previous actions. Later, you'll also use the **dialog.icon** property.*
+    ***Note**: This message uses the **dialog.city**, **dialog.weather**, and **dialog.temp** properties you set in the previous actions. Later, you'll also use the **dialog.icon** property.*
 
 13. You also need to account for a response from the weather service that is not 200, so in the **False** branch, add a **Send a response** action and set its text to `I got an error: ${dialog.api_response.content.message}.`
 
