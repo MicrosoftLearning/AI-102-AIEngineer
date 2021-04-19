@@ -79,65 +79,65 @@ The Translator service can automatically detect the source language of text to b
 1. In your code file, find the **GetLanguage** function, which currently returns "en" for all text values.
 2. In the **GetLanguage** function, under the comment **Use the Translator detect function**, add the following code to use the Translator's REST API to detect the language of the specified text, being careful not to replace the code at the end of the function that returns the language:
 
-    **C#**
-    
-    ```C
-    // Use the Translator detect function
-    object[] body = new object[] { new { Text = text } };
-    var requestBody = JsonConvert.SerializeObject(body);
-    using (var client = new HttpClient())
+**C#**
+
+```C#
+// Use the Translator detect function
+object[] body = new object[] { new { Text = text } };
+var requestBody = JsonConvert.SerializeObject(body);
+using (var client = new HttpClient())
+{
+    using (var request = new HttpRequestMessage())
     {
-        using (var request = new HttpRequestMessage())
-        {
-            // Build the request
-            string path = "/detect?api-version=3.0";
-            request.Method = HttpMethod.Post;
-            request.RequestUri = new Uri(translatorEndpoint + path);
-            request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
-            request.Headers.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
-            request.Headers.Add("Ocp-Apim-Subscription-Region", cogSvcRegion);
+        // Build the request
+        string path = "/detect?api-version=3.0";
+        request.Method = HttpMethod.Post;
+        request.RequestUri = new Uri(translatorEndpoint + path);
+        request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
+        request.Headers.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
+        request.Headers.Add("Ocp-Apim-Subscription-Region", cogSvcRegion);
 
-            // Send the request and get response
-            HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
-            // Read response as a string
-            string responseContent = await response.Content.ReadAsStringAsync();
+        // Send the request and get response
+        HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
+        // Read response as a string
+        string responseContent = await response.Content.ReadAsStringAsync();
 
-            // Parse JSON array and get language
-            JArray jsonResponse = JArray.Parse(responseContent);
-            language = (string)jsonResponse[0]["language"]; 
-        }
+        // Parse JSON array and get language
+        JArray jsonResponse = JArray.Parse(responseContent);
+        language = (string)jsonResponse[0]["language"]; 
     }
-    ```
-    
-    **Python**
+}
+```
 
-    ```Python
-    # Use the Translator detect function
-    path = '/detect'
-    url = translator_endpoint + path
-    
-    # Build the request
-    params = {
-        'api-version': '3.0'
-    }
-    
-    headers = {
-    'Ocp-Apim-Subscription-Key': cog_key,
-    'Ocp-Apim-Subscription-Region': cog_region,
-    'Content-type': 'application/json'
-    }
-    
-    body = [{
-        'text': text
-    }]
-    
-    # Send the request and get response
-    request = requests.post(url, params=params, headers=headers, json=body)
-    response = request.json()
-    
-    # Parse JSON array and get language
-    language = response[0]["language"]
-    ```
+**Python**
+
+```Python
+# Use the Translator detect function
+path = '/detect'
+url = translator_endpoint + path
+
+# Build the request
+params = {
+    'api-version': '3.0'
+}
+
+headers = {
+'Ocp-Apim-Subscription-Key': cog_key,
+'Ocp-Apim-Subscription-Region': cog_region,
+'Content-type': 'application/json'
+}
+
+body = [{
+    'text': text
+}]
+
+# Send the request and get response
+request = requests.post(url, params=params, headers=headers, json=body)
+response = request.json()
+
+# Parse JSON array and get language
+language = response[0]["language"]
+```
 
 3. Save your changes and return to the integrated terminal for the **text-translation** folder, and enter the following command to run the program:
 
