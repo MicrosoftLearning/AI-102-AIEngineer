@@ -96,12 +96,12 @@ The Translator service can automatically detect the source language of text to b
             request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
             request.Headers.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
             request.Headers.Add("Ocp-Apim-Subscription-Region", cogSvcRegion);
-    
+
             // Send the request and get response
             HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
             // Read response as a string
             string responseContent = await response.Content.ReadAsStringAsync();
-    
+
             // Parse JSON array and get language
             JArray jsonResponse = JArray.Parse(responseContent);
             language = (string)jsonResponse[0]["language"]; 
