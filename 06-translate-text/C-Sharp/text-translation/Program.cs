@@ -25,6 +25,10 @@ namespace translate_text
                 cogSvcKey = configuration["CognitiveServiceKey"];
                 cogSvcRegion = configuration["CognitiveServiceRegion"];
 
+                // Set console encoding to unicode
+                Console.InputEncoding = Encoding.Unicode;
+                Console.OutputEncoding = Encoding.Unicode;
+
                 // Analyze each text file in the reviews folder
                 var folderPath = Path.GetFullPath("./reviews");  
                 DirectoryInfo folder = new DirectoryInfo(folderPath);
