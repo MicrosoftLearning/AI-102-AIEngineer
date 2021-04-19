@@ -332,7 +332,7 @@ Your speaking clock application accepts spoken input, but it doesn't actually sp
 
 Your speaking clock application uses a default voice, which you can change. The Speech service supports a range of *standard* voices as well as more human-like *neural* voices. You can also create *custom* voices.
 
-> **Note**: For a list of neural and standard voices, see [Language and voice support](https://docs.microsoft.com/azure/cognitive-services/speech-service/language-support#text-to-speech) in the Speech service documentation.  Availability of standard, neural, and custom voices varies by region. See [Speech service supported regions](https://docs.microsoft.com/azure/cognitive-services/speech-service/regions#standard-and-neural-voices) for more details.
+> **Note**: For a list of neural and standard voices, see [Language and voice support](https://docs.microsoft.com/azure/cognitive-services/speech-service/language-support#text-to-speech) in the Speech service documentation.
 
 1. In the **TellTime** function, under the comment **Configure speech synthesis**, modify the code as follows to specify an alternative voice before creating the **SpeechSynthesizer** client:
 
