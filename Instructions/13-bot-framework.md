@@ -38,7 +38,7 @@ If you have not already cloned **AI-102-AIEngineer** code repository to the envi
 
 You can use the Bot Framework SDK to create a bot based on a template, and then customize the code to meet your specific requirements.
 
-> **Note**: In this exercise, you can choose to use the REST API from either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
+> **Note**: In this exercise, you can choose to use either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
 1. In Visual Studio Code, in the **Explorer** pane, browse to the **13-bot-framework** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the folder for your chosen language and open an integrated terminal.
