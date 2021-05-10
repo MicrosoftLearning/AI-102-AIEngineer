@@ -6,9 +6,9 @@ lab:
 
 # Lab Environment Setup
 
-These exercises are designed to be completed in a hosted lab environment. However, if you want to complete them on your own computer, you can do so by installing the following software. You may experience unexpected dialogs and behavior when using your own environment.
+These exercises are designed to be completed in a hosted lab environment. If you want to complete them on your own computer, you can do so by installing the following software. You may experience unexpected dialogs and behavior when using your own environment. Due to the wide range of possible local configurations, the course team cannot support issues you may encounter in your own environment.
 
-> **Note**: The instructions below are for a Windows 10 computer. You can also use Linux or MacOS.
+> **Note**: The instructions below are for a Windows 10 computer. You can also use Linux or MacOS. You may need to adapt the lab instructions for your chosen OS.
 
 ### Base Operating System (Windows 10)
 
