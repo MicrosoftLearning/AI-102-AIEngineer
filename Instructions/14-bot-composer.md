@@ -28,7 +28,7 @@ You're going to use the Bot Framework Composer to create your bot. This tools is
 
 1. Start the **Bot Framework Composer**, and if you are not automatically prompted to install an update, use the **Check for updates** option on the **Help** menu to check for updates.
 2. If an update is available, choose the option to install it when the application is closed. Then close the Bot Framework Composer and install the update for the currently logged in user, restarting the Bot Framework Composer after the installation is complete. Installation may take a few minutes.
-3. Ensure that the version of Bot Framework Composer is **1.4.0** or later.
+3. Ensure that the version of Bot Framework Composer is **2.0.0** or later.
 
 ## Create a bot
 
@@ -37,16 +37,16 @@ Now you're ready to use the Bot Framework Composer to create a bot.
 ### Create a bot and customize the "welcome" dialog flow
 
 1. Start the Bot Framework Composer if it's not already open.
-2. On the **Home** screen, select **New**. Then create a new bot from scratch; naming it **WeatherBot** and saving it in a local folder.
-3. In the navigation pane on the left, select **Greeting** to open the authoring canvas and show the *ConversationUpdate* activity that is called when a user initially joins a conversation with the bot. The activity consists of a flow of actions.
+2. On the **Home** screen, select **New**. Then create a new empty bot; naming it **WeatherBot** and saving it in a local folder.
+3. Close the **Get Started** pane if it oprns, and then in the navigation pane on the left, select **Greeting** to open the authoring canvas and show the *ConversationUpdate* activity that is called when a user initially joins a conversation with the bot. The activity consists of a flow of actions.
 4. In the properties pane on the right, edit the title of **Greeting** by selecting the word **Greeting** at the top of the properties pane on the right and changing it to **WelcomeUsers**.
-5. In the authoring canvas, select the **Send a response** action. Then, in the properties pane, change the default text from *- ${WelcomeUser()}*  to `- Hi! I'm WeatherBot.` (including the preceding "-" dash).
+5. In the authoring canvas, select the **Send a response** action. Then, in the properties pane, change the default text from *- ${WelcomeUser()}*  to `Hi! I'm WeatherBot.`
 6. In the authoring canvas, select the final **+** symbol (just above the circle that marks the <u>end</u> of the dialog flow), and add a new **Ask a question** action for a **Text** response.
 
-    The new action creates two nodes in the dialog flow. The first node defines a prompt for the bot to ask the user a question, and the second node represents the response that will be received from the user. In the properties pane, these nodes have corresponding **Bot asks** and **User input** tabs.
+    The new action creates two nodes in the dialog flow. The first node defines a prompt for the bot to ask the user a question, and the second node represents the response that will be received from the user. In the properties pane, these nodes have corresponding **Bot response** and **User input** tabs.
 
-7. In the properties pane, on the **Bot Asks** tab, set the **Prompt for text** value to `What's your name?`. Then, on the **User Input** tab, set the **Property** value to `user.name` to define a variable that you can access later in the bot conversation.
-8. Back in the authoring canvas, select the **+** symbol under the **User Input(Text)** action you just added, and add a **Send a response** action.
+7. In the properties pane, on the **Bot response** tab, add a response with the text `What's your name?`. Then, on the **User input** tab, set the **Property** value to `user.name` to define a variable that you can access later in the bot conversation.
+8. Back in the authoring canvas, select the **+** symbol under the **User input(Text)** action you just added, and add a **Send a response** action.
 9. Select the newly added **Send a response** action and in the properties pane, set the text value to `Hello ${user.name}, nice to meet you!`.
 
     The completed activity flow should look like this:
@@ -81,8 +81,8 @@ First, you need to define a dialog flow that will be used to handle questions ab
 
     Then create a new dialog named **GetWeather** with the description **Get the current weather condition for the provided zip code**.
 2. In the navigation pane, select the **BeginDialog** node for the new **GetWeather** dialog. Then on the authoring canvas, use the **+** symbol to add a **Ask a question** action for a **Text** response.
-3. In the properties pane, on the **Bot asks** tab, set the **Prompt for text** to `Enter your city.`
-4. On the **User Input** tab, set the **Property** field to `dialog.city`, and set the **Output format** field to the expression `=trim(this.value)` to remove any superfluous spaces around the user-provided value.
+3. In the properties pane, on the **Bot response** tab, add the response `Enter your city.`
+4. On the **User input** tab, set the **Property** field to `dialog.city`, and set the **Output format** field to the expression `=trim(this.value)` to remove any superfluous spaces around the user-provided value.
 
     The activity flow so far should look like this:
 
@@ -149,7 +149,7 @@ Now you need some way for the new dialog to be initiated from the existing welco
 
     > The default recognizer type uses the Language Understanding service to product the user's intent using a natural language understanding model. We're using a regular expression recognizer to simplify this exercise. In a real, application, you should consider using Language Understanding to allow for more sophisticated intent recognition.
 
-3. In the **...** menu for the **WeatherBot** dialog, select **Add a Trigger**.
+3. In the **...** menu for the **WeatherBot** dialog, select **Add new Trigger**.
 
     ![Add Trigger menu](./images/add-trigger.png)
 
@@ -183,8 +183,8 @@ A well designed bot should allow users to change the flow of the conversation, f
 
     > The text entered in the regex pattern text box is a simple regular expression pattern that will cause the bot to look for the word *cancel* in any incoming message.
 
-2. In the authoring canvas for the trigger, add a **Send a response** action, and set its **Language Generation** property to `OK. Whenever you're ready, you can ask me about the weather.`
-3. Under the **Send a response** action, add a new action to and the dialog by selecting **Dialog management** and **End this dialog**.
+2. In the authoring canvas for the trigger, add a **Send a response** action, and set its text response to `OK. Whenever you're ready, you can ask me about the weather.`
+3. Under the **Send a response** action, add a new action to end the dialog by selecting **Dialog management** and **End this dialog**.
 
     The **CancelRequest** dialog flow should look like this:
 
@@ -207,7 +207,7 @@ The interactions with the weather bot so far has been through text.  Users enter
 
 1. In the Bot Framework Composer, in the navigation pane, under the **GetWeather** action, select **BeginDialog**.
 2. In the authoring canvas, select the **Prompt for text** action that contains the prompt for the city.
-3. In the properties pane, select **Switch to code editor**, and replace the existing code with the following code.
+3. In the properties pane, select **Show code**, and replace the existing code with the following code.
 
 ```
 [Activity
@@ -221,7 +221,7 @@ This activity will prompt the user for their city as before, but also display a 
 ### Add a card
 
 1. In the **GetWeather** dialog, in the **True** path after checking the response from the HTTP weather service, select the **Send a response** action that displays the weather report.
-2. In the properties pane, select **Switch to code editor** and replace the existing code with the following code.
+2. In the properties pane, select **Show code** and replace the existing code with the following code.
 
 ```
 [ThumbnailCard
@@ -235,7 +235,7 @@ This template will use the same variables as before for the weather condition bu
 
 ### Test the new user interface
 
-1. Restart the bot and open the web chat pane. Restart the conversation, and after entering your name, enter "What is the weather like?". Then, when prompted, click the **Cancel** button to cancel the request.
+1. Restart the bot and open the web chat pane. Restart the conversation, and after entering your name, enter `What is the weather like?`. Then, when prompted, click the **Cancel** button to cancel the request.
 2. After canceling, enter `Tell me about the weather` and when prompted, enter a city, such as `London`. The bot will contact the service and should respond with a card indicating the weather conditions.
 3. When you have finished testing, close the emulator and stop the bot.
 
