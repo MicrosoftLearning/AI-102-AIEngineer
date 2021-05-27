@@ -38,7 +38,7 @@ Now you're ready to use the Bot Framework Composer to create a bot.
 
 1. Start the Bot Framework Composer if it's not already open.
 2. On the **Home** screen, select **New**. Then create a new empty bot; naming it **WeatherBot** and saving it in a local folder.
-3. Close the **Get Started** pane if it oprns, and then in the navigation pane on the left, select **Greeting** to open the authoring canvas and show the *ConversationUpdate* activity that is called when a user initially joins a conversation with the bot. The activity consists of a flow of actions.
+3. Close the **Get Started** pane if it opens, and then in the navigation pane on the left, select **Greeting** to open the authoring canvas and show the *ConversationUpdate* activity that is called when a user initially joins a conversation with the bot. The activity consists of a flow of actions.
 4. In the properties pane on the right, edit the title of **Greeting** by selecting the word **Greeting** at the top of the properties pane on the right and changing it to **WelcomeUsers**.
 5. In the authoring canvas, select the **Send a response** action. Then, in the properties pane, change the default text from *- ${WelcomeUser()}*  to `Hi! I'm WeatherBot.`
 6. In the authoring canvas, select the final **+** symbol (just above the circle that marks the <u>end</u> of the dialog flow), and add a new **Ask a question** action for a **Text** response.
