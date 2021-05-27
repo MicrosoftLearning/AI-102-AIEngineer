@@ -16,19 +16,19 @@ To create and host a knowledge base, you need a QnA Maker resource in your Azure
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 2. Select the **&#65291;Create a resource** button, search for *QnA*, and create a **QnA Maker** resource with the following settings:
-    - **Managed**: Selected
+    
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
-    - **Name**: *Enter a unique name*
     - **Location**: *Choose any available location*
-    - **Pricing tier**: Standard S0
+    - **Name**: *Enter a unique name*
+    - **Pricing tier**: Standard S
     - **Azure Search location**\*: *Choose a location in the same global region as your QnA Maker resource*.
     - **Azure Search pricing tier**: Free (F) (*If this tier is not available, select Basic (B)*)
-
+    - **App Insights**: _Disable_ 
+    
     \*QnA Maker uses Azure Search to index and query the knowledge base of questions and answers.
 
-3. Select the legal terms checkbox and create the resource.
-4. Wait for deployment to complete, and then view the deployment details.
+3. Wait for deployment to complete, and then view the deployment details.
 
 ## Create a knowledge base
 
