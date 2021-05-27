@@ -280,7 +280,7 @@ aiohttp
 
 ### Create a zip archive for deployment
 
-To deploy the bot files, you will package them in a .zip archive. This must> be created from the files and folders in the root folder for your bot (do <u>not</u> zip the root folder itself - zip its contents!).
+To deploy the bot files, you will package them in a .zip archive. This must be created from the files and folders in the root folder for your bot (do <u>not</u> zip the root folder itself - zip its contents!).
 
 1. In Visual Studio Code, in the **Explorer** pane, right-click any of the files or folders in your **TimeBot** folder, and select **Reveal in File Explorer**.
 2. In the File Explorer window, select <u>all</u> of the files in the **TimeBot** folder. Then right-click any of the selected files and select **Send to** > **Compressed (zipped) folder**.
