@@ -10,36 +10,40 @@ One of the most common conversational scenarios is providing support through a k
 
 QnA Maker is a cognitive service that enables you to create a knowledge base of question and answer pairs that can be queried using natural language input, and is most commonly used as a resource that a bot can use to look up answers to questions submitted by users.
 
-## Create a QnA Maker resource
+In this lab, we will be using the Managed QnA Maker, which is a feature within Text Analytics. 
 
-To create and host a knowledge base, you need a QnA Maker resource in your Azure subscription.
+## Create a Text Analytics resource 
+
+To create and host a knowledge base using the Managed QnA Maker, you need a Text Analytics resource in your Azure subscription.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *QnA*, and create a **QnA Maker** resource with the following settings:
+2. Select the **&#65291;Create a resource** button, search for *Text Analytics*, and create a **Text Analytics** resource. 
+3. Click **Select** on the **Custom question answering (preview)** block. Then click **Continue to create your resource**. You will need to enter the following settings:
     
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
-    - **Location**: *Choose any available location*
+    - **Region**: *Choose any available location*
     - **Name**: *Enter a unique name*
     - **Pricing tier**: Standard S
     - **Azure Search location**\*: *Choose a location in the same global region as your QnA Maker resource*.
     - **Azure Search pricing tier**: Free (F) (*If this tier is not available, select Basic (B)*)
-    - **App Insights**: _Disable_ 
+    - **Legal Terms**: _Agree_ 
+    - **Responsible AI Notice**: _Agree_
     
-    \*QnA Maker uses Azure Search to index and query the knowledge base of questions and answers.
+    \*Custom Question Answering uses Azure Search to index and query the knowledge base of questions and answers.
 
-3. Wait for deployment to complete, and then view the deployment details.
+4. Wait for deployment to complete, and then view the deployment details.
 
 ## Create a knowledge base
 
-To create a knowledge base in your QnA Maker resource, you can use the QnA Maker portal. In this case, you'll create a knowledge base containing questions and answers about [Microsoft Learn](https://docs.microsoft.com/learn).
+To create a knowledge base in your Text Analytics resource, you can use the QnA Maker portal. In this case, you'll create a knowledge base containing questions and answers about [Microsoft Learn](https://docs.microsoft.com/learn).
 
 1. In a new browser tab, go to the QnA Maker portal at `https://qnamaker.ai` and sign in using the Microsoft account associated with your Azure subscription.
 2. At the top of the portal, select **Create a knowledge base**.
 3. You have already created a QnA Maker resource, so you can skip step 1. In the **Step 2** section, select the following settings:
     - **Microsoft Azure Directory ID**: The Azure directory containing your subscription.
     - **Azure subscription name**: Your Azure subscription.
-    - **Azure QnA Service**: The QnA Maker resource you created previously.
+    - **Azure QnA Service**: The Text Analytics resource you created previously.
     - **Language**: English (*by default, this option is only available for the first knowledge base you create*).
 4. In the **Step 3** section, enter **Learn FAQ** as the name for your knowledge base.
 
@@ -75,7 +79,7 @@ Now that you have a knowledge base, you can test it in the QnA Maker portal.
 
 1. At the top right of the page, click **Save and train** to train your knowledge base.
 2. After training has completed, click **&larr; Test** to open the test pane.
-3. In the test pane, at the bottom enter the message *Hello*. A suitable response should be returned.
+3. In the test pane, at the top, *deselect* the box that says *Display Short Answer*. Then at the bottom enter the message *Hello*. A suitable response should be returned.
 4. In the test pane, at the bottom enter the message *What is Microsoft Learn?*. An appropriate response from the FAQ should be returned.
 5. Enter the message *That makes me happy!* An appropriate chit-chat response should be returned.
 6. Enter the message *Tell me about certification*. The answer you created should be returned along with a follow-up prompt button.
@@ -105,7 +109,7 @@ Most commonly, the client applications used to retrieve answers from a knowledge
   - **Bot handle**: *A unique name for your bot*
   - **Subscription**: *Your Azure subscription*
   - **Resource group**: *The resource group containing your QnA Maker resource*
-  - **Location**: *The same location as your QnA Maker service*.
+  - **Location**: *The same location as your Text Analytics service*.
   - **Pricing tier**: F0
   - **App name**: *Same as the **Bot handle** with *.azurewebsites.net* appended automatically
   - **SDK language**: *Choose either C# or Node.js*
