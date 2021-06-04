@@ -26,7 +26,7 @@ Now you're ready to use Composer to create a bot.
 
     **Note**: The Bot Framework Composer is regularly updated. If you are prompted to install an update, do so for the currently logged in user. Updates may include changes to the user interface that affect the instructions in this exercise.
 
-2. On the **Home** screen, select **New**. Then create a new bot from scratch; naming it **WeatherBot** and saving it in a local folder.
+2. On the **Home** screen, select **+ Create New**. Then create a new Empty Bot from scratch; naming it **WeatherBot** and saving it in a local folder.
 3. In the navigation pane on the left, select **Greeting** to open the authoring canvas and show the *ConversationUpdate* activity that is called when a user initially joins a conversation with the bot. The activity consists of a flow of actions.
 4. In the properties pane on the right, edit the title of **Greeting** by selecting the word **Greeting** at the top of the properties pane on the right and changing it to **WelcomeUsers**.
 5. In the authoring canvas, select the **Send a response** action. Then, in the properties pane, change the default text in the **Language Generation** box from *- ${WelcomeUser()}*  to `- Hi! I'm WeatherBot.` (including the preceding "-" dash).
@@ -145,7 +145,7 @@ Now you need some way for the new dialog to be initiated from the existing welco
 
     > The default recognizer type uses the Language Understanding service to product the user's intent using a natural language understanding model. We're using a regular expression recognizer to simplify this exercise. In a real, application, you should consider using Language Understanding to allow for more sophisticated intent recognition.
 
-3. In the **&#8285;** menu for the **WeatherBot** dialog, select **Add a Trigger**.
+3. In the **&#8285;** menu for the **WeatherBot** dialog, select **Add new Trigger**.
 
     ![Add Trigger menu](./images/add-trigger.png)
 
@@ -179,7 +179,7 @@ A well designed bot should allow users to change the flow of the conversation, f
 
     > The text entered in the regex pattern text box is a simple regular expression pattern that will cause the bot to look for the word *cancel* in any incoming message.
 
-2. In the authoring canvas for the trigger, add a **Send a response** action, and set its **Language Generation** property to `- OK. Whenever you're ready, you can ask me about the weather.`
+2. In the authoring canvas for the trigger, add a **Send a response** action, and set **Responses** to `- OK. Whenever you're ready, you can ask me about the weather.`
 3. Under the **Send a response** action, add a new action to and the dialog by selecting **Dialog management** and **End this dialog**.
 
     The **CancelRequest** dialog flow should look like this:
