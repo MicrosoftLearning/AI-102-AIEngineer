@@ -45,7 +45,7 @@ Let's start monitoring by defining an alert rule so you can detect activity in y
 5. In the **signal type** list, select **Activity Log**, and then in the filtered list, select **List Keys**.
 6. Review the activity over the past 6 hours, and then select **Done**.
 7. Back in the **Create alert rule** page, under **Actions**, note that you can specify an *action group*. This enables you to configure automated actions when an alert is fired - for example, sending an email notification. We won't do that in this exercise; but it can be useful to do this in a production environment.
-8. In the **Alert Details** section, set the **Alert rule name** to **Key List Alert**, and click **Create alert rule**. Wait for the alert rule to be created.
+8. In the **Alert Rules Details** section, set the **Alert rule name** to **Key List Alert**, and click **Create alert rule**. Wait for the alert rule to be created.
 9. In Visual Studio Code, right-click the **03-monitor** folder and open an integrated terminal. Then enter the following command to sign into your Azure subscription by using the Azure CLI.
 
     ```

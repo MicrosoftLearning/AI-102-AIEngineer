@@ -65,7 +65,7 @@ If you don't already have one in your subscription, you'll need to provision a *
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: **The same resource group as your Azure Cognitive Search and Cognitive Services resources*
     - **Storage account name**: *Enter a unique name*
-    - **Location**: *Choose any available location*
+    - **Region**: *Choose any available region*
     - **Performance**: Standard
     - **Account kind**: Storage V2
     - **Replication**: Locally-redundant storage (LRS)
