@@ -62,9 +62,9 @@ Many commonly used cognitive services APIs are available in container images. Fo
 
             | Mark as secure | Key | Value |
             | -------------- | --- | ----- |
-            | Yes | ApiKey | *Either key for your cognitive services resource* |
-            | Yes | Billing | *The endpoint URI for your cognitive services resource* |
-            | No | Eula | accept |
+            | Yes | `ApiKey` | *Either key for your cognitive services resource* |
+            | Yes | `Billing` | *The endpoint URI for your cognitive services resource* |
+            | No | `Eula` | `accept` |
 
         - **Command override**: [ ]
     - **Tags**:
