@@ -67,7 +67,6 @@ If you don't already have one in your subscription, you'll need to provision a *
     - **Storage account name**: *Enter a unique name*
     - **Region**: *Choose any available region*
     - **Performance**: Standard
-    - **Account kind**: Storage V2
     - **Replication**: Locally-redundant storage (LRS)
 2. Wait for deployment to complete, and then go to the deployed resource.
 3. On the **Overview** page, note the **Subscription ID** -this identifies the subscription in which the storage account is provisioned.
