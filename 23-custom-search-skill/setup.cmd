@@ -15,7 +15,7 @@ call az storage account create --name ai102str!unique_id! --subscription !subscr
 echo Uploading files...
 rem Hack to get storage key
 for /f "tokens=*" %%a in ( 
-'az storage account keys list --subscription !subscription_id! --resource-group !resource_group! --account-name ai102str!unique_id! --query "[?keyName=='key1']"' 
+'az storage account keys list --subscription !subscription_id! --resource-group !resource_group! --account-name ai102str!unique_id! --query "[?keyName=='key1'].{keyName:keyName, permissions:permissions, value:value}"' 
 ) do ( 
 set key_json=!key_json!%%a 
 ) 
