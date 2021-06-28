@@ -132,7 +132,7 @@ Now that you have created a client for the Text Analytics API, let's use it to d
     ```C
     // Get language
     DetectedLanguage detectedLanguage = CogClient.DetectLanguage(text);
-    Console.WriteLine($"\nLanguage: {detectedLanguage.Name}");
+    Console.WriteLine($"\nLanguage: {detectedLanguage.Value.Name}");
     ```
 
     **Python**
