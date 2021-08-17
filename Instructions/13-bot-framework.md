@@ -227,7 +227,7 @@ az account set --subscription "<YOUR_SUBSCRIPTION_ID>"
 3. Enter the following command to create an application registration for **TimeBot** with the password **Super$ecretPassw0rd** (you can use an alternative display name and password if you wish, but make a note of them - you'll need them later).
 
 ```
-az ad app create --display-name "TimeBot" --password "Super$ecretPassw0rd" --available-to-other-tenants
+az ad app create --display-name "TimeBot" --password 'Super$ecretPassw0rd' --available-to-other-tenants
 ```
 
 4. When the command completes, a large JSON response is displayed. In this response, find the **appId** value and make a note of it. You will need it in the next procedure.
