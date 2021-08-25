@@ -256,7 +256,7 @@ if (len(analysis.tags) > 0):
         print(" -'{}' (confidence: {:.2f}%)".format(tag.name, tag.confidence * 100))
 ```
 
-2. Save your changes and run the program once for each of the image files in the **images** folder, changing the file name in the **Main** function and observing that in addition to the image caption, a list of suggested tags is displayed.
+2. Save your changes and run the program once for each of the image files in the **images** folder, observing that in addition to the image caption, a list of suggested tags is displayed.
 
 ## Get image categories
 
@@ -360,7 +360,7 @@ if (len(analysis.categories) > 0):
 
 ```
     
-2. Save your changes and run the program once for each of the image files in the **images** folder, changing the file name in the **Main** function and observing that in addition to the image caption and tags, a list of suggested categories is displayed along with any recognized landmarks or celebrities (in particular in the **building.jpg** and **person.jpg** images).
+2. Save your changes and run the program once for each of the image files in the **images** folder, observing that in addition to the image caption and tags, a list of suggested categories is displayed along with any recognized landmarks or celebrities (in particular in the **building.jpg** and **person.jpg** images).
 
 ## Get brands in an image
 
@@ -392,7 +392,7 @@ if (len(analysis.brands) > 0):
         print(" -'{}' (confidence: {:.2f}%)".format(brand.name, brand.confidence * 100))
 ```
     
-2. Save your changes and run the program once for each of the image files in the **images** folder, changing the file name in the **Main** function and observing any brands that are identified (specifically, in the **person.jpg** image).
+2. Save your changes and run the program once for each of the image files in the **images** folder, observing any brands that are identified (specifically, in the **person.jpg** image).
 
 ## Detect and locate objects in an image
 
@@ -463,7 +463,7 @@ if len(analysis.objects) > 0:
     print('  Results saved in', outputfile)
 ```
     
-2. Save your changes and run the program once for each of the image files in the **images** folder, changing the file name in the **Main** function and observing any objects that are detected. After each run, view the **objects.jpg** file that is generated in the same folder as your code file to see the annotated objects.
+2. Save your changes and run the program once for each of the image files in the **images** folder, observing any objects that are detected. After each run, view the **objects.jpg** file that is generated in the same folder as your code file to see the annotated objects.
 
 ## Get moderation ratings for an image
 
@@ -489,7 +489,7 @@ ratings = 'Ratings:\n -Adult: {}\n -Racy: {}\n -Gore: {}'.format(analysis.adult.
 print(ratings)
 ```
     
-2. Save your changes and run the program once for each of the image files in the **images** folder, changing the file name in the **Main** function and observing the ratings for each image.
+2. Save your changes and run the program once for each of the image files in the **images** folder, observing the ratings for each image.
 
 > **Note**: In the preceding tasks, you used a single method to analyze the image, and then incrementally added code to parse and display the results. The SDK also provides individual methods for suggesting captions, identifying tags, detecting objects, and so on - meaning that you can use the most appropriate method to return only the information you need, reducing the size of the data payload that needs to be returned. See the [.NET SDK documentation](https://docs.microsoft.com/dotnet/api/overview/azure/cognitiveservices/client/computervision?view=azure-dotnet) or [Python SDK documentation](https://docs.microsoft.com/python/api/overview/azure/cognitiveservices/computervision?view=azure-python) for more details.
 
@@ -536,7 +536,7 @@ with open(thumbnail_file_name, "wb") as thumbnail_file:
 print('Thumbnail saved in.', thumbnail_file_name)
 ```
     
-2. Save your changes and run the program once for each of the image files in the **images** folder, changing the file name in the **Main** function for each run and opening the **thumbnail.jpg** file that is generated in the same folder as your code file for each image.
+2. Save your changes and run the program once for each of the image files in the **images** folder, opening the **thumbnail.jpg** file that is generated in the same folder as your code file for each image.
 
 ## More information
 
