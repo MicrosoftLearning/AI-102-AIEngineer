@@ -97,6 +97,9 @@ In this exercise, you'll complete a partially implemented client application tha
     // Configure speech service
     speechConfig = SpeechConfig.FromSubscription(cogSvcKey, cogSvcRegion);
     Console.WriteLine("Ready to use speech service in " + speechConfig.Region);
+    
+    // Configure voice
+    speechConfig.SpeechSynthesisVoiceName = "en-US-AriaNeural";
     ```
     
     **Python**
