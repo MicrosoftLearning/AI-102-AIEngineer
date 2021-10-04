@@ -17,8 +17,9 @@ In this lab, we will be using the Managed QnA Maker, which is a feature within T
 To create and host a knowledge base using the Managed QnA Maker, you need a Text Analytics resource in your Azure subscription.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *Text Analytics*, and create a **Text Analytics** resource.
+2. Select the **&#65291;Create a resource** button, search for *Text Analytics*, and create a **Text Analytics** resource. 
 3. Click **Select** on the **Custom question answering (preview)** block. Then click **Continue to create your resource**. You will need to enter the following settings:
+    
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Region**: *Choose any available location*
@@ -26,7 +27,7 @@ To create and host a knowledge base using the Managed QnA Maker, you need a Text
     - **Pricing tier**: Standard S
     - **Azure Search location**\*: *Choose a location in the same global region as your QnA Maker resource*.
     - **Azure Search pricing tier**: Free (F) (*If this tier is not available, select Basic (B)*)
-    - **Legal Terms**: _Agree_
+    - **Legal Terms**: _Agree_ 
     - **Responsible AI Notice**: _Agree_
     
     \*Custom Question Answering uses Azure Search to index and query the knowledge base of questions and answers.
@@ -62,7 +63,7 @@ Your knowledge base has been populated with question and answer pairs from the M
 3. Select **&#65291; Add alternative phrasing** and type `How can I demonstrate my Microsoft technology skills?`.
 4. In the **Answer** box, type `The Microsoft Certified Professional program enables you to validate and prove your skills with Microsoft technologies.`
 
-    In some cases, it makes sense to enable the user to follow up on answer to create a *multi-turn* conversation that enables the user to iteratively refine the question to get to the answer they need.
+    In some cases, it makes sense to enable the user to follow up on answer to create a *multi-turn* conversation that enables the user to iteratively refine the question to get to the anseer they need.
 
 5. Under the answer you entered for the certification question, select **&#65291; Add follow-up prompt**.
 6. In the **Follow-up Prompt** dialog box, enter the following settings:
