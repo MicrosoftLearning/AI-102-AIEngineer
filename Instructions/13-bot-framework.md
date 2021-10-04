@@ -46,7 +46,7 @@ You can use the Bot Framework SDK to create a bot based on a template, and then 
 
 **C#**
 
-```
+```C#
 dotnet new -i Microsoft.Bot.Framework.CSharp.EchoBot
 dotnet new -i Microsoft.Bot.Framework.CSharp.CoreBot
 dotnet new -i Microsoft.Bot.Framework.CSharp.EmptyBot
@@ -54,7 +54,7 @@ dotnet new -i Microsoft.Bot.Framework.CSharp.EmptyBot
 
 **Python**
 
-```
+```Python
 pip install botbuilder-core
 pip install asyncio
 pip install aiohttp
@@ -65,13 +65,13 @@ pip install cookiecutter==1.7.0
 
 **C#**
 
-```
+```C#
 dotnet new echobot -n TimeBot
 ```
 
 **Python**
 
-```
+```Python
 cookiecutter https://github.com/microsoft/botbuilder-python/releases/download/Templates/echo.zip
 ```
 
@@ -81,7 +81,7 @@ If you're using Python, when prompted by cookiecutter, enter the following detai
     
 5. In the terminal pane, enter the following commands to change the current directory to the **TimeBot** folder list the code files that have been generated for your bot:
 
-    ```
+    ```Code
     cd TimeBot
     dir
     ```
@@ -94,13 +94,13 @@ You've created a bot based on the *EchoBot* template. Now you can run it locally
 
 **C#**
 
-```
+```C#
 dotnet run
 ```
 
 **Python**
 
-```
+```Python
 python app.py
 ```
     
@@ -172,13 +172,13 @@ async def on_message_activity(self, turn_context: TurnContext):
 
 **C#**
 
-```
+```C#
 dotnet run
 ```
 
 **Python**
 
-```
+```Python
 python app.py
 ```
 
