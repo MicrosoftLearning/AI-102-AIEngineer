@@ -281,6 +281,7 @@ Your speaking clock application accepts spoken input, but it doesn't actually sp
     
     ```C#
     // Configure speech synthesis
+    speechConfig.SpeechSynthesisVoiceName = "en-GB-RyanNeural";
     using SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig);
     ```
     
@@ -288,6 +289,7 @@ Your speaking clock application accepts spoken input, but it doesn't actually sp
     
     ```Python
     # Configure speech synthesis
+    speech_config.speech_synthesis_voice_name = "en-GB-RyanNeural"
     speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config)
     ```
     
