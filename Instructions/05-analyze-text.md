@@ -6,9 +6,9 @@ lab:
 
 # Analyze Text
 
-The **Text Analytics API** is a cognitive service that supports analysis of text, including language detection, sentiment analysis, key phrase extraction, and entity recognition.
+The **Language** service is a cognitive service that supports analysis of text, including language detection, sentiment analysis, key phrase extraction, and entity recognition.
 
-For example, suppose a travel agency wants to process hotel reviews that have been submitted to the company's web site. By using the Text Analytics API, they can determine the language each review is written in, the sentiment (positive, neutral, or negative) of the reviews, key phrases that might indicate the main topics discussed in the review, and named entities, such as places, landmarks, or people mentioned in the reviews.
+For example, suppose a travel agency wants to process hotel reviews that have been submitted to the company's web site. By using the Language service, they can determine the language each review is written in, the sentiment (positive, neutral, or negative) of the reviews, key phrases that might indicate the main topics discussed in the review, and named entities, such as places, landmarks, or people mentioned in the reviews.
 
 ## Clone the repository for this course
 
@@ -36,9 +36,9 @@ If you don't already have one in your subscription, you'll need to provision a *
 4. Wait for deployment to complete, and then view the deployment details.
 5. When the resource has been deployed, go to it and view its **Keys and Endpoint** page. You will need the endpoint and one of the keys from this page in the next procedure.
 
-## Prepare to use the Text Analytics SDK
+## Prepare to use the Language SDK for text analytics
 
-In this exercise, you'll complete a partially implemented client application that uses the Text Analysis SDK to analyze hotel reviews.
+In this exercise, you'll complete a partially implemented client application that uses the Language service text analytics SDK to analyze hotel reviews.
 
 > **Note**: You can choose to use the SDK for either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
@@ -345,4 +345,4 @@ In addition to categorized entities, the Text Analytics API can detect entities 
 
 ## More information
 
-For more information about using the **Text Analytics** service, see the [Text Analytics documentation](https://docs.microsoft.com/azure/cognitive-services/text-analytics/).
+For more information about using the **Language** service, see the [Text Analytics documentation](https://docs.microsoft.com/azure/cognitive-services/language-service/).
