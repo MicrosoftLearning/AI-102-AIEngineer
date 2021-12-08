@@ -25,10 +25,10 @@ If you have not already cloned **AI-102-AIEngineer** code repository to the envi
 
 ## Create a Language resource
 
-To create and host a knowledge base for question answering, you need a **Language** resource in your Azure subscription.
+To create and host a knowledge base for question answering, you need a **Language service** resource in your Azure subscription.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *Language*, and create a **Language** resource.
+2. Select the **&#65291;Create a resource** button, search for *Language*, and create a **Language service** resource.
 3. Click **Select** on the **Custom question answering** block. Then click **Continue to create your resource**. You will need to enter the following settings:
     
     - **Subscription**: *Your Azure subscription*
@@ -54,6 +54,11 @@ To create a knowledge base for question answering in your Language resource, you
     - **Azure Directory**: The Azure directory containing your subscription.
     - **Azure subscription**: Your Azure subscription.
     - **Language resource**: The Language resource you created previously.
+3. If you are <u>not</u> prompted to choose a language resource, it may be because you have multiple Language resources in your subscription; in which case:
+    1. On the bar at the top if the page, click the **Settings (&#9881;)** button.
+    2. On the **Settings** page, view the **Resources** tab.
+    3. Select the language resource you just created, and click **Switch resource**.
+    4. At the top of the page, click **Language Studio** to return to the Language Studio home page.
 3. At the top of the portal, in the **Create new** menu, select **Custom question answering**.
 4. In the ***Create a project** wizard, on the **Choose language setting** page, select the option to set the language for all projects in this resource, and select **English** as the language. Then click **Next**.
 5. On the **Enter basic information** page, enter the following details and then click **Next**:
