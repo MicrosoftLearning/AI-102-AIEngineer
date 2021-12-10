@@ -255,7 +255,7 @@ In a real project, you'd iteratively refine intents and entities, retrain, and r
     - **YOUR_QUERY_HERE**: *What's the time in Sydney*
     - **QUERY_LANGUAGE_HERE**: *EN*
 
-    The command should resembel the following code:
+    The command should resemble the following code:
 
     ```
     curl -X POST "https://some-name.cognitiveservices.azure.com/language/:analyze-conversations?projectName=Clock&deploymentName=production&api-version=2021-11-01-preview" -H "Ocp-Apim-Subscription-Key: 0ab1c23de4f56..."  -H "Apim-Request-Id: 9zy8x76wv5u43...." -H "Content-Type: application/json" -d "{\"verbose\":true,\"query\":\"What's the time in Sydney?\",\"language\":\"EN\"}"
