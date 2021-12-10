@@ -290,4 +290,4 @@ You can use Language Studio to develop and test your language understanding mode
 
 ## More information
 
-For more information about using the **Language** service to create conversational language udnerstanding solutions, see the [Language service documentation](https://docs.microsoft.com/azure/cognitive-services/language-service/conversational-language-understanding/overview).
+For more information about using the **Language** service to create conversational language understanding solutions, see the [Language service documentation](https://docs.microsoft.com/azure/cognitive-services/language-service/conversational-language-understanding/overview).
