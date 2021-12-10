@@ -1,7 +1,6 @@
 ---
 lab:
     title: 'Create a language understanding model with the Language service (preview)'
-    module: 'Module 5 - Creating Language Understanding Solutions'
 ---
 
 # Create a language understanding model with the Language service (preview)
@@ -291,4 +290,4 @@ You can use Language Studio to develop and test your language understanding mode
 
 ## More information
 
-For more information about using the **Language Understanding** service, see the [Language Understanding documentation](https://docs.microsoft.com/azure/cognitive-services/luis/).
+For more information about using the **Language** service to create conversational language udnerstanding solutions, see the [Language service documentation](https://docs.microsoft.com/azure/cognitive-services/language-service/conversational-language-understanding/overview).
