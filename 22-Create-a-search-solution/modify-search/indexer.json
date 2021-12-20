@@ -60,7 +60,7 @@
         "targetFieldName": "imageCaption"
       },
       {
-        "sourceFieldName": "/document/sentimentScore",
+        "sourceFieldName": "/document/sentimentLabel",
         "targetFieldName": "sentiment"
       }
     ]
