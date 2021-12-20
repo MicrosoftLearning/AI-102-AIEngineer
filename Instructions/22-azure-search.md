@@ -231,14 +231,14 @@ While you can use the portal to create and modify search solutions, it's often d
         ],
         "outputs": [
             {
-                "name": "score",
-                "targetName": "sentimentScore"
+                "name": "sentiment",
+                "targetName": "sentimentLabel"
             }
         ]
     }
     ```
 
-The new skill is named **get-sentiment**, and for each **document** level in a document, it, will evaluate the text found in the **merged_content** field of the document being indexed (which includes the source content as well as any text extracted from images in the content). It uses the extracted **language** of the document (with a default of English), and evaluates a score for the sentiment of the content. This score is then output as a new field named **sentimentScore**.
+The new skill is named **get-sentiment**, and for each **document** level in a document, it, will evaluate the text found in the **merged_content** field of the document being indexed (which includes the source content as well as any text extracted from images in the content). It uses the extracted **language** of the document (with a default of English), and evaluates a label for the sentiment of the content. Values for the sentiment label can be "positive", "negative", "neutral", or "mixed". This label is then output as a new field named **sentimentScore**.
 
 6. Save the changes you've made to **skillset.json**.
 
@@ -251,7 +251,7 @@ The new skill is named **get-sentiment**, and for each **document** level in a d
     ```
     {
         "name": "sentiment",
-        "type": "Edm.Double",
+        "type": "Edm.String",
         "facetable": false,
         "filterable": true,
         "retrievable": true,
@@ -285,11 +285,11 @@ The new skill is named **get-sentiment**, and for each **document** level in a d
 
 All of the other metadata and content fields in the source document are implicitly mapped to fields of the same name in the index.
 
-4. Review the **ouputFieldMappings** section, which maps outputs from the skills in the skillset to index fields. Most of these reflect the choices you made in the user interface, but the following mapping has been added to map the **sentimentScore** value extracted by your sentiment skill to the **sentiment** field you added to the index:
+4. Review the **ouputFieldMappings** section, which maps outputs from the skills in the skillset to index fields. Most of these reflect the choices you made in the user interface, but the following mapping has been added to map the **sentimentLabel** value extracted by your sentiment skill to the **sentiment** field you added to the index:
 
     ```
     {
-        "sourceFieldName": "/document/sentimentScore",
+        "sourceFieldName": "/document/sentimentLabel",
         "targetFieldName": "sentiment"
     }
     ```
@@ -313,10 +313,10 @@ All of the other metadata and content fields in the source document are implicit
 2. In Search explorer, in the **Query string** box, enter the following query string, and then select **Search**.
 
     ```
-    search=London&$select=url,sentiment,keyphrases&$filter=metadata_author eq 'Reviewer' and sentiment gt 0.5
+    search=London&$select=url,sentiment,keyphrases&$filter=metadata_author eq 'Reviewer' and sentiment eq 'positive'
     ```
 
-    This query retrieves the **url**, **sentiment**, and **keyphrases** for all documents that mention *London* authored by *Reviewer* that have a **sentiment** score greater than *0.5* (in other words, positive reviews that mention London)
+    This query retrieves the **url**, **sentiment**, and **keyphrases** for all documents that mention *London* authored by *Reviewer* that have a positive **sentiment** label (in other words, positive reviews that mention London)
 
 3. Close the **Search explorer** page to return to the **Overview** page.
 
@@ -391,7 +391,7 @@ The web app already includes code to process and render the search results.
         - Display the **metadata_storage_name** (file name) field as a link to the address in the **url** field.
         - Displaying *highlights* for search terms found in the **merged_content** and **imageCaption** fields to help show the search terms in context.
         - Display the **metadata_author**, **metadata_storage_size**, **metadata_storage_last_modified**, and **language** fields.
-        - Indicate the **sentiment** using an emoticon (&#128578; for scores of 0.5 or higher, and &#128577; for scores less than 0.5).
+        - Display the **sentiment** label for the document. Can be positive, negative, neutral, or mixed.
         - Display the first five **keyphrases** (if any).
         - Display the first five **locations** (if any).
         - Display the first five **imageTags** (if any).
@@ -419,7 +419,7 @@ The web app already includes code to process and render the search results.
     - A *filter* based on a facet value for the **metadata_author** field. This demonstrates how you can use *facetable* fields to return a list of *facets* - fields with a small set of discrete values that can displayed as potential filter values in the user interface.
     - The ability to *order* the results based on a specified field and sort direction (ascending or descending). The default order is based on *relevancy*, which is calculated as a **search.score()** value based on a *scoring profile* that evaluates the frequency and importance of search terms in the index fields.
 6. Select the **Reviewer** filter and the **Positive to negative** sort option, and then select **Refine Results**.
-7. Observe that the results are filtered to include only reviews, and sorted into descending order of sentiment.
+7. Observe that the results are filtered to include only reviews, and sorted based on the sentiment label.
 8. In the **Search** box, enter a new search for **quiet hotel in New York** and review the results.
 9. Try the following search terms:
     - **Tower of London** (observe that this term is identified as a *key phrase* in some documents).
