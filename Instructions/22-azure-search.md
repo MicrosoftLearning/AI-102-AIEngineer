@@ -214,7 +214,7 @@ While you can use the portal to create and modify search solutions, it's often d
 
     ```
     {
-        "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
+        "@odata.type": "#Microsoft.Skills.Text.V3.SentimentSkill",
         "defaultLanguageCode": "en",
         "name": "get-sentiment",
         "description": "New skill to evaluate sentiment",
