@@ -187,8 +187,8 @@
         ],
         "outputs": [
           {
-            "name": "score",
-            "targetName": "sentimentScore"
+            "name": "sentiment",
+            "targetName": "sentimentLabel"
           }
         ]
       }
