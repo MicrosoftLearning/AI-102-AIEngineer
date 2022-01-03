@@ -170,7 +170,7 @@
         ]
       },
       {
-        "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
+        "@odata.type": "#Microsoft.Skills.Text.V3.SentimentSkill",
         "name": "get-sentiment",
         "description": "New skill to evaluate sentiment",
         "context": "/document",
