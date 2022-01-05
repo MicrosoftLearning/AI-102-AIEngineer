@@ -8,7 +8,7 @@
       },
     "skills": [
       {
-        "@odata.type": "#Microsoft.Skills.Text.SentimentSkill",
+        "@odata.type": "#Microsoft.Skills.Text.V3.SentimentSkill",
         "name": "get-sentiment",
         "description": "Evaluate sentiment",
         "context": "/document",
@@ -25,8 +25,8 @@
         ],
         "outputs": [
           {
-            "name": "score",
-            "targetName": "sentimentScore"
+            "name": "sentiment",
+            "targetName": "sentimentLabel"
           }
         ]
       },
@@ -216,7 +216,7 @@
           },
           {
             "name": "sentiment",
-            "source": "/document/sentimentScore"
+            "source": "/document/sentimentLabel"
           },
           {
             "name": "key_phrases",

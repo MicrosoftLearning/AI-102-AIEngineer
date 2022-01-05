@@ -72,13 +72,7 @@
                                 <li>Language: @result.Document.language</li>
                                 <li>Size: @result.Document.metadata_storage_size bytes</li>
                                 <li>Modified: @result.Document.metadata_storage_last_modified</li>
-                                <li>Sentiment: @if(result.Document.sentiment >= 0.5){
-                                                    @Html.Raw("&#128578;")
-                                                    }
-                                                    else{
-                                                       @Html.Raw("&#128577")
-                                                    }
-                                    @result.Document.sentiment</li>
+                                <li>Sentiment: @result.Document.sentiment</li>
                                  @if(result.Document.keyphrases !=  null){
                                 <li>Key Phrases:</li>
                                     <ul class="resultAttributes">

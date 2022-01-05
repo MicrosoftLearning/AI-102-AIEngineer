@@ -300,7 +300,7 @@
       },
       {
         "name": "sentiment",
-        "type": "Edm.Double",
+        "type": "Edm.String",
         "facetable": false,
         "filterable": true,
         "retrievable": true,
