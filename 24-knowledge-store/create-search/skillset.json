@@ -216,7 +216,7 @@
           },
           {
             "name": "sentiment",
-            "source": "/document/sentimentScore"
+            "source": "/document/sentimentLabel"
           },
           {
             "name": "key_phrases",
