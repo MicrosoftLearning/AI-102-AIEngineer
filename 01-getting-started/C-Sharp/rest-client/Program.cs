@@ -76,7 +76,7 @@ namespace rest_client
                 client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
 
                 // Use the endpoint to access the Text Analytics language API
-                var uri = cogSvcEndpoint + "text/analytics/v3.0/languages?" + queryString;
+                var uri = cogSvcEndpoint + "text/analytics/v3.1/languages?" + queryString;
 
                 // Send the request and get the response
                 HttpResponseMessage response;
