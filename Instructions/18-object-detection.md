@@ -28,15 +28,14 @@ If you already have **Custom Vision** resources for training and prediction in y
     - **Create options**: Both
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
+    - **Region**: *Choose any available region*
     - **Name**: *Enter a unique name*
-    - **Training location**: *Choose any available region*
     - **Training pricing tier**: F0
-    - **Prediction location**: *The same region as the training resource*
     - **Prediction pricing tier**: F0
 
     > **Note**: If you already have an F0 custom vision service in your subscription, select **S0** for this one.
 
-3. Wait for the resources to be created, and then view the deployment details and note that two Custom Vision resources are provisioned; one for training, and another for prediction. You can view these by navigating to the resource group where you created them.
+3. Wait for the resources to be created, and then view the deployment details and note that two Custom Vision resources are provisioned; one for training, and another for prediction (evident by the **-Prediction** suffix). You can view these by navigating to the resource group where you created them.
 
 > **Important**: Each resource has its own *endpoint* and *keys*, which are used to manage access from your code. To train an image classification model, your code must use the *training* resource (with its endpoint and key); and to use the trained model to predict image classes, your code must use the *prediction* resource (with its endpoint and key).
 
@@ -48,7 +47,7 @@ To train an object detection model, you need to create a Custom Vision project b
 2. Create a new project with the following settings:
     - **Name**: Detect Fruit
     - **Description**: Object detection for fruit.
-    - **Resource**: *The Custom Vision resource you created previously*
+    - **Resource**: *The **training** resource you created previously*
     - **Project Types**: Object Detection
     - **Domains**: General
 3. Wait for the project to be created and opened in the browser.
@@ -88,7 +87,7 @@ You can use the graphical tool in the Custom Vision portal to tag your images, b
 
 1. Click the *settings* (&#9881;) icon at the top right of the **Training Images** page in the Custom Vision portal to view the project settings.
 2. Under **General** (on the left), note the **Project Id** that uniquely identifies this project.
-3. On the right, under **Resources** note that the details for the *training* resource, including its key and endpoint are shown (you can also obtain this information by viewing the resource in the Azure portal).
+3. On the right, under **Resources** note that the key and endpoint are shown. These are the details for the *training* resource (you can also obtain this information by viewing the resource in the Azure portal).
 4. In Visual Studio Code, under the **18-object-detection** folder, expand the **C-Sharp** or **Python** folder depending on your language preference.
 5. Right-click the **train-detector** folder and open an integrated terminal. Then install the Custom Vision Training package by running the appropriate command for your language preference:
 
@@ -108,7 +107,7 @@ pip install azure-cognitiveservices-vision-customvision==3.1.0
     - **C#**: appsettings.json
     - **Python**: .env
 
-    Open the configuration file and update the configuration values it contains to reflect the endpoint and key for your Custom Vision *training* resource, and the project ID for the classification project you created previously. Save your changes.
+    Open the configuration file and update the configuration values it contains to reflect the endpoint and key for your Custom Vision *training* resource, and the project ID for the object detection project you created previously. Save your changes.
 
 7. In the **train-detector** folder, open **tagged-images.json** and examine the JSON it contains. The JSON defines a list of images, each containing one or more tagged regions. Each tagged region includes a tag name, and the top and left coordinates and width and height dimensions of the bounding box containing the tagged object.
 
@@ -157,9 +156,9 @@ Now you're ready to publish your trained model so that it can be used from a cli
 
 1. In the Custom Vision portal, on the **Performance** page,  click **&#128504; Publish** to publish the trained model with the following settings:
     - **Model name**: fruit-detector
-    - **Prediction Resource**: *The **prediction** resource you created previously (<u>not</u> the training resource)*.
+    - **Prediction Resource**: *The **prediction** resource you created previously which ends with "-Prediction" (<u>not</u> the training resource)*.
 2. At the top left of the **Project Settings** page, click the *Projects Gallery* (&#128065;) icon to return to the Custom Vision portal home page, where your project is now listed.
-3. On the Custom Vision portal home page, at the top right, click the *settings* (&#9881;) icon to view the settings for your Custom Vision service. Then, under **Resources**, find your *prediction* resource (<u>not</u> the training resource) to determine its **Key** and **Endpoint** values (you can also obtain this information by viewing the resource in the Azure portal).
+3. On the Custom Vision portal home page, at the top right, click the *settings* (&#9881;) icon to view the settings for your Custom Vision service. Then, under **Resources**, find your *prediction* resource which ends with "-Prediction" (<u>not</u> the training resource) to determine its **Key** and **Endpoint** values (you can also obtain this information by viewing the resource in the Azure portal).
 
 ## Use the image classifier from a client application
 
