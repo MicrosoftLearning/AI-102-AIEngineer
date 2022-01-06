@@ -47,7 +47,7 @@ To train an object detection model, you need to create a Custom Vision project b
 2. Create a new project with the following settings:
     - **Name**: Detect Fruit
     - **Description**: Object detection for fruit.
-    - **Resource**: *The **training** resource you created previously*
+    - **Resource**: *The Custom Vision resource you created previously*
     - **Project Types**: Object Detection
     - **Domains**: General
 3. Wait for the project to be created and opened in the browser.

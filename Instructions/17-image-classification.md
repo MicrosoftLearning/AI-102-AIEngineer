@@ -52,7 +52,7 @@ To train an image classification model, you need to create a Custom Vision proje
 3. In the Custom Vision portal, create a new project with the following settings:
     - **Name**: Classify Fruit
     - **Description**: Image classification for fruit
-    - **Resource**: *The **training** resource you created previously*
+    - **Resource**: *The Custom Vision resource you created previously*
     - **Project Types**: Classification
     - **Classification Types**: Multiclass (single tag per image)
     - **Domains**: Food
