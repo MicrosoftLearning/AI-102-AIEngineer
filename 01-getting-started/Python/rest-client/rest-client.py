@@ -48,7 +48,7 @@ def GetLanguage(text):
         }
 
         # Use the Text Analytics language API
-        conn.request("POST", "/text/analytics/v3.0/languages?", str(jsonBody).encode('utf-8'), headers)
+        conn.request("POST", "/text/analytics/v3.1/languages?", str(jsonBody).encode('utf-8'), headers)
 
         # Send the request
         response = conn.getresponse()
