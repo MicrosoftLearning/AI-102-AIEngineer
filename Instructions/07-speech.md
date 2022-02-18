@@ -345,7 +345,7 @@ Your speaking clock application uses a default voice, which you can change. The 
 
     ```C#
     // Configure speech synthesis
-    speechConfig.SpeechSynthesisVoiceName = "en-GB-LibbyNeural"; // add this
+    speechConfig.SpeechSynthesisVoiceName = "en-GB-LibbyNeural"; // change this
     using SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer(speechConfig);
     ```
     
@@ -353,7 +353,7 @@ Your speaking clock application uses a default voice, which you can change. The 
     
     ```Python
     # Configure speech synthesis
-    speech_config.speech_synthesis_voice_name = 'en-GB-LibbyNeural' # add this
+    speech_config.speech_synthesis_voice_name = 'en-GB-LibbyNeural' # change this
     speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config)
     ```
 
