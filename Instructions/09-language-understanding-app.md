@@ -192,9 +192,9 @@ Sometimes, entities have a specific format, such as a serial number, form code, 
 1. On the **Entities** page, select **&#65291; Create** to create a new entity.
 2. In the **Create an entity** dialog box, create a **Regex** entity named **Date** with the following regex:
 
-    ```
-    [0-9]{2}/[0-9]{2}/[0-9]{4}
-    ```
+```
+[0-9]{2}/[0-9]{2}/[0-9]{4}
+```
 
     > **Note**: This is a simple regex that checks for two digits followed by a "/", another two digits, another "/", and four digits - for example *01/11/2020*. It allows for invalid dates, such as *56/00/9999*; but it's important to remember that the entity regex is used to identify data entry that is *intended* as a date - not to validate date values.
 
