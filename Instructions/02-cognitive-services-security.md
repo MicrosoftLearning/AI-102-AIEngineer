@@ -164,7 +164,7 @@ Make a note of the **appId**, **password**, and **tenant** values - you will nee
 
 ### Use the service principal in an application
 
-Now you're ready to use the service principal identity in an application, so it can access the secret congitive services key in your key vault and use it to connect to your cognitive services resource.
+Now you're ready to use the service principal identity in an application, so it can access the secret cognitive services key in your key vault and use it to connect to your cognitive services resource.
 
 > **Note**: In this exercise, we'll store the service principal credentials in the application configuration and use them to authenticate a **ClientSecretCredential** identity in your application code. This is fine for development and testing, but in a real production application, an administrator would assign a *managed identity* to the application so that it uses the service principal identity to access resources, without caching or storing the password.
 
@@ -174,15 +174,15 @@ Now you're ready to use the service principal identity in an application, so it 
     **C#**
 
     ```
-    dotnet add package Azure.AI.TextAnalytics --version 5.0.0
-    dotnet add package Azure.Identity --version 1.3.0
+    dotnet add package Azure.AI.TextAnalytics --version 5.1.0
+    dotnet add package Azure.Identity --version 1.5.0
     dotnet add package Azure.Security.KeyVault.Secrets --version 4.2.0-beta.3
     ```
 
     **Python**
 
     ```
-    pip install azure-ai-textanalytics==5.0.0
+    pip install azure-ai-textanalytics==5.1.0
     pip install azure-identity==1.5.0
     pip install azure-keyvault-secrets==4.2.0
     ```

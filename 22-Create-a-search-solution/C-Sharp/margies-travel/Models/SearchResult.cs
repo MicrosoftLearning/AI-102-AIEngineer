@@ -26,7 +26,7 @@ namespace search_client.Models
         public DateTime metadata_storage_last_modified { get; set; }
 
         [SimpleField(IsFilterable=true, IsSortable=true)]
-        public double sentiment { get; set; }
+        public string sentiment { get; set; }
 
         [SearchableField(IsFilterable=true)]
         public string language { get; set; }
