@@ -90,7 +90,7 @@ Your knowledge base has been populated with question and answer pairs from the M
 
 6. Under the answer you entered for the certification question, select **&#65291; Add follow-up prompts**.
 7. In the **Follow-up Prompt** dialog box, enter the following settings, and then click **Add prompt**:
-    - **Text displayed in the prompt to the user**: `Learn more about certification.
+    - **Text displayed in the prompt to the user**: `Learn more about certification`.
     - Select **Create link to new pair**, and enter this text: `You can learn more about certification on the [Microsoft certification page](https://docs.microsoft.com/learn/certifications/).`
     - **Show in contextual flow only**: Selected. *This option ensures that the answer is only ever returned in the context of a follow-up question from the original certification question.*
 
