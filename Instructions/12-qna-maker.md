@@ -96,7 +96,7 @@ Your knowledge base has been populated with question and answer pairs from the M
 
 ## Train and test the knowledge base
 
-Now that you have a knowledge base, you can test it in the QnA Maker portal.
+Now that you have a knowledge base, you can test it in Language Studio.
 
 1. At the top right of the page, click **Save changes**.
 2. After the changes have been saved, click **Test** to open the test pane.
