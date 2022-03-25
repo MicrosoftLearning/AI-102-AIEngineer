@@ -53,38 +53,32 @@ If you already have a **Clock** app from a previous exercise, you can use it in 
 
 ## Prepare to use the Language service SDK
 
-In this exercise, you'll complete a partially implemented client application that uses the Clock model (published Conversational language understanding model) to predict intents from user input and respond appropriately.
+In this exercise, you'll complete a partially implemented client application that uses the Clock model (published Conversational Language Understanding model) to predict intents from user input and respond appropriately.
 
 > **Note**: You can choose to use the SDK for either **.NET** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
 1. In Visual Studio Code, in the **Explorer** pane, browse to the **10b-clu-client-(preview)** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
+
 2. Right-click the **clock-client** folder and then select **Open in Integrated Terminal**. Then install the Conversational Language Service SDK package by running the appropriate command for your language preference:
 
-**C#**
-
-```
-dotnet add package Azure.AI.Language.Conversations --version 1.0.0-beta.2
-```
-
-*In addition to the **Runtime** (prediction) package, there is an **Authoring** package that you can use to write code to create and manage Conversational Language Service models.*
-
-
-
-
-TODO - update the Python instructions -----------------------------------------------------------------------------------------
-
-**Python**
+    **C#**
 
     ```
-    pip install azure-cognitiveservices-language-luis==0.7.0
+    dotnet add package Azure.AI.Language.Conversations --version 1.0.0-beta.2
     ```
-    
-*The Python SDK package includes classes for both **prediction** and **authoring**.*
 
+    *In addition to the **Runtime** (prediction) package, there is an **Authoring** package that you can use to write code to create and manage Conversational Language Service models.*
 
+    **Python**
 
+    ```
+    pip install azure-ai-language-conversations --pre
+    python -m pip install python-dotenv
+    python -m pip install python-dateutil
+    ```
 
 3. View the contents of the **clock-client** folder, and note that it contains a file for configuration settings:
+
     - **C#**: appsettings.json
     - **Python**: .env
 
@@ -95,259 +89,252 @@ TODO - update the Python instructions ------------------------------------------
     - **C#**: Program.cs
     - **Python**: clock-client.py
 
-    Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Language Service prediction SDK:
+    Open the code file, and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Language Service prediction SDK:
 
-**C#**
+    **C#**
 
-```C#
-// Import namespaces
-using Azure;
-using Azure.AI.Language.Conversations;
-```
+    ```C#
+    // Import namespaces
+    using Azure;
+    using Azure.AI.Language.Conversations;
+    ```
 
+    **Python**
 
-
-
-TODO - update the Python instructions -----------------------------------------------------------------------------------------
-
-**Python**
-
-```Python
-# Import namespaces
-from azure.cognitiveservices.language.luis.runtime import LUISRuntimeClient
-from msrest.authentication import CognitiveServicesCredentials
-```
-
-
-
+    ```Python
+    # Import namespaces
+    from azure.core.credentials import AzureKeyCredential
+    from azure.ai.language.conversations import ConversationAnalysisClient
+    from azure.ai.language.conversations.models import ConversationAnalysisOptions
+    ```
 
 ## Get a prediction from the Language Service app
 
-Now you're ready to implement code that uses the SDK to get a prediction from your Conversational language understanding model.
+Now you're ready to implement code that uses the SDK to get a prediction from your Conversational Language Understanding project.
 
 1. In the **Main** function, note that code to load the prediction endpoint and key from the configuration file has already been provided. Then find the comment **Create a client for the Language service model** and add the following code to create a prediction client for your Language Service app:
 
-**C#**
+    **C#**
 
-```C#
-// Create a client for the Language service model
-Uri lsEndpoint = new Uri(predictionEndpoint);
-AzureKeyCredential lsCredential = new AzureKeyCredential(predictionKey);
+    ```C#
+    // Create a client for the Language service model
+    Uri lsEndpoint = new Uri(predictionEndpoint);
+    AzureKeyCredential lsCredential = new AzureKeyCredential(predictionKey);
 
-ConversationAnalysisClient lsClient = new ConversationAnalysisClient(lsEndpoint, lsCredential);
-```
+    ConversationAnalysisClient lsClient = new ConversationAnalysisClient(lsEndpoint, lsCredential);
+    ```
 
+    **Python**
 
-
-
-TODO - update the Python instructions -----------------------------------------------------------------------------------------
-
-**Python**
-
-```Python
-# Create a client for the LU app
-credentials = CognitiveServicesCredentials(lu_prediction_key)
-lu_client = LUISRuntimeClient(lu_prediction_endpoint, credentials)
-```
-
-
-
+    ```Python
+    # Create a client for the Language service model
+    client = ConversationAnalysisClient(ls_prediction_endpoint, AzureKeyCredential(ls_prediction_key))
+    ```
 
 2. Note that the code in the **Main** function prompts for user input until the user enters "quit". Within this loop, find the comment **Call the Language service model to get intent and entities** and add the following code:
 
-**C#**
+    **C#**
 
-```C#
-// Call the Language service model to get intent and entities
-var lsProject = "Clock";
-var lsSlot = "production";
+    ```C#
+    // Call the Language service model to get intent and entities
+    var lsProject = "Clock";
+    var lsSlot = "production";
 
-ConversationsProject conversationsProject = new ConversationsProject(lsProject, lsSlot);
-Response<AnalyzeConversationResult> response = await lsClient.AnalyzeConversationAsync(userText, conversationsProject);
+    ConversationsProject conversationsProject = new ConversationsProject(lsProject, lsSlot);
+    Response<AnalyzeConversationResult> response = await lsClient.AnalyzeConversationAsync(userText, conversationsProject);
 
-ConversationPrediction conversationPrediction = response.Value.Prediction as ConversationPrediction;
+    ConversationPrediction conversationPrediction = response.Value.Prediction as ConversationPrediction;
 
-Console.WriteLine(JsonConvert.SerializeObject(conversationPrediction, Formatting.Indented));
-Console.WriteLine("--------------------\n");
-Console.WriteLine(userText);
-var topIntent = "";
-if (conversationPrediction.Intents[0].Confidence > 0.5)
-{
-    topIntent = conversationPrediction.TopIntent;
-}
+    Console.WriteLine(JsonConvert.SerializeObject(conversationPrediction, Formatting.Indented));
+    Console.WriteLine("--------------------\n");
+    Console.WriteLine(userText);
+    var topIntent = "";
+    if (conversationPrediction.Intents[0].Confidence > 0.5)
+    {
+        topIntent = conversationPrediction.TopIntent;
+    }
 
-var entities = conversationPrediction.Entities;
-```
+    var entities = conversationPrediction.Entities;
+    ```
 
+    **Python**
 
+    ```Python
+    # Call the Language service model to get intent and entities
+    convInput = ConversationAnalysisOptions(
+        query = userText
+        )
+    
+    cls_project = 'Clock'
+    deployment_slot = 'production'
 
+    with client:
+        result = client.analyze_conversations(
+            convInput, 
+            project_name=cls_project, 
+            deployment_name=deployment_slot
+            )
 
-TODO - update the Python instructions -----------------------------------------------------------------------------------------
+    # list the prediction results
+    top_intent = result.prediction.top_intent
+    entities = result.prediction.entities
 
-**Python**
+    print("view top intent:")
+    print("\ttop intent: {}".format(result.prediction.top_intent))
+    print("\tcategory: {}".format(result.prediction.intents[0].category))
+    print("\tconfidence score: {}\n".format(result.prediction.intents[0].confidence_score))
 
-```Python
-# Call the LU app to get intent and entities
-request = { "query" : userText }
-slot = 'Production'
-prediction_response = lu_client.prediction.get_slot_prediction(lu_app_id, slot, request)
-top_intent = prediction_response.prediction.top_intent
-entities = prediction_response.prediction.entities
-print('Top Intent: {}'.format(top_intent))
-print('Entities: {}'.format (entities))
-print('-----------------\n{}'.format(prediction_response.query))
-```
+    print("view entities:")
+    for entity in entities:
+        print("\tcategory: {}".format(entity.category))
+        print("\ttext: {}".format(entity.text))
+        print("\tconfidence score: {}".format(entity.confidence_score))
 
+    print("query: {}".format(result.query))
+    ```
 
-
-
-The call to the Language service model returns a prediction, which includes the top (most likely) intent as well as any entities that were detected in the input utterance. Your client application must now use that prediction to determine and perform the appropriate action.
+    The call to the Language service model returns a prediction/result, which includes the top (most likely) intent as well as any entities that were detected in the input utterance. Your client application must now use that prediction to determine and perform the appropriate action.
 
 3. Find the comment **Apply the appropriate action**, and add the following code, which checks for intents supported by the application (**GetTime**, **GetDate**, and **GetDay**) and determines if any relevant entities have been detected, before calling an existing function to produce an appropriate response.
 
-**C#**
+    **C#**
 
-```C#
-// Apply the appropriate action
-switch (topIntent)
-{
-    case "GetTime":
-        var location = "local";
-        // Check for entities
-        if (entities.Count > 0)
-        {
-            // Check for a location entity
-            foreach (ConversationEntity entity in conversationPrediction.Entities)
+    ```C#
+    // Apply the appropriate action
+    switch (topIntent)
+    {
+        case "GetTime":
+            var location = "local";
+            // Check for entities
+            if (entities.Count > 0)
             {
-                if (entity.Category == "Location")
+                // Check for a location entity
+                foreach (ConversationEntity entity in conversationPrediction.Entities)
                 {
-                    //Console.WriteLine($"Location Confidence: {entity.Confidence}");
-                    location = entity.Text;
+                    if (entity.Category == "Location")
+                    {
+                        //Console.WriteLine($"Location Confidence: {entity.Confidence}");
+                        location = entity.Text;
+                    }
+                    
+                }
+
+            }
+
+            // Get the time for the specified location
+            var getTimeTask = Task.Run(() => GetTime(location));
+            string timeResponse = await getTimeTask;
+            Console.WriteLine(timeResponse);
+            break;
+
+        case "GetDay":
+            var date = DateTime.Today.ToShortDateString();
+            // Check for entities
+            if (entities.Count > 0)
+            {
+                // Check for a Date entity
+                foreach (ConversationEntity entity in conversationPrediction.Entities)
+                {
+                    if (entity.Category == "Date")
+                    {
+                        //Console.WriteLine($"Location Confidence: {entity.Confidence}");
+                        date = entity.Text;
+                    }
+                }
+            }
+            // Get the day for the specified date
+            var getDayTask = Task.Run(() => GetDay(date));
+            string dayResponse = await getDayTask;
+            Console.WriteLine(dayResponse);
+            break;
+
+        case "GetDate":
+            var day = DateTime.Today.DayOfWeek.ToString();
+            // Check for entities
+            if (entities.Count > 0)
+            {
+                // Check for a Weekday entity
+                foreach (ConversationEntity entity in conversationPrediction.Entities)
+                {
+                    if (entity.Category == "Weekday")
+                    {
+                        //Console.WriteLine($"Location Confidence: {entity.Confidence}");
+                        day = entity.Text;
+                    }
                 }
                 
             }
+            // Get the date for the specified day
+            var getDateTask = Task.Run(() => GetDate(day));
+            string dateResponse = await getDateTask;
+            Console.WriteLine(dateResponse);
+            break;
 
-        }
+        default:
+            // Some other intent (for example, "None") was predicted
+            Console.WriteLine("Try asking me for the time, the day, or the date.");
+            break;
+    }
+    ```
 
-        // Get the time for the specified location
-        var getTimeTask = Task.Run(() => GetTime(location));
-        string timeResponse = await getTimeTask;
-        Console.WriteLine(timeResponse);
-        break;
+    **Python**
 
-    case "GetDay":
-        var date = DateTime.Today.ToShortDateString();
-        // Check for entities
-        if (entities.Count > 0)
-        {
-            // Check for a Date entity
-            foreach (ConversationEntity entity in conversationPrediction.Entities)
-            {
-                if (entity.Category == "Date")
-                {
-                    //Console.WriteLine($"Location Confidence: {entity.Confidence}");
-                    date = entity.Text;
-                }
-            }
-        }
-        // Get the day for the specified date
-        var getDayTask = Task.Run(() => GetDay(date));
-        string dayResponse = await getDayTask;
-        Console.WriteLine(dayResponse);
-        break;
+    ```Python
+    # Apply the appropriate action
+    if top_intent == 'GetTime':
+        location = 'local'
+        # Check for entities
+        if len(entities) > 0:
+            # Check for a location entity
+            for entity in entities:
+                if 'Location' == entity.category:
+                    # ML entities are strings, get the first one
+                    location = entity.text
+        # Get the time for the specified location
+        print(GetTime(location))
 
-    case "GetDate":
-        var day = DateTime.Today.DayOfWeek.ToString();
-        // Check for entities
-        if (entities.Count > 0)
-        {
-            // Check for a Weekday entity
-            foreach (ConversationEntity entity in conversationPrediction.Entities)
-            {
-                if (entity.Category == "Weekday")
-                {
-                    //Console.WriteLine($"Location Confidence: {entity.Confidence}");
-                    day = entity.Text;
-                }
-            }
-            
-        }
-        // Get the date for the specified day
-        var getDateTask = Task.Run(() => GetDate(day));
-        string dateResponse = await getDateTask;
-        Console.WriteLine(dateResponse);
-        break;
+    elif top_intent == 'GetDay':
+        date_string = date.today().strftime("%m/%d/%Y")
+        # Check for entities
+        if len(entities) > 0:
+            # Check for a Date entity
+            for entity in entities:
+                if 'Date' == entity.category:
+                    # Regex entities are strings, get the first one
+                    date_string = entity.text
+        # Get the day for the specified date
+        print(GetDay(date_string))
 
-    default:
-        // Some other intent (for example, "None") was predicted
-        Console.WriteLine("Try asking me for the time, the day, or the date.");
-        break;
-}
-```
+    elif top_intent == 'GetDate':
+        day = 'today'
+        # Check for entities
+        if len(entities) > 0:
+            # Check for a Weekday entity
+            for entity in entities:
+                if 'Weekday' == entity.category:
+                # List entities are lists
+                    day = entity.text
+        # Get the date for the specified day
+        print(GetDate(day))
 
-
-
-
-TODO - update the Python instructions -----------------------------------------------------------------------------------------
-
-**Python**
-
-```Python
-# Apply the appropriate action
-if top_intent == 'GetTime':
-    location = 'local'
-    # Check for entities
-    if len(entities) > 0:
-        # Check for a location entity
-        if 'Location' in entities:
-            # ML entities are strings, get the first one
-            location = entities['Location'][0]
-    # Get the time for the specified location
-    print(GetTime(location))
-
-elif top_intent == 'GetDay':
-    date_string = date.today().strftime("%m/%d/%Y")
-    # Check for entities
-    if len(entities) > 0:
-        # Check for a Date entity
-        if 'Date' in entities:
-            # Regex entities are strings, get the first one
-            date_string = entities['Date'][0]
-    # Get the day for the specified date
-    print(GetDay(date_string))
-
-elif top_intent == 'GetDate':
-    day = 'today'
-    # Check for entities
-    if len(entities) > 0:
-        # Check for a Weekday entity
-        if 'Weekday' in entities:
-            # List entities are lists
-            day = entities['Weekday'][0][0]
-    # Get the date for the specified day
-    print(GetDate(day))
-
-else:
-    # Some other intent (for example, "None") was predicted
-    print('Try asking me for the time, the day, or the date.')
-```
-
-
-
+    else:
+        # Some other intent (for example, "None") was predicted
+        print('Try asking me for the time, the day, or the date.')
+    ```
 
 4. Save your changes and return to the integrated terminal for the **clock-client** folder, and enter the following command to run the program:
 
-**C#**
+    **C#**
 
-```
-dotnet run
-```
+    ```
+    dotnet run
+    ```
 
-**Python**
+    **Python**
 
-```
-python clock-client.py
-```
+    ```
+    python clock-client.py
+    ```
 
 5. When prompted, enter utterances to test the application. For example, try:
 
