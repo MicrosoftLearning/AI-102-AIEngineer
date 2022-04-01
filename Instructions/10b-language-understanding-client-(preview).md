@@ -6,25 +6,30 @@ lab:
 
 # Create a Language Service Client Application
 
-The Conversational Language Understanding service (a component of Azure Cognitive Service for Language) enables you to define an app that encapsulates a language model that applications can use to interpret natural language input from users, predict the users *intent* (what they want to achieve), and identify any *entities* to which the intent should be applied. You can create client applications that consume Conversational language understanding service models directly through REST interfaces, or by using language-specific software development kits (SDKs).
+The Conversational Language Understanding feature of the Azure Cognitive Service for Language enables you to define a conversational language model that client apps can use to interpret natural language input from users, predict the users *intent* (what they want to achieve), and identify any *entities* to which the intent should be applied. You can create client applications that consume conversational language understanding models directly through REST interfaces, or by using language-specific software development kits (SDKs).
 
 ## Clone the repository for this course
 
 If you have already cloned **AI-102-AIEngineer** code repository to the environment where you're working on this lab, open it in Visual Studio Code; otherwise, follow these steps to clone it now.
 
 1. Start Visual Studio Code.
+
 2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
+
 3. When the repository has been cloned, open the folder in Visual Studio Code.
+
 4. Wait while additional files are installed to support the C# code projects in the repo.
 
     > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
 
 ## Create Language service resources
 
-If you already have Language service authoring and prediction resources in your Azure subscription, you can use them in this exercise. Otherwise, follow these instructions to create them.
+If you already have a Language service resource in your Azure subscription, you can use it in this exercise. Otherwise, follow these instructions to create one.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
+
 2. Select the **&#65291;Create a resource** button, search for *language service*, and create a **Language service** resource with the following settings:
+
     - **Default features**: All
     - **Custom features**: none
     - **Subscription**: *Your Azure subscription*
@@ -39,16 +44,26 @@ If you already have Language service authoring and prediction resources in your 
 
 ## Import, train, and publish a Conversational language understanding model
 
-If you already have a **Clock** app from a previous exercise, you can use it in this exercise. Otherwise, follow these instructions to create it.
+If you already have a **Clock** project from a previous lab or exercise, you can use it in this exercise. Otherwise, follow these instructions to create it.
 
 1. In a new browser tab, open the Language Studio - Preview portal at `https://language.cognitive.azure.com`.
+
 2. Sign in using the Microsoft account associated with your Azure subscription. If this is the first time you have signed into the Language Service portal, you may need to grant the app some permissions to access your account details. Then complete the *Welcome* steps by selecting your Azure subscription and the authoring resource you just created.
-3. Open the **Conversational Language Service** page, next to **&#65291;Create new app**, view the drop-down list and select **Import**. Browse to the **10b-clu-client-(preview)** subfolder in the project folder containing the lab files for this exercise, and select **Clock.json**.
+
+3. Open the **Conversational Language Understanding** page.
+
+3. Next to **&#65291;Create new project**, view the drop-down list and select **Import**. Click **Choose File** and then browse to the **10b-clu-client-(preview)** subfolder in the project folder containing the lab files for this exercise. Select **Clock.json**, click **Open**, and then click **Done**.
+
 4. If a panel with tips for creating an effective Language service app is displayed, close it.
-5. At the left of the Language Studio portal, select **Train model** to train the app.
-6. At the left of the Language Studio portal, select **Deploy model** and deploy the Clock app.
-7. After publishing is complete, select **Get prediction URL**. Client applications need this to use your app.
-8. On the **Project Settings** page, note the **Primary key**. Client applications need this to use your app.
+
+5. At the left of the Language Studio portal, select **Train model** to train the app. Click **Start a training job**, name the model **Clock** and ensure that evaluation with training is enabled. Training may take several minutes to complete.
+
+6. At the left of the Language Studio portal, select **Deploy model** and use **Add deployment** to create deployment for the Clock model that's named **production**.
+
+7. After the deployment is complete, select the **production** deployment, and then click **Get prediction URL**. Client applications need this to use your app.
+
+8. At the left of the Language Studio portal, select **Project Settings** and note the **Primary key**. Client applications need this to use your app.
+
 9. Client applications need the prediction URL and key to connect to the prediction resource and be authenticated.
 
 ## Prepare to use the Language service SDK
