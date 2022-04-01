@@ -60,11 +60,11 @@ If you already have a **Clock** project from a previous lab or exercise, you can
 
 6. At the left of the Language Studio portal, select **Deploy model** and use **Add deployment** to create deployment for the Clock model that's named **production**.
 
-7. After the deployment is complete, select the **production** deployment, and then click **Get prediction URL**. Client applications need this to use your app.
+7. After the deployment is complete, select the **production** deployment, and then click **Get prediction URL**. Client applications need the endpoint URL to use your deployed model.
 
-8. At the left of the Language Studio portal, select **Project Settings** and note the **Primary key**. Client applications need this to use your app.
+8. At the left of the Language Studio portal, select **Project Settings** and note the **Primary key**. Client applications need the primary key to use your deployed model.
 
-9. Client applications need the prediction URL and key to connect to the prediction resource and be authenticated.
+9. Client applications need information from the prediction URL and the Language service key to connect to your deployed model and be authenticated.
 
 ## Prepare to use the Language service SDK
 
@@ -82,8 +82,6 @@ In this exercise, you'll complete a partially implemented client application tha
     dotnet add package Azure.AI.Language.Conversations --version 1.0.0-beta.2
     ```
 
-    *In addition to the **Runtime** (prediction) package, there is an **Authoring** package that you can use to write code to create and manage Conversational Language Service models.*
-
     **Python**
 
     ```
@@ -97,14 +95,17 @@ In this exercise, you'll complete a partially implemented client application tha
     - **C#**: appsettings.json
     - **Python**: .env
 
-    Open the configuration file and update the configuration values it contains to include the **Endpoint URL** and the **Primary key** for its prediction resource. You can find the required values in the Language Service portal: the Endpoint URL can be found on the **Deploy model** page under **Get prediction URL**, and the the **Primary key** can be found on the **Project settings** page.
+    Open the configuration file and update the configuration values it contains to include the **Endpoint URL** and the **Primary key** for your Language resource. You can find the required values in the Azure portal or Language Studio as follows:
+
+    - Azure portal: Open your Language resource. Under **Resource Management**, select **Keys and Endpoint**. Copy the **KEY 1** and **Endpoint** values to your configuration settings file.
+    - Language Studio: Open your **Clock** project. The Language service endpoint can be found on the **Deploy model** page under **Get prediction URL**, and the the **Primary key** can be found on the **Project settings** page. The Language service endpoint portion of the Prediction URL ends with **.cognitiveservices.azure.com/**. For example: `https://ai102-langserv.cognitiveservices.azure.com/`.
 
 4. Note that the **clock-client** folder contains a code file for the client application:
 
     - **C#**: Program.cs
     - **Python**: clock-client.py
 
-    Open the code file, and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Language Service prediction SDK:
+    Open the code file, and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Language service SDK:
 
     **C#**
 
@@ -123,9 +124,9 @@ In this exercise, you'll complete a partially implemented client application tha
     from azure.ai.language.conversations.models import ConversationAnalysisOptions
     ```
 
-## Get a prediction from the Language Service app
+## Get a prediction from the Conversational Language model
 
-Now you're ready to implement code that uses the SDK to get a prediction from your Conversational Language Understanding project.
+Now you're ready to implement code that uses the SDK to get a prediction from your Conversational Language model.
 
 1. In the **Main** function, note that code to load the prediction endpoint and key from the configuration file has already been provided. Then find the comment **Create a client for the Language service model** and add the following code to create a prediction client for your Language Service app:
 
@@ -143,7 +144,8 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
 
     ```Python
     # Create a client for the Language service model
-    client = ConversationAnalysisClient(ls_prediction_endpoint, AzureKeyCredential(ls_prediction_key))
+    client = ConversationAnalysisClient(
+        ls_prediction_endpoint, AzureKeyCredential(ls_prediction_key))
     ```
 
 2. Note that the code in the **Main** function prompts for user input until the user enters "quit". Within this loop, find the comment **Call the Language service model to get intent and entities** and add the following code:
