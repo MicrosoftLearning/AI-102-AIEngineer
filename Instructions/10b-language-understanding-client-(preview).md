@@ -1,7 +1,6 @@
 ---
 lab:
-    title: 'Create a Language Service Client Application (Preview)'
-    module: 'Module 5 - Creating Language Service Solutions'
+    title: 'Create a Conversational Language Understanding Client Application (Preview)'
 ---
 
 # Create a Language Service Client Application
