@@ -57,7 +57,11 @@ If you already have a **Clock** project from a previous lab or exercise, you can
 
 5. At the left of the Language Studio portal, select **Train model** to train the app. Click **Start a training job**, name the model **Clock** and ensure that evaluation with training is enabled. Training may take several minutes to complete.
 
+    > **Note**: Because the model name **Clock** is hard-coded in the clock-client code (used later in the lab), capitalize and spell the name exactly as described. 
+
 6. At the left of the Language Studio portal, select **Deploy model** and use **Add deployment** to create deployment for the Clock model that's named **production**.
+
+    > **Note**: Because the deployment name **production** is hard-coded in the clock-client code (used later in the lab), capitalize and spell the name exactly as described. 
 
 7. After the deployment is complete, select the **production** deployment, and then click **Get prediction URL**. Client applications need the endpoint URL to use your deployed model.
 
