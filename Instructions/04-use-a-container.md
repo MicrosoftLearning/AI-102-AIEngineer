@@ -48,7 +48,6 @@ Many commonly used cognitive services APIs are available in container images. Fo
         - **Container name**: *Enter a unique name*
         - **Region**: *Choose any available region*
         - **Image source**: Docker Hub or other Registry
-        - **Image type**: Public
         - **Image**: `mcr.microsoft.com/azure-cognitive-services/textanalytics/language:1.1.013570001-amd64`
         - **OS type**: Linux
         - **Size**: 1 vcpu, 4 GB memory
