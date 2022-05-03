@@ -6,7 +6,7 @@ lab:
 
 # Extract Data from Forms 
 
-Suppose a company needs to automate a data entry process. Currently an employee might manually read a purchase order and enter the data into a database. You want to build a model that will use machine learning  to read the form and produce structured data that can be used to automatically update a database.
+Suppose a company currently requires employees to manually purchase order sheets and enter the data into a database. They would like you to utilize AI services to improve the data entry process. You decide to build a machine learning model that will read the form and produce structured data that can be used to automatically update a database.
 
 **Form Recognizer** is a cognitive service that enables users to build automated data processing software. This software can extract text, key/value pairs, and tables from form documents using optical character recognition (OCR). Form Recognizer has pre-built models for recognizing invoices, receipts, and business cards. The service also provides the capability to train custom models. In this exercise, we will focus on building custom models.
 
@@ -23,7 +23,7 @@ If you have not already done so, you must clone the code repository for this cou
 
 ## Create a Form Recognizer resource
 
-To use the Form Recognizer service, you need a Form Recognizer resource in your Azure subscription. You'll use the Azure portal to create a resource.
+To use the Form Recognizer service, you need a Form Recognizer or Cognitive Services resource in your Azure subscription. You'll use the Azure portal to create a resource.
 
 1.  Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 
@@ -44,11 +44,11 @@ To use the Form Recognizer service, you need a Form Recognizer resource in your 
 
 You'll use the sample forms from the **21-custom-form/sample-forms** folder in this repo, which contain all the files you'll need to train a model without labels and another model with labels.
 
-1. In Visual Studio Code, in the **21-custom-form** folder,  expand the **sample-forms** folder. Notice there are files ending in **.json** and **.jpg** in the folder.
+1. In Visual Studio Code, in the **21-custom-form** folder,  expand the **sample-forms** folder. Notice there are files ending in **.json** and **.png** in the folder.
 
-    You will use the **.jpg** files to train your first model _without_ labels.  
+    You will use the **.png** files to train your model.  
 
-    Later, you will use the files ending in **.json** and **.jpg** to train your second model _with_ labels. The **.json** files have been generated for you and contain label information. To train with labels, you need to have the label information files in your blob storage container alongside the forms. 
+    The **.json** files have been generated for you and contain label information. To train with labels, you need to have the label information files in your blob storage container alongside the forms. 
 
 2. Return to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
 
@@ -102,14 +102,62 @@ setup
 
 15. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account just created. Open the storage account and in the pane on the left, select **Storage Browser (preview)**. Then in Storage Browser, expand **BLOB CONTAINERS** and select the **sampleforms** container to verify that the files have been uploaded from your local **21-custom-form/sample-forms** folder.
 
-## Train a model *without* labels
+## Train a model in the Form Recognizer Studio
 
-You will use the Form Recognizer SDK to train and test a custom model.  
+You will use the Form Recognizer Studio train a custom model. As you use the tool, your field information files are automatically created and stored in your connected storage account.
+
+1. Open [Form Recognizer Studio](https://formrecognizer.appliedai.azure.com/studio). If you have never used it before, you will be prompted for some additional information: 
+    - ***Subscription***
+    - ***Resource Group***
+    - ***Form Reocgnizer or Cognitive Service Resource***
+    - Select **Continue**, then on the Review page, select **Finish**. 
+
+### Create a project 
+To create a project, you need the following:
+- Azure Form Recognizer or Azure Cognitive Services resource
+- Azure Blob Storage container with the training data
+- At least five different forms of the same type to help train your custom model. 
+
+Configure the service resource by adding your Storage account and Blob container to Connect your training data source.
+
+1. On the Form Recognizer Studio home page, scroll down and select the **Custom model** card.
+2. Under My Projects, select **+ Create a project**.
+3. Complete the project details fields: 
+
+**Enter project details**
+- ***Project name***: *Select a unique name for your project* 
+- ***Description***: A model to extract data from forms. 
+
+**Configure service resource**
+- ***Subscription***: *Select the subscription for your Form Recognizer resource* 
+- ***Resource group***: *Select the resource group for your Form Recognizer resource*
+- ***Form Recognizer or Cognitive Service Resource***: *Select the resource you created or create a new one* 
+- ***API version***: 2022-01-30-preview 
+
+**Connect training data source**
+- ***Subscription***: *Select the subscription for your Azure Blob* 
+- ***Resource Group***: *Select the resource group for your Azure Blob*
+- ***Storage account***: *Select the account ai102formxxxxxxxxx*
+- ***Blob Container***: sampleforms 
+- ***Folder path***: *Leave blank*
+**Review and Create**
+Review and create your project.
+
+### Label your forms using the Form Recognizer Studio
+
+1. Click on the form 
+2. Associate each label with a name 
+3. Save and repeat for all five files. 
+4. Click train. Write down the Model ID that is generated. 
+
+## Test a model with the Form Recognizer SDK 
+
+Now we will use the Form Recognizer SDK to test the model.  
 
 > **Note**: In this exercise, you can choose to use the API from either the **C#** or **Python** SDK. In the steps below, perform the actions appropriate for your preferred language.
 
 1. In Visual Studio Code, in the **21-custom-form** folder, expand the **C-Sharp** or **Python** folder depending on your language preference.
-2. Right-click the **train-model** folder and open an integrated terminal.
+2. Right-click the **test-model** folder and open an integrated terminal.
 
 3. Install the Form Recognizer package by running the appropriate command for your language preference:
 
@@ -125,16 +173,17 @@ dotnet add package Azure.AI.FormRecognizer --version 3.0.0
 pip install azure-ai-formrecognizer==3.0.0
 ```
 
-3. View the contents of the **train-model** folder, and note that it contains a file for configuration settings:
+3. View the contents of the **test-model** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
     - **Python**: .env
 
 4. Edit the configuration file, modifying the settings to reflect:
     - The **endpoint** for your Form Recognizer resource.
     - A **key** for your Form Recognizer resource.
-    - The **SAS URI** for your blob container.
+    - The **Model ID** for your trained model.
 
-5. Note that the **train-model** folder contains a code file for the client application:
+    Save your changes. 
+5. Note that the **test-model** folder contains a code file for the client application:
 
     - **C#**: Program.cs
     - **Python**: train-model.py
@@ -142,59 +191,8 @@ pip install azure-ai-formrecognizer==3.0.0
     Open the code file and review the code it contains, noting the following details:
     - Namespaces from the package you installed are imported
     - The **Main** function retrieves the configuration settings, and uses the key and endpoint to create an authenticated **Client**.
-    - The code uses the the training client to train a model using the images in your blob storage container, which is acessed using the SAS URI you generated.
-    - Training is performed with a parameter to indicate that training labels should <u>not</u> be used. Form Recognizer uses an *unsupervised* technique to extract the fields from the form images.
+    - The code uses .... 
 
-6. Return the integrated terminal for the **train-model** folder, and enter the following command to run the program:
-
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python train-model.py
-```
-
-7. Wait for the program to end. Then review the model output and locate the Model ID in the terminal. You will need this value in the next procedure, so do not close the terminal!
-
-## Test the model created without labels
-
-Now you're ready use your trained model. Notice how you trained your model using files from a storage container URI. You could also have trained the model using local files. Similarly, you can test your model using forms from a URI or from local files. You will test the form model with a local file.
-
-Now that you've got the model ID, you can use it from a client application. Once again, you can choose to use **C#** or **Python**.
-
-1. In the **21-custom-form** folder, in the subfolder for your preferred language (**C-Sharp** or **Python**), expand the **test-model** folder.
-2. Right-click the **test-model** folder and open an integrated terminal. You now have (at least) two **cmd** terminals, and you can switch between them using the drop-down list in the Terminal pane.
-3. In the terminal for the **test-model** folder, install the Form Recognizer package by running the appropriate command for your language preference:
-
-**C#**
-
-```
-dotnet add package Azure.AI.FormRecognizer --version 3.0.0 
-```
-
-**Python**
-
-```
-pip install azure-ai-formrecognizer==3.0.0
-```
-
-*This isn't strictly necessary if you previously used pip to install the package into Python environment; but it does no harm to ensure it's installed!*
-
-4. In the **test-model** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
-    - Your Form Recognizer endpoint.
-    - Your Form Recognizer key.
-    - The Model ID generated when you trained the model (you can find this by switching the terminal back to the **cmd** console for the **train-model** folder).
-
-5. In the **test-model** folder, open the code file for your client application (*Program.cs* for C#, *test-model.py* for Python) and review the code it contains, noting the following details:
-    - Namespaces from the package you installed are imported
-    - The **Main** function retrieves the configuration settings, and uses the key and endpoint to create an authenticated **Client**.
-    - The client is then used to extract form fields and values from the **test1.jpg** image.
-    
 6. Return the integrated terminal for the **test-model** folder, and enter the following command to run the program:
 
 **C#**
@@ -208,80 +206,10 @@ dotnet run
 ```
 python test-model.py
 ```
+ 
+7. View the output and observe how the output for the model trained **with** labels provides field names like "CompanyPhoneNumber" and "DatedAs".  
 
-7. View the output and notice the prediction confidence scores. Notice how the output provides field names field-1, field-2 etc. 
-
-## Train a model *with* labels using the client library
-
-Suppose after you trained a model with the invoice forms, you wanted to see how a model trained on labeled data performs. When you trained a model without labels you only used the **.jpg** forms from your Azure blob container. Now you will train a model using the **.jpg** and **.json** files.
-
-1. In Visual Studio Code, in the **21-custom-form/sample-forms** folder, open **fields.json** and review the JSON document it contains. This file defines the fields that you will train a model to extract from the forms.
-2. Open **Form_1.jpg.labels.json** and review the JSON it contains. This file identifies the location and values for named fields in the **Form_1.jpg** training document.
-3. Open **Form_1.jpg.ocr.json** and review the JSON it contains. This file contains a JSOn representation of the text layout of **Form_1.jpg**, including the location of all text areas found in the form.
-
-    *The field information files have been provided for you in this exercise. For your own projects, you can create these files using the [sample labeling tool](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/label-tool). As you use the tool, your field information files are automatically created and stored in your connected storage account.*
-
-4. In the **train-model** folder, open the code file for the training application:
-
-    - **C#**: Program.cs
-    - **Python**: train-model.py
-
-5. In the **Main** function, find the comment **Train model**, and modify it as shown to change the training process so that labels are used:
-
-**C#**
-
-```C#
-// Train model 
-CustomFormModel model = await trainingClient
-.StartTrainingAsync(new Uri(trainingStorageUri), useTrainingLabels: true)
-.WaitForCompletionAsync();
-```
-
-**Python**
-
-```Python
-# Train model 
-poller = form_training_client.begin_training(trainingDataUrl, use_training_labels=True)
-model = poller.result()
-```
-
-6. Return the integrated terminal for the **train-model** folder, and enter the following command to run the program:
-
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python train-model.py
-```
-
-10. Wait for the program to end, then review the model output.
-11. Note the new the Model ID in the terminal output. 
-
-## Test the model created with labels
-
-1. In the **test-model** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) and update it to reflect the new model ID. Save your changes.
-2. Return the integrated terminal for the **test-model** folder, and enter the following command to run the program:
-
-**C#**
-
-```
-dotnet run
-```
-
-**Python**
-
-```
-python test-model.py
-```
-    
-3. View the output and observe how the output for the model trained **with** labels provides field names like "CompanyPhoneNumber" and "DatedAs" unlike the output from the model trained **without** labels, which produced an output of field-1, field-2 etc.  
-
-While the program code for training a model _with_ labels may not differ greatly from the code for training _without_ labels, choosing one versus the other _does_ change project planning needs. To train with labels, you will need to [create the labeled files](https://docs.microsoft.com/azure/applied-ai-services/form-recognizer/quickstarts/try-sample-label-tool). The choice of training process can also produce different models, which can in turn affect downstream processes based on what fields the model returns and how confident you are with the returned values. 
+The choice of training process can also produce different models, which can in turn affect downstream processes based on what fields the model returns and how confident you are with the returned values. 
 
 ## More information
 
