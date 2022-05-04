@@ -174,7 +174,7 @@ python train-model.py
 
 1. In the **21-custom-form** folder, in the subfolder for your preferred language (**C-Sharp** or **Python**), expand the **test-model** folder.
 
-2. Right-click the **test-model** folder and open an integrated terminal. You now have (at least) two **cmd** terminals, and you can switch between them using the drop-down list in the Terminal pane.
+2. Right-click the **test-model** folder and select **open an integrated terminal**.
 
 3. In the terminal for the **test-model** folder, install the Form Recognizer package by running the appropriate command for your language preference:
 
