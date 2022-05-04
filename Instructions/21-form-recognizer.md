@@ -40,7 +40,7 @@ To use the Form Recognizer service, you need a Form Recognizer resource in your 
 
 ## Gather documents for training
 
-![An image of an invoice.](../21-custom-form/sample-forms/Form_1.png)  
+![An image of an invoice.](../21-custom-form/sample-forms/Form_1.jpg)  
 
 You'll use the sample forms from the **21-custom-form/sample-forms** folder in this repo, which contain all the files you'll need to train a model without labels and another model with labels.
 
