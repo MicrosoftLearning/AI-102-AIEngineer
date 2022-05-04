@@ -48,7 +48,7 @@ You'll use the sample forms from the **21-custom-form/sample-forms** folder in t
 
     You will use the **.jpg** files to train your model.  
 
-    The **.json** files have been generated for you and contain label information. To train with labels, you need to have the label information files in your blob storage container alongside the forms. 
+    The **.json** files have been generated for you and contain label information. The files will be uploaded into your blob storage container alongside the forms. 
 
 2. Return to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
 
