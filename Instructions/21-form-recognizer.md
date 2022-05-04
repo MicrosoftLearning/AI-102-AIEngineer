@@ -195,8 +195,7 @@ pip install azure-ai-formrecognizer==3.0.0
 4. In the **test-model** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
     - Your Form Recognizer endpoint.
     - Your Form Recognizer key.
-    - The Model ID generated when you trained the model (you can find this by switching the terminal back to the **cmd** console for the **train-model** folder).
-Save your changes.
+    - The Model ID generated when you trained the model (you can find this by switching the terminal back to the **cmd** console for the **train-model** folder). **Save** your changes.
 
 5. In the **test-model** folder, open the code file for your client application (*Program.cs* for C#, *test-model.py* for Python) and review the code it contains, noting the following details:
     - Namespaces from the package you installed are imported
