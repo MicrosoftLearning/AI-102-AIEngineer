@@ -170,7 +170,7 @@ python train-model.py
 12. Wait for the program to end, then review the model output.
 13. Write down the Model ID in the terminal output. You will need it for the next part of the lab. 
 
-## Test the model 
+## Test your custom Form Recognizer model 
 
 1. In the **21-custom-form** folder, in the subfolder for your preferred language (**C-Sharp** or **Python**), expand the **test-model** folder.
 
