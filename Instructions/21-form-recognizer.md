@@ -146,9 +146,7 @@ pip install azure-ai-formrecognizer==3.0.0
     Open the code file and review the code it contains, noting the following details:
     - Namespaces from the package you installed are imported
     - The **Main** function retrieves the configuration settings, and uses the key and endpoint to create an authenticated **Client**.
-    - The code uses the the training client to train a model using the images in your blob storage container, which is acessed using the SAS URI you generated.
-    - Training is performed with a parameter to indicate that training labels should <u>not</u> be used. Form Recognizer uses an *unsupervised* technique to extract the fields from the form images.
-
+    - The code uses the the training client to train a model using the images in your blob storage container, which is accessed using the SAS URI you generated.
 
 10. In the **train-model** folder, open the code file for the training application:
 
