@@ -42,7 +42,7 @@ To use the Form Recognizer service, you need a Form Recognizer or Cognitive Serv
 
 ![An image of an invoice.](../21-custom-form/sample-forms/Form_1.jpg)  
 
-You'll use the sample forms from the **21-custom-form/sample-forms** folder in this repo, which contain all the files you'll need to train a model without labels and another model with labels.
+You'll use the sample forms from the **21-custom-form/sample-forms** folder in this repo, which contain all the files you'll need to train and test a model.
 
 1. In Visual Studio Code, in the **21-custom-form** folder,  expand the **sample-forms** folder. Notice there are files ending in **.json** and **.jpg** in the folder.
 
@@ -104,7 +104,7 @@ setup
 
 ## Train a model using the Form Recognizer SDK
 
-Suppose after you trained a model with the invoice forms, you wanted to see how a model trained on labeled data performs. When you trained a model without labels you only used the **.jpg** forms from your Azure blob container. Now you will train a model using the **.jpg** and **.json** files.
+Now you will train a model using the **.jpg** and **.json** files.
 
 1. In Visual Studio Code, in the **21-custom-form/sample-forms** folder, open **fields.json** and review the JSON document it contains. This file defines the fields that you will train a model to extract from the forms.
 2. Open **Form_1.jpg.labels.json** and review the JSON it contains. This file identifies the location and values for named fields in the **Form_1.jpg** training document.
@@ -112,15 +112,50 @@ Suppose after you trained a model with the invoice forms, you wanted to see how 
 
     *The field information files have been provided for you in this exercise. For your own projects, you can create these files using the [Form Recognizer Studio](https://formrecognizer.appliedai.azure.com/studio). As you use the tool, your field information files are automatically created and stored in your connected storage account.*
 
+4. In Visual Studio Code, in the **21-custom-form** folder, expand the **C-Sharp** or **Python** folder depending on your language preference.
+5. Right-click the **train-model** folder and open an integrated terminal.
 
+6. Install the Form Recognizer package by running the appropriate command for your language preference:
 
+**C#**
 
-4. In the **train-model** folder, open the code file for the training application:
+```
+dotnet add package Azure.AI.FormRecognizer --version 3.0.0 
+```
+
+**Python**
+
+```
+pip install azure-ai-formrecognizer==3.0.0
+```
+
+7. View the contents of the **train-model** folder, and note that it contains a file for configuration settings:
+    - **C#**: appsettings.json
+    - **Python**: .env
+
+8. Edit the configuration file, modifying the settings to reflect:
+    - The **endpoint** for your Form Recognizer resource.
+    - A **key** for your Form Recognizer resource.
+    - The **SAS URI** for your blob container.
+
+9. Note that the **train-model** folder contains a code file for the client application:
 
     - **C#**: Program.cs
     - **Python**: train-model.py
 
-5. In the **Main** function, find the comment **Train model**, and modify it as shown to change the training process so that labels are used:
+    Open the code file and review the code it contains, noting the following details:
+    - Namespaces from the package you installed are imported
+    - The **Main** function retrieves the configuration settings, and uses the key and endpoint to create an authenticated **Client**.
+    - The code uses the the training client to train a model using the images in your blob storage container, which is acessed using the SAS URI you generated.
+    - Training is performed with a parameter to indicate that training labels should <u>not</u> be used. Form Recognizer uses an *unsupervised* technique to extract the fields from the form images.
+
+
+10. In the **train-model** folder, open the code file for the training application:
+
+    - **C#**: Program.cs
+    - **Python**: train-model.py
+
+11. In the **Main** function, find the comment **Train model**, and modify it as shown to change the training process so that labels are used:
 
 **C#**
 
@@ -139,7 +174,7 @@ poller = form_training_client.begin_training(trainingDataUrl, use_training_label
 model = poller.result()
 ```
 
-6. Return the integrated terminal for the **train-model** folder, and enter the following command to run the program:
+12. Return the integrated terminal for the **train-model** folder, and enter the following command to run the program:
 
 **C#**
 
@@ -153,13 +188,44 @@ dotnet run
 python train-model.py
 ```
 
-10. Wait for the program to end, then review the model output.
-11. Note the new the Model ID in the terminal output. 
+13. Wait for the program to end, then review the model output.
+14. Note the new the Model ID in the terminal output. 
 
 ## Test the model 
 
-1. In the **test-model** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) and update it to reflect the new model ID. Save your changes.
-2. Return the integrated terminal for the **test-model** folder, and enter the following command to run the program:
+1. In the **21-custom-form** folder, in the subfolder for your preferred language (**C-Sharp** or **Python**), expand the **test-model** folder.
+
+2. Right-click the **test-model** folder and open an integrated terminal. You now have (at least) two **cmd** terminals, and you can switch between them using the drop-down list in the Terminal pane.
+
+3. In the terminal for the **test-model** folder, install the Form Recognizer package by running the appropriate command for your language preference:
+
+**C#**
+
+```
+dotnet add package Azure.AI.FormRecognizer --version 3.0.0 
+```
+
+**Python**
+
+```
+pip install azure-ai-formrecognizer==3.0.0
+```
+
+*This isn't strictly necessary if you previously used pip to install the package into Python environment; but it does no harm to ensure it's installed!*
+
+4. In the **test-model** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
+    - Your Form Recognizer endpoint.
+    - Your Form Recognizer key.
+    - The Model ID generated when you trained the model (you can find this by switching the terminal back to the **cmd** console for the **train-model** folder).
+Save your changes.
+
+5. In the **test-model** folder, open the code file for your client application (*Program.cs* for C#, *test-model.py* for Python) and review the code it contains, noting the following details:
+    - Namespaces from the package you installed are imported
+    - The **Main** function retrieves the configuration settings, and uses the key and endpoint to create an authenticated **Client**.
+    - The client is then used to extract form fields and values from the **test1.jpg** image.
+    
+
+6. Return the integrated terminal for the **test-model** folder, and enter the following command to run the program:
 
 **C#**
 
@@ -173,7 +239,7 @@ dotnet run
 python test-model.py
 ```
     
-3. View the output and observe how the output for the model provides field names like "CompanyPhoneNumber" and "DatedAs".   
+7. View the output and observe how the output for the model provides field names like "CompanyPhoneNumber" and "DatedAs".   
 
 Note that the choice of training process can produce different models, which can in turn affect downstream processes based on what fields the model returns and how confident you are with the returned values. 
 
