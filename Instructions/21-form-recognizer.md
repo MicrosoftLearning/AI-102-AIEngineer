@@ -112,6 +112,9 @@ Suppose after you trained a model with the invoice forms, you wanted to see how 
 
     *The field information files have been provided for you in this exercise. For your own projects, you can create these files using the [Form Recognizer Studio](https://formrecognizer.appliedai.azure.com/studio). As you use the tool, your field information files are automatically created and stored in your connected storage account.*
 
+
+
+
 4. In the **train-model** folder, open the code file for the training application:
 
     - **C#**: Program.cs
@@ -153,7 +156,7 @@ python train-model.py
 10. Wait for the program to end, then review the model output.
 11. Note the new the Model ID in the terminal output. 
 
-## Test the model created with labels
+## Test the model 
 
 1. In the **test-model** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) and update it to reflect the new model ID. Save your changes.
 2. Return the integrated terminal for the **test-model** folder, and enter the following command to run the program:
