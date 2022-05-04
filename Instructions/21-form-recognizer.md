@@ -155,26 +155,7 @@ pip install azure-ai-formrecognizer==3.0.0
     - **C#**: Program.cs
     - **Python**: train-model.py
 
-11. In the **Main** function, find the comment **Train model**, and modify it as shown to change the training process so that labels are used:
-
-**C#**
-
-```C#
-// Train model 
-CustomFormModel model = await trainingClient
-.StartTrainingAsync(new Uri(trainingStorageUri), useTrainingLabels: true)
-.WaitForCompletionAsync();
-```
-
-**Python**
-
-```Python
-# Train model 
-poller = form_training_client.begin_training(trainingDataUrl, use_training_labels=True)
-model = poller.result()
-```
-
-12. Return the integrated terminal for the **train-model** folder, and enter the following command to run the program:
+11. Return the integrated terminal for the **train-model** folder, and enter the following command to run the program:
 
 **C#**
 
@@ -188,8 +169,8 @@ dotnet run
 python train-model.py
 ```
 
-13. Wait for the program to end, then review the model output.
-14. Note the new the Model ID in the terminal output. 
+12. Wait for the program to end, then review the model output.
+13. Note the new the Model ID in the terminal output. 
 
 ## Test the model 
 
