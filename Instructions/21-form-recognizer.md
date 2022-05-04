@@ -219,8 +219,6 @@ python test-model.py
     
 7. View the output and observe how the output for the model provides field names like "CompanyPhoneNumber" and "DatedAs".   
 
-Note that the choice of training process can produce different models, which can in turn affect downstream processes based on what fields the model returns and how confident you are with the returned values. 
-
 ## More information
 
 For more information about the Form Recognizer service, see the [Form Recognizer documentation](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/).
