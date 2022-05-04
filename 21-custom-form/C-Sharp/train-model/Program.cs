@@ -31,7 +31,7 @@ namespace train_model
 
                 // Train model 
                 CustomFormModel model = await trainingClient
-                .StartTrainingAsync(new Uri(trainingStorageUri), useTrainingLabels: false)
+                .StartTrainingAsync(new Uri(trainingStorageUri), useTrainingLabels: true)
                 .WaitForCompletionAsync();
 
                 // Get model info
