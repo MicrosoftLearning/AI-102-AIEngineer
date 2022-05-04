@@ -168,7 +168,7 @@ python train-model.py
 ```
 
 12. Wait for the program to end, then review the model output.
-13. Note the new the Model ID in the terminal output. 
+13. Write down the Model ID in the terminal output. You will need it for the next part of the lab. 
 
 ## Test the model 
 
