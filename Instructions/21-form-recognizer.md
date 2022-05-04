@@ -102,53 +102,55 @@ setup
 
 15. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account just created. Open the storage account and in the pane on the left, select **Storage Browser (preview)**. Then in Storage Browser, expand **BLOB CONTAINERS** and select the **sampleforms** container to verify that the files have been uploaded from your local **21-custom-form/sample-forms** folder.
 
-## Train a model in the Form Recognizer Studio
+## Train a model with the Form Recognizer SDK 
 
-You will use the Form Recognizer Studio train a custom model. As you use the tool, your field information files are automatically created and stored in your connected storage account.
+1. In Visual Studio Code, in the **21-custom-form/sample-forms** folder, open **fields.json** and review the JSON document it contains. This file defines the fields that you will train a model to extract from the forms.
+2. Open **Form_1.jpg.labels.json** and review the JSON it contains. This file identifies the location and values for named fields in the **Form_1.jpg** training document.
+3. Open **Form_1.jpg.ocr.json** and review the JSON it contains. This file contains a JSOn representation of the text layout of **Form_1.jpg**, including the location of all text areas found in the form.
 
-1. Open [Form Recognizer Studio](https://formrecognizer.appliedai.azure.com/studio). If you have never used it before, you will be prompted for some additional information: 
-    - ***Subscription***
-    - ***Resource Group***
-    - ***Form Reocgnizer or Cognitive Service Resource***
-    - Select **Continue**, then on the Review page, select **Finish**. 
+    *The field information files have been provided for you in this exercise. For your own projects, you can create these files using the [sample labeling tool](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/label-tool). As you use the tool, your field information files are automatically created and stored in your connected storage account.*
 
-### Create a project 
-To create a project, you need the following:
-- Azure Form Recognizer or Azure Cognitive Services resource
-- Azure Blob Storage container with the training data
-- At least five different forms of the same type to help train your custom model. 
+4. In the **train-model** folder, open the code file for the training application:
 
-Configure the service resource by adding your Storage account and Blob container to Connect your training data source.
+    - **C#**: Program.cs
+    - **Python**: train-model.py
 
-1. On the Form Recognizer Studio home page, scroll down and select the **Custom model** card.
-2. Under My Projects, select **+ Create a project**.
-3. Complete the project details fields: 
+5. In the **Main** function, find the comment **Train model**, and modify it as shown to change the training process so that labels are used:
 
-**Enter project details**
-- ***Project name***: *Select a unique name for your project* 
-- ***Description***: A model to extract data from forms. 
+**C#**
 
-**Configure service resource**
-- ***Subscription***: *Select the subscription for your Form Recognizer resource* 
-- ***Resource group***: *Select the resource group for your Form Recognizer resource*
-- ***Form Recognizer or Cognitive Service Resource***: *Select the resource you created or create a new one* 
-- ***API version***: 2022-01-30-preview 
+```C#
+// Train model 
+CustomFormModel model = await trainingClient
+.StartTrainingAsync(new Uri(trainingStorageUri), useTrainingLabels: true)
+.WaitForCompletionAsync();
+```
 
-**Connect training data source**
-- ***Subscription***: *Select the subscription for your Azure Blob* 
-- ***Resource Group***: *Select the resource group for your Azure Blob*
-- ***Storage account***: *Select the account ai102formxxxxxxxxx*
-- ***Blob Container***: sampleforms 
-- ***Folder path***: *Leave blank*
-**Review and Create**
-Review and create your project.
+**Python**
 
-### Label your forms using the Form Recognizer Studio
+```Python
+# Train model 
+poller = form_training_client.begin_training(trainingDataUrl, use_training_labels=True)
+model = poller.result()
+```
 
-1. Click on the form 
-2. Associate each label with a name 
-3. Save and repeat for all five files. 
-4. Click train. Write down the Model ID that is generated. 
+6. Return the integrated terminal for the **train-model** folder, and enter the following command to run the program:
+
+**C#**
+
+```
+dotnet run
+```
+
+**Python**
+
+```
+python train-model.py
+```
+
+10. Wait for the program to end, then review the model output.
+11. Note the new the Model ID in the terminal output. 
+
 
 ## Test a model with the Form Recognizer SDK 
 
