@@ -40,13 +40,13 @@ To use the Form Recognizer service, you need a Form Recognizer or Cognitive Serv
 
 ## Gather documents for training
 
-![An image of an invoice.](../21-custom-form/sample-forms/Form_1.png)  
+![An image of an invoice.](../21-custom-form/sample-forms/Form_1.jpg)  
 
 You'll use the sample forms from the **21-custom-form/sample-forms** folder in this repo, which contain all the files you'll need to train a model without labels and another model with labels.
 
-1. In Visual Studio Code, in the **21-custom-form** folder,  expand the **sample-forms** folder. Notice there are files ending in **.json** and **.png** in the folder.
+1. In Visual Studio Code, in the **21-custom-form** folder,  expand the **sample-forms** folder. Notice there are files ending in **.json** and **.jpg** in the folder.
 
-    You will use the **.png** files to train your model.  
+    You will use the **.jpg** files to train your model.  
 
     The **.json** files have been generated for you and contain label information. To train with labels, you need to have the label information files in your blob storage container alongside the forms. 
 
