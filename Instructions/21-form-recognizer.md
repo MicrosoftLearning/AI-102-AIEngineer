@@ -192,18 +192,32 @@ pip install azure-ai-formrecognizer==3.0.0
 
 *This isn't strictly necessary if you previously used pip to install the package into Python environment; but it does no harm to ensure it's installed!*
 
-4. In the **test-model** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
+4. In the same terminal for the **test-model** folder, install the Tabulate library. This will provide your output in a table:
+
+**C#**
+
+```
+Install-Package Tabulate.NET -Version 1.0.5
+```
+
+**Python**
+
+```
+pip install tabulate
+```
+
+5. In the **test-model** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
     - Your Form Recognizer endpoint.
     - Your Form Recognizer key.
     - The Model ID generated when you trained the model (you can find this by switching the terminal back to the **cmd** console for the **train-model** folder). **Save** your changes.
 
-5. In the **test-model** folder, open the code file for your client application (*Program.cs* for C#, *test-model.py* for Python) and review the code it contains, noting the following details:
+6. In the **test-model** folder, open the code file for your client application (*Program.cs* for C#, *test-model.py* for Python) and review the code it contains, noting the following details:
     - Namespaces from the package you installed are imported
     - The **Main** function retrieves the configuration settings, and uses the key and endpoint to create an authenticated **Client**.
     - The client is then used to extract form fields and values from the **test1.jpg** image.
     
 
-6. Return the integrated terminal for the **test-model** folder, and enter the following command to run the program:
+7. Return the integrated terminal for the **test-model** folder, and enter the following command to run the program:
 
 **C#**
 
@@ -217,7 +231,7 @@ dotnet run
 python test-model.py
 ```
     
-7. View the output and observe how the output for the model provides field names like "CompanyPhoneNumber" and "DatedAs".   
+8. View the output and observe how the output for the model provides field names like "CompanyPhoneNumber" and "DatedAs".   
 
 ## More information
 
