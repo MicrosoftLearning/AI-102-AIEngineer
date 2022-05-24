@@ -208,7 +208,7 @@ python read-text.py
 
 ## Use the Read API
 
-The **Read** API uses a newer text recognition model than the OCR API, and performs better for larger images that contain a lot of text. It also supports text extraction from *.pdf* files, and can recognize both printed text (in multiple languages) and handwritten text (in English).
+The **Read** API uses a newer text recognition model than the OCR API, and performs better for larger images that contain a lot of text. It also supports text extraction from *.pdf* files, and can recognize both printed text and handwritten text in multiple languages.
 
 The **Read** API uses an asynchronous operation model, in which a request to start text recognition is submitted; and the operation ID returned from the request can subsequently be used to check progress and retrieve results.
 
