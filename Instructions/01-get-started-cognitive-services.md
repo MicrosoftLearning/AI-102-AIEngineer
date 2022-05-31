@@ -49,7 +49,7 @@ The cognitive services APIs are REST-based, so you can consume them by submittin
     - **Python**: .env
 
     Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your cognitive services resource. Save your changes.
-4. Note that the **rest-client** folder contains a code file for the client application:
+3. Note that the **rest-client** folder contains a code file for the client application:
 
     - **C#**: Program.cs
     - **Python**: rest-client.py
@@ -61,7 +61,7 @@ The cognitive services APIs are REST-based, so you can consume them by submittin
     - The request sent to the API consists of a JSON object containing the input data - in this case, a collection of **document** objects, each of which has an **id** and **text**.
     - The key for your service is included in the request header to authenticate your client application.
     - The response from the service is a JSON object, which the client application can parse.
-5. Right-click the **rest-client** folder and open an integrated terminal. Then enter the following language-specific command to run the program:
+4. Right-click the **rest-client** folder and open an integrated terminal. Then enter the following language-specific command to run the program:
 
     **C#**
 
@@ -75,8 +75,8 @@ The cognitive services APIs are REST-based, so you can consume them by submittin
     python rest-client.py
     ```
 
-6. When prompted, enter some text and review the language that is detected by the service, which is returned in the JSON response. For example, try entering "Hello", "Bonjour", and "Hola".
-7. When you have finished testing the application, enter "quit" to stop the program.
+5. When prompted, enter some text and review the language that is detected by the service, which is returned in the JSON response. For example, try entering "Hello", "Bonjour", and "Gracias".
+6. When you have finished testing the application, enter "quit" to stop the program.
 
 ## Use an SDK
 

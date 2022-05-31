@@ -223,7 +223,7 @@ Now you're ready to use the service principal identity in an application, so it 
     python keyvault-client.py
     ```
 
-6. When prompted, enter some text and review the language that is detected by the service. For example, try entering "Hello", "Bonjour", and "Hola".
+6. When prompted, enter some text and review the language that is detected by the service. For example, try entering "Hello", "Bonjour", and "Gracias".
 7. When you have finished testing the application, enter "quit" to stop the program.
 
 ## More information
