@@ -57,9 +57,10 @@ Let's start monitoring by defining an alert rule so you can detect activity in y
     A web browser tab will open and prompt you to sign into Azure. Do so, and then close the browser tab and return to Visual Studio Code.
 
     > **Tip**: If you have multiple subscriptions, you'll need to ensure that you are working in the one that contains your cognitive services resource.  Use this command to determine your current subscription.
-  ```
+
+ ```
   az account show
-  ```
+ ```
  
  > If you need to change the subscription, run this command, changing *&lt;subscriptionName&gt;* to the correct subscription name.
  
