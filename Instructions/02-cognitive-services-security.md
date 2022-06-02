@@ -55,15 +55,15 @@ When you created your cognitive services resource, two authentication keys were 
 
     > **Warning**: If you are getting a certificate verfication failure for `az login`, try waiting a few minutes and trying again.
     >
-    > ```
-    > az account show
-    > ```
+     ```
+     az account show
+     ```
     >
     > If you need to change the subscription, run this command, changing *&lt;Your_Subscription_Id&gt;* to the correct subscription ID.
     >
-    > ```
-    > az account set --subscription <Your_Subscription_Id>
-    > ```
+    ```
+    az account set --subscription <Your_Subscription_Id>
+    ```
     >
     > Alternatively, you can explicitly specify the subscription ID as a *--subscription* parameter in each Azure CLI command that follows.
 
