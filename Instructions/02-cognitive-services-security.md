@@ -138,7 +138,7 @@ To access the secret in the key vault, your application must use a service princ
 
 The output of this command includes information about your new service principal. It should look similar to this:
 
-    
+```
     {
         "appId": "abcd12345efghi67890jklmn",
         "displayName": "ai-app",
@@ -146,6 +146,7 @@ The output of this command includes information about your new service principal
         "password": "1a2b3c4d5e6f7g8h9i0j",
         "tenant": "1234abcd5678fghi90jklm"
     }
+```
     
 Make a note of the **appId**, **password**, and **tenant** values - you will need them later (if you close this terminal, you won't be able to retrieve the password; so it's important to note the values now - you can paste the output into a new text file in Visual Studio Code to ensure you can find the values you need later!)
 
