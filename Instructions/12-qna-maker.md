@@ -161,4 +161,4 @@ Most commonly, the client applications used to retrieve answers from a knowledge
 
 ## More information
 
-To learn more about question answering in the Language service, see the [Langage service documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/question-answering/overview).
+To learn more about question answering in the Language service, see the [Language service documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/question-answering/overview).
