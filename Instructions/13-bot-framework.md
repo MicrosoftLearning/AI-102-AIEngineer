@@ -23,6 +23,8 @@ You're going to use the Bot Framework SDK to create your bot, and the Bot Framew
 1. Start the **Bot Framework Emulator**, and if you are prompted to install an update, do so for the currently logged in user. If you are not prompted automatically, use the **Check for update** option on the **Help** menu to check for updates.
 2. After installing any available update, close the Bot Framework Emulator until you need it again later.
 
+> **Important**: Sometimes the update will fail to download, and is being investigated. If there isn't progress within a couple minutes of trying to update, you can dismiss the download and use the currently installed version of the emulator.
+
 ### Clone the repository for this course
 
 If you have not already cloned **AI-102-AIEngineer** code repository to the environment where you're working on this lab, follow these steps to do so. Otherwise, open the cloned folder in Visual Studio Code.
