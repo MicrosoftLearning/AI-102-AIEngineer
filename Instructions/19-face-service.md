@@ -8,9 +8,7 @@ lab:
 
 The ability to detect, analyze, and recognize human faces is a core AI capability. In this exercise, you'll explore two Azure Cognitive Services that you can use to work with faces in images: the **Computer Vision** service, and the **Face** service.
 
-> **Note**: From June 21st 2022, capabilities of the Face API that return personally identifiable information (including facial features, estimated age, and emotional state) is restricted. These restrictions may affect this lab exercise. We're working to address this, but in the meantime you may experience some errors when following the steps below; for which we apologize.
->
-> For more details about the changes Microsoft has made, and why - see [Microsoft’s framework for building AI systems responsibly](https://blogs.microsoft.com/on-the-issues/2022/06/21/microsofts-framework-for-building-ai-systems-responsibly/)
+> **Note**: From June 21st 2022, capabilities of the Face API that return personally identifiable information (including facial features, estimated age, and emotional state) is restricted. These restrictions may affect this lab exercise. We're working to address this, but in the meantime you may experience some errors when following the steps below; for which we apologize. For more details about the changes Microsoft has made, and why - see [Microsoft’s framework for building AI systems responsibly](https://blogs.microsoft.com/on-the-issues/2022/06/21/microsofts-framework-for-building-ai-systems-responsibly/)
 
 ## Clone the repository for this course
 
