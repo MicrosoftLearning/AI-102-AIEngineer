@@ -168,7 +168,7 @@ using (var imageData = File.OpenRead(imageFile))
             var r = face.FaceRectangle;
             Rectangle rect = new Rectangle(r.Left, r.Top, r.Width, r.Height);
             graphics.DrawRectangle(pen, rect);
-            string annotation = $"Person aged approximately {face.Age}";
+            string annotation = $"Person at approximately {face.Left}, {face.Top}";
             graphics.DrawString(annotation,font,brush,r.Left, r.Top);
         }
 
@@ -204,7 +204,7 @@ with open(image_file, mode="rb") as image_data:
             bounding_box = ((r.left, r.top), (r.left + r.width, r.top + r.height))
             draw = ImageDraw.Draw(image)
             draw.rectangle(bounding_box, outline=color, width=5)
-            annotation = 'Person aged approximately {}'.format(face.age)
+            annotation = 'Person at approximately {}, {}'.format(r.left, r.top)
             plt.annotate(annotation,(r.left, r.top), backgroundcolor=color)
 
         # Save annotated image
@@ -230,7 +230,7 @@ with open(image_file, mode="rb") as image_data:
     ```
 
 6. Observe the output, which should indicate the number of faces detected.
-7. View the **detected_faces.jpg** file that is generated in the same folder as your code file to see the annotated faces. In this case, your code has used the attributes of the face to estimate the age of each person in the image, and the bounding box coordinates to draw a rectangle around each face.
+7. View the **detected_faces.jpg** file that is generated in the same folder as your code file to see the annotated faces. In this case, your code has used the attributes of the face to label the location of the top left of the box, and the bounding box coordinates to draw a rectangle around each face.
 
 ## Prepare to use the Face SDK
 
@@ -306,7 +306,7 @@ While the **Computer Vision** service offers basic face detection (along with ma
 
 ## Detect and analyze faces
 
-One of the most fundamental capabilities of the Face service is to detect faces in an image, and determine their attributes, such as age, emotional expressions, hair color, the presence of spectacles, and so on.
+One of the most fundamental capabilities of the Face service is to detect faces in an image, and determine their attributes, such as head pose, blur, the presence of spectacles, and so on.
 
 1. In the code file for your application, in the **Main** function, examine the code that runs if the user selects menu option **1**. This code calls the **DetectFaces** function, passing the path to an image file.
 2. Find the **DetectFaces** function in the code file, and under the comment **Specify facial features to be retrieved**, add the following code:
@@ -317,8 +317,8 @@ One of the most fundamental capabilities of the Face service is to detect faces 
     // Specify facial features to be retrieved
     List<FaceAttributeType?> features = new List<FaceAttributeType?>
     {
-        FaceAttributeType.Age,
-        FaceAttributeType.Emotion,
+        FaceAttributeType.Occlusion,
+        FaceAttributeType.Blur,
         FaceAttributeType.Glasses
     };
     ```
@@ -327,8 +327,8 @@ One of the most fundamental capabilities of the Face service is to detect faces 
 
     ```Python
     # Specify facial features to be retrieved
-    features = [FaceAttributeType.age,
-                FaceAttributeType.emotion,
+    features = [FaceAttributeType.occlusion,
+                FaceAttributeType.blur,
                 FaceAttributeType.glasses]
     ```
 
@@ -358,15 +358,11 @@ using (var imageData = File.OpenRead(imageFile))
         {
             // Get face properties
             Console.WriteLine($"\nFace ID: {face.FaceId}");
-            Console.WriteLine($" - Age: {face.FaceAttributes.Age}");
-            Console.WriteLine($" - Emotions:");
-            foreach (var emotion in face.FaceAttributes.Emotion.ToRankedList())
-            {
-                Console.WriteLine($"   - {emotion}");
-            }
-
+            Console.WriteLine($" - Mouth Occluded: {face.FaceAttributes.Occlusion.MouthOccluded}");
+            Console.WriteLine($" - Eye Occluded: {face.FaceAttributes.Occlusion.EyeOccluded}");
+            Console.WriteLine($" - Blur: {face.FaceAttributes.Blur.BlurLevel}");
             Console.WriteLine($" - Glasses: {face.FaceAttributes.Glasses}");
-
+            
             // Draw and annotate face
             var r = face.FaceRectangle;
             Rectangle rect = new Rectangle(r.Left, r.Top, r.Width, r.Height);
@@ -407,14 +403,16 @@ with open(image_file, mode="rb") as image_data:
             # Get face properties
             print('\nFace ID: {}'.format(face.face_id))
             detected_attributes = face.face_attributes.as_dict()
-            age = 'age unknown' if 'age' not in detected_attributes.keys() else int(detected_attributes['age'])
-            print(' - Age: {}'.format(age))
+            if 'blur' in detected_attributes:
+                print(' - Blur:')
+                for blur_name in detected_attributes['blur']:
+                    print('   - {}: {}'.format(blur_name, detected_attributes['blur'][blur_name]))
+                    
+            if 'occlusion' in detected_attributes:
+                print(' - Occlusion:')
+                for occlusion_name in detected_attributes['occlusion']:
+                    print('   - {}: {}'.format(occlusion_name, detected_attributes['occlusion'][occlusion_name]))
 
-            if 'emotion' in detected_attributes:
-                print(' - Emotions:')
-                for emotion_name in detected_attributes['emotion']:
-                    print('   - {}: {}'.format(emotion_name, detected_attributes['emotion'][emotion_name]))
-            
             if 'glasses' in detected_attributes:
                 print(' - Glasses:{}'.format(detected_attributes['glasses']))
 

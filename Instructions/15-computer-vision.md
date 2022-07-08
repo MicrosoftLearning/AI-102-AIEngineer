@@ -260,16 +260,15 @@ if (len(analysis.tags) > 0):
 
 ## Get image categories
 
-The Computer Vision service can suggest *categories* for images, and within each category it can identify well-known landmarks or celebrities.
+The Computer Vision service can suggest *categories* for images, and within each category it can identify well-known landmarks.
 
-1. In the **AnalyzeImage** function, under the comment **Get image categories (including celebrities and landmarks)**, add the following code:
+1. In the **AnalyzeImage** function, under the comment **Get image categories**, add the following code:
 
 **C#**
 
 ```C
-// Get image categories (including celebrities and landmarks)
+// Get image categories
 List<LandmarksModel> landmarks = new List<LandmarksModel> {};
-List<CelebritiesModel> celebrities = new List<CelebritiesModel> {};
 Console.WriteLine("Categories:");
 foreach (var category in analysis.Categories)
 {
@@ -287,18 +286,6 @@ foreach (var category in analysis.Categories)
             }
         }
     }
-
-    // Get celebrities in this category
-    if (category.Detail?.Celebrities != null)
-    {
-        foreach (CelebritiesModel celebrity in category.Detail.Celebrities)
-        {
-            if (!celebrities.Any(item => item.Name == celebrity.Name))
-            {
-                celebrities.Add(celebrity);
-            }
-        }
-    }
 }
 
 // If there were landmarks, list them
@@ -311,25 +298,15 @@ if (landmarks.Count > 0)
     }
 }
 
-// If there were celebrities, list them
-if (celebrities.Count > 0)
-{
-    Console.WriteLine("Celebrities:");
-    foreach(CelebritiesModel celebrity in celebrities)
-    {
-        Console.WriteLine($" -{celebrity.Name} (confidence: {celebrity.Confidence.ToString("P")})");
-    }
-}
 ```
 
 **Python**
 
 ```Python
-# Get image categories (including celebrities and landmarks)
+# Get image categories
 if (len(analysis.categories) > 0):
     print("Categories:")
     landmarks = []
-    celebrities = []
     for category in analysis.categories:
         # Print the category
         print(" -'{}' (confidence: {:.2f}%)".format(category.name, category.score * 100))
@@ -340,27 +317,15 @@ if (len(analysis.categories) > 0):
                     if landmark not in landmarks:
                         landmarks.append(landmark)
 
-            # Get celebrities in this category
-            if category.detail.celebrities:
-                for celebrity in category.detail.celebrities:
-                    if celebrity not in celebrities:
-                        celebrities.append(celebrity)
-
     # If there were landmarks, list them
     if len(landmarks) > 0:
         print("Landmarks:")
         for landmark in landmarks:
             print(" -'{}' (confidence: {:.2f}%)".format(landmark.name, landmark.confidence * 100))
 
-    # If there were celebrities, list them
-    if len(celebrities) > 0:
-        print("Celebrities:")
-        for celebrity in celebrities:
-            print(" -'{}' (confidence: {:.2f}%)".format(celebrity.name, celebrity.confidence * 100))
-
 ```
     
-2. Save your changes and run the program once for each of the image files in the **images** folder, observing that in addition to the image caption and tags, a list of suggested categories is displayed along with any recognized landmarks or celebrities (in particular in the **building.jpg** and **person.jpg** images).
+2. Save your changes and run the program once for each of the image files in the **images** folder, observing that in addition to the image caption and tags, a list of suggested categories is displayed along with any recognized landmarks (in particular in the **building.jpg** image).
 
 ## Get brands in an image
 
