@@ -8,7 +8,7 @@ lab:
 
 A large proportion of the data created and consumed today is in the format of video. **Video Analyzer for Media** is an AI-powered service that you can use to index videos and extract insights from them.
 
-> **Note**: From June 21st 2022, capabilities of cognitive services that return personally identifiable information are restricted to customers who have been granted [limited access](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-limited-access). Additionally, capabilities that infer emotional state are no longer available. These restrictions may affect this lab exercise. We're working to address this, but in the meantime you may experience some errors when following the steps below; for which we apologize. For more details about the changes Microsoft has made, and why - see [Responsible AI investments and safeguards for facial recognition](https://azure.microsoft.com/blog/responsible-ai-investments-and-safeguards-for-facial-recognition/).
+> **Note**: From June 21st 2022, capabilities of cognitive services that return personally identifiable information are restricted to customers who have been granted [limited access](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-limited-access). Without getting limited access approval, recognizing people and celebrities with Video Analyzer for this lab is not available. For more details about the changes Microsoft has made, and why - see [Responsible AI investments and safeguards for facial recognition](https://azure.microsoft.com/blog/responsible-ai-investments-and-safeguards-for-facial-recognition/).
 
 ## Clone the repository for this course
 
@@ -75,34 +75,6 @@ You can use Video Analyzer to search the video for insights.
 
 ![Video Analyzer search results for Bee](./images/video-indexer-search.png)
 
-## Edit insights
-
-You can use Video Analyzer to edit the insights that have been found, adding custom information to make even more sense of the video.
-
-1. Rewind the video to the start and view the **people** listed at the top of the **Insights** pane. Observe that some people have been recognized, including **Eric Horwitz**, a computer scientist and Technical Fellow at Microsoft.
-
-![Video Analyzer insights for a known person](./images/video-indexer-known-person.png)
-
-2. Select the photo of Eric Horwitz, and view the information underneath - expanding the **Show biography** section to see information about this person.
-3. Observe that the locations in the video where this person appears are indicated. You can use these to view those sections of the video.
-4. In the video player, find the person speaking at approximately 0:34:
-
-![Video Analyzer insights for an unknown person](./images/video-indexer-unknown-person.png)
-
-5. Observe that this person is not recognized, and has been assigned a generic name such as **Unknown #1**. However, the video does include a caption with this person's name, so we can enrich the insights by editing the details for this person.
-6. At the top right of the portal, select the **Edit** icon (&#x1F589;). Then change the name of the unknown person to **Natasha Crampton**.
-
-![Editing a person in Video Analyzer](./images/video-indexer-edit-name.png)
-
-7. After you have made the name change, search the **Insights** pane for *Natasha*. The results should include one person, and indicate the sections of the video in which they appear.
-8. At the top left of the portal, expand the menu (&#8801;) and select the **Model customizations** page. Then on the **People** tab, observe that the **Default** people model has one person in it. Video Analyzer has added the person you named to a people model, so that they will be recognized in any future videos you index in your account.
-
-![The default people model in Video Analyzer](./images/video-indexer-custom-model.png)
-
-You can add images of people to the default people model, or add new models of your own. This enables you to define collections of people with images of their face so that Video Analyzer can recognize them in your videos.
-
-Observe also that you can also create custom models for language (for example to specify industry-specific terminology you want Video Analyzer to recognize) and brands (for example, company or product names).
-
 ## Use Video Analyzer widgets
 
 The Video Analyzer portal is a useful interface to manage video indexing projects. However, there may be occasions when you want to make the video and its insights available to people who don't have access to your Video Analyzer account. Video Analyzer provides widgets that you can embed in a web page for this purpose.
@@ -150,5 +122,7 @@ All interactions with the Video Analyzer REST API follow the same pattern:
 6. View the JSON response from the REST service, which should contain details of the **Responsible AI** video you indexed previously.
 
 ## More information
+
+Recognition of people and celebrities is still available, but following the [Responsible AI Standard](https://aka.ms/aah91ff) those are restricted behind a Limited Access policy. These features include facial identification and celebrity recognition. To learn more and apply for access, see the [Limited Access for Cognitive Services](https://docs.microsoft.com/en-us/azure/cognitive-services/cognitive-services-limited-access).
 
 For more information about **Video Analyzer**, see the [Video Analyzer documentation](https://docs.microsoft.com/azure/azure-video-analyzer/video-analyzer-for-media-docs/).
