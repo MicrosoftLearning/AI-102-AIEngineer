@@ -168,7 +168,7 @@ using (var imageData = File.OpenRead(imageFile))
             var r = face.FaceRectangle;
             Rectangle rect = new Rectangle(r.Left, r.Top, r.Width, r.Height);
             graphics.DrawRectangle(pen, rect);
-            string annotation = $"Person at approximately {face.Left}, {face.Top}";
+            string annotation = $"Person at approximately {r.Left}, {r.Top}";
             graphics.DrawString(annotation,font,brush,r.Left, r.Top);
         }
 
