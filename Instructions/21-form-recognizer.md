@@ -197,7 +197,7 @@ pip install azure-ai-formrecognizer==3.0.0
 **C#**
 
 ```
-Install-Package Tabulate.NET -Version 1.0.5
+dotnet add package Tabulate.NET --version 1.0.5
 ```
 
 **Python**
