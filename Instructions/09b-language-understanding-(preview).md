@@ -1,6 +1,7 @@
 ---
 lab:
     title: 'Create a language understanding model with the Language service (preview)'
+    module: 'Module 5 - Creating Language Understanding Solutions'
 ---
 
 # Create a language understanding model with the Language service (preview)
