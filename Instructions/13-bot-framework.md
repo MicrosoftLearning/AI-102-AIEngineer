@@ -30,7 +30,7 @@ You're going to use the Bot Framework SDK to create your bot, and the Bot Framew
 If you have not already cloned **AI-102-AIEngineer** code repository to the environment where you're working on this lab, follow these steps to do so. Otherwise, open the cloned folder in Visual Studio Code.
 
 1. Start Visual Studio Code.
-2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
+2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the repository `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
 3. When the repository has been cloned, open the folder in Visual Studio Code.
 4. Wait while additional files are installed to support the C# code projects in the repo.
 
@@ -71,13 +71,21 @@ pip install cookiecutter==1.7.0
 dotnet new echobot -n TimeBot
 ```
 
+If you're using **C-Sharp**, use the following command to open up the project file: 
+
+```Code
+code TimeBot\TimeBot.csproj
+```
+
+On line 4, change the *TargetFramework* value to be `netcoreapp3.1`.
+
 **Python**
 
 ```Python
 cookiecutter https://github.com/microsoft/botbuilder-python/releases/download/Templates/echo.zip
 ```
 
-If you're using Python, when prompted by cookiecutter, enter the following details:
+If you're using **Python**, when prompted by cookiecutter, enter the following details:
 - **bot_name**: TimeBot
 - **bot_description**: A bot for our times
     
