@@ -71,13 +71,21 @@ pip install cookiecutter==1.7.0
 dotnet new echobot -n TimeBot
 ```
 
+If you're using **C-Sharp**, use the following command to open up the project file: 
+
+```Code
+code TimeBot\TimeBot.csproj
+```
+
+On line 4, change the *TargetFramework* value to be `netcoreapp3.1`.
+
 **Python**
 
 ```Python
 cookiecutter https://github.com/microsoft/botbuilder-python/releases/download/Templates/echo.zip
 ```
 
-If you're using Python, when prompted by cookiecutter, enter the following details:
+If you're using **Python**, when prompted by cookiecutter, enter the following details:
 - **bot_name**: TimeBot
 - **bot_description**: A bot for our times
     
