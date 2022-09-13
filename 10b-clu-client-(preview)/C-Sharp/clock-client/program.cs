@@ -9,7 +9,9 @@ using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 
 // Import namespaces
-
+// Import namespaces
+using Azure;
+using Azure.AI.Language.Conversations;
 
 namespace clock_client
 {
@@ -28,7 +30,11 @@ namespace clock_client
                 string predictionKey = configuration["LSPredictionKey"];
 
                 // Create a client for the Language service model
+                // Create a client for the Language service model
+                Uri lsEndpoint = new Uri(predictionEndpoint);
+                AzureKeyCredential lsCredential = new AzureKeyCredential(predictionKey);
 
+                ConversationAnalysisClient lsClient = new ConversationAnalysisClient(lsEndpoint, lsCredential);
                 // Get user input (until they enter "quit")
                 string userText = "";
                 while (userText.ToLower() != "quit")
@@ -39,10 +45,103 @@ namespace clock_client
                     {
 
                         // Call the Language service model to get intent and entities
+                        // Call the Language service model to get intent and entities
+                        var lsProject = "Clock";
+                        var lsSlot = "production";
 
+                        ConversationsProject conversationsProject = new ConversationsProject(lsProject, lsSlot);
+                        Response<AnalyzeConversationResult> response = await lsClient.AnalyzeConversationAsync(userText, conversationsProject);
+
+                        ConversationPrediction conversationPrediction = response.Value.Prediction as ConversationPrediction;
+
+                        Console.WriteLine(JsonConvert.SerializeObject(conversationPrediction, Formatting.Indented));
+                        Console.WriteLine("--------------------\n");
+                        Console.WriteLine(userText);
+                        var topIntent = "";
+                        if (conversationPrediction.Intents[0].Confidence > 0.5)
+                        {
+                            topIntent = conversationPrediction.TopIntent;
+                        }
+
+                        var entities = conversationPrediction.Entities;
 
                         // Apply the appropriate action
+                        // Apply the appropriate action
+                        switch (topIntent)
 
+                        {
+                            case "GetTime":
+                                var location = "local";
+                                // Check for entities
+                                if (entities.Count > 0)
+                                {
+                                    // Check for a location entity
+                                    foreach (ConversationEntity entity in conversationPrediction.Entities)
+                                    {
+                                        if (entity.Category == "Location")
+                                        {
+                                            //Console.WriteLine($"Location Confidence: {entity.Confidence}");
+                                            location = entity.Text;
+                                        }
+                        //                    
+                                    }
+                        //
+                                }
+                        //
+                                // Get the time for the specified location
+                                var getTimeTask = Task.Run(() => GetTime(location));
+                                string timeResponse = await getTimeTask;
+                                Console.WriteLine(timeResponse);
+                                break;
+                        //
+                            case "GetDay":
+                                var date = DateTime.Today.ToShortDateString();
+                                // Check for entities
+                                if (entities.Count > 0)
+                                {
+                                    // Check for a Date entity
+                                    foreach (ConversationEntity entity in conversationPrediction.Entities)
+                                    {
+                                        if (entity.Category == "Date")
+                                        {
+                                            //Console.WriteLine($"Location Confidence: {entity.Confidence}");
+                                            date = entity.Text;
+                                        }
+                                    }
+                                }
+                                // Get the day for the specified date
+                                var getDayTask = Task.Run(() => GetDay(date));
+                                string dayResponse = await getDayTask;
+                                Console.WriteLine(dayResponse);
+                                break;
+                        //
+                            case "GetDate":
+                                var day = DateTime.Today.DayOfWeek.ToString();
+                                // Check for entities
+                                if (entities.Count > 0)
+                                {
+                                    // Check for a Weekday entity
+                                    foreach (ConversationEntity entity in conversationPrediction.Entities)
+                                    {
+                                        if (entity.Category == "Weekday")
+                                        {
+                                            //Console.WriteLine($"Location Confidence: {entity.Confidence}");
+                                            day = entity.Text;
+                                        }
+                                    }
+                        //                
+                                }
+                                // Get the date for the specified day
+                                var getDateTask = Task.Run(() => GetDate(day));
+                                string dateResponse = await getDateTask;
+                                Console.WriteLine(dateResponse);
+                                break;
+                        //
+                            default:
+                                // Some other intent (for example, "None") was predicted
+                                Console.WriteLine("Try asking me for the time, the day, or the date.");
+                                break;
+                        }
                     }
 
                 }
