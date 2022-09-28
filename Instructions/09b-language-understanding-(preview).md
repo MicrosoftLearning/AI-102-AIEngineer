@@ -333,8 +333,8 @@ In a real project, you'd iteratively refine intents and entities, retrain, and r
                         "confidenceScore": 0.95666766
                     },
                     {
-                        "category": "None",
-                        "confidenceScore": 0
+                        "category": "GetDate",
+                        "confidenceScore": 0.00039585
                     }
                 ],
                 "entities": [
