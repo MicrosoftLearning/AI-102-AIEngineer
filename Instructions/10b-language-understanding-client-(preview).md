@@ -56,11 +56,11 @@ If you already have a **Clock** project from a previous lab or exercise, you can
 
 4. If a panel with tips for creating an effective Language service app is displayed, close it.
 
-5. At the left of the Language Studio portal, select **Train model** to train the app. Click **Start a training job**, name the model **Clock** and ensure that evaluation with training is enabled. Training may take several minutes to complete.
+5. At the left of the Language Studio portal, select **Training jobs** to train the app. Click **Start a training job**, name the model **Clock** and ensure that evaluation with training is enabled. Training may take several minutes to complete.
 
     > **Note**: Because the model name **Clock** is hard-coded in the clock-client code (used later in the lab), capitalize and spell the name exactly as described. 
 
-6. At the left of the Language Studio portal, select **Deploy model** and use **Add deployment** to create deployment for the Clock model that's named **production**.
+6. At the left of the Language Studio portal, select **Deploying a model** and use **Add deployment** to create deployment for the Clock model that's named **production**.
 
     > **Note**: Because the deployment name **production** is hard-coded in the clock-client code (used later in the lab), capitalize and spell the name exactly as described. 
 
@@ -102,7 +102,7 @@ In this exercise, you'll complete a partially implemented client application tha
     Open the configuration file and update the configuration values it contains to include the **Endpoint URL** and the **Primary key** for your Language resource. You can find the required values in the Azure portal or Language Studio as follows:
 
     - Azure portal: Open your Language resource. Under **Resource Management**, select **Keys and Endpoint**. Copy the **KEY 1** and **Endpoint** values to your configuration settings file.
-    - Language Studio: Open your **Clock** project. The Language service endpoint can be found on the **Deploy model** page under **Get prediction URL**, and the the **Primary key** can be found on the **Project settings** page. The Language service endpoint portion of the Prediction URL ends with **.cognitiveservices.azure.com/**. For example: `https://ai102-langserv.cognitiveservices.azure.com/`.
+    - Language Studio: Open your **Clock** project. The Language service endpoint can be found on the **Deploying a model** page under **Get prediction URL**, and the the **Primary key** can be found on the **Project settings** page. The Language service endpoint portion of the Prediction URL ends with **.cognitiveservices.azure.com/**. For example: `https://ai102-langserv.cognitiveservices.azure.com/`.
 
 4. Note that the **clock-client** folder contains a code file for the client application:
 
