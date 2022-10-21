@@ -31,7 +31,7 @@ namespace read_text
 
 
                 // Menu for text reading functions
-                Console.WriteLine("1: Use OCR API\n2: Use Read API\n3: Read handwriting\nAny other key to quit");
+                Console.WriteLine("1: Use Read API for image\n2: Use Read API for document\n3: Read handwriting\nAny other key to quit");
                 Console.WriteLine("Enter a number:");
                 string command = Console.ReadLine();
                 string imageFile;
@@ -39,7 +39,7 @@ namespace read_text
                 {
                     case "1":
                         imageFile = "images/Lincoln.jpg";
-                        await GetTextOcr(imageFile);
+                        await GetTextRead(imageFile);
                         break;
                     case "2":
                         imageFile = "images/Rome.pdf";
@@ -58,13 +58,6 @@ namespace read_text
             {
                 Console.WriteLine(ex.Message);
             }
-        }
-
-        static async Task GetTextOcr(string imageFile)
-        {
-            Console.WriteLine($"Reading text in {imageFile}\n");
-
-                
         }
 
         static async Task GetTextRead(string imageFile)
