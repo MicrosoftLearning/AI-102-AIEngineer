@@ -109,7 +109,7 @@ The first thing we'll do in the new project is to define some intents.
 
 Now that you've added some intents, let's train the language model and see if it can correctly predict them from user input.
 
-1. In the pane on the left, select the **Training jobs** page and then select **Start a training job**.
+1. In the pane on the left, select the **Train model** page and then select **Training jobs**.
 
 2. On the **Start a training job** dialog, select the option to train a new model, naming it **Clock** and ensuring that the option to run evaluation when training is enabled. 
 
