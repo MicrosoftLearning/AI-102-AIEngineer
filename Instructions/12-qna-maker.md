@@ -116,7 +116,7 @@ The knowledge base provides a back-end service that client applications can use 
 3. When deployment is complete, click **Get prediction URL** to view the REST endpoint for your knowledge base, and copy it to the clipboard (but don't close the dialog box yet).
 4. In Visual Studio Code, in the **12-qna** folder, open **ask-question.cmd**. This script uses *Curl* to call the REST interface of a question answering endpoint.
 5. In the script, replace *YOUR_PREDICTION_ENDPOINT* with the prediction endpoint you copied (ensuring it is enclosed in the quotation marks).
-6. Return to the browser and in the **Get prediction URL** dialog box, note that the sample request includes a value for the **Ocp-Apim-Subscription-Key** parameter, which looks similar to *ab12c345de678fg9hijk01lmno2pqrs34*. This is the authorization key for your resource. Copy it to the clipboard, and then click **Got it** to close the dialog box.
+6. Return to the browser and in the **Get prediction URL** dialog box, note that the sample request includes a value for the **Ocp-Apim-Subscription-Key** parameter, which looks similar to *ab12c345de678fg9hijk01lmno2pqrs34*. This is the authorization key for your resource. Copy it to the clipboard, and then click **Close** to close the dialog box.
 7. Return to Visual Studio Code, and in the **ask-question.cmd** script, replace *YOUR_KEY* with the key you copied (ensuring it is enclosed in the quotation marks).
 8. Note that the Curl command in the script submits a **question** parameter with the value **What is a Learning Path?**.
 9. Verify that the entire script looks similar to the following code, then save the file.
