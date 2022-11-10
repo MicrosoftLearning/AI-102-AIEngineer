@@ -260,7 +260,7 @@ The Language service provides a set of *prebuilt* entities that are commonly use
 
 Now that you've modified the schema, you need to retrain and retest the model.
 
-1. On the **Train model** page, select **Start a training job**.
+1. On the **Training jobs** page, select **Start a training job**.
 
 1. On the **Start a training job** dialog, select the option to overwrite an existing model and specify the **Clock** model. Ensure that the option to run evaluation when training is selected and click **Train** to train the model; confirming you want to overwrite the existing model.
 
