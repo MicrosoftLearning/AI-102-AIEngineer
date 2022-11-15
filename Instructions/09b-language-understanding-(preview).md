@@ -109,7 +109,7 @@ The first thing we'll do in the new project is to define some intents.
 
 Now that you've added some intents, let's train the language model and see if it can correctly predict them from user input.
 
-1. In the pane on the left, select the **Training jobs** page and then select **Start a training job**.
+1. In the pane on the left, select the **Train model** page and then select **Training jobs**.
 
 2. On the **Start a training job** dialog, select the option to train a new model, naming it **Clock** and ensuring that the option to run evaluation when training is enabled. 
 
@@ -260,7 +260,7 @@ The Language service provides a set of *prebuilt* entities that are commonly use
 
 Now that you've modified the schema, you need to retrain and retest the model.
 
-1. On the **Train model** page, select **Start a training job**.
+1. On the **Training jobs** page, select **Start a training job**.
 
 1. On the **Start a training job** dialog, select the option to overwrite an existing model and specify the **Clock** model. Ensure that the option to run evaluation when training is selected and click **Train** to train the model; confirming you want to overwrite the existing model.
 
