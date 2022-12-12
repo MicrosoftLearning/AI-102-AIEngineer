@@ -153,7 +153,7 @@ Make a note of the **appId**, **password**, and **tenant** values - you will nee
 2. To get the **object ID** of your service principal, run the following Azure CLI command, replacing *&lt;appId&gt;* with the value of your service principal's app ID.
 
     ```
-    az ad sp show --id <appId> --query objectId --out tsv
+    az ad sp show --id <appId> --query id --out tsv
     ```
 
 3. To assign permission for your new service principal to access secrets in your Key Vault, run the following Azure CLI command, replacing *&lt;keyVaultName&gt;* with the name of your Azure Key Vault resource and *&lt;objectId&gt;* with the value of your service principal's object ID.
