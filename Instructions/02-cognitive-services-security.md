@@ -118,7 +118,7 @@ First, you need to create a key vault and add a *secret* for the cognitive servi
     - **Region**: *The same region as your cognitive service resource*
     - **Pricing tier**: Standard
 3. Wait for deployment to complete and then go to your key vault resource.
-4. In the left navigation pane, select **Secrets** (in the Settings section).
+4. In the left navigation pane, select **Secrets** (in the Objects section).
 5. Select **+ Generate/Import** and add a new secret with the following settings :
     - **Upload options**: Manual
     - **Name**: Cognitive-Services-Key *(it's important to match this exactly, because later you'll run code that retrieves the secret based on this name)*
