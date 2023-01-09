@@ -48,13 +48,13 @@ In this exercise, you'll complete a partially implemented client application tha
     **C#**
 
     ```
-    dotnet add package Microsoft.CognitiveServices.Speech --version 1.19.0
+    dotnet add package Microsoft.CognitiveServices.Speech --version 1.24.0
     ```
     
     **Python**
     
     ```
-    pip install azure-cognitiveservices-speech==1.19.0
+    pip install azure-cognitiveservices-speech==1.24.0
     ```
 
 3. View the contents of the **translator** folder, and note that it contains a file for configuration settings:
@@ -171,7 +171,7 @@ Now that you have a **SpeechTranslationConfig** for the speech service in your c
     ```Python
     # Translate speech
     audio_config = speech_sdk.AudioConfig(use_default_microphone=True)
-    translator = speech_sdk.translation.TranslationRecognizer(translation_config, audio_config)
+    translator = speech_sdk.translation.TranslationRecognizer(translation_config, audio_config = audio_config)
     print("Speak now...")
     result = translator.recognize_once_async().get()
     print('Translating "{}"'.format(result.text))
@@ -239,7 +239,7 @@ Now that you have a **SpeechTranslationConfig** for the speech service in your c
     audioFile = 'station.wav'
     playsound(audioFile)
     audio_config = speech_sdk.AudioConfig(filename=audioFile)
-    translator = speech_sdk.translation.TranslationRecognizer(translation_config, audio_config)
+    translator = speech_sdk.translation.TranslationRecognizer(translation_config, audio_config = audio_config)
     print("Getting speech from file...")
     result = translator.recognize_once_async().get()
     print('Translating "{}"'.format(result.text))
