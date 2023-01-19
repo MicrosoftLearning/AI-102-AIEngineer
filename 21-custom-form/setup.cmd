@@ -5,7 +5,7 @@ rem Set variable values
 set subscription_id=YOUR_SUBSCRIPTION_ID
 set resource_group=YOUR_RESOURCE_GROUP
 set location=YOUR_LOCATION_NAME
-set expiry_date=2023-01-01T00:00:00Z
+set expiry_date=2024-01-01T00:00:00Z
 
 rem Get random numbers to create unique resource names
 set unique_id=!random!!random!
