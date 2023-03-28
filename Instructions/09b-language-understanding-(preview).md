@@ -71,7 +71,7 @@ The first thing we'll do in the new project is to define some intents.
 
 1. On the **Schema definition** page, on the **Intents** tab, select **&#65291; Add** to add a new intent named **GetTime**.
 
-2. Click the new **GetTime** intent to edit it, add the following utterances as example user input:
+2. Click the new **GetTime** intent to edit it, add the following utterances as example user input (Hit the **Enter** key to enter the utterance):
 
     `what is the time?`
 
@@ -83,7 +83,7 @@ The first thing we'll do in the new project is to define some intents.
 
 3. After you've added these utterances, click **Save changes** and go back to the **Schema definition** page.
 
-4. Add another new intent named **GetDay** with the following utterances:
+4. Add another new intent named **GetDay** with the following utterances (Hit the **Enter** key to enter the utterance):
 
     `what day is it?`
 
@@ -93,7 +93,7 @@ The first thing we'll do in the new project is to define some intents.
 
     `what day of the week is it?`
 
-5. After you've added these utterances and saved them, go back to the **Schema definition** page and add another new intent named **GetDate** with the following utterances:
+5. After you've added these utterances and saved them, go back to the **Schema definition** page and add another new intent named **GetDate** with the following utterances (Hit the **Enter** key to enter the utterance):
 
     `what date is it?`
 
