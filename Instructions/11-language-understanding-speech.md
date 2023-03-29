@@ -1,6 +1,6 @@
 ---
 lab:
-    title: 'Use the Speech and Language Understanding Services'
+    title: 'Use the Speech and Language Understanding Services (deprecated)'
     module: 'Module 5 - Creating Language Understanding Solutions'
 ---
 

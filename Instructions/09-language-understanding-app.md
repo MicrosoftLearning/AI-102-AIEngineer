@@ -1,6 +1,6 @@
 ---
 lab:
-    title: 'Create a Language Understanding App'
+    title: 'Create a Language Understanding App (deprecated)'
     module: 'Module 5 - Creating Language Understanding Solutions'
 ---
 

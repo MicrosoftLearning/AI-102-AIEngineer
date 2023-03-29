@@ -1,6 +1,6 @@
 ---
 lab:
-    title: 'Create a Language Understanding Client Application'
+    title: 'Create a Language Understanding Client Application (deprecated)'
     module: 'Module 5 - Creating Language Understanding Solutions'
 ---
 
