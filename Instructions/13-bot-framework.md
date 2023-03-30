@@ -101,12 +101,12 @@ python app.py
     
 When the bot starts, note the endpoint at which it is running is shown. This should be similar to **http://localhost:3978**.
 
-2. Start the **Bot Framework Emulator**, and if you are prompted to install an update, select **Cancel**.
+2. Start the **Bot Framework Emulator** application (quick access to app is available on the Desktop), and if you are prompted to install an update, select **Cancel**.
 
-3. Open your bot by specifying the endpoint with the **/api/messages** path appended, like this:
+3. Open your bot by specifying by clicking on **Open Bot** button, and entering the endpoint with the **/api/messages** path appended on the **Bot URL** field, like the following, and click **Connect**:
 
     `http://localhost:3978/api/messages`
-
+    
 4. After the conversation is opened in a **Live chat** pane, wait for the message *Hello and welcome!*.
 5. Enter a message such as *Hello* and view the response from the bot, which should echo back the message you entered.
 6. Close the Bot Framework Emulator and return to Visual Studio Code, then in the terminal window, enter **CTRL+C** to stop the bot.

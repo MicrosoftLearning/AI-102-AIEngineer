@@ -90,7 +90,7 @@ using (var client = new HttpClient())
     using (var request = new HttpRequestMessage())
     {
         // Build the request
-        string path = "detect?api-version=3.0";
+        string path = "/detect?api-version=3.0";
         request.Method = HttpMethod.Post;
         request.RequestUri = new Uri(translatorEndpoint + path);
         request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
@@ -173,7 +173,7 @@ using (var client = new HttpClient())
     using (var request = new HttpRequestMessage())
     {
         // Build the request
-        string path = "translate?api-version=3.0&from=" + sourceLanguage + "&to=en" ;
+        string path = "/translate?api-version=3.0&from=" + sourceLanguage + "&to=en" ;
         request.Method = HttpMethod.Post;
         request.RequestUri = new Uri(translatorEndpoint + path);
         request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");

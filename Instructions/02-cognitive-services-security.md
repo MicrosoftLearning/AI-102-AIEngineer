@@ -118,7 +118,7 @@ First, you need to create a key vault and add a *secret* for the cognitive servi
     - **Region**: *The same region as your cognitive service resource*
     - **Pricing tier**: Standard
 3. Wait for deployment to complete and then go to your key vault resource.
-4. In the left navigation pane, select **Secrets** (in the Settings section).
+4. In the left navigation pane, select **Secrets** (in the Objects section).
 5. Select **+ Generate/Import** and add a new secret with the following settings :
     - **Upload options**: Manual
     - **Name**: Cognitive-Services-Key *(it's important to match this exactly, because later you'll run code that retrieves the secret based on this name)*
@@ -150,7 +150,7 @@ The output of this command includes information about your new service principal
 
 Make a note of the **appId**, **password**, and **tenant** values - you will need them later (if you close this terminal, you won't be able to retrieve the password; so it's important to note the values now - you can paste the output into a new text file in Visual Studio Code to ensure you can find the values you need later!)
 
-2. To get the **object ID** of your service principal, run the following Azure CLI command, replacing *&lt;appId&gt;* with the value of your service principal's app ID.
+2. To get the **object ID** of your service principal, run the following Azure CLI command, replacing *&lt;appId&gt;* with the value of your service principal's app ID. If running the following command gives no response, you may be using a different version of Azure CLI; replace `objectId` with `id` if that is the case.
 
     ```
     az ad sp show --id <appId> --query objectId --out tsv

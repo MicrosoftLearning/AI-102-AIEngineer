@@ -81,15 +81,15 @@ You can create a knowledge base from scratch, but it's common to start by import
 Your knowledge base has been populated with question and answer pairs from the Microsoft Learn FAQ, supplemented with a set of conversational *chit-chat* question  and answer pairs. You can extend the knowledge base by adding additional question and answer pairs.
 
 1. In your **LearnFAQ** project in Language Studio, select the **Edit knowledge base** page to see the existing question and answer pairs (if some tips are displayed, read them and click **Got it** to dismiss them, or click **Skip all**)
-2. In the knowledge base, select **&#65291; Add question pair**.
-3. In the **Question** box, type `What is Microsoft certification?` and press **Enter****.
-4. Select **&#65291; Add alternative phrase** and type `How can I demonstrate my Microsoft technology skills?` and press **Enter**.
-5. In the **Answer** box, type `The Microsoft Certified Professional program enables you to validate and prove your skills with Microsoft technologies.` Then press **Submit** to add the question (including alternative phrasing) and answer to the knowledge base.
+2. In the knowledge base, on the **Question answer pairs** tab, select **&#65291;**, and create a new quaetion answer pair with the following settings:
+    - **Source**: `https://docs.microsoft.com/en-us/learn/support/faq`
+    - **Question**: `What is Microsoft certification?`
+    - **Answer**: `The Microsoft Certified Professional program enables you to validate and prove your skills with Microsoft technologies.`
+3. In the page for the **What is Microsoft certification?** question that is created, expand **Alternate questions**. Then add the alternate question `How can I demonstrate my Microsoft technology skills?`.
 
     In some cases, it makes sense to enable the user to follow up on answer to create a *multi-turn* conversation that enables the user to iteratively refine the question to get to the answer they need.
 
-6. Under the answer you entered for the certification question, select **&#65291; Add follow-up prompts**.
-7. In the **Follow-up Prompt** dialog box, enter the following settings, and then click **Add prompt**:
+4. Under the answer you entered for the certification question, expand **Follow-up prompts** add add the following follow-up prompt:
     - **Text displayed in the prompt to the user**: `Learn more about certification`.
     - Select **Create link to new pair**, and enter this text: `You can learn more about certification on the [Microsoft certification page](https://docs.microsoft.com/learn/certifications/).`
     - **Show in contextual flow only**: Selected. *This option ensures that the answer is only ever returned in the context of a follow-up question from the original certification question.*
@@ -98,8 +98,8 @@ Your knowledge base has been populated with question and answer pairs from the M
 
 Now that you have a knowledge base, you can test it in Language Studio.
 
-1. At the top right of the page, click **Save changes**.
-2. After the changes have been saved, click **Test** to open the test pane.
+1. ASave the changes to your knowledge base.
+2. After the changes have been saved, select **Test** to open the test pane.
 3. In the test pane, at the top, *deselect* the option to display short answers. Then at the bottom enter the message `Hello`. A suitable response should be returned.
 4. In the test pane, at the bottom enter the message `What is Microsoft Learn?`. An appropriate response from the FAQ should be returned.
 5. Enter the message `Thanks!` An appropriate chit-chat response should be returned.
@@ -116,7 +116,7 @@ The knowledge base provides a back-end service that client applications can use 
 3. When deployment is complete, click **Get prediction URL** to view the REST endpoint for your knowledge base, and copy it to the clipboard (but don't close the dialog box yet).
 4. In Visual Studio Code, in the **12-qna** folder, open **ask-question.cmd**. This script uses *Curl* to call the REST interface of a question answering endpoint.
 5. In the script, replace *YOUR_PREDICTION_ENDPOINT* with the prediction endpoint you copied (ensuring it is enclosed in the quotation marks).
-6. Return to the browser and in the **Get prediction URL** dialog box, note that the sample request includes a value for the **Ocp-Apim-Subscription-Key** parameter, which looks similar to *ab12c345de678fg9hijk01lmno2pqrs34*. This is the authorization key for your resource. Copy it to the clipboard, and then click **Got it** to close the dialog box.
+6. Return to the browser and in the **Get prediction URL** dialog box, note that the sample request includes a value for the **Ocp-Apim-Subscription-Key** parameter, which looks similar to *ab12c345de678fg9hijk01lmno2pqrs34*. This is the authorization key for your resource. Copy it to the clipboard, and then click **Close** to close the dialog box.
 7. Return to Visual Studio Code, and in the **ask-question.cmd** script, replace *YOUR_KEY* with the key you copied (ensuring it is enclosed in the quotation marks).
 8. Note that the Curl command in the script submits a **question** parameter with the value **What is a Learning Path?**.
 9. Verify that the entire script looks similar to the following code, then save the file.
@@ -155,6 +155,7 @@ Most commonly, the client applications used to retrieve answers from a knowledge
   - **App service plan/location**: *This may be set automatically to a suitable plan and location if one exists. If not, create a new plan*
   - **Application Insights**: Off
   - **Microsoft App ID and password**: Auto create App ID and password.
+  
 3. Wait for your bot to be created . Then click **Go to resource** (or alternatively, on the home page, click **Resource groups**, open the resource group where you created the web app bot, and click it.)
 4. In the blade for your bot, view the **Test in Web Chat** page, and wait until the bot displays the message **Hello and welcome!** (it may take a few seconds to initialize).
 5. Use the test chat interface to ensure your bot answers questions from your knowledge base as expected. For example, try submitting `What is Microsoft certification?`.

@@ -1,6 +1,6 @@
 ---
 lab:
-    title: 'Use the Speech and Language Understanding Services'
+    title: 'Use the Speech and Language Understanding Services (deprecated)'
     module: 'Module 5 - Creating Language Understanding Solutions'
 ---
 
@@ -31,10 +31,12 @@ If you already have Language Understanding authoring and prediction resources in
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Name**: *Enter a unique name*
-    - **Authoring location**: *Select your preferred location*
-    - **Authoring pricing tier**: F0
-    - **Prediction location**: *Choose the <u>same location</u> as your authoring location*
-    - **Prediction pricing tier**: F0 (*If F0 is not available, choose S0*)
+    - **Authoring Resource**:
+        - **Region**: *Select your preferred location*
+        - **Authoring pricing tier**: F0
+    - **Prediction Resource**:
+        - **Region**: *Choose the <u>same location</u> as your authoring location*
+        - **Prediction pricing tier**: F0 (*If F0 is not available, choose S0*)
 
 3. Wait for the resources to be created, and note that two Language Understanding resources are provisioned; one for authoring, and another for prediction. You can view both of these by navigating to the resource group where you created them.
 

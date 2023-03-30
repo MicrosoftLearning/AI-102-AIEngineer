@@ -1,6 +1,6 @@
 ---
 lab:
-    title: 'Create a Conversational Language Understanding Client Application (Preview)'
+    title: 'Create a Conversational Language Understanding Client Application'
     module: 'Module 5 - Creating Language Understanding Solutions'
 ---
 
@@ -52,23 +52,23 @@ If you already have a **Clock** project from a previous lab or exercise, you can
 
 3. Open the **Conversational Language Understanding** page.
 
-3. Next to **&#65291;Create new project**, view the drop-down list and select **Import**. Click **Choose File** and then browse to the **10b-clu-client-(preview)** subfolder in the project folder containing the lab files for this exercise. Select **Clock.json**, click **Open**, and then click **Done**.
+4. Next to **&#65291;Create new project**, view the drop-down list and select **Import**. Click **Choose File** and then browse to the **10b-clu-client-(preview)** subfolder in the project folder containing the lab files for this exercise. Select **Clock.json**, click **Open**, and then click **Done**.
 
-4. If a panel with tips for creating an effective Language service app is displayed, close it.
+5. If a panel with tips for creating an effective Language service app is displayed, close it.
 
-5. At the left of the Language Studio portal, select **Training jobs** to train the app. Click **Start a training job**, name the model **Clock** and ensure that evaluation with training is enabled. Training may take several minutes to complete.
+6. At the left of the Language Studio portal, select **Training jobs** to train the app. Click **Start a training job**, name the model **Clock** and ensure that evaluation with training is enabled. Training may take several minutes to complete.
 
     > **Note**: Because the model name **Clock** is hard-coded in the clock-client code (used later in the lab), capitalize and spell the name exactly as described. 
 
-6. At the left of the Language Studio portal, select **Deploying a model** and use **Add deployment** to create deployment for the Clock model that's named **production**.
+7. At the left of the Language Studio portal, select **Deploying a model** and use **Add deployment** to create deployment for the Clock model that's named **production**.
 
     > **Note**: Because the deployment name **production** is hard-coded in the clock-client code (used later in the lab), capitalize and spell the name exactly as described. 
 
-7. After the deployment is complete, select the **production** deployment, and then click **Get prediction URL**. Client applications need the endpoint URL to use your deployed model.
+8. After the deployment is complete, select the **production** deployment, and then click **Get prediction URL**. Client applications need the endpoint URL to use your deployed model.
 
-8. At the left of the Language Studio portal, select **Project Settings** and note the **Primary key**. Client applications need the primary key to use your deployed model.
+9. At the left of the Language Studio portal, select **Project Settings** and note the **Primary key**. Client applications need the primary key to use your deployed model.
 
-9. Client applications need information from the prediction URL and the Language service key to connect to your deployed model and be authenticated.
+10. Client applications need information from the prediction URL and the Language service key to connect to your deployed model and be authenticated.
 
 ## Prepare to use the Language service SDK
 
