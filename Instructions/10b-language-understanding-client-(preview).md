@@ -64,11 +64,15 @@ If you already have a **Clock** project from a previous lab or exercise, you can
 
     > **Note**: Because the deployment name **production** is hard-coded in the clock-client code (used later in the lab), capitalize and spell the name exactly as described. 
 
-8. After the deployment is complete, select the **production** deployment, and then click **Get prediction URL**. Client applications need the endpoint URL to use your deployed model.
+8. The client applications needs the *endpoint URL* and *Primary key* to use your deployed model. To get those parameters, open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription. On the Search bar, search for **Language** and select it to choose the *Cognitiive Services|Language service*.
 
-9. At the left of the Language Studio portal, select **Project Settings** and note the **Primary key**. Client applications need the primary key to use your deployed model.
+9. Your Language service resource should be listed, select that resource.
 
-10. Client applications need information from the prediction URL and the Language service key to connect to your deployed model and be authenticated.
+10. On the left hand menu, under the *Resource Management* section, select **Keys and Endpoint**.
+
+11. Make a copy of your **KEY 1** and your **Endpoint**.
+
+12. Client applications need information from the prediction URL endpoint and the Language service key to connect to your deployed model and be authenticated.
 
 ## Prepare to use the Language service SDK
 
@@ -125,7 +129,6 @@ In this exercise, you'll complete a partially implemented client application tha
     # Import namespaces
     from azure.core.credentials import AzureKeyCredential
     from azure.ai.language.conversations import ConversationAnalysisClient
-    from azure.ai.language.conversations.models import ConversationAnalysisOptions
     ```
 
 ## Get a prediction from the Conversational Language model
@@ -182,36 +185,47 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
 
     ```Python
     # Call the Language service model to get intent and entities
-    convInput = ConversationAnalysisOptions(
-        query = userText
-        )
-    
     cls_project = 'Clock'
     deployment_slot = 'production'
 
     with client:
-        result = client.analyze_conversations(
-            convInput, 
-            project_name=cls_project, 
-            deployment_name=deployment_slot
-            )
+        query = userText
+        result = client.analyze_conversation(
+            task={
+                "kind": "Conversation",
+                "analysisInput": {
+                    "conversationItem": {
+                        "participantId": "1",
+                        "id": "1",
+                        "modality": "text",
+                        "language": "en",
+                        "text": query
+                    },
+                    "isLoggingEnabled": False
+                },
+                "parameters": {
+                    "projectName": cls_project,
+                    "deploymentName": deployment_slot,
+                    "verbose": True
+                }
+            }
+        )
 
-    # list the prediction results
-    top_intent = result.prediction.top_intent
-    entities = result.prediction.entities
+    top_intent = result["result"]["prediction"]["topIntent"]
+    entities = result["result"]["prediction"]["entities"]
 
     print("view top intent:")
-    print("\ttop intent: {}".format(result.prediction.top_intent))
-    print("\tcategory: {}".format(result.prediction.intents[0].category))
-    print("\tconfidence score: {}\n".format(result.prediction.intents[0].confidence_score))
+    print("\ttop intent: {}".format(result["result"]["prediction"]["topIntent"]))
+    print("\tcategory: {}".format(result["result"]["prediction"]["intents"][0]["category"]))
+    print("\tconfidence score: {}\n".format(result["result"]["prediction"]["intents"][0]["confidenceScore"]))
 
     print("view entities:")
     for entity in entities:
-        print("\tcategory: {}".format(entity.category))
-        print("\ttext: {}".format(entity.text))
-        print("\tconfidence score: {}".format(entity.confidence_score))
+        print("\tcategory: {}".format(entity["category"]))
+        print("\ttext: {}".format(entity["text"]))
+        print("\tconfidence score: {}".format(entity["confidenceScore"]))
 
-    print("query: {}".format(result.query))
+    print("query: {}".format(result["result"]["query"]))
     ```
 
     The call to the Language service model returns a prediction/result, which includes the top (most likely) intent as well as any entities that were detected in the input utterance. Your client application must now use that prediction to determine and perform the appropriate action.
@@ -308,9 +322,9 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
         if len(entities) > 0:
             # Check for a location entity
             for entity in entities:
-                if 'Location' == entity.category:
+                if 'Location' == entity["category"]:
                     # ML entities are strings, get the first one
-                    location = entity.text
+                    location = entity["text"]
         # Get the time for the specified location
         print(GetTime(location))
 
@@ -320,9 +334,9 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
         if len(entities) > 0:
             # Check for a Date entity
             for entity in entities:
-                if 'Date' == entity.category:
+                if 'Date' == entity["category"]:
                     # Regex entities are strings, get the first one
-                    date_string = entity.text
+                    date_string = entity["text"]
         # Get the day for the specified date
         print(GetDay(date_string))
 
@@ -332,9 +346,9 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
         if len(entities) > 0:
             # Check for a Weekday entity
             for entity in entities:
-                if 'Weekday' == entity.category:
+                if 'Weekday' == entity["category"]:
                 # List entities are lists
-                    day = entity.text
+                    day = entity["text"]
         # Get the date for the specified day
         print(GetDate(day))
 
