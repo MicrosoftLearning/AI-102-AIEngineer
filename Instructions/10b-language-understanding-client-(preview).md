@@ -64,7 +64,7 @@ If you already have a **Clock** project from a previous lab or exercise, you can
 
     > **Note**: Because the deployment name **production** is hard-coded in the clock-client code (used later in the lab), capitalize and spell the name exactly as described. 
 
-8. The client applications needs the *endpoint URL* and *Primary key* to use your deployed model. To get those parameters, open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription. On the Search bar, search for **Language** and select it to choose the *Cognitiive Services|Language service*.
+8. The client applications needs the *endpoint URL* and *Primary key* to use your deployed model. After the deployment is complete, to get those parameters, open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription. On the Search bar, search for **Language** and select it to choose the *Cognitiive Services|Language service*.
 
 9. Your Language service resource should be listed, select that resource.
 
