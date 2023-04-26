@@ -52,11 +52,11 @@ If you already have a **Clock** project from a previous lab or exercise, you can
 
 3. Open the **Conversational Language Understanding** page.
 
-4. Next to **&#65291;Create new project**, view the drop-down list and select **Import**. Click **Choose File** and then browse to the **10b-clu-client-(preview)** subfolder in the project folder containing the lab files for this exercise. Select **Clock.json**, click **Open**, and then click **Done**.
+4. Next to **&#65291;Create new project**, select **Import**. Click **Choose File** and then browse to the **10b-clu-client-(preview)** subfolder in the project folder containing the lab files for this exercise. Select **Clock.json**, click **Open**, and then click **Done**.
 
 5. If a panel with tips for creating an effective Language service app is displayed, close it.
 
-6. At the left of the Language Studio portal, select **Training jobs** to train the app. Click **Start a training job**, name the model **Clock** and ensure that evaluation with training is enabled. Training may take several minutes to complete.
+6. At the left of the Language Studio portal, select **Training jobs** to train the app. Click **Start a training job**, name the model **Clock** and keep default training mode (Standar) and data splitting. Select **Train**. Training may take several minutes to complete.
 
     > **Note**: Because the model name **Clock** is hard-coded in the clock-client code (used later in the lab), capitalize and spell the name exactly as described. 
 
