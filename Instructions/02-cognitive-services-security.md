@@ -112,15 +112,17 @@ First, you need to create a key vault and add a *secret* for the cognitive servi
 
 1. Make a note of the **key1** value for your cognitive services resource (or copy it to the clipboard).
 2. In the Azure portal, on the **Home** page, select the **&#65291;Create a resource** button, search for *Key Vault*, and create a **Key Vault** resource with the following settings:
-    **Basics** tab
-    - **Subscription**: *Your Azure subscription*
-    - **Resource group**: *The same resource group as your cognitive service resource*
-    - **Key vault name**: *Enter a unique name*
-    - **Region**: *The same region as your cognitive service resource*
-    - **Pricing tier**: Standard
+
+    - **Basics** tab
+        - **Subscription**: *Your Azure subscription*
+        - **Resource group**: *The same resource group as your cognitive service resource*
+        - **Key vault name**: *Enter a unique name*
+        - **Region**: *The same region as your cognitive service resource*
+        - **Pricing tier**: Standard
     
-    **Access configuration** tab
-    -  **Permission model**: Vault access policy 
+    - **Access configuration** tab
+        -  **Permission model**: Vault access policy
+     
 3. Wait for deployment to complete and then go to your key vault resource.
 4. In the left navigation pane, select **Secrets** (in the Objects section).
 5. Select **+ Generate/Import** and add a new secret with the following settings :
