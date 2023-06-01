@@ -10,8 +10,8 @@ def main():
     try:
         # Get Configuration Settings
         load_dotenv()
-        cog_key = os.getenv('COG_SERVICE_KEY')
-        cog_region = os.getenv('COG_SERVICE_REGION')
+        cog_key = os.getenv('449a474bfa594b30ace7d45e228e9d14')
+        cog_region = os.getenv('eastus')
         translator_endpoint = 'https://api.cognitive.microsofttranslator.com'
 
         # Analyze each text file in the reviews folder
@@ -44,11 +44,38 @@ def GetLanguage(text):
     # Return the language
     return language
 
+
+    # Use the Translator translate function
 def Translate(text, source_language):
     translation = ''
 
     # Use the Translator translate function
+    path = '/translate'
+    url = translator_endpoint + path
 
+    # Build the request
+    params = {
+        'api-version': '3.0',
+        'from': source_language,
+        'to': ['en']
+    }
+
+    headers = {
+        'Ocp-Apim-Subscription-Key': cog_key,
+        'Ocp-Apim-Subscription-Region': cog_region,
+        'Content-type': 'application/json'
+    }
+
+    body = [{
+        'text': text
+    }]
+
+    # Send the request and get response
+    request = requests.post(url, params=params, headers=headers, json=body)
+    response = request.json()
+
+    # Parse JSON array and get translation
+    translation = response[0]['translations'][0]['text']
 
     # Return the translation
     return translation
