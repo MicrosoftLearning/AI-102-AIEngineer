@@ -2,14 +2,15 @@ using System;
 using System.IO;
 using System.Text;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Net.Http;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
+using Azure.Core;
+using Azure.Core.Serialization;
 
 // Import namespaces
-
 
 namespace clock_client
 {
@@ -28,7 +29,7 @@ namespace clock_client
                 string predictionKey = configuration["LSPredictionKey"];
 
                 // Create a client for the Language service model
-
+                
                 // Get user input (until they enter "quit")
                 string userText = "";
                 while (userText.ToLower() != "quit")
@@ -39,10 +40,9 @@ namespace clock_client
                     {
 
                         // Call the Language service model to get intent and entities
-
-
+                        
                         // Apply the appropriate action
-
+                        
                     }
 
                 }

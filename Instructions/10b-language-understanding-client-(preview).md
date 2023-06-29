@@ -87,7 +87,8 @@ In this exercise, you'll complete a partially implemented client application tha
     **C#**
 
     ```
-    dotnet add package Azure.AI.Language.Conversations --version 1.0.0-beta.2
+    dotnet add package Azure.AI.Language.Conversations --version 1.0.0
+    dotnet add package Azure.Core
     ```
 
     **Python**
@@ -141,10 +142,10 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
 
     ```C#
     // Create a client for the Language service model
-    Uri lsEndpoint = new Uri(predictionEndpoint);
-    AzureKeyCredential lsCredential = new AzureKeyCredential(predictionKey);
+    Uri endpoint = new Uri(predictionEndpoint);
+    AzureKeyCredential credential = new AzureKeyCredential(predictionKey);
 
-    ConversationAnalysisClient lsClient = new ConversationAnalysisClient(lsEndpoint, lsCredential);
+    ConversationAnalysisClient client = new ConversationAnalysisClient(endpoint, credential);
     ```
 
     **Python**
@@ -161,24 +162,47 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
 
     ```C#
     // Call the Language service model to get intent and entities
-    var lsProject = "Clock";
-    var lsSlot = "production";
+    var projectName = "Clock";
+    var deploymentName = "production";
 
-    ConversationsProject conversationsProject = new ConversationsProject(lsProject, lsSlot);
-    Response<AnalyzeConversationResult> response = await lsClient.AnalyzeConversationAsync(userText, conversationsProject);
+    var data = new
+    {
+        analysisInput = new
+        {
+            conversationItem = new
+            {
+                text = userText,
+                id = "1",
+                participantId = "1",
+            }
+        },
+        parameters = new
+        {
+            projectName,
+            deploymentName,
 
-    ConversationPrediction conversationPrediction = response.Value.Prediction as ConversationPrediction;
+            // Use Utf16CodeUnit for strings in .NET.
+            stringIndexType = "Utf16CodeUnit",
+        },
+        kind = "Conversation",
+    };
 
-    Console.WriteLine(JsonConvert.SerializeObject(conversationPrediction, Formatting.Indented));
+    // Send request
+    Response response = await client.AnalyzeConversationAsync(RequestContent.Create(data));
+
+    dynamic conversationalTaskResult = response.Content.ToDynamicFromJson(JsonPropertyNames.CamelCase);
+    dynamic conversationPrediction = conversationalTaskResult.Result.Prediction;
+    
+    var options = new JsonSerializerOptions { WriteIndented = true };
+    Console.WriteLine(JsonSerializer.Serialize(conversationalTaskResult, options));
     Console.WriteLine("--------------------\n");
     Console.WriteLine(userText);
+
     var topIntent = "";
-    if (conversationPrediction.Intents[0].Confidence > 0.5)
+    if (conversationPrediction.Intents[0].ConfidenceScore > 0.5)
     {
         topIntent = conversationPrediction.TopIntent;
     }
-
-    var entities = conversationPrediction.Entities;
     ```
 
     **Python**
@@ -240,20 +264,15 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
     {
         case "GetTime":
             var location = "local";
-            // Check for entities
-            if (entities.Count > 0)
+            
+            // Check for a location entity
+            foreach (dynamic entity in conversationPrediction.Entities)
             {
-                // Check for a location entity
-                foreach (ConversationEntity entity in conversationPrediction.Entities)
+                if (entity.Category == "Location")
                 {
-                    if (entity.Category == "Location")
-                    {
-                        //Console.WriteLine($"Location Confidence: {entity.Confidence}");
-                        location = entity.Text;
-                    }
-                    
+                    //Console.WriteLine($"Location Confidence: {entity.ConfidenceScore}");
+                    location = entity.Text;
                 }
-
             }
 
             // Get the time for the specified location
@@ -264,19 +283,17 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
 
         case "GetDay":
             var date = DateTime.Today.ToShortDateString();
-            // Check for entities
-            if (entities.Count > 0)
+            
+            // Check for a Date entity
+            foreach (dynamic entity in conversationPrediction.Entities)
             {
-                // Check for a Date entity
-                foreach (ConversationEntity entity in conversationPrediction.Entities)
+                if (entity.Category == "Date")
                 {
-                    if (entity.Category == "Date")
-                    {
-                        //Console.WriteLine($"Location Confidence: {entity.Confidence}");
-                        date = entity.Text;
-                    }
+                    //Console.WriteLine($"Location Confidence: {entity.ConfidenceScore}");
+                    date = entity.Text;
                 }
             }
+            
             // Get the day for the specified date
             var getDayTask = Task.Run(() => GetDay(date));
             string dayResponse = await getDayTask;
@@ -286,19 +303,17 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
         case "GetDate":
             var day = DateTime.Today.DayOfWeek.ToString();
             // Check for entities
-            if (entities.Count > 0)
+            
+            // Check for a Weekday entity
+            foreach (dynamic entity in conversationPrediction.Entities)
             {
-                // Check for a Weekday entity
-                foreach (ConversationEntity entity in conversationPrediction.Entities)
+                if (entity.Category == "Weekday")
                 {
-                    if (entity.Category == "Weekday")
-                    {
-                        //Console.WriteLine($"Location Confidence: {entity.Confidence}");
-                        day = entity.Text;
-                    }
+                    //Console.WriteLine($"Location Confidence: {entity.ConfidenceScore}");
+                    day = entity.Text;
                 }
-                
             }
+            
             // Get the date for the specified day
             var getDateTask = Task.Run(() => GetDate(day));
             string dateResponse = await getDateTask;
