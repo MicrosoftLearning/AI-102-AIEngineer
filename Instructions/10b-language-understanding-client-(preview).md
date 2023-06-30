@@ -37,7 +37,6 @@ If you already have a Language service resource in your Azure subscription, you 
     - **Region**: *westus2*
     - **Name**: *Enter a unique name*
     - **Pricing tier**: *S*
-    - **Legal terms**: *select check box to confirm*
     - **Responsible AI Notice**: *select check box to confirm*
 
 3. Wait for the resources to be created. You can view your resource by navigating to the resource group where you created it.
@@ -56,7 +55,7 @@ If you already have a **Clock** project from a previous lab or exercise, you can
 
 5. If a panel with tips for creating an effective Language service app is displayed, close it.
 
-6. At the left of the Language Studio portal, select **Training jobs** to train the app. Click **Start a training job**, name the model **Clock** and keep default training mode (Standar) and data splitting. Select **Train**. Training may take several minutes to complete.
+6. At the left of the Language Studio portal, select **Training jobs** to train the app. Click **Start a training job**, name the model **Clock** and keep default training mode (Standard) and data splitting. Select **Train**. Training may take several minutes to complete.
 
     > **Note**: Because the model name **Clock** is hard-coded in the clock-client code (used later in the lab), capitalize and spell the name exactly as described. 
 
