@@ -276,8 +276,7 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
             }
 
             // Get the time for the specified location
-            var getTimeTask = Task.Run(() => GetTime(location));
-            string timeResponse = await getTimeTask;
+            string timeResponse = GetTime(location);
             Console.WriteLine(timeResponse);
             break;
 
@@ -295,8 +294,7 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
             }
             
             // Get the day for the specified date
-            var getDayTask = Task.Run(() => GetDay(date));
-            string dayResponse = await getDayTask;
+            string dayResponse = GetDay(date);
             Console.WriteLine(dayResponse);
             break;
 
@@ -315,8 +313,7 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
             }
             
             // Get the date for the specified day
-            var getDateTask = Task.Run(() => GetDate(day));
-            string dateResponse = await getDateTask;
+            string dateResponse = GetDate(day);
             Console.WriteLine(dateResponse);
             break;
 
