@@ -88,13 +88,13 @@ You can write code that consumes cognitive services REST APIs directly, but ther
     **C#**
 
     ```
-    dotnet add package Azure.AI.TextAnalytics --version 5.1.0
+    dotnet add package Azure.AI.TextAnalytics --version 5.3.0
     ```
 
     **Python**
 
     ```
-    pip install azure-ai-textanalytics==5.1.0
+    pip install azure-ai-textanalytics==5.3.0
     ```
 
 3. View the contents of the **sdk-client** folder, and note that it contains a file for configuration settings:
