@@ -37,7 +37,6 @@ If you already have a Language service resource in your Azure subscription, you 
     - **Region**: *westus2*
     - **Name**: *Enter a unique name*
     - **Pricing tier**: *S*
-    - **Legal terms**: *select check box to confirm*
     - **Responsible AI Notice**: *select check box to confirm*
 
 3. Wait for the resources to be created. You can view your resource by navigating to the resource group where you created it.
@@ -56,7 +55,7 @@ If you already have a **Clock** project from a previous lab or exercise, you can
 
 5. If a panel with tips for creating an effective Language service app is displayed, close it.
 
-6. At the left of the Language Studio portal, select **Training jobs** to train the app. Click **Start a training job**, name the model **Clock** and keep default training mode (Standar) and data splitting. Select **Train**. Training may take several minutes to complete.
+6. At the left of the Language Studio portal, select **Training jobs** to train the app. Click **Start a training job**, name the model **Clock** and keep default training mode (Standard) and data splitting. Select **Train**. Training may take several minutes to complete.
 
     > **Note**: Because the model name **Clock** is hard-coded in the clock-client code (used later in the lab), capitalize and spell the name exactly as described. 
 
@@ -164,7 +163,6 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
     // Call the Language service model to get intent and entities
     var projectName = "Clock";
     var deploymentName = "production";
-
     var data = new
     {
         analysisInput = new
@@ -180,24 +178,19 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
         {
             projectName,
             deploymentName,
-
             // Use Utf16CodeUnit for strings in .NET.
             stringIndexType = "Utf16CodeUnit",
         },
         kind = "Conversation",
     };
-
     // Send request
     Response response = await client.AnalyzeConversationAsync(RequestContent.Create(data));
-
     dynamic conversationalTaskResult = response.Content.ToDynamicFromJson(JsonPropertyNames.CamelCase);
-    dynamic conversationPrediction = conversationalTaskResult.Result.Prediction;
-    
+    dynamic conversationPrediction = conversationalTaskResult.Result.Prediction;   
     var options = new JsonSerializerOptions { WriteIndented = true };
     Console.WriteLine(JsonSerializer.Serialize(conversationalTaskResult, options));
     Console.WriteLine("--------------------\n");
     Console.WriteLine(userText);
-
     var topIntent = "";
     if (conversationPrediction.Intents[0].ConfidenceScore > 0.5)
     {
@@ -263,8 +256,7 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
     switch (topIntent)
     {
         case "GetTime":
-            var location = "local";
-            
+            var location = "local";           
             // Check for a location entity
             foreach (dynamic entity in conversationPrediction.Entities)
             {
@@ -274,15 +266,12 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
                     location = entity.Text;
                 }
             }
-
             // Get the time for the specified location
             string timeResponse = GetTime(location);
             Console.WriteLine(timeResponse);
             break;
-
         case "GetDay":
-            var date = DateTime.Today.ToShortDateString();
-            
+            var date = DateTime.Today.ToShortDateString();            
             // Check for a Date entity
             foreach (dynamic entity in conversationPrediction.Entities)
             {
@@ -291,17 +280,14 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
                     //Console.WriteLine($"Location Confidence: {entity.ConfidenceScore}");
                     date = entity.Text;
                 }
-            }
-            
+            }            
             // Get the day for the specified date
             string dayResponse = GetDay(date);
             Console.WriteLine(dayResponse);
             break;
-
         case "GetDate":
             var day = DateTime.Today.DayOfWeek.ToString();
-            // Check for entities
-            
+            // Check for entities            
             // Check for a Weekday entity
             foreach (dynamic entity in conversationPrediction.Entities)
             {
@@ -310,13 +296,11 @@ Now you're ready to implement code that uses the SDK to get a prediction from yo
                     //Console.WriteLine($"Location Confidence: {entity.ConfidenceScore}");
                     day = entity.Text;
                 }
-            }
-            
+            }          
             // Get the date for the specified day
             string dateResponse = GetDate(day);
             Console.WriteLine(dateResponse);
             break;
-
         default:
             // Some other intent (for example, "None") was predicted
             Console.WriteLine("Try asking me for the time, the day, or the date.");

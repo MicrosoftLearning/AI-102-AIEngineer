@@ -98,7 +98,7 @@ Your knowledge base has been populated with question and answer pairs from the M
 
 Now that you have a knowledge base, you can test it in Language Studio.
 
-1. ASave the changes to your knowledge base.
+1. Save the changes to your knowledge base.
 2. After the changes have been saved, select **Test** to open the test pane.
 3. In the test pane, at the top, *deselect* the option to display short answers. Then at the bottom enter the message `Hello`. A suitable response should be returned.
 4. In the test pane, at the bottom enter the message `What is Microsoft Learn?`. An appropriate response from the FAQ should be returned.

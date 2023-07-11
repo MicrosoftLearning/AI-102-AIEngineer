@@ -41,7 +41,7 @@ Let's start monitoring by defining an alert rule so you can detect activity in y
 1. In the Azure portal, go to your cognitive services resource and view its **Alerts** page (in the **Monitoring** section).
 2. Select **+ Create** dropdown, and select **Alert rule**
 3. In the **Create an alert rule** page, under **Scope**, verify that the your cognitive services resource is listed. (Close **Select a signal** pane if open)
-4. Select **Condition** tab, and view the **Select a signal** pane that appears on the right, where you can select a signal type to monitor.
+4. Select **Condition** tab, and click on the **See all signals** link to show the **Select a signal** pane that appears on the right, where you can select a signal type to monitor.
 5. In the **Signal type** list, select **Activity Log**, and then in the filtered list, select **List Keys**.
 6. Review the activity over the past 6 hours.
 7. Select the **Actions** tab. Note that you can specify an *action group*. This enables you to configure automated actions when an alert is fired - for example, sending an email notification. We won't do that in this exercise; but it can be useful to do this in a production environment.
