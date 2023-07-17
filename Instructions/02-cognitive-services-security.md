@@ -51,18 +51,18 @@ When you created your cognitive services resource, two authentication keys were 
 
     A web browser tab will open and prompt you to sign into Azure. Do so, and then close the browser tab and return to Visual Studio Code.
 
-    > **Tip**: If you have multiple subscriptions, you'll need to ensure that you are working in the one that contains your cognitive services resource.  Use this command to         determine your current subscription - its unique ID is the **id** value in the JSON that gets returned.
+    > **Tip**: If you have multiple subscriptions, you'll need to ensure that you are working in the one that contains your cognitive services resource.  Use the command `az account show` to determine your current subscription - its unique ID is the **id** value in the JSON that gets returned.
 
     > **Warning**: If you are getting a certificate verfication failure for `az login`, try waiting a few minutes and trying again.
-    >     ```
-    >     az account show
-    >     ```
+    >
     > If you need to change the subscription, run this command, changing *&lt;Your_Subscription_Id&gt;* to the correct subscription ID.
-    >     ```
-    >     az account set --subscription <Your_Subscription_Id>
-    >     ```
-    > Alternatively, you can explicitly specify the subscription ID as a *--subscription* parameter in each Azure CLI command that follows.
-
+    >
+    > ```
+    > az account set --subscription <Your_Subscription_Id>
+    > ```
+    > 
+    > Alternatively, you can explicitly specify the subscription ID as a *--subscription* parameter in each Azure CLI command that follows.  
+    
 3. Now you can use the following command to get the list of cognitive services keys, replacing *&lt;resourceName&gt;* with the name of your cognitive services resource, and *&lt;resourceGroup&gt;* with the name of the resource group in which you created it.
 
     ```
