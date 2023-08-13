@@ -1,0 +1,122 @@
+Metadata-Version: 2.1
+Name: azure-cognitiveservices-vision-face
+Version: 0.4.1
+Summary: Microsoft Azure Cognitive Services Face Client Library for Python
+Home-page: https://github.com/Azure/azure-sdk-for-python
+Author: Microsoft Corporation
+Author-email: azpysdkhelp@microsoft.com
+License: MIT License
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+Requires-Dist: msrest (>=0.5.0)
+Requires-Dist: azure-common (~=1.1)
+Requires-Dist: azure-cognitiveservices-vision-nspkg ; python_version<'3.0'
+
+# Microsoft Azure SDK for Python
+
+This is the Microsoft Azure Cognitive Services Face Client Library.
+This package has been tested with Python 2.7, 3.5, 3.6, 3.7 and 3.8.
+For a more complete view of Azure libraries, see the [Github repo](https://github.com/Azure/azure-sdk-for-python/)
+
+
+# Usage
+
+For code examples, see [Cognitive Services Face](https://docs.microsoft.com/python/api/overview/azure/cognitive-services)
+on docs.microsoft.com.
+
+
+# Provide Feedback
+
+If you encounter any bugs or have suggestions, please file an issue in the
+[Issues](https://github.com/Azure/azure-sdk-for-python/issues)
+section of the project.
+
+
+![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-python%2Fazure-cognitiveservices-vision-face%2FREADME.png)
+
+
+# Release History
+
+## 0.4.1 (2020-06-24)
+
+**Features**
+
+- Add recognition_03 support
+
+## 0.4.0 (2019-06-27)
+
+**Features**
+
+  - Add "detection_model" to operations when possible. This is a
+    breaking change if you were using positional arguments on some
+    scenarios
+
+**Breaking changes**
+
+  - Operation FaceListOperations.add_face_from_stream has a new
+    signature
+  - Operation FaceListOperations.add_face_from_url has a new
+    signature
+  - Operation FaceOperations.detect_with_stream has a new signature
+  - Operation FaceOperations.detect_with_url has a new signature
+  - Operation LargeFaceListOperations.add_face_from_stream has a new
+    signature
+  - Operation LargeFaceListOperations.add_face_from_url has a new
+    signature
+  - Operation LargePersonGroupPersonOperations.add_face_from_stream
+    has a new signature
+  - Operation LargePersonGroupPersonOperations.add_face_from_url has
+    a new signature
+  - Operation PersonGroupPersonOperations.add_face_from_stream has a
+    new signature
+  - Operation PersonGroupPersonOperations.add_face_from_url has a new
+    signature
+
+## 0.3.0 (2019-03-28)
+
+**Features**
+
+  - Model PersonGroup has a new parameter recognition_model
+  - Model FaceList has a new parameter recognition_model
+  - Model LargePersonGroup has a new parameter recognition_model
+  - Model LargeFaceList has a new parameter recognition_model
+  - Model DetectedFace has a new parameter recognition_model
+
+**Breaking changes**
+
+  - Operation FaceListOperations.create has a new signature
+  - Operation FaceListOperations.get has a new signature
+  - Operation FaceOperations.detect_with_stream has a new signature
+  - Operation FaceOperations.detect_with_stream has a new signature
+  - Operation FaceOperations.detect_with_url has a new signature
+  - Operation FaceOperations.detect_with_url has a new signature
+  - Operation LargeFaceListOperations.create has a new signature
+  - Operation LargeFaceListOperations.get has a new signature
+  - Operation LargePersonGroupOperations.create has a new signature
+  - Operation LargePersonGroupOperations.get has a new signature
+  - Operation LargePersonGroupOperations.list has a new signature
+  - Operation PersonGroupOperations.create has a new signature
+  - Operation PersonGroupOperations.get has a new signature
+  - Operation PersonGroupOperations.list has a new signature
+  - Operation FaceListOperations.list has a new signature
+  - Operation LargeFaceListOperations.list has a new signature
+
+## 0.2.0 (2019-03-07)
+
+  - Add snapshots features
+
+## 0.1.0 (2018-10-17)
+
+  - Initial Release
+
+
