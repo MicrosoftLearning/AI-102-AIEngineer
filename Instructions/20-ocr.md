@@ -6,7 +6,7 @@ lab:
 
 # Read Text in Images
 
-Optical character recognition (OCR) is a subset of computer vision that deals with reading text in images and documents. The **Computer Vision** service provides two APIs for reading text, which you'll explore in this exercise.
+Optical character recognition (OCR) is a subset of computer vision that deals with reading text in images and documents. The **Azure AI Vision** service provides two APIs for reading text, which you'll explore in this exercise.
 
 ## Clone the repository for this course
 
@@ -19,12 +19,12 @@ If you have not already done so, you must clone the code repository for this cou
 
     > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
 
-## Provision a Cognitive Services resource
+## Provision an Azure AI Services resource
 
-If you don't already have one in your subscription, you'll need to provision a **Cognitive Services** resource.
+If you don't already have one in your subscription, you'll need to provision an **Azure AI Services** resource.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *cognitive services*, and create a **Cognitive Services** resource with the following settings:
+2. In the top search bar, search for *Azure AI services*, select **Azure AI Services**, and create a resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Region**: *Choose any available region*
@@ -34,14 +34,14 @@ If you don't already have one in your subscription, you'll need to provision a *
 4. Wait for deployment to complete, and then view the deployment details.
 5. When the resource has been deployed, go to it and view its **Keys and Endpoint** page. You will need the endpoint and one of the keys from this page in the next procedure.
 
-## Prepare to use the Computer Vision SDK
+## Prepare to use the Azure AI Vision SDK
 
-In this exercise, you'll complete a partially implemented client application that uses the Computer Vision SDK to read text.
+In this exercise, you'll complete a partially implemented client application that uses the Azure AI Vision SDK to read text.
 
 > **Note**: You can choose to use the SDK for either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
 1. In Visual Studio Code, in the **Explorer** pane, browse to the **20-ocr** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
-2. Right-click the **read-text** folder and open an integrated terminal. Then install the Computer Vision SDK package by running the appropriate command for your language preference:
+2. Right-click the **read-text** folder and open an integrated terminal. Then install the Azure AI Vision SDK package by running the appropriate command for your language preference:
 
 **C#**
 
@@ -59,13 +59,13 @@ pip install azure-cognitiveservices-vision-computervision==0.7.0
     - **C#**: appsettings.json
     - **Python**: .env
 
-    Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your cognitive services resource. Save your changes.
+    Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your Azure AI services resource. Save your changes.
 4. Note that the **read-text** folder contains a code file for the client application:
 
     - **C#**: Program.cs
     - **Python**: read-text.py
 
-    Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Computer Vision SDK:
+    Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Azure AI Vision SDK:
 
 **C#**
 
@@ -84,12 +84,12 @@ from azure.cognitiveservices.vision.computervision.models import OperationStatus
 from msrest.authentication import CognitiveServicesCredentials
 ```
 
-5. In the code file for your client application, in the **Main** function, note that the code to load the configuration settings has been provided. Then find the comment **Authenticate Computer Vision client**. Then, under this comment, add the following language-specific code to create and authenticate a Computer Vision client object:
+5. In the code file for your client application, in the **Main** function, note that the code to load the configuration settings has been provided. Then find the comment **Authenticate Azure AI Vision client**. Then, under this comment, add the following language-specific code to create and authenticate a Azure AI Vision client object:
 
 **C#**
 
 ```C#
-// Authenticate Computer Vision client
+// Authenticate Azure AI Vision client
 ApiKeyServiceClientCredentials credentials = new ApiKeyServiceClientCredentials(cogSvcKey);
 cvClient = new ComputerVisionClient(credentials)
 {
@@ -100,7 +100,7 @@ cvClient = new ComputerVisionClient(credentials)
 **Python**
 
 ```Python
-# Authenticate Computer Vision client
+# Authenticate Azure AI Vision client
 credential = CognitiveServicesCredentials(cog_key) 
 cv_client = ComputerVisionClient(cog_endpoint, credential)
 ```
@@ -244,4 +244,4 @@ python read-text.py
 
 ## More information
 
-For more information about using the **Computer Vision** service to read text, see the [Computer Vision documentation](https://docs.microsoft.com/azure/cognitive-services/computer-vision/concept-recognizing-text).
+For more information about using the **Azure AI Vision** service to read text, see the [Azure AI Vision documentation](https://docs.microsoft.com/azure/cognitive-services/computer-vision/concept-recognizing-text).

@@ -8,7 +8,7 @@ lab:
 
 Suppose a company currently requires employees to manually purchase order sheets and enter the data into a database. They would like you to utilize AI services to improve the data entry process. You decide to build a machine learning model that will read the form and produce structured data that can be used to automatically update a database.
 
-**Form Recognizer** is a cognitive service that enables users to build automated data processing software. This software can extract text, key/value pairs, and tables from form documents using optical character recognition (OCR). Form Recognizer has pre-built models for recognizing invoices, receipts, and business cards. The service also provides the capability to train custom models. In this exercise, we will focus on building custom models.
+**Azure AI Document Intelligence** is an Azure AI service that enables users to build automated data processing software. This software can extract text, key/value pairs, and tables from form documents using optical character recognition (OCR). Azure AI Document Intelligence has pre-built models for recognizing invoices, receipts, and business cards. The service also provides the capability to train custom models. In this exercise, we will focus on building custom models.
 
 ## Clone the repository for this course
 
@@ -21,20 +21,20 @@ If you have not already done so, you must clone the code repository for this cou
 
     > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
 
-## Create a Form Recognizer resource
+## Create a Azure AI Document Intelligence resource
 
-To use the Form Recognizer service, you need a Form Recognizer or Cognitive Services resource in your Azure subscription. You'll use the Azure portal to create a resource.
+To use the Azure AI Document Intelligence service, you need a Azure AI Document Intelligence or Azure AI Services resource in your Azure subscription. You'll use the Azure portal to create a resource.
 
 1.  Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 
-2. Select the **&#65291;Create a resource** button, search for *Form Recognizer*, and create a **Form Recognizer** resource with the following settings:
+2. In the top search bar, search for *Document intelligence*, select **Document intelligence**, and create a resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Region**: *Choose any available region*
     - **Name**: *Enter a unique name*
     - **Pricing tier**: F0
 
-    > **Note**: If you already have an F0 form recognizer service in your subscription, select **S0** for this one.
+    > **Note**: If you already have an F0 Document Intelligence service in your subscription, select **S0** for this one.
 
 3. When the resource has been deployed, go to it and view its **Keys and Endpoint** page. You will need the **endpoint** and one of the **keys** from this page to manage access from your code later on. 
 
@@ -52,7 +52,7 @@ You'll use the sample forms from the **21-custom-form/sample-forms** folder in t
 
 2. Return to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
 
-3. View the **Resource group** in which you created the Form Recognizer resource previously.
+3. View the **Resource group** in which you created the Document Intelligence resource previously.
 
 4. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with your **resource group** name in subsequent steps.
 
@@ -85,7 +85,7 @@ az account list-locations -o table
     - Upload files from your local _sampleforms_ folder to a container called _sampleforms_ in the storage account
     - Print a Shared Access Signature URI
 
-12. Modify the **subscription_id**, **resource_group**, and **location** variable declarations with the appropriate values for the subscription, resource group, and location name where you deployed the Form Recognizer resource. 
+12. Modify the **subscription_id**, **resource_group**, and **location** variable declarations with the appropriate values for the subscription, resource group, and location name where you deployed the Document Intelligence resource. 
 Then **save** your changes.
 
     Leave the **expiry_date** variable as it is for the exercise. This variable is used when generating the Shared Access Signature (SAS) URI. In practice, you will want to set an appropriate expiry date for your SAS. You can learn more about SAS [here](https://docs.microsoft.com/azure/storage/common/storage-sas-overview#how-a-shared-access-signature-works).  
@@ -102,7 +102,7 @@ setup
 
 15. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account just created. Open the storage account and in the pane on the left, select **Storage Browser (preview)**. Then in Storage Browser, expand **BLOB CONTAINERS** and select the **sampleforms** container to verify that the files have been uploaded from your local **21-custom-form/sample-forms** folder.
 
-## Train a model using the Form Recognizer SDK
+## Train a model using the Document Intelligence SDK
 
 Now you will train a model using the **.jpg** and **.json** files.
 
@@ -110,12 +110,12 @@ Now you will train a model using the **.jpg** and **.json** files.
 2. Open **Form_1.jpg.labels.json** and review the JSON it contains. This file identifies the location and values for named fields in the **Form_1.jpg** training document.
 3. Open **Form_1.jpg.ocr.json** and review the JSON it contains. This file contains a JSOn representation of the text layout of **Form_1.jpg**, including the location of all text areas found in the form.
 
-    *The field information files have been provided for you in this exercise. For your own projects, you can create these files using the [Form Recognizer Studio](https://formrecognizer.appliedai.azure.com/studio). As you use the tool, your field information files are automatically created and stored in your connected storage account.*
+    *The field information files have been provided for you in this exercise. For your own projects, you can create these files using the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio). As you use the tool, your field information files are automatically created and stored in your connected storage account.*
 
 4. In Visual Studio Code, in the **21-custom-form** folder, expand the **C-Sharp** or **Python** folder depending on your language preference.
 5. Right-click the **train-model** folder and open an integrated terminal.
 
-6. Install the Form Recognizer package by running the appropriate command for your language preference:
+6. Install the Document Intelligence package by running the appropriate command for your language preference:
 
 **C#**
 
@@ -134,8 +134,8 @@ pip install azure-ai-formrecognizer==3.0.0
     - **Python**: .env
 
 8. Edit the configuration file, modifying the settings to reflect:
-    - The **endpoint** for your Form Recognizer resource.
-    - A **key** for your Form Recognizer resource.
+    - The **endpoint** for your Document Intelligence resource.
+    - A **key** for your Document Intelligence resource.
     - The **SAS URI** for your blob container.
 
 9. Note that the **train-model** folder contains a code file for the client application:
@@ -170,13 +170,13 @@ python train-model.py
 12. Wait for the program to end, then review the model output.
 13. Write down the Model ID in the terminal output. You will need it for the next part of the lab. 
 
-## Test your custom Form Recognizer model 
+## Test your custom Document Intelligence model 
 
 1. In the **21-custom-form** folder, in the subfolder for your preferred language (**C-Sharp** or **Python**), expand the **test-model** folder.
 
 2. Right-click the **test-model** folder and select **open an integrated terminal**.
 
-3. In the terminal for the **test-model** folder, install the Form Recognizer package by running the appropriate command for your language preference:
+3. In the terminal for the **test-model** folder, install the Document Intelligence package by running the appropriate command for your language preference:
 
 **C#**
 
@@ -207,8 +207,8 @@ pip install tabulate
 ```
 
 5. In the **test-model** folder, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
-    - Your Form Recognizer endpoint.
-    - Your Form Recognizer key.
+    - Your Document Intelligence endpoint.
+    - Your Document Intelligence key.
     - The Model ID generated when you trained the model (you can find this by switching the terminal back to the **cmd** console for the **train-model** folder). **Save** your changes.
 
 6. In the **test-model** folder, open the code file for your client application (*Program.cs* for C#, *test-model.py* for Python) and review the code it contains, noting the following details:
@@ -235,4 +235,4 @@ python test-model.py
 
 ## More information
 
-For more information about the Form Recognizer service, see the [Form Recognizer documentation](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/).
+For more information about the Document Intelligence service, see the [Document Intelligence documentation](https://docs.microsoft.com/azure/cognitive-services/form-recognizer/).

@@ -24,7 +24,7 @@ def main():
         if len(sys.argv) > 1:
             image_file = sys.argv[1]
 
-        # Authenticate Computer Vision client
+        # Authenticate Azure AI Vision client
 
 
         # Analyze image

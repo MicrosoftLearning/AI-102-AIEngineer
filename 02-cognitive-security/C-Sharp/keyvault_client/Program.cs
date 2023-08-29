@@ -26,7 +26,7 @@ namespace keyvault_client
                 string appId = configuration["AppId"];
                 string appPassword = configuration["AppPassword"];
 
-                // Get cognitive services key from keyvault using the service principal credentials
+                // Get Azure AI services key from keyvault using the service principal credentials
                 var keyVaultUri = new Uri($"https://{keyVaultName}.vault.azure.net/");
                 ClientSecretCredential credential = new ClientSecretCredential(appTenant, appId, appPassword);
                 var keyVaultClient = new SecretClient(keyVaultUri, credential);

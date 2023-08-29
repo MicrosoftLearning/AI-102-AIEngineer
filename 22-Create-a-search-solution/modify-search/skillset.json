@@ -3,7 +3,7 @@
     "description": "Skillset for document extraction",
     "cognitiveServices": {
         "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
-        "description": "cognitive services",
+        "description": "Azure AI services",
         "key": "YOUR_COGNITIVE_SERVICES_KEY"
       },
     "skills": [

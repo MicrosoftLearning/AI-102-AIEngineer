@@ -59,13 +59,13 @@ If you have already cloned **AI-102-AIEngineer** code repository to the environm
 13. When the script completes, review the output it displays and note the following information about your Azure resources (you will need these values later):
     - Storage account name
     - Storage connection string
-    - Cognitive Services account
-    - Cognitive Services key
+    - Azure AI Services account
+    - Azure AI Services key
     - Search service endpoint
     - Search service admin key
     - Search service query key
 
-14. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account, Azure Cognitive Services resource, and Azure Cognitive Search resource.
+14. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account, Azure AI Services resource, and Azure Cognitive Search resource.
 
 ## Create a search solution
 
@@ -89,9 +89,9 @@ In this exercise, you'll use the Azure Cognitive Search REST interface to create
 
 3. Save and close the updated JSON file.
 4. In the **create-search** folder, open **skillset.json**. This file contains a JSON definition for a skillset named **margies-custom-skillset**.
-5. At the top of the skillset definition, in the **cognitiveServices** element, replace the **YOUR_COGNITIVE_SERVICES_KEY** placeholder with either of the keys for your cognitive services resources.
+5. At the top of the skillset definition, in the **cognitiveServices** element, replace the **YOUR_COGNITIVE_SERVICES_KEY** placeholder with either of the keys for your Azure AI Services resources.
 
-    *You can find the keys on the **Keys and Endpoint** page for your cognitive services resource in the Azure portal.*
+    *You can find the keys on the **Keys and Endpoint** page for your Azure AI Services resource in the Azure portal.*
 
 6. Save and close the updated JSON file.
 7. In the **create-search** folder, open **index.json**. This file contains a JSON definition for an index named **margies-custom-index**.
@@ -332,9 +332,9 @@ Now you need to include your function as a custom skill in the search solution s
 1. In Visual Studio Code, in the **23-custom-search-skill/update-search** folder, open the **update-skillset.json** file. This contains the JSON definition of a skillset.
 2. Review the skillset definition. It includes the same skills as before, as well as a new **WebApiSkill** skill named **get-top-words**.
 3. Edit the **get-top-words** skill definition to set the **uri** value to the URL for your Azure function (which you copied to the clipboard in the previous procedure), replacing **YOUR-FUNCTION-APP-URL**.
-4. At the top of the skillset definition, in the **cognitiveServices** element, replace the **YOUR_COGNITIVE_SERVICES_KEY** placeholder with either of the keys for your cognitive services resources.
+4. At the top of the skillset definition, in the **cognitiveServices** element, replace the **YOUR_COGNITIVE_SERVICES_KEY** placeholder with either of the keys for your Azure AI Services resources.
 
-    *You can find the keys on the **Keys and Endpoint** page for your cognitive services resource in the Azure portal.*
+    *You can find the keys on the **Keys and Endpoint** page for your Azure AI Services resource in the Azure portal.*
 
 5. Save and close the updated JSON file.
 6. In the **update-search** folder, open **update-index.json**. This file contains the JSON definition for the **margies-custom-index** index, with an additional field named **top_words** at the bottom of the index definition.

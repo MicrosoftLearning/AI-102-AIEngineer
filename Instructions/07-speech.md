@@ -6,7 +6,7 @@ lab:
 
 # Recognize and Synthesize Speech
 
-The **Speech** service is an Azure cognitive service that provides speech-related functionality, including:
+The **Speech** service is an Azure AI service that provides speech-related functionality, including:
 
 - A *speech-to-text* API that enables you to implement speech recognition (converting audible spoken words into text).
 - A *text-to-speech* API that enables you to implement speech synthesis (converting text into audible speech).
@@ -26,12 +26,12 @@ If you have not already cloned **AI-102-AIEngineer** code repository to the envi
 
     **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
 
-## Provision a Cognitive Services resource
+## Provision an Azure AI Services resource
 
-If you don't already have one in your subscription, you'll need to provision a **Cognitive Services** resource.
+If you don't already have one in your subscription, you'll need to provision an **Azure AI Services** resource.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *cognitive services*, and create a **Cognitive Services** resource with the following settings:
+2. In the top search bar, search for *Azure AI services*, select **Azure AI Services**, and create a resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Region**: *Choose any available region*
@@ -66,7 +66,7 @@ In this exercise, you'll complete a partially implemented client application tha
     - **C#**: appsettings.json
     - **Python**: .env
 
-    Open the configuration file and update the configuration values it contains to include an authentication **key** for your cognitive services resource, and the **location** where it is deployed. Save your changes.
+    Open the configuration file and update the configuration values it contains to include an authentication **key** for your Azure AI services resource, and the **location** where it is deployed. Save your changes.
 4. Note that the **speaking-clock** folder contains a code file for the client application:
 
     - **C#**: Program.cs
@@ -89,7 +89,7 @@ In this exercise, you'll complete a partially implemented client application tha
     import azure.cognitiveservices.speech as speech_sdk
     ```
 
-5. In the **Main** function, note that code to load the cognitive services key and region from the configuration file has already been provided. You must use these variables to create a **SpeechConfig** for your cognitive services resource. Add the following code under the comment **Configure speech service**:
+5. In the **Main** function, note that code to load the Azure AI services key and region from the configuration file has already been provided. You must use these variables to create a **SpeechConfig** for your Azure AI services resource. Add the following code under the comment **Configure speech service**:
 
     **C#**
     
@@ -128,7 +128,7 @@ In this exercise, you'll complete a partially implemented client application tha
 
 ## Recognize speech
 
-Now that you have a **SpeechConfig** for the speech service in your cognitive services resource, you can use the **Speech-to-text** API to recognize speech and transcribe it to text.
+Now that you have a **SpeechConfig** for the speech service in your Azure AI services resource, you can use the **Speech-to-text** API to recognize speech and transcribe it to text.
 
 ### If you have a working microphone
 

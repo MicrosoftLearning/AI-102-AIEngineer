@@ -1,12 +1,12 @@
 ---
 lab:
-    title: 'Analyze Images with Computer Vision'
-    module: 'Module 8 - Getting Started with Computer Vision'
+    title: 'Analyze Images with Azure AI Vision'
+    module: 'Module 8 - Getting Started with Azure AI Vision'
 ---
 
-# Analyze Images with Computer Vision
+# Analyze Images with Azure AI Vision
 
-Computer vision is an artificial intelligence capability that enables software systems to interpret visual input by analyzing images. In Microsoft Azure, the **Computer Vision** cognitive service provides pre-built models for common computer vision tasks, including analysis of images to suggest captions and tags, detection of common objects, landmarks, celebrities, brands, and the presence of adult content. You can also use the Computer Vision service to analyze image color and formats, and to generate "smart-cropped" thumbnail images.
+Azure AI Vision is an artificial intelligence capability that enables software systems to interpret visual input by analyzing images. In Microsoft Azure, the **Vision** Azure AI service provides pre-built models for common computer vision tasks, including analysis of images to suggest captions and tags, detection of common objects, landmarks, celebrities, brands, and the presence of adult content. You can also use the Azure AI Vision service to analyze image color and formats, and to generate "smart-cropped" thumbnail images.
 
 ## Clone the repository for this course
 
@@ -19,12 +19,12 @@ If you have not already cloned **AI-102-AIEngineer** code repository to the envi
 
     > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
 
-## Provision a Cognitive Services resource
+## Provision an Azure AI Services resource
 
-If you don't already have one in your subscription, you'll need to provision a **Cognitive Services** resource.
+If you don't already have one in your subscription, you'll need to provision an **Azure AI Services** resource.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *cognitive services*, and create a **Cognitive Services** resource with the following settings:
+2. In the top search bar, search for *Azure AI services*, select **Azure AI Services**, and create a resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Region**: *Choose any available region*
@@ -34,14 +34,14 @@ If you don't already have one in your subscription, you'll need to provision a *
 4. Wait for deployment to complete, and then view the deployment details.
 5. When the resource has been deployed, go to it and view its **Keys and Endpoint** page. You will need the endpoint and one of the keys from this page in the next procedure.
 
-## Prepare to use the Computer Vision SDK
+## Prepare to use the Azure AI Vision SDK
 
-In this exercise, you'll complete a partially implemented client application that uses the Computer Vision SDK to analyze images.
+In this exercise, you'll complete a partially implemented client application that uses the Azure AI Vision SDK to analyze images.
 
 > **Note**: You can choose to use the SDK for either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
 1. In Visual Studio Code, in the **Explorer** pane, browse to the **15-computer-vision** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
-2. Right-click the **image-analysis** folder and open an integrated terminal. Then install the Computer Vision SDK package by running the appropriate command for your language preference:
+2. Right-click the **image-analysis** folder and open an integrated terminal. Then install the Azure AI Vision SDK package by running the appropriate command for your language preference:
 
 **C#**
 
@@ -59,13 +59,13 @@ pip install azure-cognitiveservices-vision-computervision==0.7.0
     - **C#**: appsettings.json
     - **Python**: .env
 
-    Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your cognitive services resource. Save your changes.
+    Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your Azure AI services resource. Save your changes.
 4. Note that the **image-analysis** folder contains a code file for the client application:
 
     - **C#**: Program.cs
     - **Python**: image-analysis.py
 
-    Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Computer Vision SDK:
+    Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Azure AI Vision SDK:
 
 **C#**
 
@@ -86,21 +86,21 @@ from msrest.authentication import CognitiveServicesCredentials
     
 ## View the images you will analyze
 
-In this exercise, you will use the Computer Vision service to analyze multiple images.
+In this exercise, you will use the Azure AI Vision service to analyze multiple images.
 
 1. In Visual Studio Code, expand the **image-analysis** folder and the **images** folder it contains.
 2. Select each of the image files in turn to view then in Visual Studio Code.
 
 ## Analyze an image to suggest a caption
 
-Now you're ready to use the SDK to call the Computer Vision service and analyze an image.
+Now you're ready to use the SDK to call the Vision service and analyze an image.
 
-1. In the code file for your client application (**Program.cs** or **image-analysis.py**), in the **Main** function, note that the code to load the configuration settings has been provided. Then find the comment **Authenticate Computer Vision client**. Then, under this comment, add the following language-specific code to create and authenticate a Computer Vision client object:
+1. In the code file for your client application (**Program.cs** or **image-analysis.py**), in the **Main** function, note that the code to load the configuration settings has been provided. Then find the comment **Authenticate Azure AI Vision client**. Then, under this comment, add the following language-specific code to create and authenticate a Azure AI Vision client object:
 
 **C#**
 
 ```C#
-// Authenticate Computer Vision client
+// Authenticate Azure AI Vision client
 ApiKeyServiceClientCredentials credentials = new ApiKeyServiceClientCredentials(cogSvcKey);
 cvClient = new ComputerVisionClient(credentials)
 {
@@ -111,7 +111,7 @@ cvClient = new ComputerVisionClient(credentials)
 **Python**
 
 ```Python
-# Authenticate Computer Vision client
+# Authenticate Azure AI Vision client
 credential = CognitiveServicesCredentials(cog_key) 
 cv_client = ComputerVisionClient(cog_endpoint, credential)
 ```
@@ -260,7 +260,7 @@ if (len(analysis.tags) > 0):
 
 ## Get image categories
 
-The Computer Vision service can suggest *categories* for images, and within each category it can identify well-known landmarks.
+The Vision service can suggest *categories* for images, and within each category it can identify well-known landmarks.
 
 1. In the **AnalyzeImage** function, under the comment **Get image categories**, add the following code:
 
@@ -329,7 +329,7 @@ if (len(analysis.categories) > 0):
 
 ## Get brands in an image
 
-Some brands are visually recognizable from logo's, even when the name of the brand is not displayed. The Computer Vision service is trained to identify thousands of well-known brands.
+Some brands are visually recognizable from logo's, even when the name of the brand is not displayed. The Vision service is trained to identify thousands of well-known brands.
 
 1. In the **AnalyzeImage** function, under the comment **Get brands in the image**, add the following code:
 
@@ -505,6 +505,6 @@ print('Thumbnail saved in.', thumbnail_file_name)
 
 ## More information
 
-In this exercise, you explored some of the image analysis and manipulation capabilities of the Computer Vision service. The service also includes capabilities for reading text, detecting faces, and other computer vision tasks.
+In this exercise, you explored some of the image analysis and manipulation capabilities of the Azure AI Vision service. The service also includes capabilities for reading text, detecting faces, and other computer vision tasks.
 
-For more information about using the **Computer Vision** service, see the [Computer Vision documentation](https://docs.microsoft.com/azure/cognitive-services/computer-vision/).
+For more information about using the **Azure AI Vision** service, see the [Azure AI Vision documentation](https://docs.microsoft.com/azure/cognitive-services/computer-vision/).

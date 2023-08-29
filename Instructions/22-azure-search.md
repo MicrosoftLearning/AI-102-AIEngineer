@@ -28,29 +28,29 @@ If you have not already cloned **AI-102-AIEngineer** code repository to the envi
 The solution you will create for Margie's Travel requires the following resources in your Azure subscription:
 
 - An **Azure Cognitive Search** resource, which will manage indexing and querying.
-- A **Cognitive Services** resource, which provides AI services for skills that your search solution can use to enrich the data in the data source with AI-generated insights.
+- An **Azure AI Services** resource, which provides AI services for skills that your search solution can use to enrich the data in the data source with AI-generated insights.
 - A **Storage account** with a blob container in which the documents to be searched are stored.
 
-> **Important**: Your Azure Cognitive Search and Cognitive Services resources must be in the same location!
+> **Important**: Your Azure Cognitive Search and Azure AI Services resources must be in the same location!
 
 ### Create an Azure Cognitive Search resource
 
 1. In a web browser, open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *search*, and create a **Azure Cognitive Search** resource with the following settings:
+2. Select the **&#65291;Create a resource** button, search for *search*, and create an **Azure Cognitive Search** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Create a new resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Service name**: *Enter a unique name*
-    - **Location**: *Select a location - note that your Azure Cognitive Search and Cognitive Services resources must be in the same location*
+    - **Location**: *Select a location - note that your Azure Cognitive Search and Azure AI Services resources must be in the same location*
     - **Pricing tier**: Basic
 
 3. Wait for deployment to complete, and then go to the deployed resource.
 4. Review the **Overview** page on the blade for your Azure Cognitive Search resource in the Azure portal. Here, you can use a visual interface to create, test, manage, and monitor the various components of a search solution; including data sources, indexes, indexers, and skillsets.
 
-### Create a Cognitive Services resource
+### Create an Azure AI Services resource
 
-If you don't already have one in your subscription, you'll need to provision a **Cognitive Services** resource. Your search solution will use this to enrich the data in the datastore with AI-generated insights.
+If you don't already have one in your subscription, you'll need to provision an **Azure AI Services** resource. Your search solution will use this to enrich the data in the datastore with AI-generated insights.
 
-1. Return to the home page of the Azure portal, and then select the **&#65291;Create a resource** button, search for *cognitive services*, and create a **Cognitive Services** resource with the following settings:
+1. Return to the home page of the Azure portal, and then select the **&#65291;Create a resource** button, search for *Azure AI Services*, and create an **Azure AI Services** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *The same resource group as your Azure Cognitive Search resource*
     - **Region**: *The same location as your Azure Cognitive Search resource*
@@ -63,7 +63,7 @@ If you don't already have one in your subscription, you'll need to provision a *
 
 1. Return to the home page of the Azure portal, and then select the **&#65291;Create a resource** button, search for *storage account*, and create a **Storage account** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
-    - **Resource group**: **The same resource group as your Azure Cognitive Search and Cognitive Services resources*
+    - **Resource group**: **The same resource group as your Azure Cognitive Search and Azure AI Services resources*
     - **Storage account name**: *Enter a unique name*
     - **Region**: *Choose any available region*
     - **Performance**: Standard
@@ -111,7 +111,7 @@ Now that you have the documents in place, you can create a search solution by in
     - **Blob folder**: *Leave this blank*
     - **Description**: Brochures and reviews in Margie's Travel web site.
 3. Proceed to the next step (*Add cognitive skills*).
-4. in the **Attach Cognitive Services** section, select your cognitive services resource.
+4. in the **Attach Azure AI Services** section, select your Azure AI Services resource.
 5. In the **Add enrichments** section:
     - Change the **Skillset name** to **margies-skillset**.
     - Select the option **Enable OCR and merge all text into merged_content field**.
@@ -193,12 +193,12 @@ Now that you have an index, you can search it.
 
 The components of the search solution are based on JSON definitions, which you can view and edit in the Azure portal.
 
-While you can use the portal to create and modify search solutions, it's often desirable to define the search objects in JSON and use the Azure Cognitive Service REST interface to create and modify them.
+While you can use the portal to create and modify search solutions, it's often desirable to define the search objects in JSON and use the Azure AI Service REST interface to create and modify them.
 
 ### Get the endpoint and key for your Azure Cognitive Search resource
 
 1. In the Azure portal, return to the **Overview** page for your Azure Cognitive Search resource; and in the top section of the page, find the **Url** for your resource (which looks like **https://resource_name.search.windows.net**) and copy it to the clipboard.
-2. In Visual Studio Code, in the Explorer pane, expand the **22-create-a-search-solution** folder and its **modify-search** subfolder, and select **modify-search.cmd** to open it. You will use this script file to run *cURL* commands that submit JSON to the Azure Cognitive Service REST interface.
+2. In Visual Studio Code, in the Explorer pane, expand the **22-create-a-search-solution** folder and its **modify-search** subfolder, and select **modify-search.cmd** to open it. You will use this script file to run *cURL* commands that submit JSON to the Azure AI Service REST interface.
 3. In **modify-search.cmd**, replace the **YOUR_SEARCH_URL** placeholder with the URL you copied to the clipboard.
 4. In the Azure portal, view the **Keys** page for your Azure Cognitive Search resource, and copy the **Primary admin key** to the clipboard.
 5. In Visual Studio Code, replace the **YOUR_ADMIN_KEY** placeholder with the key you copied to the clipboard.
@@ -207,9 +207,9 @@ While you can use the portal to create and modify search solutions, it's often d
 ### Review and modify the skillset
 
 1. In Visual studio Code, in the **modify-search** folder, open **skillset.json**. This shows a JSON definition for **margies-skillset**.
-2. At the top of the skillset definition, note the **cognitiveServices** object, which is used to connect your Cognitive Services resource to the skillset.
-3. In the Azure portal, open your Cognitive Services resource (<u>not</u> your Azure Cognitive Search resource!) and view its **Keys** page. Then copy **Key 1** to the clipboard.
-4. In Visual Studio Code, in **skillset.json**, replace the **YOUR_COGNITIVE_SERVICES_KEY** placeholder with the Cognitive Services key you copied to the clipboard.
+2. At the top of the skillset definition, note the **cognitiveServices** object, which is used to connect your Azure AI Services resource to the skillset.
+3. In the Azure portal, open your Azure AI Services resource (<u>not</u> your Azure Cognitive Search resource!) and view its **Keys** page. Then copy **Key 1** to the clipboard.
+4. In Visual Studio Code, in **skillset.json**, replace the **YOUR_COGNITIVE_SERVICES_KEY** placeholder with the Azure AI Services key you copied to the clipboard.
 5. Scroll through the JSON file, noting that it includes definitions for the skills you created using the Azure Cognitive Search user interface in the Azure portal. At the bottom of the list of skills, an additional skill has been added with the following definition:
 
     ```

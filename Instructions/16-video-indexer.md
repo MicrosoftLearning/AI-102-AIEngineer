@@ -1,14 +1,14 @@
 ---
 lab:
     title: 'Analyze Video with Video Analyzer'
-    module: 'Module 8 - Getting Started with Computer Vision'
+    module: 'Module 8 - Getting Started with Azure AI Vision'
 ---
 
 # Analyze Video with Video Analyzer
 
-A large proportion of the data created and consumed today is in the format of video. **Video Analyzer for Media** is an AI-powered service that you can use to index videos and extract insights from them.
+A large proportion of the data created and consumed today is in the format of video. **Azure AI Video Indexer** is an AI-powered service that you can use to index videos and extract insights from them.
 
-> **Note**: From June 21st 2022, capabilities of cognitive services that return personally identifiable information are restricted to customers who have been granted [limited access](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-limited-access). Without getting limited access approval, recognizing people and celebrities with Video Analyzer for this lab is not available. For more details about the changes Microsoft has made, and why - see [Responsible AI investments and safeguards for facial recognition](https://azure.microsoft.com/blog/responsible-ai-investments-and-safeguards-for-facial-recognition/).
+> **Note**: From June 21st 2022, capabilities of Azure AI services that return personally identifiable information are restricted to customers who have been granted [limited access](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-limited-access). Without getting limited access approval, recognizing people and celebrities with Video Analyzer for this lab is not available. For more details about the changes Microsoft has made, and why - see [Responsible AI investments and safeguards for facial recognition](https://azure.microsoft.com/blog/responsible-ai-investments-and-safeguards-for-facial-recognition/).
 
 ## Clone the repository for this course
 
@@ -123,6 +123,6 @@ All interactions with the Video Analyzer REST API follow the same pattern:
 
 ## More information
 
-Recognition of people and celebrities is still available, but following the [Responsible AI Standard](https://aka.ms/aah91ff) those are restricted behind a Limited Access policy. These features include facial identification and celebrity recognition. To learn more and apply for access, see the [Limited Access for Cognitive Services](https://docs.microsoft.com/en-us/azure/cognitive-services/cognitive-services-limited-access).
+Recognition of people and celebrities is still available, but following the [Responsible AI Standard](https://aka.ms/aah91ff) those are restricted behind a Limited Access policy. These features include facial identification and celebrity recognition. To learn more and apply for access, see the [Limited Access for Azure AI Services](https://docs.microsoft.com/en-us/azure/cognitive-services/cognitive-services-limited-access).
 
 For more information about **Video Analyzer**, see the [Video Analyzer documentation](https://docs.microsoft.com/azure/azure-video-analyzer/video-analyzer-for-media-docs/).

@@ -62,13 +62,13 @@ If you have already cloned **AI-102-AIEngineer** code repository to the environm
 13. When the script completes, review the output it displays and note the following information about your Azure resources (you will need these values later):
     - Storage account name
     - Storage connection string
-    - Cognitive Services account
-    - Cognitive Services key
+    - Azure AI Services account
+    - Azure AI Services key
     - Search service endpoint
     - Search service admin key
     - Search service query key
 
-14. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account, Azure Cognitive Services resource, and Azure Cognitive Search resource.
+14. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account, Azure AI Services resource, and Azure Cognitive Search resource.
 
 ## Create a search solution
 
@@ -96,9 +96,9 @@ You'll use the REST interface to submit JSON definitions for your Azure Cognitiv
 
 3. Save and close the updated JSON file.
 4. In the **create-search** folder, open **skillset.json**. This file contains a JSON definition for a skillset named **margies-knowledge-skillset**.
-5. At the top of the skillset definition, in the **cognitiveServices** element, replace the **YOUR_COGNITIVE_SERVICES_KEY** placeholder with either of the keys for your cognitive services resources.
+5. At the top of the skillset definition, in the **cognitiveServices** element, replace the **YOUR_COGNITIVE_SERVICES_KEY** placeholder with either of the keys for your Azure AI Services resources.
 
-    *You can find the keys on the **Keys and Endpoint** page for your cognitive services resource in the Azure portal.*
+    *You can find the keys on the **Keys and Endpoint** page for your Azure AI Services resource in the Azure portal.*
 
 6. At the end of the collection of skills in your skillset, find the **Microsoft.Skills.Util.ShaperSkill** skill named **define-projection**. This skill defines a JSON structure for the enriched data that will be used for the projections that the pipeline will persist on the knowledge store for each document processed by the indexer.
 7. At the bottom of the skillset file, observe that the skillset also includes a **knowledgeStore** definition, which includes a connection string for the Azure Storage account where the knowledge store is to be created, and a collection of **projections**. This skillset includes three *projection groups*:

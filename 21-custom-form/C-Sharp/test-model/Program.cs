@@ -25,7 +25,7 @@ namespace test_model
                 string formKey = configuration["FormKey"];
                 string modelId = configuration["ModelId"];
                 
-                // Authenticate Form Recognizer Client 
+                // Authenticate Azure AI Document Intelligence Client 
                 var credential = new AzureKeyCredential(formKey);
                 var recognizerClient = new FormRecognizerClient(new Uri(formEndpoint), credential);
 

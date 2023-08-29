@@ -6,9 +6,9 @@ lab:
 
 # Detect and Analyze Faces
 
-The ability to detect and analyze human faces is a core AI capability. In this exercise, you'll explore two Azure Cognitive Services that you can use to work with faces in images: the **Computer Vision** service, and the **Face** service.
+The ability to detect and analyze human faces is a core AI capability. In this exercise, you'll explore two Azure AI Services that you can use to work with faces in images: the **Azure AI Vision** service, and the **Face** service.
 
-> **Note**: From June 21st 2022, capabilities of cognitive services that return personally identifiable information are restricted to customers who have been granted [limited access](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-limited-access). Additionally, capabilities that infer emotional state are no longer available. These restrictions may affect this lab exercise. We're working to address this, but in the meantime you may experience some errors when following the steps below; for which we apologize. For more details about the changes Microsoft has made, and why - see [Responsible AI investments and safeguards for facial recognition](https://azure.microsoft.com/blog/responsible-ai-investments-and-safeguards-for-facial-recognition/).
+> **Note**: From June 21st 2022, capabilities of Azure AI services that return personally identifiable information are restricted to customers who have been granted [limited access](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-limited-access). Additionally, capabilities that infer emotional state are no longer available. These restrictions may affect this lab exercise. We're working to address this, but in the meantime you may experience some errors when following the steps below; for which we apologize. For more details about the changes Microsoft has made, and why - see [Responsible AI investments and safeguards for facial recognition](https://azure.microsoft.com/blog/responsible-ai-investments-and-safeguards-for-facial-recognition/).
 
 ## Clone the repository for this course
 
@@ -21,12 +21,12 @@ If you have not already done so, you must clone the code repository for this cou
 
     > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
 
-## Provision a Cognitive Services resource
+## Provision an Azure AI Services resource
 
-If you don't already have one in your subscription, you'll need to provision a **Cognitive Services** resource.
+If you don't already have one in your subscription, you'll need to provision an **Azure AI Services** resource.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *cognitive services*, and create a **Cognitive Services** resource with the following settings:
+2. In the top search bar, search for *Azure AI services*, select **Azure AI Services**, and create a resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Region**: *Choose any available region*
@@ -36,14 +36,14 @@ If you don't already have one in your subscription, you'll need to provision a *
 4. Wait for deployment to complete, and then view the deployment details.
 5. When the resource has been deployed, go to it and view its **Keys and Endpoint** page. You will need the endpoint and one of the keys from this page in the next procedure.
 
-## Prepare to use the Computer Vision SDK
+## Prepare to use the Azure AI Vision SDK
 
-In this exercise, you'll complete a partially implemented client application that uses the Computer Vision SDK to analyze faces in an image.
+In this exercise, you'll complete a partially implemented client application that uses the Azure AI Vision SDK to analyze faces in an image.
 
 > **Note**: You can choose to use the SDK for either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
 1. In Visual Studio Code, in the **Explorer** pane, browse to the **19-face** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
-2. Right-click the **computer-vision** folder and open an integrated terminal. Then install the Computer Vision SDK package by running the appropriate command for your language preference:
+2. Right-click the **computer-vision** folder and open an integrated terminal. Then install the Azure AI Vision SDK package by running the appropriate command for your language preference:
 
     **C#**
 
@@ -61,14 +61,14 @@ In this exercise, you'll complete a partially implemented client application tha
     - **C#**: appsettings.json
     - **Python**: .env
 
-4. Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your cognitive services resource. Save your changes.
+4. Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your Azure AI services resource. Save your changes.
 
 5. Note that the **computer-vision** folder contains a code file for the client application:
 
     - **C#**: Program.cs
     - **Python**: detect-faces.py
 
-6. Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Computer Vision SDK:
+6. Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Azure AI Vision SDK:
 
     **C#**
 
@@ -89,21 +89,21 @@ In this exercise, you'll complete a partially implemented client application tha
 
 ## View the image you will analyze
 
-In this exercise, you will use the Computer Vision service to analyze an image of people.
+In this exercise, you will use the Azure AI Vision service to analyze an image of people.
 
 1. In Visual Studio Code, expand the **computer-vision** folder and the **images** folder it contains.
 2. Select the **people.jpg** image to view it.
 
 ## Detect faces in an image
 
-Now you're ready to use the SDK to call the Computer Vision service and detect faces in an image.
+Now you're ready to use the SDK to call the Vision service and detect faces in an image.
 
-1. In the code file for your client application (**Program.cs** or **detect-faces.py**), in the **Main** function, note that the code to load the configuration settings has been provided. Then find the comment **Authenticate Computer Vision client**. Then, under this comment, add the following language-specific code to create and authenticate a Computer Vision client object:
+1. In the code file for your client application (**Program.cs** or **detect-faces.py**), in the **Main** function, note that the code to load the configuration settings has been provided. Then find the comment **Authenticate Azure AI Vision client**. Then, under this comment, add the following language-specific code to create and authenticate a Azure AI Vision client object:
 
     **C#**
 
     ```C#
-    // Authenticate Computer Vision client
+    // Authenticate Azure AI Vision client
     ApiKeyServiceClientCredentials credentials = new ApiKeyServiceClientCredentials(cogSvcKey);
     cvClient = new ComputerVisionClient(credentials)
     {
@@ -114,7 +114,7 @@ Now you're ready to use the SDK to call the Computer Vision service and detect f
     **Python**
 
     ```Python
-    # Authenticate Computer Vision client
+    # Authenticate Azure AI Vision client
     credential = CognitiveServicesCredentials(cog_key) 
     cv_client = ComputerVisionClient(cog_endpoint, credential)
     ```
@@ -234,7 +234,7 @@ with open(image_file, mode="rb") as image_data:
 
 ## Prepare to use the Face SDK
 
-While the **Computer Vision** service offers basic face detection (along with many other image analysis capabilities), the **Face** service provides more comprehensive functionality for facial analysis and recognition.
+While the **Azure AI Vision** service offers basic face detection (along with many other image analysis capabilities), the **Face** service provides more comprehensive functionality for facial analysis and recognition.
 
 1. In Visual Studio Code, in the **Explorer** pane, browse to the **19-face** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **face-api** folder and open an integrated terminal. Then install the Face SDK package by running the appropriate command for your language preference:
@@ -255,14 +255,14 @@ While the **Computer Vision** service offers basic face detection (along with ma
     - **C#**: appsettings.json
     - **Python**: .env
 
-4. Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your cognitive services resource. Save your changes.
+4. Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your Azure AI services resource. Save your changes.
 
 5. Note that the **face-api** folder contains a code file for the client application:
 
     - **C#**: Program.cs
     - **Python**: analyze-faces.py
 
-6. Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Computer Vision SDK:
+6. Open the code file and at the top, under the existing namespace references, find the comment **Import namespaces**. Then, under this comment, add the following language-specific code to import the namespaces you will need to use the Vision SDK:
 
     **C#**
 
@@ -460,8 +460,8 @@ with open(image_file, mode="rb") as image_data:
 
 ## More information
 
-There are several additional features available within the **Face** service, but following the [Responsible AI Standard](https://aka.ms/aah91ff) those are restricted behind a Limited Access policy. These features include identifying, verifying, and creating facial recognition models. To learn more and apply for access, see the [Limited Access for Cognitive Services](https://docs.microsoft.com/en-us/azure/cognitive-services/cognitive-services-limited-access).
+There are several additional features available within the **Face** service, but following the [Responsible AI Standard](https://aka.ms/aah91ff) those are restricted behind a Limited Access policy. These features include identifying, verifying, and creating facial recognition models. To learn more and apply for access, see the [Limited Access for Azure AI Services](https://docs.microsoft.com/en-us/azure/cognitive-services/cognitive-services-limited-access).
 
-For more information about using the **Computer Vision** service for face detection, see the [Computer Vision documentation](https://docs.microsoft.com/azure/cognitive-services/computer-vision/concept-detecting-faces).
+For more information about using the **Azure AI Vision** service for face detection, see the [Azure AI Vision documentation](https://docs.microsoft.com/azure/cognitive-services/computer-vision/concept-detecting-faces).
 
 To learn more about the **Face** service, see the [Face documentation](https://docs.microsoft.com/azure/cognitive-services/face/).

@@ -25,7 +25,7 @@ namespace detect_faces
                 string cogSvcEndpoint = configuration["CognitiveServicesEndpoint"];
                 string cogSvcKey = configuration["CognitiveServiceKey"];
 
-                // Authenticate Computer Vision client
+                // Authenticate Azure AI Vision client
 
 
 

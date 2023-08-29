@@ -19,7 +19,7 @@ def main():
         app_id = os.getenv('APP_ID')
         app_password = os.getenv('APP_PASSWORD')
 
-        # Get cognitive services key from keyvault using the service principal credentials
+        # Get Azure AI services key from keyvault using the service principal credentials
         key_vault_uri = f"https://{key_vault_name}.vault.azure.net/"
         credential = ClientSecretCredential(app_tenant, app_id, app_password)
         keyvault_client = SecretClient(key_vault_uri, credential)

@@ -1,14 +1,14 @@
 ---
 lab:
-    title: 'Manage Cognitive Services Security'
-    module: 'Module 2 - Developing AI Apps with Cognitive Services'
+    title: 'Manage Azure AI Services Security'
+    module: 'Module 2 - Developing AI Apps with Azure AI Services'
 ---
 
-# Manage Cognitive Services Security
+# Manage Azure AI Services Security
 
-Security is a critical consideration for any application, and as a developer you should ensure that access to resources such as cognitive services is restricted to only those who require it.
+Security is a critical consideration for any application, and as a developer you should ensure that access to resources such as Azure AI services is restricted to only those who require it.
 
-Access to cognitive services is typically controlled through authentication keys, which are generated when you initially create a cognitive services resource.
+Access to Azure AI services is typically controlled through authentication keys, which are generated when you initially create an Azure AI services resource.
 
 ## Clone the repository for this course
 
@@ -19,14 +19,14 @@ If you have already cloned **AI-102-AIEngineer** code repository to the environm
 3. When the repository has been cloned, open the folder in Visual Studio Code.
 4. Wait while additional files are installed to support the C# code projects in the repo.
 
-    > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
+    > **Note**: If you are prompted to add required assets to build and debug or update Visual Studio Code, select **Not Now**.
 
-## Provision a Cognitive Services resource
+## Provision an Azure AI Services resource
 
-If you don't already have one in your subscription, you'll need to provision a **Cognitive Services** resource.
+If you don't already have one in your subscription, you'll need to provision an **Azure AI Services** resource.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *cognitive services*, and create a **Cognitive Services** resource with the following settings:
+2. In the top search bar, search for *Azure AI services*, select **Azure AI Services**, and create a resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Region**: *Choose any available region*
@@ -37,9 +37,9 @@ If you don't already have one in your subscription, you'll need to provision a *
 
 ## Manage authentication keys
 
-When you created your cognitive services resource, two authentication keys were generated. You can manage these in the Azure portal or by using the Azure command line interface (CLI).
+When you created your Azure AI services resource, two authentication keys were generated. You can manage these in the Azure portal or by using the Azure command line interface (CLI).
 
-1. In the Azure portal, go to your cognitive services resource and view its **Keys and Endpoint** page. This page contains the information that you will need to connect to your resource and use it from applications you develop. Specifically:
+1. In the Azure portal, go to your Azure AI services resource and view its **Keys and Endpoint** page. This page contains the information that you will need to connect to your resource and use it from applications you develop. Specifically:
     - An HTTP *endpoint* to which client applications can send requests.
     - Two *keys* that can be used for authentication (client applications can use either of the keys. A common practice is to use one for development, and another for production. You can easily regenerate the development key after developers have finished their work to prevent continued access).
     - The *location* where the resource is hosted. This is required for requests to some (but not all) APIs.
@@ -51,7 +51,7 @@ When you created your cognitive services resource, two authentication keys were 
 
     A web browser tab will open and prompt you to sign into Azure. Do so, and then close the browser tab and return to Visual Studio Code.
 
-    > **Tip**: If you have multiple subscriptions, you'll need to ensure that you are working in the one that contains your cognitive services resource.  Use this command to         determine your current subscription - its unique ID is the **id** value in the JSON that gets returned.
+    > **Tip**: If you have multiple subscriptions, you'll need to ensure that you are working in the one that contains your Azure AI services resource.  Use this command to         determine your current subscription - its unique ID is the **id** value in the JSON that gets returned.
 
     > **Warning**: If you are getting a certificate verfication failure for `az login`, try waiting a few minutes and trying again.
     >
@@ -67,15 +67,15 @@ When you created your cognitive services resource, two authentication keys were 
     >
     > Alternatively, you can explicitly specify the subscription ID as a *--subscription* parameter in each Azure CLI command that follows.
 
-3. Now you can use the following command to get the list of cognitive services keys, replacing *&lt;resourceName&gt;* with the name of your cognitive services resource, and *&lt;resourceGroup&gt;* with the name of the resource group in which you created it.
+3. Now you can use the following command to get the list of Azure AI services keys, replacing *&lt;resourceName&gt;* with the name of your Azure AI services resource, and *&lt;resourceGroup&gt;* with the name of the resource group in which you created it.
 
     ```
     az cognitiveservices account keys list --name <resourceName> --resource-group <resourceGroup>
     ```
 
-The command returns a list of the keys for your cognitive services resource - there are two keys, named **key1** and **key2**.
+The command returns a list of the keys for your Azure AI services resource - there are two keys, named **key1** and **key2**.
 
-4. To test your cognitive service, you can use **curl** - a command line tool for HTTP requests. In the **02-cognitive-security** folder, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your cognitive services resource.
+4. To test your Azure AI service, you can use **curl** - a command line tool for HTTP requests. In the **02-cognitive-security** folder, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;yourEndpoint&gt;* and *&lt;yourKey&gt;* with your endpoint URI and **Key1** key to use the Text Analytics API in your Azure AI services resource.
 
     ```
     curl -X POST "<yourEndpoint>/text/analytics/v3.0/languages?" -H "Content-Type: application/json" -H "Ocp-Apim-Subscription-Key: <yourKey>" --data-ascii "{'documents':[{'id':1,'text':'hello'}]}"
@@ -95,29 +95,29 @@ The command returns a JSON document containing information about the language de
     az cognitiveservices account keys regenerate --name <resourceName> --resource-group <resourceGroup> --key-name key1
     ```
 
-The list of keys for your cognitive services resource is returned - note that **key1** has changed since you last retrieved them.
+The list of keys for your Azure AI services resource is returned - note that **key1** has changed since you last retrieved them.
 
 7. Re-run the **rest-test** command with the old key (you can use the **^** key to cycle through previous commands), and verify that it now fails.
 8. Edit the *curl* command in **rest-test.cmd** replacing the key with the new **key1** value, and save the changes. Then rerun the **rest-test** command and verify that it succeeds.
 
-> **Tip**: In this exercise, you used the full names of Azure CLI parameters, such as **--resource-group**.  You can also use shorter alternatives, such as **-g**, to make your commands less verbose (but a little harder to understand).  The [Cognitive Services CLI command reference](https://docs.microsoft.com/cli/azure/cognitiveservices?view=azure-cli-latest) lists the parameter options for each cognitive services CLI command.
+> **Tip**: In this exercise, you used the full names of Azure CLI parameters, such as **--resource-group**.  You can also use shorter alternatives, such as **-g**, to make your commands less verbose (but a little harder to understand).  The [Azure AI Services CLI command reference](https://docs.microsoft.com/cli/azure/cognitiveservices?view=azure-cli-latest) lists the parameter options for each Azure AI services CLI command.
 
 ## Secure key access with Azure Key Vault
 
-You can develop applications that consume cognitive services by using a key for authentication. However, this means that the application code must be able to obtain the key. One option is to store the key in an environment variable or a configuration file where the application is deployed, but this approach leaves the key vulnerable to unauthorized access. A better approach when developing applications on Azure is to store the key securely in Azure Key Vault, and provide access to the key through a *managed identity* (in other words, a user account used by the application itself).
+You can develop applications that consume Azure AI services by using a key for authentication. However, this means that the application code must be able to obtain the key. One option is to store the key in an environment variable or a configuration file where the application is deployed, but this approach leaves the key vulnerable to unauthorized access. A better approach when developing applications on Azure is to store the key securely in Azure Key Vault, and provide access to the key through a *managed identity* (in other words, a user account used by the application itself).
 
 ### Create a key vault and add a secret
 
-First, you need to create a key vault and add a *secret* for the cognitive services key.
+First, you need to create a key vault and add a *secret* for the Azure AI services key.
 
-1. Make a note of the **key1** value for your cognitive services resource (or copy it to the clipboard).
+1. Make a note of the **key1** value for your Azure AI services resource (or copy it to the clipboard).
 2. In the Azure portal, on the **Home** page, select the **&#65291;Create a resource** button, search for *Key Vault*, and create a **Key Vault** resource with the following settings:
 
     - **Basics** tab
         - **Subscription**: *Your Azure subscription*
-        - **Resource group**: *The same resource group as your cognitive service resource*
+        - **Resource group**: *The same resource group as your Azure AI service resource*
         - **Key vault name**: *Enter a unique name*
-        - **Region**: *The same region as your cognitive service resource*
+        - **Region**: *The same region as your Azure AI service resource*
         - **Pricing tier**: Standard
     
     - **Access configuration** tab
@@ -128,13 +128,13 @@ First, you need to create a key vault and add a *secret* for the cognitive servi
 5. Select **+ Generate/Import** and add a new secret with the following settings :
     - **Upload options**: Manual
     - **Name**: Cognitive-Services-Key *(it's important to match this exactly, because later you'll run code that retrieves the secret based on this name)*
-    - **Value**: *Your **key1** cognitive services key*
+    - **Value**: *Your **key1** Azure AI services key*
 
 ### Create a service principal
 
 To access the secret in the key vault, your application must use a service principal that has access to the secret. You'll use the Azure command line interface (CLI) to create the service principal, find its object ID, and grant access to the secret in Azure Vault.
 
-1. Return to Visual Studio Code, and in the integrated terminal for the **02-cognitive-security** folder, run the following Azure CLI command, replacing *&lt;spName&gt;* with a suitable name for an application identity (for example, *ai-app*). Also replace *&lt;subscriptionId&gt;* and *&lt;resourceGroup&gt;* with the correct values for your subscription ID and the resource group containing your cognitive services and key vault resources:
+1. Return to Visual Studio Code, and in the integrated terminal for the **02-cognitive-security** folder, run the following Azure CLI command, replacing *&lt;spName&gt;* with a suitable name for an application identity (for example, *ai-app*). Also replace *&lt;subscriptionId&gt;* and *&lt;resourceGroup&gt;* with the correct values for your subscription ID and the resource group containing your Azure AI services and key vault resources:
 
     > **Tip**: If you are unsure of your subscription ID, use the **az account show** command to retrieve your subscription information - the subscription ID is the **id** attribute in the output.
 
@@ -170,12 +170,12 @@ Make a note of the **appId**, **password**, and **tenant** values - you will nee
 
 ### Use the service principal in an application
 
-Now you're ready to use the service principal identity in an application, so it can access the secret cognitive services key in your key vault and use it to connect to your cognitive services resource.
+Now you're ready to use the service principal identity in an application, so it can access the secret Azure AI services key in your key vault and use it to connect to your Azure AI services resource.
 
 > **Note**: In this exercise, we'll store the service principal credentials in the application configuration and use them to authenticate a **ClientSecretCredential** identity in your application code. This is fine for development and testing, but in a real production application, an administrator would assign a *managed identity* to the application so that it uses the service principal identity to access resources, without caching or storing the password.
 
 1. In Visual Studio Code, expand the **02-cognitive-security** folder and the **C-Sharp** or **Python** folder depending on your language preference.
-2. Right-click the **keyvault-client** folder and open an integrated terminal. Then install the packages you will need to use Azure Key Vault and the Text Analytics API in your cognitive services resource by running the appropriate command for your language preference:
+2. Right-click the **keyvault-client** folder and open an integrated terminal. Then install the packages you will need to use Azure Key Vault and the Text Analytics API in your Azure AI services resource by running the appropriate command for your language preference:
 
     **C#**
 
@@ -199,7 +199,7 @@ Now you're ready to use the service principal identity in an application, so it 
 
     Open the configuration file and update the configuration values it contains to reflect the following settings:
     
-    - The **endpoint** for your Cognitive Services resource
+    - The **endpoint** for your Azure AI Services resource
     - The name of your **Azure Key Vault** resource
     - The **tenant** for your service principal
     - The **appId** for your service principal
@@ -213,7 +213,7 @@ Now you're ready to use the service principal identity in an application, so it 
 
     Open the code file and review the code it contains, noting the following details:
     - The namespace for the SDK you installed is imported
-    - Code in the **Main** function retrieves the application configuration settings, and then it uses the service principal credentials to get the cognitive services key from the key vault.
+    - Code in the **Main** function retrieves the application configuration settings, and then it uses the service principal credentials to get the Azure AI services key from the key vault.
     - The **GetLanguage** function uses the SDK to create a client for the service, and then uses the client to detect the language of the text that was entered.
 5. Return to the integrated terminal for the **keyvault-client** folder, and enter the following command to run the program:
 
@@ -234,4 +234,4 @@ Now you're ready to use the service principal identity in an application, so it 
 
 ## More information
 
-For more information about securing cognitive services, see the [Cognitive Services security documentation](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-security).
+For more information about securing Azure AI services, see the [Azure AI Services security documentation](https://docs.microsoft.com/azure/cognitive-services/cognitive-services-security).

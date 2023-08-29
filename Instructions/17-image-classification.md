@@ -1,12 +1,12 @@
 ---
 lab:
-    title: 'Classify Images with Custom Vision'
+    title: 'Classify Images with Azure AI Custom Vision'
     module: 'Module 9 - Developing Custom Vision Solutions'
 ---
 
-# Classify Images with Custom Vision
+# Classify Images with Azure AI Custom Vision
 
-The **Custom Vision** service enables you to create computer vision models that are trained on your own images. You can use it to train *image classification* and *object detection* models; which you can then publish and consume from applications.
+The **Azure AI Custom Vision** service enables you to create computer vision models that are trained on your own images. You can use it to train *image classification* and *object detection* models; which you can then publish and consume from applications.
 
 In this exercise, you will use the Custom Vision service to train an image classification model that can identify three classes of fruit (apple, banana, and orange).
 
@@ -23,7 +23,7 @@ If you have not already cloned **AI-102-AIEngineer** code repository to the envi
 
 ## Create Custom Vision resources
 
-Before you can train a model, you will need Azure resources for *training* and *prediction*. You can create **Custom Vision** resources for each of these tasks, or you can create a single **Cognitive Services** resource and use it for either (or both).
+Before you can train a model, you will need Azure resources for *training* and *prediction*. You can create **Custom Vision** resources for each of these tasks, or you can create a single **Azure AI Services** resource and use it for either (or both).
 
 In this exercise, you'll create **Custom Vision** resources for training and prediction so that you can manage access and costs for these workloads separately.
 

@@ -33,7 +33,7 @@ namespace image_analysis
                 }
 
 
-                // Authenticate Computer Vision client
+                // Authenticate Azure AI Vision client
 
 
                 // Analyze image

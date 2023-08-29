@@ -1,12 +1,12 @@
 ---
 lab:
-    title: 'Get Started with Cognitive Services'
-    module: 'Module 2 - Developing AI Apps with Cognitive Services'
+    title: 'Get Started with Azure AI Services'
+    module: 'Module 2 - Developing AI Apps with Azure AI Services'
 ---
 
-# Get Started with Cognitive Services
+# Get Started with Azure AI Services
 
-In this exercise, you'll get started with Cognitive Services by creating a **Cognitive Services** resource in your Azure subscription and using it from a client application. The goal of the exercise is not to gain expertise in any particular service, but rather to become familiar with a general pattern for provisioning and working with cognitive services as a developer.
+In this exercise, you'll get started with Azure AI Services by creating an **Azure AI Services** resource in your Azure subscription and using it from a client application. The goal of the exercise is not to gain expertise in any particular service, but rather to become familiar with a general pattern for provisioning and working with Azure AI services as a developer.
 
 ## Clone the repository for this course
 
@@ -19,12 +19,12 @@ If you have not already cloned **AI-102-AIEngineer** code repository to the envi
 
     > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
 
-## Provision a Cognitive Services resource
+## Provision an Azure AI Services resource
 
-Azure Cognitive Services are cloud-based services that encapsulate artificial intelligence capabilities you can incorporate into your applications. You can provision individual cognitive services resources for specific APIs (for example, **Language** or **Computer Vision**), or you can provision a general **Cognitive Services** resource that provides access to multiple cognitive services APIs through a single endpoint and key. In this case, you'll use a single **Cognitive Services** resource.
+Azure AI Services are cloud-based services that encapsulate artificial intelligence capabilities you can incorporate into your applications. You can provision individual Azure AI services resources for specific APIs (for example, **Language** or **Vision**), or you can provision a general **Azure AI Services** resource that provides access to multiple Azure AI services APIs through a single endpoint and key. In this case, you'll use a single **Azure AI Services** resource.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *cognitive services*, and create a **Cognitive Services** resource with the following settings:
+2. In the top search bar, search for *Azure AI services*, select **Azure AI Services**, and create a resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Region**: *Choose any available region*
@@ -39,7 +39,7 @@ Azure Cognitive Services are cloud-based services that encapsulate artificial in
 
 ## Use a REST Interface
 
-The cognitive services APIs are REST-based, so you can consume them by submitting JSON requests over HTTP. In this example, you'll explore a console application that uses the **Language** REST API to perform language detection; but the basic principle is the same for all of the APIs supported by the Cognitive Services resource.
+The Azure AI services APIs are REST-based, so you can consume them by submitting JSON requests over HTTP. In this example, you'll explore a console application that uses the **Language** REST API to perform language detection; but the basic principle is the same for all of the APIs supported by the Azure AI Services resource.
 
 > **Note**: In this exercise, you can choose to use the REST API from either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
@@ -48,7 +48,7 @@ The cognitive services APIs are REST-based, so you can consume them by submittin
     - **C#**: appsettings.json
     - **Python**: .env
 
-    Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your cognitive services resource. Save your changes.
+    Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your Azure AI services resource. Save your changes.
 3. Note that the **rest-client** folder contains a code file for the client application:
 
     - **C#**: Program.cs
@@ -56,8 +56,8 @@ The cognitive services APIs are REST-based, so you can consume them by submittin
 
     Open the code file and review the code it contains, noting the following details:
     - Various namespaces are imported to enable HTTP communication
-    - Code in the **Main** function retrieves the endpoint and key for your cognitive services resource - these will be used to send REST requests to the Text Analytics service.
-    - The program accepts user input, and uses the **GetLanguage** function to call the Text Analytics language detection REST API for your cognitive services endpoint to detect the language of the text that was entered.
+    - Code in the **Main** function retrieves the endpoint and key for your Azure AI services resource - these will be used to send REST requests to the Text Analytics service.
+    - The program accepts user input, and uses the **GetLanguage** function to call the Text Analytics language detection REST API for your Azure AI services endpoint to detect the language of the text that was entered.
     - The request sent to the API consists of a JSON object containing the input data - in this case, a collection of **document** objects, each of which has an **id** and **text**.
     - The key for your service is included in the request header to authenticate your client application.
     - The response from the service is a JSON object, which the client application can parse.
@@ -80,7 +80,7 @@ The cognitive services APIs are REST-based, so you can consume them by submittin
 
 ## Use an SDK
 
-You can write code that consumes cognitive services REST APIs directly, but there are software development kits (SDKs) for many popular programming languages, including Microsoft C#, Python, and Node.js. Using an SDK can greatly simplify development of applications that consume cognitive services.
+You can write code that consumes Azure AI services REST APIs directly, but there are software development kits (SDKs) for many popular programming languages, including Microsoft C#, Python, and Node.js. Using an SDK can greatly simplify development of applications that consume Azure AI services.
 
 1. In Visual Studio Code, in the **Explorer** pane, in the **01-getting-started** folder, expand the **C-Sharp** or **Python** folder depending on your language preference.
 2. Right-click the **sdk-client** folder and open an integrated terminal. Then install the Text Analytics SDK package by running the appropriate command for your language preference:
@@ -101,7 +101,7 @@ You can write code that consumes cognitive services REST APIs directly, but ther
     - **C#**: appsettings.json
     - **Python**: .env
 
-    Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your cognitive services resource. Save your changes.
+    Open the configuration file and update the configuration values it contains to reflect the **endpoint** and an authentication **key** for your Azure AI services resource. Save your changes.
     
 4. Note that the **sdk-client** folder contains a code file for the client application:
 
@@ -110,7 +110,7 @@ You can write code that consumes cognitive services REST APIs directly, but ther
 
     Open the code file and review the code it contains, noting the following details:
     - The namespace for the SDK you installed is imported
-    - Code in the **Main** function retrieves the endpoint and key for your cognitive services resource - these will be used with the SDK to create a client for the Text Analytics service.
+    - Code in the **Main** function retrieves the endpoint and key for your Azure AI services resource - these will be used with the SDK to create a client for the Text Analytics service.
     - The **GetLanguage** function uses the SDK to create a client for the service, and then uses the client to detect the language of the text that was entered.
 5. Return to the integrated terminal for the **sdk-client** folder, and enter the following command to run the program:
 
@@ -133,4 +133,4 @@ You can write code that consumes cognitive services REST APIs directly, but ther
 
 ## More information
 
-For more information about Azure Cognitive Services, see the [Cognitive Services documentation](https://docs.microsoft.com/azure/cognitive-services/what-are-cognitive-services).
+For more information about Azure AI Services, see the [Azure AI Services documentation](https://docs.microsoft.com/azure/cognitive-services/what-are-cognitive-services).
