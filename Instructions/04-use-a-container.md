@@ -53,7 +53,7 @@ Many commonly used Azure AI services APIs are available in container images. For
         - **Image type**: Public
         - **Image**: `mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest`
         - **OS type**: Linux
-        - **Size**: 1 vcpu, 4 GB memory
+        - **Size**: 1 vcpu, 12 GB memory
     - **Networking**:
         - **Networking type**: Public
         - **DNS name label**: *Enter a unique name for the container endpoint*
@@ -82,7 +82,7 @@ Many commonly used Azure AI services APIs are available in container images. For
     > The command will look for the image on your local machine, and if it doesn't find it there it will pull it from the *mcr.microsoft.com* image registry and deploy it to your Docker instance. When deployment is complete, the container will start and listen for incoming requests on port 5000.
 
     ```
-    docker run --rm -it -p 5000:5000 --memory 4g --cpus 1 mcr.microsoft.com/azure-cognitive-services/textanalytics/language Eula=accept Billing=<yourEndpoint> ApiKey=<yourKey>
+    docker run --rm -it -p 5000:5000 --memory 12g --cpus 1 mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest Eula=accept Billing=<yourEndpoint> ApiKey=<yourKey>
     ```
 
 ## Use the container
@@ -90,7 +90,7 @@ Many commonly used Azure AI services APIs are available in container images. For
 1. In Visual Studio Code, in the **04-containers** folder, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;your_ACI_IP_address_or_FQDN&gt;* with the IP address or FQDN for your container.
 
     ```
-    curl -X POST "http://<your_ACI_IP_address_or_FQDN>:5000/text/analytics/v3.0/languages?" -H "Content-Type: application/json" --data-ascii "{'documents':[{'id':1,'text':'Hello world.'},{'id':2,'text':'Salut tout le monde.'}]}"
+    curl POST "http://<your_ACI_IP_address_or_FQDN>:5000/text/analytics/v3.0/languages" -H "Content-Type: application/json" --data-ascii "{'documents':[{'id':1,'text':'Hello world.'},{'id':2,'text':'Salut tout le monde.'}]}"
     ```
 
 2. Save your changes to the script. Note that you do not need to specify the Azure AI services endpoint or key - the request is processed by the containerized service. The container in turn communicates periodically with the service in Azure to report usage for billing, but does not send request data.
