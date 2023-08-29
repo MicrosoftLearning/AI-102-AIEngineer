@@ -51,22 +51,12 @@ When you created your Azure AI services resource, two authentication keys were g
 
     A web browser tab will open and prompt you to sign into Azure. Do so, and then close the browser tab and return to Visual Studio Code.
 
-    > **Tip**: If you have multiple subscriptions, you'll need to ensure that you are working in the one that contains your Azure AI services resource.  Use this command to         determine your current subscription - its unique ID is the **id** value in the JSON that gets returned.
+    > **Tip**: If you have multiple subscriptions, you'll need to ensure that you are working in the one that contains your Azure AI services resource.  Use the command `az account show` to determine your current subscription - its unique ID is the **id** value in the JSON that gets returned.
 
     > **Warning**: If you are getting a certificate verfication failure for `az login`, try waiting a few minutes and trying again.
-    >
-    > ```
-    > az account show
-    > ```
-    >
-    > If you need to change the subscription, run this command, changing *&lt;Your_Subscription_Id&gt;* to the correct subscription ID.
-    >
-    > ```
-    > az account set --subscription <Your_Subscription_Id>
-    > ```
-    >
-    > Alternatively, you can explicitly specify the subscription ID as a *--subscription* parameter in each Azure CLI command that follows.
-
+    > If you need to change the subscription, run this command, changing *&lt;Your_Subscription_Id&gt;* to the correct subscription ID: `az account set --subscription <Your_Subscription_Id>`
+    > Alternatively, you can explicitly specify the subscription ID as a *--subscription* parameter in each Azure CLI command that follows.  
+    
 3. Now you can use the following command to get the list of Azure AI services keys, replacing *&lt;resourceName&gt;* with the name of your Azure AI services resource, and *&lt;resourceGroup&gt;* with the name of the resource group in which you created it.
 
     ```
@@ -134,9 +124,9 @@ First, you need to create a key vault and add a *secret* for the Azure AI servic
 
 To access the secret in the key vault, your application must use a service principal that has access to the secret. You'll use the Azure command line interface (CLI) to create the service principal, find its object ID, and grant access to the secret in Azure Vault.
 
-1. Return to Visual Studio Code, and in the integrated terminal for the **02-cognitive-security** folder, run the following Azure CLI command, replacing *&lt;spName&gt;* with a suitable name for an application identity (for example, *ai-app*). Also replace *&lt;subscriptionId&gt;* and *&lt;resourceGroup&gt;* with the correct values for your subscription ID and the resource group containing your Azure AI services and key vault resources:
+1. Return to Visual Studio Code, and in the integrated terminal for the **02-cognitive-security** folder, run the following Azure CLI command, replacing *&lt;spName&gt;* with a unique suitable name for an application identity (for example, *ai-app* with your initials appended on the end; the name must be unique within your tenant). Also replace *&lt;subscriptionId&gt;* and *&lt;resourceGroup&gt;* with the correct values for your subscription ID and the resource group containing your Azure AI services and key vault resources:
 
-    > **Tip**: If you are unsure of your subscription ID, use the **az account show** command to retrieve your subscription information - the subscription ID is the **id** attribute in the output.
+    > **Tip**: If you are unsure of your subscription ID, use the **az account show** command to retrieve your subscription information - the subscription ID is the **id** attribute in the output. If you see an error about the object already existing, please choose a different unique name.
 
     ```
     az ad sp create-for-rbac -n "api://<spName>" --role owner --scopes subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>
