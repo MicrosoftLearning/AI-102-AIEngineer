@@ -68,6 +68,7 @@ If you don't already have one in your subscription, you'll need to provision an 
     - **Region**: *Choose any available region*
     - **Performance**: Standard
     - **Replication**: Locally-redundant storage (LRS)
+    - On the **Advanced** tab, check the box next to *Allow enabling anonymous access on individual containers*
 2. Wait for deployment to complete, and then go to the deployed resource.
 3. On the **Overview** page, note the **Subscription ID** -this identifies the subscription in which the storage account is provisioned.
 4. On the **Access keys** page, note that two keys have been generated for your storage account. Then select **Show keys** to view the keys.
