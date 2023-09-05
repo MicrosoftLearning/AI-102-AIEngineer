@@ -112,6 +112,7 @@ First, you need to create a key vault and add a *secret* for the Azure AI servic
     
     - **Access configuration** tab
         -  **Permission model**: Vault access policy
+        - Scroll down to the **Access policies** section and select your user using the checkbox on the left.
      
 3. Wait for deployment to complete and then go to your key vault resource.
 4. In the left navigation pane, select **Secrets** (in the Objects section).
