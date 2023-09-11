@@ -73,6 +73,7 @@ Many commonly used Azure AI services APIs are available in container images. For
         - *Don't add any tags*
 
 2. Wait for deployment to complete, and then go to the deployed resource.
+    > **Note** Please note that deploying an Azure AI container to Azure Container Instances typically takes 5-10 minutes (provisioning) before they are ready to use.
 3. Observe the following properties of your container instance resource on its **Overview** page:
     - **Status**: This should be *Running*.
     - **IP Address**: This is the public IP address you can use to access your container instances.
