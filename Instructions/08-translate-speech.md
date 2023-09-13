@@ -25,7 +25,7 @@ If you have already cloned **AI-102-AIEngineer** code repository to the environm
 
 ## Provision an Azure AI Speech resource
 
-If you don't already have one in your subscription, you'll need to provision a **Azure AI Speech service** resource.
+If you don't already have on in your subscription, you'll need to provision a **Azure AI Speech service** resource.
 
 1. Open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 1. Enter **Azure AI** in the search field at the top of the portal. Then select **Azure AI services** in the suggestions dropdown that appears.
