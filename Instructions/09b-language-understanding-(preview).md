@@ -331,7 +331,7 @@ Open up a new internet browser tab to work with Cloud Shell.
     cd 03-module/09-luis-app
     ```
 
-1. Then run `code send-call.sh` to open the file in the Cloud Shell editor.
+1. Then run `code send-call.sh` to open the file in the Cloud Shell editor. This file contains a script that will call the service with the question: "What's the time in Sydney?".
 1. Replace the following values from the corresponding values in the sample request from Language Studio:
 
     - **<ENDPOINT_URL>**: Your endpoint URL.Looks like: `https://my-service.cognitiveservices.azure.com/language/:analyze-conversations?api-version=2022-10-01-preview`
@@ -344,33 +344,41 @@ Open up a new internet browser tab to work with Cloud Shell.
 
     ```json
     {
-        "kind": "ConversationResult",
-        "result": {
-            "query": "what time is it",
-            "prediction": {
-                "topIntent": "GetTime",
-                "projectKind": "Conversation",
-                "intents": [
-                    {
-                        "category": "GetTime",
-                        "confidenceScore": 0.95666766
-                    },
-                    {
-                        "category": "GetDate",
-                        "confidenceScore": 0.00039585
-                    }
-                ],
-                "entities": [
-                    {
-                        "category":"Location",
-                        "text":"Sydney",
-                        "offset":19,
-                        "length":6,
-                        "confidenceScore":1
-                    }
-                ]
+      "kind": "ConversationResult",
+      "result": {
+        "query": "What's the time in Sydney",
+        "prediction": {
+          "topIntent": "GetTime",
+          "projectKind": "Conversation",
+          "intents": [
+            {
+              "category": "GetTime",
+              "confidenceScore": 0.9135122
+            },
+            {
+              "category": "GetDay",
+              "confidenceScore": 0.61633164
+            },
+            {
+              "category": "GetDate",
+              "confidenceScore": 0.601757
+            },
+            {
+              "category": "None",
+              "confidenceScore": 0
             }
+          ],
+          "entities": [
+            {
+              "category": "Location",
+              "text": "Sydney",
+              "offset": 19,
+              "length": 6,
+              "confidenceScore": 1
+            }
+          ]
         }
+      }
     }
     ```
 
