@@ -32,7 +32,7 @@ To create a conversational language model, you need a **Azure AI Language servic
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*.
     - **Region**: West US 2 or West Europe.
     - **Name**: *Enter a unique name*.
-    - **Pricing tier**: Select either **Free (F0)** or **Standard (S)* *tier if Free is not available.
+    - **Pricing tier**: Select either **Free (F0)** or **Standard (S)** tier if Free is not available.
     - **Responsible AI Notice**: Agree.
 1. Select **Review + create**.
 1. Wait for deployment to complete, and then view the deployment details.
@@ -130,7 +130,7 @@ Now that you've added some intents, let's train the language model and see if it
 
 1. On the **Add deployment** dialog, select **Create a new deployment name**, and then enter **production**.
 
-1. Select the **Clock** model in the **Model** page then select **Deploy**. The deployment may take some time.
+1. Select the **Clock** model in the **Model** field then select **Deploy**. The deployment may take some time.
 
 1. When the model has been deployed, select the **Testing deployments** page, then select the **production** deployment in the **Deployment name** field.
 
@@ -305,23 +305,41 @@ In a real project, you'd iteratively refine intents and entities, retrain, and r
 
 1. In the **Get prediction URL** dialog box, note that the URL for the prediction endpoint is shown along with a sample request, which consists of a **curl** command that submits an HTTP POST request to the endpoint, specifying the key for your Azure AI Language resource in the header and including a query and language in the request data.
 
-1. Copy the sample request, and paste it into your preferred text editor (for example Notepad).
+#### Call the API from the Azure Cloud Shell
 
-1. Replace the following placeholders:
-    - **PARTICIPANT_ID_HERE**: *1*
-    - **YOUR_QUERY_HERE**: *What's the time in Sydney*
-    - **QUERY_LANGUAGE_HERE**: *EN*
+Open up a new internet browser tab to work with Cloud Shell.
 
-    The command should resemble the following code:
+1. In the [Azure portal](https://portal.azure.com?azure-portal=true), select the **[>_]** (*Cloud Shell*) button at the top of the page to the right of the search box. A Cloud Shell pane will open at the bottom of the portal.
+
+    ![Screenshot of starting Cloud Shell by clicking on the icon to the right of the top search box.](../media/cloudshell-launch-portal.png#lightbox)
+
+1. The first time you open the Cloud Shell, you may be prompted to choose the type of shell you want to use (*Bash* or *PowerShell*). Select **Bash**. If you don't see this option, skip the step.  
+
+1. If you're prompted to create storage for your Cloud Shell, ensure your subscription is specified and select **Create storage**. Then wait a minute or so for the storage to be created.
+
+1. Make sure the type of shell indicated on the top left of the Cloud Shell pane is switched to *Bash*. If it's *PowerShell*, switch to *Bash* by using the drop-down menu in the top left.
+
+1. Once the terminal starts, run the following commands to download a copy of the repo into your Cloud Shell:
 
     ```bash
-    curl -X POST "https://some-name.cognitiveservices.azure.com/language/:analyze-conversations?projectName=Clock&deploymentName=production&api-version=2021-11-01-preview" -H "Ocp-Apim-Subscription-Key: 0ab1c23de4f56..."  -H "Apim-Request-Id: 9zy8x76wv5u43...." -H "Content-Type: application/json" -d "{\"kind\":\"Conversation\",\"analysisInput\":{\"conversationItem\":{\"id\":\"1\",\"text\":\"what's the time in Sydney\",\"participantId\":\"1\"}},\"parameters\":{\"projectName\":\"Clock\",\"verbose\":true,\"deploymentName\":\"production\",\"stringIndexType\":\"TextElement_V8\"}}"
+    git clone https://github.com/MicrosoftLearning/AI-102-AIEngineer 03-module
     ```
 
-1. Open a command prompt (Windows) or bash shell (Linux/Mac).
+1. The files have been downloaded into a folder called **03-module**. Let's change into that folder by running:
 
-1. Copy and paste the edited curl command to your command line interface and run it.
+    ```bash
+    cd 03-module/09-luis-app
+    ```
 
+1. Then run `code send-call.sh` to open the file in the Cloud Shell editor.
+1. Replace the following values from the corresponding values in the sample request from Language Studio:
+
+    - **<ENDPOINT_URL>**: Your endpoint URL.Looks like: `https://my-service.cognitiveservices.azure.com/language/:analyze-conversations?api-version=2022-10-01-preview`
+    - **<YOUR_KEY>**: Your key. Looks like: `b11bcsbd50a149dfb6626791d20f514b`
+    - <**REQUEST_ID>**: Your request ID. Looks like: `4vfdad1c-b2fc-48ba-bd7d-b59d2242395b`
+
+1. Press **CTRL + Save** to save your changes.
+1. Make a call by running `sh send-call.sh`.
 1. View the resulting JSON, which should include the predicted intent and entities, like this:
 
     ```json
