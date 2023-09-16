@@ -10,18 +10,6 @@ lab:
 
 For example, suppose a travel agency wants to process hotel reviews that have been submitted to the company's web site. By using the Azure AI Language, they can determine the language each review is written in, the sentiment (positive, neutral, or negative) of the reviews, key phrases that might indicate the main topics discussed in the review, and named entities, such as places, landmarks, or people mentioned in the reviews.
 
-## Clone the repository for this course
-
-If you have not already cloned **AI-102-AIEngineer** code repository to the environment where you're working on this lab, follow these steps to do so. Otherwise, open the cloned folder in Visual Studio Code.
-
-1. Start Visual Studio Code.
-1. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
-1. When the repository has been cloned, open the folder in Visual Studio Code.
-1. Wait while additional files are installed to support the C# code projects in the repo.
-
-    > [!NOTE]
-    > > If you are prompted to add required assets to build and debug, select **Not Now**.
-
 ## Provision an Azure AI Language resource
 
 If you don't already have one in your subscription, you'll need to provision an **Azure AI Language service** resource in a supported region.
@@ -39,6 +27,42 @@ If you don't already have one in your subscription, you'll need to provision an 
 1. Select **Review + create**.
 1. Wait for deployment to complete, and then view the deployment details.
 
+## Clone the repository for this course in Cloud Shell
+
+Open up a new browser tab to work with Cloud Shell. If you haven't cloned this repository to Cloud Shell recently, follow the steps below to make sure you have the most recent version. Otherwise, open Cloud Shell and navigate to your clone.
+
+1. In the [Azure portal](https://portal.azure.com?azure-portal=true), select the **[>_]** (*Cloud Shell*) button at the top of the page to the right of the search box. A Cloud Shell pane will open at the bottom of the portal.
+
+    ![Screenshot of starting Cloud Shell by clicking on the icon to the right of the top search box.](../media/cloudshell-launch-portal.png#lightbox)
+
+2. The first time you open the Cloud Shell, you may be prompted to choose the type of shell you want to use (*Bash* or *PowerShell*). Select **Bash**. If you don't see this option, skip the step.  
+
+3. If you're prompted to create storage for your Cloud Shell, ensure your subscription is specified and select **Create storage**. Then wait a minute or so for the storage to be created.
+
+4. Make sure the type of shell indicated on the top left of the Cloud Shell pane is switched to *Bash*. If it's *PowerShell*, switch to *Bash* by using the drop-down menu.
+
+5. Once the terminal starts, enter the following command to download the sample application and save it to a folder called `azure-openai`.
+
+    ```bash
+   rm -r azure-ai-eng -f
+   git clone https://github.com/MicrosoftLearning/mslearn-openai azure-openai
+    ```
+  
+6. The files are downloaded to a folder named **azure-ai-eng**. Navigate to the lab files for this exercise using the following command.
+
+    ```bash
+   cd azure-ai-eng/05-analyze-text
+    ```
+
+Applications for both C# and Python have been provided, as well as a supporting files you'll use to test the feature. Both apps feature the same functionality. Navigate to the folder of your preferred language.
+
+Open the built-in code editor, and observe the text files in the `text-analysis` folder. Use the following command to open the lab files in the code editor.
+
+```bash
+code .
+```
+
+
 ## Prepare to use the Azure AI Language SDK for text analytics
 
 In this exercise, you'll complete a partially implemented client application that uses the Azure AI Language text analytics SDK to analyze hotel reviews.
@@ -46,8 +70,8 @@ In this exercise, you'll complete a partially implemented client application tha
 > [!NOTE]
 > > You can choose to use the SDK for either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
-1. In Visual Studio Code, in the **Explorer** pane, browse to the **05-analyze-text** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
-1. Right-click the **text-analysis** folder and open an integrated terminal. Then install the Text Analytics SDK package by running the appropriate command for your language preference:
+1. In Cloud Shell, ensure you are in the **05-analyze-text** folder and have navigated to the **C-Sharp** or **Python** folder depending on your language preference.
+1. Install the Text Analytics SDK package by running the appropriate command for your language preference:
 
     **C#**
 
@@ -61,7 +85,7 @@ In this exercise, you'll complete a partially implemented client application tha
     pip install azure-ai-textanalytics==5.3.0
     ```
 
-1. View the contents of the **text-analysis** folder, and note that it contains a file for configuration settings:
+1. View the contents of the **text-analysis** folder in the code window, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
     - **Python**: .env
 
