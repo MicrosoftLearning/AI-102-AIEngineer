@@ -10,6 +10,7 @@ lab:
 
 For example, suppose a travel agency wants to examine hotel reviews that have been submitted to the company's web site, standardizing on English as the language that is used for analysis. By using Azure AI Translator, they can determine the language each review is written in, and if it is not already English, translate it from whatever source language it was written in into English.
 
+<!--
 ## Clone the repository for this course
 
 If you have already cloned AI-102-AIEngineer code repository to the environment where you're working on this lab, open it in Visual Studio Code; otherwise, follow these steps to clone it now.
@@ -23,6 +24,29 @@ If you have already cloned AI-102-AIEngineer code repository to the environment 
 
     > > [!NOTE]
 > If you are prompted to add required assets to build and debug, select **Not Now**.
+ -->
+
+## Clone the repo into your Azure Cloud Shell
+
+1. In the [Azure portal](https://portal.azure.com?azure-portal=true), select the **[>_]** (*Cloud Shell*) button at the top of the page to the right of the search box. A Cloud Shell pane will open at the bottom of the portal.
+
+    ![Screenshot of starting Cloud Shell by clicking on the icon to the right of the top search box.](../media/cloudshell-launch-portal.png#lightbox)
+
+1. The first time you open the Cloud Shell, you may be prompted to choose the type of shell you want to use (*Bash* or *PowerShell*). Select **PowerShell**. If you don't see this option, skip the step.
+
+1. If you're prompted to create storage for your Cloud Shell, ensure your subscription is specified and select **Create storage**. Then wait a minute or so for the storage to be created.
+
+1. Once the terminal starts, run the following commands to download a copy of the repo into your Cloud Shell:
+
+    ```bash
+    git clone https://github.com/MicrosoftLearning/AI-102-AIEngineer AI-Engineer
+    ```
+
+1. The files have been downloaded into a folder called **AI-Engineer**. Let's use the Cloud Shell Code editor to open the appropriate folder by running:
+
+    ```bash
+        code AI-Engineer/06-translate-text
+    ```
 
 ## Provision an Azure AI Translator resource
 
@@ -47,12 +71,12 @@ In this exercise, you'll complete a partially implemented client application tha
 > [!NOTE]
 > You can choose to use the API from either **C#** or **Python**. In the steps below, perform the actions appropriate for your preferred language.
 
-1. In Visual Studio Code in the shell, expand the **06-translate-text** folder, and then the **C-Sharp** or **Python** folder depending on your language preference.
+1. In your Cloud Shell editor, expand the **06-translate-text** folder, and then the **C-Sharp** or **Python** folder depending on your language preference.
 1. View the contents of the **text-translation** folder, and note that it contains a file for configuration settings:
     - **C#**: appsettings.json
     - **Python**: .env
 
-    Open the configuration file and update the configuration values it contains to include an authentication **key** for your Azure AI Translator resource, and the **location** where it is deployed (<u>not</u> the endpoint) - you should copy both of these from the **Keys and Endpoint** page for your Azure AI Translator resource. Save your changes.
+    Open the configuration file and update the configuration values it contains to include an authentication **key** for your Azure AI Translator resource, and the **location** where it is deployed (<u>not</u> the endpoint) - you should copy both of these from the **Keys and Endpoint** page for your Azure AI Translator resource. Save your changes ny pressing **CTRL + S**.
 1. Note that the **text-translation** folder contains a code file for the client application:
 
     - **C#**: Program.cs
@@ -61,12 +85,31 @@ In this exercise, you'll complete a partially implemented client application tha
     Open the code file and examine the code it contains.
 
 1. In the **Main** function, note that code to load the Azure AI Translator key and region from the configuration file has already been provided. The endpoint for the  service is also specified in your code.
-1. Right-click the **text-translation** folder, open an integrated terminal, and enter the following command to run the program:
+
+1. In your terminal enter the following commands to point the terminal to the appropriate folder and do a test run:
+
+    **C#**
+
+    ```bash
+    cd AI-Engineer/06-translate-text/C-Sharp/text-translation
+    ```
 
     **C#**
 
     ```bash
     dotnet run
+    ```
+
+    **Python**
+
+    ```bash
+    cd AI-Engineer/06-translate-text/Python/text-translation
+    ```
+
+    **Python**
+
+    ```bash
+    pip install python-dotenv
     ```
 
     **Python**
@@ -84,67 +127,67 @@ Azure AI Translator can automatically detect the source language of text to be t
 1. In your code file, find the **GetLanguage** function, which currently returns "en" for all text values.
 1. In the **GetLanguage** function, under the comment **Use the Azure AI Translator detect function**, add the following code to use the Azure AI Translator's REST API to detect the language of the specified text, being careful not to replace the code at the end of the function that returns the language:
 
-**C#**
+    **C#**
 
-```csharp
-// Use the Azure AI Translator detect function
-object[] body = new object[] { new { Text = text } };
-var requestBody = JsonConvert.SerializeObject(body);
-using (var client = new HttpClient())
-{
-    using (var request = new HttpRequestMessage())
+    ```csharp
+    // Use the Azure AI Translator detect function
+    object[] body = new object[] { new { Text = text } };
+    var requestBody = JsonConvert.SerializeObject(body);
+    using (var client = new HttpClient())
     {
-        // Build the request
-        string path = "/detect?api-version=3.0";
-        request.Method = HttpMethod.Post;
-        request.RequestUri = new Uri(translatorEndpoint + path);
-        request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
-        request.Headers.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
-        request.Headers.Add("Ocp-Apim-Subscription-Region", cogSvcRegion);
-
-        // Send the request and get response
-        HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
-        // Read response as a string
-        string responseContent = await response.Content.ReadAsStringAsync();
-
-        // Parse JSON array and get language
-        JArray jsonResponse = JArray.Parse(responseContent);
-        language = (string)jsonResponse[0]["language"]; 
+        using (var request = new HttpRequestMessage())
+        {
+            // Build the request
+            string path = "/detect?api-version=3.0";
+            request.Method = HttpMethod.Post;
+            request.RequestUri = new Uri(translatorEndpoint + path);
+            request.Content = new StringContent(requestBody, Encoding.UTF8, "application/json");
+            request.Headers.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
+            request.Headers.Add("Ocp-Apim-Subscription-Region", cogSvcRegion);
+    
+            // Send the request and get response
+            HttpResponseMessage response = await client.SendAsync(request).ConfigureAwait(false);
+            // Read response as a string
+            string responseContent = await response.Content.ReadAsStringAsync();
+    
+            // Parse JSON array and get language
+            JArray jsonResponse = JArray.Parse(responseContent);
+            language = (string)jsonResponse[0]["language"]; 
+        }
     }
-}
-```
+    ```
 
-**Python**
+    **Python**
 
-```python
-# Use the Azure AI Translator detect function
-path = '/detect'
-url = translator_endpoint + path
+    ```python
+    # Use the Azure AI Translator detect function
+    path = '/detect'
+    url = translator_endpoint + path
+    
+    # Build the request
+    params = {
+        'api-version': '3.0'
+    }
+    
+    headers = {
+    'Ocp-Apim-Subscription-Key': cog_key,
+    'Ocp-Apim-Subscription-Region': cog_region,
+    'Content-type': 'application/json'
+    }
+    
+    body = [{
+        'text': text
+    }]
+    
+    # Send the request and get response
+    request = requests.post(url, params=params, headers=headers, json=body)
+    response = request.json()
+    
+    # Parse JSON array and get language
+    language = response[0]["language"]
+    ```
 
-# Build the request
-params = {
-    'api-version': '3.0'
-}
-
-headers = {
-'Ocp-Apim-Subscription-Key': cog_key,
-'Ocp-Apim-Subscription-Region': cog_region,
-'Content-type': 'application/json'
-}
-
-body = [{
-    'text': text
-}]
-
-# Send the request and get response
-request = requests.post(url, params=params, headers=headers, json=body)
-response = request.json()
-
-# Parse JSON array and get language
-language = response[0]["language"]
-```
-
-1. Save your changes and return to the integrated terminal for the **text-translation** folder, and enter the following command to run the program:
+1. Save your changes by pressing **CTRL+S** and  and enter the following command in the terminal to run the program:
 
     **C#**
 
@@ -229,7 +272,7 @@ response = request.json()
 translation = response[0]["translations"][0]["text"]
 ```
 
-1. Save your changes and return to the integrated terminal for the **text-translation** folder, and enter the following command to run the program:
+1. Save your changes and enter the following command to run the program:
 
     **C#**
 
