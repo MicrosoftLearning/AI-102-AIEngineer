@@ -10,22 +10,6 @@ lab:
 
 For example, suppose a travel agency wants to examine hotel reviews that have been submitted to the company's web site, standardizing on English as the language that is used for analysis. By using Azure AI Translator, they can determine the language each review is written in, and if it is not already English, translate it from whatever source language it was written in into English.
 
-<!--
-## Clone the repository for this course
-
-If you have already cloned AI-102-AIEngineer code repository to the environment where you're working on this lab, open it in Visual Studio Code; otherwise, follow these steps to clone it now.
-
-1. Start Visual Studio Code.
-
-1. Open the palette (**SHIFT+CTRL+P**) and run a **Git: Clone** command to clone the https://github.com/MicrosoftLearning/AI-102-AIEngineer repository to a local folder (it doesn't matter which folder).
-1. When the repository has been cloned, open the folder in Visual Studio Code.
-
-1. Wait while additional files are installed to support the C# code projects in the repo.
-
-    > > [!NOTE]
-> If you are prompted to add required assets to build and debug, select **Not Now**.
- -->
-
 ## Clone the repo into your Azure Cloud Shell
 
 1. In the [Azure portal](https://portal.azure.com?azure-portal=true), select the **[>_]** (*Cloud Shell*) button at the top of the page to the right of the search box. A Cloud Shell pane will open at the bottom of the portal.

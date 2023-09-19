@@ -30,13 +30,13 @@ Open up a new browser tab to work with Cloud Shell. If you haven't cloned this r
 5. Once the terminal starts, run the following commands to download a copy of the repo into your Cloud Shell:
 
     ```bash
-    git clone https://github.com/MicrosoftLearning/AI-102-AIEngineer 02-module
+    git clone https://github.com/MicrosoftLearning/AI-102-AIEngineer ai-engineer
     ```
 
-6. The files have been downloaded into a folder called **02-module**. Let's change into that folder by running:
+6. The files have been downloaded into a folder called **ai-engineer**. Let's change into that folder by running:
 
     ```bash
-    cd 02-module/12-qna
+    cd ai-engineer/12-qna
     ```
 
 ## Create a Azure AI Language resource

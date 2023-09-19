@@ -305,7 +305,7 @@ In a real project, you'd iteratively refine intents and entities, retrain, and r
 
 1. In the **Get prediction URL** dialog box, note that the URL for the prediction endpoint is shown along with a sample request, which consists of a **curl** command that submits an HTTP POST request to the endpoint, specifying the key for your Azure AI Language resource in the header and including a query and language in the request data.
 
-#### Call the API from the Azure Cloud Shell
+## Call the API from the Azure Cloud Shell
 
 Open up a new internet browser tab to work with Cloud Shell.
 
@@ -322,13 +322,13 @@ Open up a new internet browser tab to work with Cloud Shell.
 1. Once the terminal starts, run the following commands to download a copy of the repo into your Cloud Shell:
 
     ```bash
-    git clone https://github.com/MicrosoftLearning/AI-102-AIEngineer 03-module
+    git clone https://github.com/MicrosoftLearning/AI-102-AIEngineer ai-engineer
     ```
 
-1. The files have been downloaded into a folder called **03-module**. Let's change into that folder by running:
+1. The files have been downloaded into a folder called **ai-engineer**. Let's change into that folder by running:
 
     ```bash
-    cd 03-module/09-luis-app
+    cd ai-engineer/09-language-app
     ```
 
 1. Then run `code send-call.sh` to open the file in the Cloud Shell editor. This file contains a script that will call the service with the question: "What's the time in Sydney?".
