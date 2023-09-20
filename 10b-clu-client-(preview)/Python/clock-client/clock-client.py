@@ -72,7 +72,7 @@ def GetDate(day):
         "monday":0,
         "tuesday":1,
         "wednesday":2,
-        "thusday":3,
+        "thursday":3,
         "friday":4,
         "saturday":5,
         "sunday":6
