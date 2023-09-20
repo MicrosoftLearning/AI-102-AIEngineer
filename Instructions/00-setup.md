@@ -22,7 +22,7 @@ Install [Edge (Chromium)](https://microsoft.com/edge)
 
 ### .NET Core SDK
 
-1. Download and install from https://dotnet.microsoft.com/download (download .NET Core SDK - not just the runtime). If you are running the labs in this course on your own machine, you will need both .NET 6.0 and .NET 3.1 installed.
+1. Download and install from https://dotnet.microsoft.com/download (download .NET Core SDK - not just the runtime). If you are running the labs in this course on your own machine, you will need .NET 7.0 installed.
 
 ### C++ Redistributable
 
