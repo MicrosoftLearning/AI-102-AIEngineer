@@ -23,13 +23,14 @@ For example, suppose a travel agency wants to examine hotel reviews that have be
 1. Once the terminal starts, run the following commands to download a copy of the repo into your Cloud Shell:
 
     ```bash
-    git clone https://github.com/MicrosoftLearning/AI-102-AIEngineer AI-Engineer
+    rm -r azure-ai-eng -f
+    git clone https://github.com/MicrosoftLearning/AI-102-AIEngineer azure-ai-eng
     ```
 
-1. The files have been downloaded into a folder called **AI-Engineer**. Let's use the Cloud Shell Code editor to open the appropriate folder by running:
+1. The files have been downloaded into a folder called **azure-ai-eng**. Let's use the Cloud Shell Code editor to open the appropriate folder by running:
 
     ```bash
-        code AI-Engineer/06-translate-text
+        code azure-ai-eng/06-translate-text
     ```
 
 ## Provision an Azure AI Translator resource

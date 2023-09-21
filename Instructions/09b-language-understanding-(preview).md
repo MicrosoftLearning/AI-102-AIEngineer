@@ -322,13 +322,14 @@ Open up a new internet browser tab to work with Cloud Shell.
 1. Once the terminal starts, run the following commands to download a copy of the repo into your Cloud Shell:
 
     ```bash
-    git clone https://github.com/MicrosoftLearning/AI-102-AIEngineer ai-engineer
+    rm -r azure-ai-eng -f
+    git clone https://github.com/MicrosoftLearning/AI-102-AIEngineer azure-ai-eng
     ```
 
-1. The files have been downloaded into a folder called **ai-engineer**. Let's change into that folder by running:
+1. The files have been downloaded into a folder called **azure-ai-eng**. Let's change into that folder by running:
 
     ```bash
-    cd ai-engineer/09-language-app
+    cd azure-ai-eng/09-language-app
     ```
 
 1. Then run `code send-call.sh` to open the file in the Cloud Shell editor. This file contains a script that will call the service with the question: "What's the time in Sydney?".
