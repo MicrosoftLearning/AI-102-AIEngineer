@@ -82,6 +82,7 @@ In this exercise, you'll complete a partially implemented client application tha
 
     ```bash
     pip install azure-ai-textanalytics==5.3.0
+    pip install python-dotenv
     ```
 
 1. View the contents of the **text-analysis** folder in the code window, and note that it contains a file for configuration settings:
