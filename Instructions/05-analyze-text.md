@@ -82,6 +82,7 @@ In this exercise, you'll complete a partially implemented client application tha
 
     ```bash
     pip install azure-ai-textanalytics==5.3.0
+    pip install python-dotenv
     ```
 
 1. View the contents of the **text-analysis** folder in the code window, and note that it contains a file for configuration settings:
@@ -372,4 +373,4 @@ In addition to categorized entities, the Text Analytics API can detect entities 
 
 ## More information
 
-For more information about using **Azure AI Language**, see the [documentation](/azure/ai-services/language-service/).
+For more information about using **Azure AI Language**, see the [documentation](https://learn.microsoft.com/en-us/azure/ai-services/language-service/overview).
