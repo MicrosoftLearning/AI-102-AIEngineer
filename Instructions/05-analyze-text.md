@@ -373,4 +373,4 @@ In addition to categorized entities, the Text Analytics API can detect entities 
 
 ## More information
 
-For more information about using **Azure AI Language**, see the [documentation](/azure/ai-services/language-service/).
+For more information about using **Azure AI Language**, see the [documentation](https://learn.microsoft.com/en-us/azure/ai-services/language-service/overview).
