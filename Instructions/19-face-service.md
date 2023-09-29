@@ -438,7 +438,7 @@ with open(image_file, mode="rb") as image_data:
         print('\nResults saved in', outputfile)
 ```
 
-4. Examine the code you added to the **DetectFaces** function. It analyzes an image file and detects any faces it contains, including attributes for age, emotions, and the presence of spectacles. The details of each face are displayed, including a unique face identifier that is assigned to each face; and the location of the faces is indicated on the image using a bounding box.
+4. Examine the code you added to the **DetectFaces** function. It analyzes an image file and detects any faces it contains, including attributes for occlusion, blur, and the presence of spectacles. The details of each face are displayed, including a unique face identifier that is assigned to each face; and the location of the faces is indicated on the image using a bounding box.
 5. Save your changes and return to the integrated terminal for the **face-api** folder, and enter the following command to run the program:
 
     **C#**
