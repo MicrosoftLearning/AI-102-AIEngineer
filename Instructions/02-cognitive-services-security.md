@@ -10,7 +10,6 @@ Security is a critical consideration for any application, and as a developer you
 
 Access to Azure AI services is typically controlled through authentication keys, which are generated when you initially create an Azure AI services resource.
 
-
 ## Clone the repository for this course in Cloud Shell
 
 Open up a new browser tab to work with Cloud Shell. If you haven't cloned this repository to Cloud Shell recently, follow the steps below to make sure you have the most recent version. Otherwise, open Cloud Shell and navigate to your clone.
