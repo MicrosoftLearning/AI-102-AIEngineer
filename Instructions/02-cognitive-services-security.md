@@ -42,7 +42,7 @@ Use the following command to open the lab files in the built-in code editor.
 code .
 ```
 
-Code for both C# and Python has been provided. Navigate to the folder of your preferred language.
+Code for both C# and Python has been provided.
 
 ## Provision an Azure AI Services resource
 
