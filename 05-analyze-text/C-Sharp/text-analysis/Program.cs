@@ -20,10 +20,6 @@ namespace text_analysis
                 string cogSvcEndpoint = configuration["CognitiveServicesEndpoint"];
                 string cogSvcKey = configuration["CognitiveServiceKey"];
 
-                // Set console encoding to unicode
-                Console.InputEncoding = Encoding.Unicode;
-                Console.OutputEncoding = Encoding.Unicode;
-
                 // Create client using endpoint and key
 
 
