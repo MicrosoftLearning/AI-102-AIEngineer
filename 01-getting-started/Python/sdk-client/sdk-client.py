@@ -4,14 +4,14 @@ from azure.core.credentials import AzureKeyCredential
 from azure.ai.textanalytics import TextAnalyticsClient
 
 def main():
-    global cog_endpoint
-    global cog_key
+    global ai_endpoint
+    global ai_key
 
     try:
         # Get Configuration Settings
         load_dotenv()
-        cog_endpoint = os.getenv('COG_SERVICE_ENDPOINT')
-        cog_key = os.getenv('COG_SERVICE_KEY')
+        ai_endpoint = os.getenv('AI_SERVICE_ENDPOINT')
+        ai_key = os.getenv('AI_SERVICE_KEY')
 
         # Get user input (until they enter "quit")
         userText =''
@@ -27,8 +27,8 @@ def main():
 def GetLanguage(text):
 
     # Create client using endpoint and key
-    credential = AzureKeyCredential(cog_key)
-    client = TextAnalyticsClient(endpoint=cog_endpoint, credential=credential)
+    credential = AzureKeyCredential(ai_key)
+    client = TextAnalyticsClient(endpoint=ai_endpoint, credential=credential)
 
     # Call the service to get the detected language
     detectedLanguage = client.detect_language(documents = [text])[0]
