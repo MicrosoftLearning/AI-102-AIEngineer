@@ -11,8 +11,8 @@ namespace rest_client
 {
     class Program
     {
-        private static string cogSvcEndpoint;
-        private static string cogSvcKey;
+        private static string AiSvcEndpoint;
+        private static string AiSvCKey;
         static async Task Main(string[] args)
         {
             try
@@ -20,12 +20,9 @@ namespace rest_client
                 // Get config settings from AppSettings
                 IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
                 IConfigurationRoot configuration = builder.Build();
-                cogSvcEndpoint = configuration["CognitiveServicesEndpoint"];
-                cogSvcKey = configuration["CognitiveServiceKey"];
+                AiSvcEndpoint = configuration["AIServicesEndpoint"];
+                AiSvCKey = configuration["AIServicesKey"];
 
-                // Set console encoding to unicode
-                Console.InputEncoding = Encoding.Unicode;
-                Console.OutputEncoding = Encoding.Unicode;
 
                 // Get user input (until they enter "quit")
                 string userText = "";
@@ -73,10 +70,10 @@ namespace rest_client
                 var queryString = HttpUtility.ParseQueryString(string.Empty);
 
                 // Add the authentication key to the header
-                client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", cogSvcKey);
+                client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", AiSvCKey);
 
                 // Use the endpoint to access the Text Analytics language API
-                var uri = cogSvcEndpoint + "text/analytics/v3.1/languages?" + queryString;
+                var uri = AiSvcEndpoint + "text/analytics/v3.1/languages?" + queryString;
 
                 // Send the request and get the response
                 HttpResponseMessage response;

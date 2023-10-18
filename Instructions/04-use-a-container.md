@@ -12,16 +12,37 @@ Many of the Azure AI services APIs can be packaged and deployed in a *container*
 
 > **Note**: There is an issue currently being investigated that some users hit where containers won't deploy properly, and calls to those containers fail. Updates to this lab will be made as soon as the issue has been resolved.
 
-## Clone the repository for this course
+## Clone the repository for this course in Cloud Shell
 
-If you have already cloned **AI-102-AIEngineer** code repository to the environment where you're working on this lab, open it in Visual Studio Code; otherwise, follow these steps to clone it now.
+Open up a new browser tab to work with Cloud Shell. If you haven't cloned this repository to Cloud Shell recently, follow the steps below to make sure you have the most recent version. Otherwise, open Cloud Shell and navigate to your clone.
 
-1. Start Visual Studio Code.
-2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
-3. When the repository has been cloned, open the folder in Visual Studio Code.
-4. Wait while additional files are installed to support the C# code projects in the repo.
+1. In the [Azure portal](https://portal.azure.com?azure-portal=true), select the **[>_]** (*Cloud Shell*) button at the top of the page to the right of the search box. A Cloud Shell pane will open at the bottom of the portal.
 
-    > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
+    ![Screenshot of starting Cloud Shell by clicking on the icon to the right of the top search box.](images/cloudshell-launch-portal.png#lightbox)
+
+2. The first time you open the Cloud Shell, you may be prompted to choose the type of shell you want to use (*Bash* or *PowerShell*). Select **Bash**. If you don't see this option, skip the step.  
+
+3. If you're prompted to create storage for your Cloud Shell, ensure your subscription is specified and select **Create storage**. Then wait a minute or so for the storage to be created.
+
+4. Make sure the type of shell indicated on the top left of the Cloud Shell pane is switched to *Bash*. If it's *PowerShell*, switch to *Bash* by using the drop-down menu.
+
+5. Once the terminal starts, enter the following command to download the sample application and save it to a folder called `labs`.
+
+    ```bash
+   git clone https://github.com/MicrosoftLearning/AI-102-AIEngineer labs
+    ```
+  
+6. The files are downloaded to a folder named **labs**. Navigate to the lab files for this exercise using the following command.
+
+    ```bash
+   cd labs/04-containers
+    ```
+
+Use the following command to open the lab files in the built-in code editor.
+
+```bash
+code .
+```
 
 ## Provision an Azure AI Services resource
 
@@ -72,7 +93,7 @@ Many commonly used Azure AI services APIs are available in container images. For
     - **Tags**:
         - *Don't add any tags*
 
-2. Wait for deployment to complete, and then go to the deployed resource.
+2. Select **Review + create** then select **Create**. Wait for deployment to complete, and then go to the deployed resource.
     > **Note** Please note that deploying an Azure AI container to Azure Container Instances typically takes 5-10 minutes (provisioning) before they are ready to use.
 3. Observe the following properties of your container instance resource on its **Overview** page:
     - **Status**: This should be *Running*.
@@ -88,17 +109,17 @@ Many commonly used Azure AI services APIs are available in container images. For
 
 ## Use the container
 
-1. In Visual Studio Code, in the **04-containers** folder, open **rest-test.cmd** and edit the **curl** command it contains (shown below), replacing *&lt;your_ACI_IP_address_or_FQDN&gt;* with the IP address or FQDN for your container.
+1. In your editor, open **rest-test.sh** and edit the **curl** command it contains (shown below), replacing *&lt;your_ACI_IP_address_or_FQDN&gt;* with the IP address or FQDN for your container.
 
     ```
-    curl POST "http://<your_ACI_IP_address_or_FQDN>:5000/text/analytics/v3.0/languages" -H "Content-Type: application/json" --data-ascii "{'documents':[{'id':1,'text':'Hello world.'},{'id':2,'text':'Salut tout le monde.'}]}"
+    curl -X POST "http://<your_ACI_IP_address_or_FQDN>:5000/text/analytics/v3.0/languages" -H "Content-Type: application/json" --data-ascii "{'documents':[{'id':1,'text':'Hello world.'},{'id':2,'text':'Salut tout le monde.'}]}"
     ```
 
-2. Save your changes to the script. Note that you do not need to specify the Azure AI services endpoint or key - the request is processed by the containerized service. The container in turn communicates periodically with the service in Azure to report usage for billing, but does not send request data.
-3. Right-click the **04-containers** folder and open an integrated terminal. Then enter the following command to run the script:
+2. Save your changes to the script by pressing **CTRL+S**. Note that you do not need to specify the Azure AI services endpoint or key - the request is processed by the containerized service. The container in turn communicates periodically with the service in Azure to report usage for billing, but does not send request data.
+3. Enter the following command to run the script:
 
     ```
-    rest-test
+    sh rest-test.sh
     ```
 
 4. Verify that the command returns a JSON document containing information about the language detected in the two input documents (which should be English and French).

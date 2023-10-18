@@ -11,8 +11,8 @@ namespace keyvault_client
     class Program
     {
 
-        private static string cogSvcEndpoint;
-        private static string cogSvcKey;
+        private static string aiSvcEndpoint;
+        private static string aiSvcKey;
         static void Main(string[] args)
         {
             try
@@ -20,7 +20,7 @@ namespace keyvault_client
                 // Get config settings from AppSettings
                 IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
                 IConfigurationRoot configuration = builder.Build();
-                cogSvcEndpoint = configuration["CognitiveServicesEndpoint"];
+                aiSvcEndpoint = configuration["AIServicesEndpoint"];
                 string keyVaultName = configuration["KeyVault"];
                 string appTenant = configuration["TenantId"];
                 string appId = configuration["AppId"];
@@ -31,7 +31,7 @@ namespace keyvault_client
                 ClientSecretCredential credential = new ClientSecretCredential(appTenant, appId, appPassword);
                 var keyVaultClient = new SecretClient(keyVaultUri, credential);
                 KeyVaultSecret secretKey = keyVaultClient.GetSecret("Cognitive-Services-Key");
-                cogSvcKey = secretKey.Value;
+                aiSvcKey = secretKey.Value;
 
                 // Get user input (until they enter "quit")
                 string userText = "";
@@ -57,8 +57,8 @@ namespace keyvault_client
         {
 
             // Create client using endpoint and key
-            AzureKeyCredential credentials = new AzureKeyCredential(cogSvcKey);
-            Uri endpoint = new Uri(cogSvcEndpoint);
+            AzureKeyCredential credentials = new AzureKeyCredential(aiSvcKey);
+            Uri endpoint = new Uri(aiSvcEndpoint);
             var client = new TextAnalyticsClient(endpoint, credentials);
 
             // Call the service to get the detected language

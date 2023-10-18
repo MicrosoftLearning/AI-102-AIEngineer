@@ -4,14 +4,14 @@ import http.client, base64, json, urllib
 from urllib import request, parse, error
 
 def main():
-    global cog_endpoint
-    global cog_key
+    global ai_endpoint
+    global ai_key
 
     try:
         # Get Configuration Settings
         load_dotenv()
-        cog_endpoint = os.getenv('COG_SERVICE_ENDPOINT')
-        cog_key = os.getenv('COG_SERVICE_KEY')
+        ai_endpoint = os.getenv('AI_SERVICE_ENDPOINT')
+        ai_key = os.getenv('AI_SERVICE_KEY')
 
         # Get user input (until they enter "quit")
         userText =''
@@ -38,13 +38,13 @@ def GetLanguage(text):
         print(json.dumps(jsonBody, indent=2))
 
         # Make an HTTP request to the REST interface
-        uri = cog_endpoint.rstrip('/').replace('https://', '')
+        uri = ai_endpoint.rstrip('/').replace('https://', '')
         conn = http.client.HTTPSConnection(uri)
 
         # Add the authentication key to the request header
         headers = {
             'Content-Type': 'application/json',
-            'Ocp-Apim-Subscription-Key': cog_key
+            'Ocp-Apim-Subscription-Key': ai_key
         }
 
         # Use the Text Analytics language API

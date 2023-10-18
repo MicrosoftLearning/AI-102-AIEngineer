@@ -9,8 +9,8 @@ namespace sdk_client
     class Program
     {
 
-        private static string cogSvcEndpoint;
-        private static string cogSvcKey;
+        private static string AISvcEndpoint;
+        private static string AISvcKey;
         static void Main(string[] args)
         {
             try
@@ -18,12 +18,8 @@ namespace sdk_client
                 // Get config settings from AppSettings
                 IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
                 IConfigurationRoot configuration = builder.Build();
-                cogSvcEndpoint = configuration["CognitiveServicesEndpoint"];
-                cogSvcKey = configuration["CognitiveServiceKey"];
-
-                // Set console encoding to unicode
-                Console.InputEncoding = Encoding.Unicode;
-                Console.OutputEncoding = Encoding.Unicode;
+                AISvcEndpoint = configuration["AIServicesEndpoint"];
+                AISvcKey = configuration["AIServicesKey"];
 
                 // Get user input (until they enter "quit")
                 string userText = "";
@@ -49,8 +45,8 @@ namespace sdk_client
         {
 
             // Create client using endpoint and key
-            AzureKeyCredential credentials = new AzureKeyCredential(cogSvcKey);
-            Uri endpoint = new Uri(cogSvcEndpoint);
+            AzureKeyCredential credentials = new AzureKeyCredential(AISvcKey);
+            Uri endpoint = new Uri(AISvcEndpoint);
             var client = new TextAnalyticsClient(endpoint, credentials);
 
             // Call the service to get the detected language
