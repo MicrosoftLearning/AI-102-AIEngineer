@@ -14,7 +14,7 @@ def main():
         prediction_endpoint = os.getenv('PredictionEndpoint')
         prediction_key = os.getenv('PredictionKey')
         project_id = os.getenv('ProjectID')
-        model_name = os.getenv('ModelName')
+        iteration_id = os.getenv('IterationID')
 
         # Authenticate a client for the training API
         credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
@@ -28,7 +28,7 @@ def main():
 
         # Detect objects in the test image
         with open(image_file, mode="rb") as image_data:
-            results = prediction_client.detect_image(project_id, model_name, image_data)
+            results = prediction_client.detect_image(project_id, iteration_id, image_data)
 
         # Create a figure for the results
         fig = plt.figure(figsize=(8, 8))
