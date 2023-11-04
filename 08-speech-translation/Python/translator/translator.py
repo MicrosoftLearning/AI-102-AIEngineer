@@ -3,6 +3,8 @@ from datetime import datetime
 import os
 
 # Import namespaces
+import azure.cognitiveservices.speech as speech_sdk
+
 
 
 def main():
@@ -16,9 +18,16 @@ def main():
         cog_region = os.getenv('COG_SERVICE_REGION')
 
         # Configure translation
+        translation_config = speech_sdk.translation.SpeechTranslationConfig(cog_key, cog_region)
+        translation_config.speech_recognition_language = 'en-US'
+        translation_config.add_target_language('fr')
+        translation_config.add_target_language('es')
+        translation_config.add_target_language('hi')
+        print('Ready to translate from',translation_config.speech_recognition_language)
 
 
         # Configure speech
+        speech_config = speech_sdk.SpeechConfig(cog_key, cog_region)
 
 
         # Get user input
