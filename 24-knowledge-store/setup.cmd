@@ -10,7 +10,7 @@ rem Get random numbers to create unique resource names
 set unique_id=!random!!random!
 
 echo Creating storage...
-call az storage account create --name ai102str!unique_id! --subscription !subscription_id! --resource-group !resource_group! --location !location! --sku Standard_LRS --encryption-services blob --default-action Allow --output none
+call az storage account create --name ai102str!unique_id! --subscription !subscription_id! --resource-group !resource_group! --location !location! --sku Standard_LRS --encryption-services blob --default-action Allow --allow-blob-public-access true --output none
 
 echo Uploading files...
 rem Hack to get storage key
