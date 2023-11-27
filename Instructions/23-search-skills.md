@@ -363,10 +363,13 @@ Now you need to include your function as a custom skill in the search solution s
 Now that you have an index, you can search it.
 
 1. At the top of the blade for your Azure AI Search resource, select **Search explorer**.
-2. In Search explorer, in the **Query string** box, enter the following query string, and then select **Search**.
+2. In Search explorer, change the view to **JSON view**, and then submit the following search query:
 
-    ```
-    search=Las Vegas&$select=url,top_words
+    ```json
+    {
+      "search": "Las Vegas",
+      "select": "url,top_words"
+    }
     ```
 
     This query retrieves the **url** and **top_words** fields for all documents that mention *Las Vegas*.
