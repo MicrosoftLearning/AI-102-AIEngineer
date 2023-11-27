@@ -1,12 +1,12 @@
 ---
 lab:
-    title: 'Create a Custom Skill for Azure Cognitive Search'
+    title: 'Create a Custom Skill for Azure AI Search'
     module: 'Module 12 - Creating a Knowledge Mining Solution'
 ---
 
-# Create a Custom Skill for Azure Cognitive Search
+# Create a Custom Skill for Azure AI Search
 
-Azure Cognitive Search uses an enrichment pipeline of cognitive skills to extract AI-generated fields from documents and include them in a search index. There's a comprehensive set of built-in skills that you can use, but if you have a specific requirement that isn't met by these skills, you can create a custom skill.
+Azure AI Search uses an enrichment pipeline of AI skills to extract AI-generated fields from documents and include them in a search index. There's a comprehensive set of built-in skills that you can use, but if you have a specific requirement that isn't met by these skills, you can create a custom skill.
 
 In this exercise, you'll create a custom skill that tabulates the frequency of individual words in a document to generate a list of the top five most used words, and add it to a search solution for Margie's Travel - a fictitious travel agency.
 
@@ -23,7 +23,7 @@ If you have already cloned **AI-102-AIEngineer** code repository to the environm
 
 ## Create Azure resources
 
-> **Note**: If you have previously completed the **[Create an Azure Cognitive Search solution](22-azure-search.md)** exercise, and still have these Azure resources in your subscription, you can skip this section and start at the **Create a search solution** section. Otherwise, follow the steps below to provision the required Azure resources.
+> **Note**: If you have previously completed the **[Create an Azure AI Search solution](22-azure-search.md)** exercise, and still have these Azure resources in your subscription, you can skip this section and start at the **Create a search solution** section. Otherwise, follow the steps below to provision the required Azure resources.
 
 1. In a web browser, open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
 2. View the **Resource groups** in your subscription.
@@ -65,7 +65,7 @@ If you have already cloned **AI-102-AIEngineer** code repository to the environm
     - Search service admin key
     - Search service query key
 
-14. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account, Azure AI Services resource, and Azure Cognitive Search resource.
+14. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account, Azure AI Services resource, and Azure AI Search resource.
 
 ## Create a search solution
 
@@ -76,7 +76,7 @@ Now that you have the necessary Azure resources, you can create a search solutio
 - An **index** that defines a searchable set of document records.
 - An **indexer** that extracts the documents from the data source, applies the skillset, and populates the index.
 
-In this exercise, you'll use the Azure Cognitive Search REST interface to create these components by submitting JSON requests.
+In this exercise, you'll use the Azure AI Search REST interface to create these components by submitting JSON requests.
 
 1. In Visual Studio Code, in the **23-custom-search-skill** folder, expand the **create-search** folder and select **data_source.json**. This file contains a JSON definition for a data source named **margies-custom-data**.
 2. Replace the **YOUR_CONNECTION_STRING** placeholder with the connection string for your Azure storage account, which should resemble the following:
@@ -98,10 +98,10 @@ In this exercise, you'll use the Azure Cognitive Search REST interface to create
 8. Review the JSON for the index, then close the file without making any changes.
 9. In the **create-search** folder, open **indexer.json**. This file contains a JSON definition for an indexer named **margies-custom-indexer**.
 10. Review the JSON for the indexer, then close the file without making any changes.
-11. In the **create-search** folder, open **create-search.cmd**. This batch script uses the cURL utility to submit the JSON definitions to the REST interface for your Azure Cognitive Search resource.
-12. Replace the **YOUR_SEARCH_URL** and **YOUR_ADMIN_KEY** variable placeholders with the **Url** and one of the **admin keys** for your Azure Cognitive Search resource.
+11. In the **create-search** folder, open **create-search.cmd**. This batch script uses the cURL utility to submit the JSON definitions to the REST interface for your Azure AI Search resource.
+12. Replace the **YOUR_SEARCH_URL** and **YOUR_ADMIN_KEY** variable placeholders with the **Url** and one of the **admin keys** for your Azure AI Search resource.
 
-    *You can find these values on the **Overview** and **Keys** pages for your Azure Cognitive Search resource in the Azure portal.*
+    *You can find these values on the **Overview** and **Keys** pages for your Azure AI Search resource in the Azure portal.*
 
 13. Save the updated batch file.
 14. Right-click the the **create-search** folder and select **Open in Integrated Terminal**.
@@ -111,7 +111,7 @@ In this exercise, you'll use the Azure Cognitive Search REST interface to create
     create-search
     ```
 
-16. When the script completes, in the Azure portal, on the page for your Azure Cognitive Search resource, select the **Indexers** page and wait for the indexing process to complete.
+16. When the script completes, in the Azure portal, on the page for your Azure AI Search resource, select the **Indexers** page and wait for the indexing process to complete.
 
     *You can select **Refresh** to track the progress of the indexing operation. It may take a minute or so to complete.*
 
@@ -119,7 +119,7 @@ In this exercise, you'll use the Azure Cognitive Search REST interface to create
 
 Now that you have an index, you can search it.
 
-1. At the top of the blade for your Azure Cognitive Search resource, select **Search explorer**.
+1. At the top of the blade for your Azure AI Search resource, select **Search explorer**.
 2. In Search explorer, in the **Query string** box, enter the following query string, and then select **Search**.
 
     ```
@@ -130,7 +130,7 @@ Now that you have an index, you can search it.
 
 ## Create an Azure Function for a custom skill
 
-The search solution includes a number of built-in cognitive skills that enrich the index with information from the documents, such as the sentiment scores and lists of key phrases seen in the previous task.
+The search solution includes a number of built-in AI skills that enrich the index with information from the documents, such as the sentiment scores and lists of key phrases seen in the previous task.
 
 You can enhance the index further by creating custom skills. For example, it might be useful to identify the words that are used most frequently in each document, but no built-in skill offers this functionality.
 
@@ -140,12 +140,12 @@ To implement the word count functionality as a custom skill, you'll create an Az
 
 1. In the Azure Portal, on the **Home** page, create a new **Function App** resource with the following settings:
     - **Subscription**: *Your subscription*
-    - **Resource Group**: *The same resource group as your Azure Cognitive Search resource*
+    - **Resource Group**: *The same resource group as your Azure AI Search resource*
     - **Function App name**: *A unique name*
     - **Publish**: Code
     - **Runtime stack**: Node.js
     - **Version**: 14 LTS
-    - **Region**: *The same region as your Azure Cognitive Search resource*
+    - **Region**: *The same region as your Azure AI Search resource*
 
 2. Wait for deployment to complete, and then go to the deployed Function App resource.
 3. In the blade for your Function App, in the pane on the left, select the **Functions** tab. Then create a new function with the following settings:
@@ -258,7 +258,7 @@ module.exports = async function (context, req) {
 ```
 
 6. Save the function and then open the **Test/Run** pane.
-7. In the **Test/Run** pane, replace the existing **Body** with the following JSON, which reflects the schema expected by an Azure Cognitive Search skill in which records containing data for one or more documents are submitted for processing:
+7. In the **Test/Run** pane, replace the existing **Body** with the following JSON, which reflects the schema expected by an Azure AI Search skill in which records containing data for one or more documents are submitted for processing:
 
     ```
     {
@@ -283,7 +283,7 @@ module.exports = async function (context, req) {
     }
     ```
     
-8. Click **Run** and view the HTTP response content that is returned by your function. This reflects the schema expected by Azure Cognitive Search when consuming a skill, in which a response for each document is returned. In this case, the response consists of up to 10 terms in each document in descending order of how frequently they appear:
+8. Click **Run** and view the HTTP response content that is returned by your function. This reflects the schema expected by Azure AI Search when consuming a skill, in which a response for each document is returned. In this case, the response consists of up to 10 terms in each document in descending order of how frequently they appear:
 
     ```
     {
@@ -341,10 +341,10 @@ Now you need to include your function as a custom skill in the search solution s
 7. Review the JSON for the index, then close the file without making any changes.
 8. In the **update-search** folder, open **update-indexer.json**. This file contains a JSON definition for the **margies-custom-indexer**, with an additional mapping for the **top_words** field.
 9. Review the JSON for the indexer, then close the file without making any changes.
-10. In the **update-search** folder, open **update-search.cmd**. This batch script uses the cURL utility to submit the updated JSON definitions to the REST interface for your Azure Cognitive Search resource.
-11. Replace the **YOUR_SEARCH_URL** and **YOUR_ADMIN_KEY** variable placeholders with the **Url** and one of the **admin keys** for your Azure Cognitive Search resource.
+10. In the **update-search** folder, open **update-search.cmd**. This batch script uses the cURL utility to submit the updated JSON definitions to the REST interface for your Azure AI Search resource.
+11. Replace the **YOUR_SEARCH_URL** and **YOUR_ADMIN_KEY** variable placeholders with the **Url** and one of the **admin keys** for your Azure AI Search resource.
 
-    *You can find these values on the **Overview** and **Keys** pages for your Azure Cognitive Search resource in the Azure portal.*
+    *You can find these values on the **Overview** and **Keys** pages for your Azure AI Search resource in the Azure portal.*
 
 12. Save the updated batch file.
 13. Right-click the the **update-search** folder and select **Open in Integrated Terminal**.
@@ -354,7 +354,7 @@ Now you need to include your function as a custom skill in the search solution s
     update-search
     ```
 
-15. When the script completes, in the Azure portal, on the page for your Azure Cognitive Search resource, select the **Indexers** page and wait for the indexing process to complete.
+15. When the script completes, in the Azure portal, on the page for your Azure AI Search resource, select the **Indexers** page and wait for the indexing process to complete.
 
     *You can select **Refresh** to track the progress of the indexing operation. It may take a minute or so to complete.*
 
@@ -362,7 +362,7 @@ Now you need to include your function as a custom skill in the search solution s
 
 Now that you have an index, you can search it.
 
-1. At the top of the blade for your Azure Cognitive Search resource, select **Search explorer**.
+1. At the top of the blade for your Azure AI Search resource, select **Search explorer**.
 2. In Search explorer, in the **Query string** box, enter the following query string, and then select **Search**.
 
     ```
@@ -373,4 +373,4 @@ Now that you have an index, you can search it.
 
 ## More information
 
-To learn more about creating custom skills for Azure Cognitive Search, see the [Azure Cognitive Search documentation](https://docs.microsoft.com/azure/search/cognitive-search-custom-skill-interface).
+To learn more about creating custom skills for Azure AI Search, see the [Azure AI Search documentation](https://docs.microsoft.com/azure/search/cognitive-search-custom-skill-interface).
