@@ -1,16 +1,16 @@
 ---
 lab:
-    title: 'Create an Azure Cognitive Search solution'
+    title: 'Create an Azure AI Search solution'
     module: 'Module 12 - Creating a Knowledge Mining Solution'
 ---
 
-# Create an Azure Cognitive Search solution
+# Create an Azure AI Search solution
 
 All organizations rely on information to make decisions, answer questions, and function efficiently. The problem for most organizations is not a lack of information, but the challenge of finding and  extracting the information from the massive set of documents, databases, and other sources in which the information is stored.
 
 For example, suppose *Margie's Travel* is a travel agency that specializes in organizing trips to cities around the world. Over time, the company has amassed a huge amount of information in documents such as brochures, as well as reviews of hotels submitted by customers. This data is a valuable source of insights for travel agents and customers as they plan trips, but the sheer volume of data can make it difficult to find relevant information to answer a specific customer question.
 
-To address this challenge, Margie's Travel can use Azure Cognitive Search to implement a solution in which the documents are indexed and enriched by using AI-based cognitive skills to make them easier to search.
+To address this challenge, Margie's Travel can use Azure AI Search to implement a solution in which the documents are indexed and enriched by using AI skills to make them easier to search.
 
 ## Clone the repository for this course
 
@@ -27,24 +27,24 @@ If you have not already cloned **AI-102-AIEngineer** code repository to the envi
 
 The solution you will create for Margie's Travel requires the following resources in your Azure subscription:
 
-- An **Azure Cognitive Search** resource, which will manage indexing and querying.
+- An **Azure AI Search** resource, which will manage indexing and querying.
 - An **Azure AI Services** resource, which provides AI services for skills that your search solution can use to enrich the data in the data source with AI-generated insights.
 - A **Storage account** with a blob container in which the documents to be searched are stored.
 
-> **Important**: Your Azure Cognitive Search and Azure AI Services resources must be in the same location!
+> **Important**: Your Azure AI Search and Azure AI Services resources must be in the same location!
 
-### Create an Azure Cognitive Search resource
+### Create an Azure AI Search resource
 
 1. In a web browser, open the Azure portal at `https://portal.azure.com`, and sign in using the Microsoft account associated with your Azure subscription.
-2. Select the **&#65291;Create a resource** button, search for *search*, and create an **Azure Cognitive Search** resource with the following settings:
+2. Select the **&#65291;Create a resource** button, search for *search*, and create an **Azure AI Search** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Create a new resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
     - **Service name**: *Enter a unique name*
-    - **Location**: *Select a location - note that your Azure Cognitive Search and Azure AI Services resources must be in the same location*
+    - **Location**: *Select a location - note that your Azure AI Search and Azure AI Services resources must be in the same location*
     - **Pricing tier**: Basic
 
 3. Wait for deployment to complete, and then go to the deployed resource.
-4. Review the **Overview** page on the blade for your Azure Cognitive Search resource in the Azure portal. Here, you can use a visual interface to create, test, manage, and monitor the various components of a search solution; including data sources, indexes, indexers, and skillsets.
+4. Review the **Overview** page on the blade for your Azure AI Search resource in the Azure portal. Here, you can use a visual interface to create, test, manage, and monitor the various components of a search solution; including data sources, indexes, indexers, and skillsets.
 
 ### Create an Azure AI Services resource
 
@@ -52,8 +52,8 @@ If you don't already have one in your subscription, you'll need to provision an 
 
 1. Return to the home page of the Azure portal, and then select the **&#65291;Create a resource** button, search for *Azure AI Services*, and create an **Azure AI Services** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
-    - **Resource group**: *The same resource group as your Azure Cognitive Search resource*
-    - **Region**: *The same location as your Azure Cognitive Search resource*
+    - **Resource group**: *The same resource group as your Azure AI Search resource*
+    - **Region**: *The same location as your Azure AI Search resource*
     - **Name**: *Enter a unique name*
     - **Pricing tier**: Standard S0
 2. Select the required checkboxes and create the resource.
@@ -63,7 +63,7 @@ If you don't already have one in your subscription, you'll need to provision an 
 
 1. Return to the home page of the Azure portal, and then select the **&#65291;Create a resource** button, search for *storage account*, and create a **Storage account** resource with the following settings:
     - **Subscription**: *Your Azure subscription*
-    - **Resource group**: **The same resource group as your Azure Cognitive Search and Azure AI Services resources*
+    - **Resource group**: **The same resource group as your Azure AI Search and Azure AI Services resources*
     - **Storage account name**: *Enter a unique name*
     - **Region**: *Choose any available region*
     - **Performance**: Standard
@@ -100,7 +100,7 @@ A web browser tab will open and prompt you to sign into Azure. Do so, and then c
 
 Now that you have the documents in place, you can create a search solution by indexing them.
 
-1. In the Azure portal, browse to your Azure Cognitive Search resource. Then, on its **Overview** page, select **Import data**.
+1. In the Azure portal, browse to your Azure AI Search resource. Then, on its **Overview** page, select **Import data**.
 2. On the **Connect to your data** page, in the **Data Source** list, select **Azure Blob Storage**. Then complete the data store details with the following values:
     - **Data Source**: Azure Blob Storage
     - **Data source name**: margies-data
@@ -151,41 +151,69 @@ Now that you have the documents in place, you can create a search solution by in
     1. Extracts the document metadata fields and content from the data source
     2. Runs the skillset of cognitive skills to generate additional enriched fields
     3. Maps the extracted fields to the index.
-16. In the bottom half of the **Overview** page for your Azure Cognitive Search resource, view the **Indexers** tab, which should show the newly created **margies-indexer**. Wait a few minutes, and click **&orarr; Refresh** until the **Status** indicates success.
+16. In the bottom half of the **Overview** page for your Azure AI Search resource, view the **Indexers** tab, which should show the newly created **margies-indexer**. Wait a few minutes, and click **&orarr; Refresh** until the **Status** indicates success.
 
 ## Search the index
 
 Now that you have an index, you can search it.
 
-1. At the top of the **Overview** page for your Azure Cognitive Search resource, select **Search explorer**.
+1. At the top of the **Overview** page for your Azure AI Search resource, select **Search explorer**.
 2. In Search explorer, in the **Query string** box, enter `*` (a single asterisk), and then select **Search**.
 
     This query retrieves all documents in the index in JSON format. Examine the results and note the fields for each document, which contain document content, metadata, and enriched data extracted by the cognitive skills you selected.
 
-3. Modify the query string to `search=*&$count=true` and submit the search.
+3. In the **View** menu, select **JSON view** and note that the JSON request for the search is shown, like this:
 
-    This time, the results include a **@odata.count** field at the top of the results that indicates the number of documents returned by the search.
-
-4. Try the following query string:
-
+    ```json
+    {
+      "search": "*"
+    }
     ```
-    search=*&$count=true&$select=metadata_storage_name,metadata_author,locations
+
+1. Modify the JSON request to include the **count** parameter as shown here:
+
+    ```json
+    {
+      "search": "*",
+      "count": true
+    }
+    ```
+
+1. Submit the modified search. This time, the results include a **@odata.count** field at the top of the results that indicates the number of documents returned by the search.
+
+4. Try the following query:
+
+    ```json
+    {
+      "search": "*",
+      "count": true,
+      "select": "metadata_storage_name,metadata_author,locations"
+    }
     ```
 
     This time the results include only the file name, author, and any locations mentioned in the document content. The file name and author are in the **metadata_storage_name** and **metadata_author** fields, which were extracted from the source document. The **locations** field was generated by a cognitive skill.
 
 5. Now try the following query string:
 
-    ```
-    search="New York"&$count=true&$select=metadata_storage_name,keyphrases
+    ```json
+    {
+      "search": "New York",
+      "count": true,
+      "select": "metadata_storage_name,keyphrases"
+    }
     ```
 
     This search finds documents that mention "New York" in any of the searchable fields, and returns the file name and key phrases in the document.
 
-6. Let's try one more query string:
+6. Let's try one more query:
 
-    ```
-    search="New York"&$count=true&$select=metadata_storage_name&$filter=metadata_author eq 'Reviewer'
+    ```json
+    {
+      "search": "New York",
+      "count": true,
+      "select": "metadata_storage_name",
+      "filter": "metadata_author eq 'Reviewer'"
+    }
     ```
 
     This query returns the filename of any documents authored by *Reviewer* that mention "New York".
@@ -196,12 +224,12 @@ The components of the search solution are based on JSON definitions, which you c
 
 While you can use the portal to create and modify search solutions, it's often desirable to define the search objects in JSON and use the Azure AI Service REST interface to create and modify them.
 
-### Get the endpoint and key for your Azure Cognitive Search resource
+### Get the endpoint and key for your Azure AI Search resource
 
-1. In the Azure portal, return to the **Overview** page for your Azure Cognitive Search resource; and in the top section of the page, find the **Url** for your resource (which looks like **https://resource_name.search.windows.net**) and copy it to the clipboard.
+1. In the Azure portal, return to the **Overview** page for your Azure AI Search resource; and in the top section of the page, find the **Url** for your resource (which looks like **https://resource_name.search.windows.net**) and copy it to the clipboard.
 2. In Visual Studio Code, in the Explorer pane, expand the **22-create-a-search-solution** folder and its **modify-search** subfolder, and select **modify-search.cmd** to open it. You will use this script file to run *cURL* commands that submit JSON to the Azure AI Service REST interface.
 3. In **modify-search.cmd**, replace the **YOUR_SEARCH_URL** placeholder with the URL you copied to the clipboard.
-4. In the Azure portal, view the **Keys** page for your Azure Cognitive Search resource, and copy the **Primary admin key** to the clipboard.
+4. In the Azure portal, view the **Keys** page for your Azure AI Search resource, and copy the **Primary admin key** to the clipboard.
 5. In Visual Studio Code, replace the **YOUR_ADMIN_KEY** placeholder with the key you copied to the clipboard.
 6. Save the changes to **modify-search.cmd** (but don't run it yet!)
 
@@ -209,9 +237,9 @@ While you can use the portal to create and modify search solutions, it's often d
 
 1. In Visual studio Code, in the **modify-search** folder, open **skillset.json**. This shows a JSON definition for **margies-skillset**.
 2. At the top of the skillset definition, note the **cognitiveServices** object, which is used to connect your Azure AI Services resource to the skillset.
-3. In the Azure portal, open your Azure AI Services resource (<u>not</u> your Azure Cognitive Search resource!) and view its **Keys** page. Then copy **Key 1** to the clipboard.
+3. In the Azure portal, open your Azure AI Services resource (<u>not</u> your Azure AI Search resource!) and view its **Keys** page. Then copy **Key 1** to the clipboard.
 4. In Visual Studio Code, in **skillset.json**, replace the **YOUR_COGNITIVE_SERVICES_KEY** placeholder with the Azure AI Services key you copied to the clipboard.
-5. Scroll through the JSON file, noting that it includes definitions for the skills you created using the Azure Cognitive Search user interface in the Azure portal. At the bottom of the list of skills, an additional skill has been added with the following definition:
+5. Scroll through the JSON file, noting that it includes definitions for the skills you created using the Azure AI Search user interface in the Azure portal. At the bottom of the list of skills, an additional skill has been added with the following definition:
 
     ```
     {
@@ -304,17 +332,21 @@ All of the other metadata and content fields in the source document are implicit
     modify-search
     ```
 
-3. When the script has finished, return to the **Overview** page for your Azure Cognitive Search resource in the Azure portal and view the **Indexers** page. The periodically select **Refresh** to track the progress of the indexing operation. It may take a minute or so to complete.
+3. When the script has finished, return to the **Overview** page for your Azure AI Search resource in the Azure portal and view the **Indexers** page. The periodically select **Refresh** to track the progress of the indexing operation. It may take a minute or so to complete.
 
     *There may be some warnings for a few documents that are too large to evaluate sentiment. Often sentiment analysis is performed at the page or sentence level rather than the full document; but in this case scenario, most of the documents - particularly the hotel reviews, are short enough for useful document-level sentiment scores to be evaluated.*
 
 ### Query the modified index
 
-1. At the top of the blade for your Azure Cognitive Search resource, select **Search explorer**.
-2. In Search explorer, in the **Query string** box, enter the following query string, and then select **Search**.
+1. At the top of the blade for your Azure AI Search resource, select **Search explorer**.
+2. In Search explorer, in the **Query string** box, submit the following JSON query:
 
-    ```
-    search=London&$select=url,sentiment,keyphrases&$filter=metadata_author eq 'Reviewer' and sentiment eq 'positive'
+    ```json
+    {
+      "search": "London",
+      "select": "url,sentiment,keyphrases",
+      "filter": "metadata_author eq 'Reviewer' and sentiment eq 'positive'"
+    }
     ```
 
     This query retrieves the **url**, **sentiment**, and **keyphrases** for all documents that mention *London* authored by *Reviewer* that have a positive **sentiment** label (in other words, positive reviews that mention London)
@@ -329,15 +361,15 @@ Now that you have a useful index, you can use it from a client application. You 
 
 ### Get the endpoint and keys for your search resource
 
-1. In the Azure portal, on the **Overview** page for your Azure Cognitive Search resource, note the **Url** value, which should be similar to **https://*your_resource_name*.search.windows.net**. This is the endpoint for your search resource.
+1. In the Azure portal, on the **Overview** page for your Azure AI Search resource, note the **Url** value, which should be similar to **https://*your_resource_name*.search.windows.net**. This is the endpoint for your search resource.
 2. On the **Keys** page, note that there are two **admin** keys, and a single **query** key. An *admin* key is used to create and manage search resources; a *query* key is used by client applications that only need to perform search queries.
 
     *You will need the endpoint and query key for your client application.*
 
-### Prepare to use the Azure Cognitive Search SDK
+### Prepare to use the Azure AI Search SDK
 
 1. In Visual Studio Code, in the **Explorer** pane, browse to the **22-create-a-search-solution** folder and expand the **C-Sharp** or **Python** folder depending on your language preference.
-2. Right-click the **margies-travel** folder and open an integrated terminal. Then install the Azure Cognitive Search SDK package by running the appropriate command for your language preference:
+2. Right-click the **margies-travel** folder and open an integrated terminal. Then install the Azure AI Search SDK package by running the appropriate command for your language preference:
 
     **C#**
     
@@ -355,7 +387,7 @@ Now that you have a useful index, you can use it from a client application. You 
     - **C#**: appsettings.json
     - **Python**: .env
 
-    Open the configuration file and update the configuration values it contains to reflect the **endpoint** and **query key** for your Azure Cognitive Search resource. Save your changes.
+    Open the configuration file and update the configuration values it contains to reflect the **endpoint** and **query key** for your Azure AI Search resource. Save your changes.
 
 ### Explore code to search an index
 
@@ -364,8 +396,8 @@ The **margies-travel** folder contains code files for a web application (a Micro
 1. Open the following code file in the web application, depending on your choice of programming language:
     - **C#**:Pages/Index.cshtml.cs
     - **Python**: app.py
-2. Near the top of the code file, find the comment **Import search namespaces**, and note the namespaces that have been imported to work with the Azure Cognitive Search SDK:
-3. In the **search_query** function, find the comment **Create a search client**, and note that the code creates a **SearchClient** object using the endpoint and query key for your Azure Cognitive Search resource:
+2. Near the top of the code file, find the comment **Import search namespaces**, and note the namespaces that have been imported to work with the Azure AI Search SDK:
+3. In the **search_query** function, find the comment **Create a search client**, and note that the code creates a **SearchClient** object using the endpoint and query key for your Azure AI Search resource:
 4. In the **search_query** function, find the comment **Submit search query**, and review the code to submit a search for the specified text with the following options:
     - A *search mode* that requires **all** of the individual words in the search text are found.
     - The total number of documents found by the search is included in the results.
@@ -430,4 +462,4 @@ The web app already includes code to process and render the search results.
 
 ## More information
 
-To learn more about Azure Cognitive Search, see the [Azure Cognitive Search documentation](https://docs.microsoft.com/azure/search/search-what-is-azure-search).
+To learn more about Azure AI Search, see the [Azure AI Search documentation](https://docs.microsoft.com/azure/search/search-what-is-azure-search).
